@@ -11,16 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('campanhas', function (Blueprint $table) {
+        Schema::create('comentarios', function (Blueprint $table) {
             $table->id();
-            $table->string('titulo');
-            $table->text('descricao');
-            $table->enum('categoria',['Medicina', 'Educação','Alimento','Sem fins Lucrativos']);
-            $table->unsignedBigInteger('user_id');
-            $table->timestamps();
+            $table->text('conteudo');
 
+            $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')
                 ->onDelete('cascade');
+
+            $table->unsignedBigInteger('campanha_id');
+            $table->foreign('campanha_id')->references('id')->on('campanhas')->onUpdate('cascade')
+                ->onDelete('cascade');
+            $table->enum('eliminado',[0, 1]);
+            $table->timestamps();
         });
     }
 
@@ -29,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('campanhas');
+        Schema::dropIfExists('comentarios');
     }
 };
