@@ -1093,6 +1093,7 @@ section {
   line-height: 24px;
   font-size: 14px;
   margin-bottom: 0;
+  text-align: center;
 }
 
 .featured-services .service-item:hover {
@@ -1119,6 +1120,10 @@ section {
   content: "";
   background: url("../img/about-bg.png") top left;
   background-repeat: no-repeat;
+}
+
+div#tab1 p {
+  font-size: 22px;
 }
 
 @media (max-width: 575px) {
