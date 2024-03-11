@@ -40,4 +40,6 @@ Route::get('/campanhas', function () {
 
 require __DIR__.'/auth.php';
 
-Route::apiResource('comentarios', Controllers\CampanhaController::class);
+
+Route::apiResource('campanha', Controllers\CampanhaController::class);
+Route::apiResource('comentarios', Controllers\ComentarioController::class);

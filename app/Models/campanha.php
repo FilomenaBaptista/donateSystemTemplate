@@ -26,11 +26,14 @@ class campanha extends Model
         int $eliminado = null
     ) {
          try {
+            $with['comentarios'] = 'comentarios';
             $query =  Campanha::from('campanhas as c')
-            /* ->join('users AS u', 'u.user_id', '=', 'c.user_id') */
             ->with('criador')
             ->orderBy('c.id', 'DESC');
 
+            if ($with['comentarios'] !== 'comentarios') {
+                $query->with('comentarios');
+            }
             if ($criadorId !== null) {
                 $query->where('c.user_id', '=', $criadorId);
             }
@@ -56,8 +59,8 @@ class campanha extends Model
     ) {
         try {
             return Campanha::from('campanhas as c')
-           /*  ->join('users AS u', 'u.user_id', '=', 'c.user_id') */
             ->with('criador')
+            ->with('comentarios')
             ->where('c.id', $campanhaId)
             ->first(['c.*']);
         } catch (QueryException $e) {

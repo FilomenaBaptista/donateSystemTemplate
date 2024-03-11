@@ -41,7 +41,8 @@ class ComentarioController extends Controller
 
         $ComentarioService = new ComentarioService();
         $response = $ComentarioService->createComentario(
-            Auth::user()->id,
+            1,
+           // Auth::user()->id,
             $request->campanha_id,
             $request->conteudo
         );

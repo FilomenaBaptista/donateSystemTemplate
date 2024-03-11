@@ -37,7 +37,7 @@ class Comentario extends Model
         string $conteudo
     ) {
         try {
-            $comentario = new campanha();
+            $comentario = new Comentario();
             $comentario->user_id = $userId;
             $comentario->campanha_id = $campanhaId;
             $comentario->conteudo = $conteudo;
