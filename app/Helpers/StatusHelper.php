@@ -17,6 +17,7 @@ class StatusHelper
             200 => '.SUCCESS',
             203 => '.INCORRECT',
             302 => '.REGISTER.FOUND',
+            0   => '.REGISTER.NOT.FOUND',
             401 => '.UNATHORIZED',
             403 => '.FORBIDDEN',
             404 => '.NOT.FOUND',
