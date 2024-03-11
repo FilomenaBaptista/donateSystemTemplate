@@ -9,11 +9,13 @@
             <ul>
                 <li><a class="nav-link scrollto" href="index.php#about">Quem Somos</a></li>
                 <li><a class="nav-link scrollto" href="{{ route('campanhas') }}">Campanhas</a></li>
-                <li><a class="nav-link scrollto" href="{{ route('voluntario') }}">Quero ser Voluntário</a></li>
+                @guest
+                    <li><a class="nav-link scrollto" href="{{ route('voluntario') }}">Quero ser Voluntário</a></li>
+                @endguest
                 <li><a class="nav-link scrollto" href="{{ route('solicitardoacao') }}">Solicitar Doações</a></li>
                 <li><a class="nav-link scrollto" href="{{ route('doar') }}"> Doar</a></li>
                 <li><a class="nav-link scrollto" href="{{ route('historiasdesucesso') }}">Histórias de Sucesso</a></li>
-            
+
                 @if (Route::has('login'))
 
                     @auth
