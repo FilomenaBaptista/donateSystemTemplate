@@ -44,7 +44,8 @@
                     <div class="col-xl-3 col-md-6 d-flex" data-aos="zoom-out" data-aos-delay="400">
                         <div class="service-item position-relative">
                             <div class="icon"><i class="bi bi-calendar4-week icon"></i></div>
-                            <h4><a href="" class="stretched-link">Publique atualizações e agradeça aos doadores </a></h4>
+                            <h4><a href="" class="stretched-link">Publique atualizações e agradeça aos doadores </a>
+                            </h4>
                             <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia</p>
                         </div>
                     </div><!-- End Service Item -->
@@ -119,40 +120,73 @@
                                                         class="php-email-form">
 
                                                         <div class="col-md-12 form-group">
-                                                            <label class="mb-2" for="">por que você está fazendo a
-                                                                campanha?</label>
-                                                            <input type="text" name="name" class="form-control"
-                                                                id="name" placeholder="" required>
+                                                            <label class="mb-2 col-md-12" for="">Motivo da Campanha?
+                                                            </label>
+                                                            <select class="form-select" aria-label="Default select example"
+                                                                name="motivo_campanha" id="motivo_campanha" value="{{ old('motivo_campanha') }}">
+                                                                <option selected>Selecione a Causa</option>
+                                                                <option value="1">One</option>
+                                                                <option value="2">Two</option>
+                                                                <option value="3">Three</option>
+                                                            </select>
+                                                           
                                                         </div>
-                                                        <div class="col-md-12 form-group mt-3 mt-md-0">
-                                                            <label class="mb-2" for="">Quanto deseja arrecadar
-                                                                ?</label>
-                                                            <input type="email" class="form-control" name="email"
-                                                                id="email" placeholder="Data de Nascimento" required>
+
+                                                        <div class="col-md-12 input-group mb-3 mt-3 mt-md-0">
+                                                            <label class="mb-2 label-money" for="">Valor a
+                                                                arrecadar?</label>
+
+                                                            <span class="input-group-text">AKZ</span>
+                                                            <input type="text" id="val-arrecadar" name="val-arrecadar"
+                                                                value="{{ old('val-arrecadar') }}" class="form-control"
+                                                                aria-label="Amount (to the nearest dollar)">
+                                                            <span class="input-group-text">.00</span>
+
                                                         </div>
+
+
                                                         <div class="col-md-12 form-group mt-3 mt-md-0">
                                                             <label class="mb-2" for="">Adicionar uma foto ou video
                                                                 de capa</label>
-                                                            <input type="email" class="form-control" name="email"
-                                                                id="email" placeholder="Telefone" required>
+                                                            <div class="d-flex justify-content-center mb-4">
+                                                                <img id="selectedAvatar" name="img_video"
+                                                                    src="https://mdbootstrap.com/img/Photos/Others/placeholder-avatar.jpg"
+                                                                    class="rounded-circle"
+                                                                    style="width: auto; height: 350px; object-fit: cover;"
+                                                                    alt="example placeholder" />
+                                                            </div>
+                                                            <div class="d-flex justify-content-center">
+                                                                <div class="btn btn-rounded">
+                                                                    <label class="form-label text-white m-1"
+                                                                        for="customFile2">Escolher Imagem</label>
+                                                                    <input type="file" class="form-control d-none"
+                                                                        id="customFile2"
+                                                                        onchange="displaySelectedImage(event, 'selectedAvatar')" />
+                                                                </div>
+                                                            </div>
+
                                                         </div>
+
+
                                                         <div class="col-md-12 form-group mt-3 mt-md-0">
                                                             <label class="mb-2" for="">Nome da Campanha</label>
-                                                            <input type="email" class="form-control" name="email"
-                                                                id="email" placeholder="Doe para ajudar" required>
+                                                            <input type="name" class="form-control"
+                                                                value="{{ old('nome_campanha') }}" name="nome_campanha"
+                                                                id="nome_campanha" placeholder="Comida para necessitados"
+                                                                required>
                                                         </div>
-
-
 
                                                         <div class="form-group mt-3">
                                                             <label for="">Descreva a sua História</label>
-                                                            <textarea class="form-control" name="message" placeholder="Oi meu nome é Ana, estou arrecadando fundos para..."
-                                                                required></textarea>
+                                                            <textarea class="form-control" name="historia" id="historia" name="message" value="{{ old('historia') }}"
+                                                                placeholder="Oi meu nome é Ana, estou arrecadando fundos para..." required></textarea>
                                                         </div>
 
-                                                        <div class="text-center"><button class="mr-5"
-                                                                type="submit">Visualizar campanha</button><button
-                                                                type="submit">Publicar campanha</button></div>
+                                                        <div class="text-center">
+                                                            <button class="mr-5" type="submit">Visualizar
+                                                                campanha</button><button type="submit">Publicar
+                                                                campanha</button>
+                                                        </div>
 
                                                     </form>
                                                 </div><!-- End Contact Form -->

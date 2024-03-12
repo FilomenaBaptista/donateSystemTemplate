@@ -2350,7 +2350,9 @@ div#tab1 p {
   padding: 10px 12px;
   height: 180px;
 }
-
+span.input-group-text {
+  height: 55px;
+}
 .contact .php-email-form button[type=submit] {
   background: var(--color-primary);
   border: 0;
@@ -2358,12 +2360,15 @@ div#tab1 p {
   color: var(--color-white);
   transition: 0.4s;
   border-radius: 0;
+  margin-right: 15px;
 }
 
 .contact .php-email-form button[type=submit]:hover {
   background: rgba(var(--color-primary-rgb), 0.85);
 }
-
+.btn.btn-rounded {
+  background: #0ea2bd;
+}
 button {
   background: var(--color-primary);
   border: 0;
@@ -2371,7 +2376,7 @@ button {
   color: var(--color-white);
   transition: 0.4s;
   border-radius: 0;
-  width: 25%;
+  width: auto;
 }
 select {
   height: 55px;
@@ -2380,6 +2385,12 @@ select {
 input {
   height: 55px;
   margin-bottom: 10px;
+}
+label {
+  color: #000000ab;
+}
+label.mb-2.label-money {
+  width: 48rem;
 }
 @keyframes animate-loading {
   0% {
