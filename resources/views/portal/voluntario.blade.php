@@ -99,7 +99,16 @@
                     </div>
 
                     <div class="col-lg-6">
-                        <form action="{{ route('users.store') }}" method="post" role="form" class="php-email-form">
+                        @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                        <form action="{{ route('register') }}" method="post" role="form" class="php-email-form">
                             @csrf
                             <div class="row">
                                 <input type="hidden" name="user_name" value="voluntario" class="form-control"
