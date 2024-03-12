@@ -62,10 +62,11 @@
                 </div>
 
             </div>
-        </section><!-- End Featured Services Section -->
+        </section>
+        
+        <!-- End Featured Services Section -->
 
-        <!-- ======= Contact Section ======= -->
-        <section id="contact" class="contact">
+        <section class="banner-description" style="background-image: url('assets/img/Photo_placeholder.png')">
             <div class="container">
 
                 <div class="row gy-5 gx-lg-5">
@@ -85,6 +86,12 @@
 
             </div>
 
+        </section>
+
+        <!-- ======= Contact Section ======= -->
+        <section id="contact" class="contact">
+            
+
             <div class="container py-5">
 
                 <div class="row gy-5 gx-lg-5">
@@ -102,35 +109,35 @@
                         <form action="{{ route('users.store') }}" method="post" role="form" class="php-email-form">
                             @csrf
                             <div class="row">
-                                <input type="hidden" name="user_name" value="voluntario" class="form-control"
+                                <input type="hidden" name="user_name" value="{{ old('user_name') }}" class="form-control"
                                     id="user_name" placeholder="Nome Completo">
                                 <div class="col-md-6 form-group">
                                     <input type="text" name="name" class="form-control" id="name"
-                                        placeholder="Nome Completo" required>
+                                        placeholder="Nome Completo"  value="{{ old('name') }}" required>
                                 </div>
                                 <div class="col-md-6 form-group mt-3 mt-md-0">
-                                    <input type="date" class="form-control" name="data_nascimento" id="data_nascimento"
+                                    <input type="date" class="form-control"  value="{{ old('data_nascimento') }}" name="data_nascimento" id="data_nascimento"
                                         placeholder="Data de Nascimento" required>
                                 </div>
                                 <div class="col-md-6 form-group mt-3 mt-md-0">
-                                    <input type="text" class="form-control" name="telefone" id="telefone"
+                                    <input type="text" class="form-control"  value="{{ old('telefone') }}" name="telefone" id="telefone"
                                         placeholder="Telefone" required>
                                 </div>
                                 <div class="col-md-6 form-group mt-3 mt-md-0">
-                                    <input type="email" class="form-control" name="email" id="email"
+                                    <input type="email" class="form-control"  value="{{ old('email') }}"  name="email" id="email"
                                         placeholder="Email" required>
                                 </div>
                                 <div class="col-md-6 form-group mt-3 mt-md-0">
-                                    <input type="password" class="form-control" name="password" id="password"
+                                    <input type="password" class="form-control"  value="{{ old('password') }}" name="password" id="password"
                                         placeholder="Senha" required>
                                 </div>
                                 <div class="col-md-6 form-group mt-3 mt-md-0">
-                                    <input type="text" class="form-control" name="endereço" id="endereço"
+                                    <input type="text" class="form-control"  value="{{ old('endereço') }}" name="endereço" id="endereço"
                                         placeholder="Endereço" required>
                                 </div>
                                 <div class="col-md-6 form-group mt-3 mt-md-0">
                                     <select class="form-select"  aria-label="Default select example"
-                                    name="profissao" id="profissao">
+                                    name="profissao" id="profissao" value="{{ old('profissao') }}">
                                     <option selected>Selecione a Profissão</option>
                                     <option value="1">Professor</option>
                                     <option value="2">Enfermeiro</option>
@@ -143,12 +150,12 @@
                                    <div>
                                     <div class="form-check form-check-inline">
                                         <input class="form-check-input" type="radio" name="is_trabalhador"
-                                            id="is_trabalhador" value="option1">
+                                            id="is_trabalhador"  value="{{ old('is_trabalhador') }}">
                                         <label class="form-check-label" for="inlineRadio1">Sim</label>
                                     </div>
                                     <div class="form-check form-check-inline">
                                         <input class="form-check-input" type="radio" name="is_trabalhador"
-                                            id="is_trabalhador" value="option2">
+                                            id="is_trabalhador"  value="{{ old('is_trabalhador') }}">
                                         <label class="form-check-label" for="inlineRadio2">Não</label>
                                     </div>
                                    </div>
