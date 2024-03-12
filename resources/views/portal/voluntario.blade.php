@@ -145,12 +145,11 @@
                                         placeholder="Endereço" required>
                                 </div>
                                 <div class="col-md-6 form-group mt-3 mt-md-0">
-                                    <select class="form-select"  aria-label="Default select example"
-                                    name="profissao" id="profissao" value="{{ old('profissao') }}">
-                                    <option selected>Selecione a Profissão</option>
-                                    <option value="1">Professor</option>
-                                    <option value="2">Enfermeiro</option>
-                                    <option value="3">Cozinheira</option>
+                                <select class="form-select" aria-label="Default select example" name="profissao" id="profissao">
+                                    <option {{ old('profissao') ? '' : 'selected' }} disabled>Selecione a Profissão</option>
+                                    <option value="Professor" {{ old('profissao') == 'Professor' ? 'selected' : '' }}>Professor</option>
+                                    <option value="Enfermeiro" {{ old('profissao') == 'Enfermeiro' ? 'selected' : '' }}>Enfermeiro</option>
+                                    <option value="Cozinheira" {{ old('profissao') == 'Cozinheira' ? 'selected' : '' }}>Cozinheira</option>
                                 </select>
                                    
                                 </div>
@@ -158,13 +157,13 @@
                                     <label class="label-text" for="">Trabalha actualmente?</label>
                                    <div>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="is_trabalhador"
-                                            id="is_trabalhador"  value="{{ old('is_trabalhador') }}">
+                                        <input class="form-check-input" type="radio" name="is_trabalhador" id="is_trabalhador" 
+                                            value="1" @if(old('is_trabalhador') == '1') checked @endif>
                                         <label class="form-check-label" for="inlineRadio1">Sim</label>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="is_trabalhador"
-                                            id="is_trabalhador"  value="{{ old('is_trabalhador') }}">
+                                        <input class="form-check-input" type="radio" name="is_trabalhador" id="is_trabalhador"
+                                        value="0" @if(old('is_trabalhador') == '0') checked @endif>
                                         <label class="form-check-label" for="inlineRadio2">Não</label>
                                     </div>
                                    </div>
@@ -173,7 +172,7 @@
 
 
                             <div class="form-group mt-3">
-                                <textarea class="form-control" name="sobre" placeholder="Descreva o que você poderia fazer" required></textarea>
+                                <textarea class="form-control" name="sobre" placeholder="Descreva o que você poderia fazer" required>{{ old('sobre') }}</textarea>
                             </div>
                             <div class="text-left"><button type="submit">Cadastrar</button></div>
                         </form>
