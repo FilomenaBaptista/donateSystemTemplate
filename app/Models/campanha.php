@@ -41,7 +41,7 @@ class campanha extends Model
                 $query->where('c.eliminado', '=', $criadorId);
             }
 
-            return $query ->get([ 'c.*']);
+            return $query->paginate(6);
         } catch (QueryException $e) {
             throw new Exception($e->getCode());
         }

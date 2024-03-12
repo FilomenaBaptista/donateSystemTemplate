@@ -26,10 +26,14 @@ class CampanhaService
     ) {
         try {
             $campanha = new Campanha();
-              $response = DataTables::of($campanha->listCampanha(
+               $response = $campanha->listCampanha(
                 $criadorId,
                 $eliminado
-            ))->make(true);
+            ); 
+              /*  $response = DataTables::of($campanha->listCampanha(
+                $criadorId,
+                $eliminado
+            ))->make(true);  */
 
             return StatusHelper::response(['data' => $response, 'tag' => 'LIST.CAMPANHA', 'status' => 200]);
         } catch (Exception $e) {

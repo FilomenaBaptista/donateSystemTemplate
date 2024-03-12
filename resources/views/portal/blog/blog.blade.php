@@ -26,17 +26,10 @@
         <div class="row g-5">
 
           <div class="col-lg-8">
-            @php
-            dd( $campanhas)
-       
-        @endphp
+           
             <div class="row gy-4 posts-list">
 
                 @foreach ($campanhas as $campanha)
-                @php
-                    dd( $campanha)
-               
-                @endphp
                 <div class="col-lg-6">
                     <article class="d-flex flex-column">
 
@@ -45,43 +38,40 @@
                     </div>
 
                     <h2 class="title">
-                        <a href="blog-details.html">{{$campanha['titulo']}}</a>
+                        <a href="blog-details.html">{{$campanha->titulo}}</a>
                     </h2>
 
                     <div class="meta-top">
                         <ul>
-                        <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="blog-details.html">John Doe</a></li>
-                        <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-details.html"><time datetime="2022-01-01">Jan 1, 2022</time></a></li>
-                        <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="blog-details.html">12 Comments</a></li>
+                        <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="blog-details.html">{{$campanha->criador->name}}</a></li>
+                        <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-details.html"><time datetime="2022-01-01"> {{$campanha->created_at->format('M d,  Y') }}</time></a></li>
+                        <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="blog-details.html">{{count($campanha->comentarios)}} Comentários</a></li>
                         </ul>
                     </div>
 
                     <div class="content">
                         <p>
-                        Similique neque nam consequuntur ad non maxime aliquam quas. Quibusdam animi praesentium. Aliquam et laboriosam eius aut nostrum quidem aliquid dicta.
+                        {{Str::limit($campanha->descricao, 150)}}
                         </p>
                     </div>
-
-
                     </article>
                 </div><!-- End post list item -->
                 @endforeach
             </div><!-- End blog posts list -->
-
-            <div class="blog-pagination">
+            {{ $campanhas->links('paginacao.custom-pagination') }}
+           <!--  <div class="blog-pagination">
               <ul class="justify-content-center">
                 <li><a href="#">1</a></li>
                 <li class="active"><a href="#">2</a></li>
                 <li><a href="#">3</a></li>
               </ul>
-            </div><!-- End blog pagination -->
+            </div> --> 
 
           </div>
 
           <div class="col-lg-4">
 
             <div class="sidebar">
-
               <div class="sidebar-item search-form">
                 <h3 class="sidebar-title">Search</h3>
                 <form action="" class="mt-3">
