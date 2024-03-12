@@ -33,7 +33,7 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/home', function () {
     return view('portal.index');
-});
+})->name('home');
 
 Route::get('/campanhas', function () {
     return view('portal.blog/blog');
@@ -45,11 +45,11 @@ Route::get('/voluntario', function () {
 
 Route::get('/campanha-detail', function () {
     return view('portal.blog/blog-details');
-})->name('campanhadetail');;
+})->name('campanhadetail');
 
 Route::get('/historias-de-sucesso', function () {
     return view('portal.blog/historia-de-sucesso');
-})->name('historiasdesucesso');;
+})->name('historiasdesucesso');
 
 Route::get('/doar', function () {
     return view('portal.doacao/doacao');
@@ -61,7 +61,7 @@ Route::get('/solicitar-doacao', function () {
 
 Route::get('/encontrar-doacao', function () {
     return view('portal.doacao/encontrar-doacao');
-})->name('encontrardoacao');;
+})->name('encontrardoacao');
 
 
 require __DIR__.'/auth.php';
