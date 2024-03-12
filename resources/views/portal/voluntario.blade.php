@@ -103,15 +103,15 @@
                             @csrf
                             <div class="row">
                                 <div class="col-md-6 form-group">
-                                    <input type="text" name="nome_voluntario" class="form-control" id="nome_voluntario"
-                                        placeholder="Nome" required>
+                                    <input type="text" name="name" class="form-control" id="name"
+                                        placeholder="Nome Completo" required>
                                 </div>
                                 <div class="col-md-6 form-group mt-3 mt-md-0">
-                                    <input type="email" class="form-control" name="data_nascimento" id="data_nascimento"
+                                    <input type="date" class="form-control" name="data_nascimento" id="data_nascimento"
                                         placeholder="Data de Nascimento" required>
                                 </div>
                                 <div class="col-md-6 form-group mt-3 mt-md-0">
-                                    <input type="email" class="form-control" name="telefone" id="telefone"
+                                    <input type="text" class="form-control" name="telefone" id="telefone"
                                         placeholder="Telefone" required>
                                 </div>
                                 <div class="col-md-6 form-group mt-3 mt-md-0">
@@ -119,26 +119,26 @@
                                         placeholder="Email" required>
                                 </div>
                                 <div class="col-md-6 form-group mt-3 mt-md-0">
-                                    <input type="email" class="form-control" name="endereço" id="endereço"
+                                    <input type="text" class="form-control" name="endereço" id="endereço"
                                         placeholder="Endereço" required>
                                 </div>
                                 <div class="col-md-6 form-group mt-3 mt-md-0">
-                                    <input type="email" class="form-control" name="profissao" id="profissao"
+                                    <input type="text" class="form-control" name="profissao" id="profissao"
                                         placeholder="Profissão" required>
                                 </div>
                                 <div class="col-md-6 form-group mt-3 mt-md-0">
-                                    <input type="email" class="form-control" name="trabalha_actualmente" id="trabalha-actualmente"
+                                    <input type="text" class="form-control" name="is_trabalhador" id="is_trabalhador"
                                         placeholder="Trabalha actualmente?" required>
                                 </div>
                                 <div class="col-md-6 form-group mt-3 mt-md-0">
-                                    <input type="email" class="form-control" name="area_de_interesse" id="area_de_interesse"
+                                    <input type="text" class="form-control" name="area_de_interesse" id="area_de_interesse"
                                         placeholder="Área de Interesse?" required>
                                 </div>
                             </div>
 
 
                             <div class="form-group mt-3">
-                                <textarea class="form-control" name="message" placeholder="Descreva o que você poderia fazer" required></textarea>
+                                <textarea class="form-control" name="sobre" placeholder="Descreva o que você poderia fazer" required></textarea>
                             </div>
                             <div class="text-center"><button type="submit">Cadastrar</button></div>
                         </form>

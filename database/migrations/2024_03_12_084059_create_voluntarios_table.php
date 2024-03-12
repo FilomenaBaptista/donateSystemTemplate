@@ -13,12 +13,14 @@ return new class extends Migration
     {
         Schema::create('voluntarios', function (Blueprint $table) {
             $table->id();
-            $table->timestamp('data_publicacao')->nullable();
-            $table->text('conteudo');
+            $table->timestamp('data_nascimento');
+            $table->string('endereço');
+            $table->enum('is_trabalhador',[1,0]);
+            $table->string('profissao')->nullable();
+            $table->string('area_de_interesse')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')
                 ->onDelete('cascade');
-
             $table->timestamps();
         });
     }
