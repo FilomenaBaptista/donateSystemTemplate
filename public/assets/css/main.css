@@ -2342,13 +2342,13 @@ div#tab1 p {
 
 .contact .php-email-form input[type=text],
 .contact .php-email-form input[type=email] {
-  height: 48px;
+  height: 55px;
   padding: 10px 15px;
 }
 
 .contact .php-email-form textarea {
   padding: 10px 12px;
-  height: 290px;
+  height: 180px;
 }
 
 .contact .php-email-form button[type=submit] {
@@ -2364,6 +2364,23 @@ div#tab1 p {
   background: rgba(var(--color-primary-rgb), 0.85);
 }
 
+button {
+  background: var(--color-primary);
+  border: 0;
+  padding: 13px 50px;
+  color: var(--color-white);
+  transition: 0.4s;
+  border-radius: 0;
+  width: 25%;
+}
+select {
+  height: 55px;
+  margin-bottom: 10px;
+}
+input {
+  height: 55px;
+  margin-bottom: 10px;
+}
 @keyframes animate-loading {
   0% {
     transform: rotate(0deg);

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Voluntario;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
@@ -41,6 +42,18 @@ class RegisteredUserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
+
+        if( $request->username == "voluntario"){
+            $voluntario = Voluntario::create([
+                'data_nascimento'=>$request->data_nascimento,
+                'endereço'=>$request->endereço,
+                'is_trabalhador'=>$request->is_trabalhador,
+                'profissao'=>$request->profissao,
+                'area_de_interesse'=>$request->area_de_interesse,
+                'sobre'=>$request->sobre,
+                'user_id'=> $user->id,
+            ]);
+        }
 
         event(new Registered($user));
 

@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('titulo');
             $table->text('descricao');
-            $table->enum('categoria',['Medicina', 'Educação','Alimento','Sem fins Lucrativos']);
+            $table->enum('categoria',['Medicina', 'Educação','Alimento','Calçado','Roupas','Decorações','Eletrodomésticos','Acessórios e ração animal','Beleza/Cuidado corporal','Artesanato','Construção e renovação','Cozinha e utensílios de mesa','Manuteção Doméstica','Jardim','Jogos e Brinquedos','Lazer','Equipamento de Escritório','Mobiliário','Tecnologia','Esporte' ]);
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
 

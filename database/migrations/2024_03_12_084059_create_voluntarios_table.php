@@ -18,6 +18,7 @@ return new class extends Migration
             $table->enum('is_trabalhador',[1,0]);
             $table->string('profissao')->nullable();
             $table->string('area_de_interesse')->nullable();
+            $table->text('sobre');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')
                 ->onDelete('cascade');

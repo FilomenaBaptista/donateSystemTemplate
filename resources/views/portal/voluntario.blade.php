@@ -19,50 +19,50 @@
             </div>
         </div><!-- End Breadcrumbs -->
 
-            <!-- ======= Featured Services Section ======= -->
-    <section id="featured-services" class="featured-services">
-        <div class="container">
+        <!-- ======= Featured Services Section ======= -->
+        <section id="featured-services" class="featured-services">
+            <div class="container">
 
-          <div class="row gy-4">
+                <div class="row gy-4">
 
-            <h3 class="ganho">O que eu ganho sendo voluntário?</h3>
+                    <h3 class="ganho">O que eu ganho sendo voluntário?</h3>
 
-            <div class="col-xl-3 col-md-6 d-flex" data-aos="zoom-out">
-              <div class="service-item position-relative">
-                <div class="icon"><i class="bi bi-activity icon"></i></div>
-                <h4><a href="" class="stretched-link text-center">Desenvolvimento</a></h4>
-                <p>de habilidades</p>
-              </div>
-            </div><!-- End Service Item -->
+                    <div class="col-xl-3 col-md-6 d-flex" data-aos="zoom-out">
+                        <div class="service-item position-relative">
+                            <div class="icon"><i class="bi bi-activity icon"></i></div>
+                            <h4><a href="" class="stretched-link text-center">Desenvolvimento</a></h4>
+                            <p>de habilidades</p>
+                        </div>
+                    </div><!-- End Service Item -->
 
-            <div class="col-xl-3 col-md-6 d-flex" data-aos="zoom-out" data-aos-delay="200">
-              <div class="service-item position-relative">
-                <div class="icon"><i class="bi bi-bounding-box-circles icon"></i></div>
-                <h4><a href="" class="stretched-link text-center">CONEXÃO</a></h4>
-                <p class="text-center">Com outras histórias de vida</p>
-              </div>
-            </div><!-- End Service Item -->
+                    <div class="col-xl-3 col-md-6 d-flex" data-aos="zoom-out" data-aos-delay="200">
+                        <div class="service-item position-relative">
+                            <div class="icon"><i class="bi bi-bounding-box-circles icon"></i></div>
+                            <h4><a href="" class="stretched-link text-center">CONEXÃO</a></h4>
+                            <p class="text-center">Com outras histórias de vida</p>
+                        </div>
+                    </div><!-- End Service Item -->
 
-            <div class="col-xl-3 col-md-6 d-flex" data-aos="zoom-out" data-aos-delay="400">
-              <div class="service-item position-relative">
-                <div class="icon"><i class="bi bi-calendar4-week icon"></i></div>
-                <h4><a href="" class="stretched-link text-center">Conhecimento</a></h4>
-                <p></p>
-              </div>
-            </div><!-- End Service Item -->
+                    <div class="col-xl-3 col-md-6 d-flex" data-aos="zoom-out" data-aos-delay="400">
+                        <div class="service-item position-relative">
+                            <div class="icon"><i class="bi bi-calendar4-week icon"></i></div>
+                            <h4><a href="" class="stretched-link text-center">Conhecimento</a></h4>
+                            <p></p>
+                        </div>
+                    </div><!-- End Service Item -->
 
-            <div class="col-xl-3 col-md-6 d-flex" data-aos="zoom-out" data-aos-delay="600">
-              <div class="service-item position-relative">
-                <div class="icon"><i class="bi bi-broadcast icon"></i></div>
-                <h4><a href="" class="stretched-link text-center">Trocas</a></h4>
-                <p>e novas perpectivas de experiências de vida</p>
-              </div>
-            </div><!-- End Service Item -->
+                    <div class="col-xl-3 col-md-6 d-flex" data-aos="zoom-out" data-aos-delay="600">
+                        <div class="service-item position-relative">
+                            <div class="icon"><i class="bi bi-broadcast icon"></i></div>
+                            <h4><a href="" class="stretched-link text-center">Trocas</a></h4>
+                            <p>e novas perpectivas de experiências de vida</p>
+                        </div>
+                    </div><!-- End Service Item -->
 
-          </div>
+                </div>
 
-        </div>
-      </section><!-- End Featured Services Section -->
+            </div>
+        </section><!-- End Featured Services Section -->
 
         <!-- ======= Contact Section ======= -->
         <section id="contact" class="contact">
@@ -99,9 +99,11 @@
                     </div>
 
                     <div class="col-lg-6">
-                        <form action="{{route('users.store')}}" method="post" role="form" class="php-email-form">
+                        <form action="{{ route('users.store') }}" method="post" role="form" class="php-email-form">
                             @csrf
                             <div class="row">
+                                <input type="hidden" name="user_name" value="voluntario" class="form-control"
+                                    id="user_name" placeholder="Nome Completo">
                                 <div class="col-md-6 form-group">
                                     <input type="text" name="name" class="form-control" id="name"
                                         placeholder="Nome Completo" required>
@@ -119,20 +121,37 @@
                                         placeholder="Email" required>
                                 </div>
                                 <div class="col-md-6 form-group mt-3 mt-md-0">
+                                    <input type="password" class="form-control" name="password" id="password"
+                                        placeholder="Senha" required>
+                                </div>
+                                <div class="col-md-6 form-group mt-3 mt-md-0">
                                     <input type="text" class="form-control" name="endereço" id="endereço"
                                         placeholder="Endereço" required>
                                 </div>
                                 <div class="col-md-6 form-group mt-3 mt-md-0">
-                                    <input type="text" class="form-control" name="profissao" id="profissao"
-                                        placeholder="Profissão" required>
+                                    <select class="form-select"  aria-label="Default select example"
+                                    name="profissao" id="profissao">
+                                    <option selected>Selecione a Profissão</option>
+                                    <option value="1">Professor</option>
+                                    <option value="2">Enfermeiro</option>
+                                    <option value="3">Cozinheira</option>
+                                </select>
+                                   
                                 </div>
                                 <div class="col-md-6 form-group mt-3 mt-md-0">
-                                    <input type="text" class="form-control" name="is_trabalhador" id="is_trabalhador"
-                                        placeholder="Trabalha actualmente?" required>
-                                </div>
-                                <div class="col-md-6 form-group mt-3 mt-md-0">
-                                    <input type="text" class="form-control" name="area_de_interesse" id="area_de_interesse"
-                                        placeholder="Área de Interesse?" required>
+                                    <label class="label-text" for="">Trabalha actualmente?</label>
+                                   <div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="is_trabalhador"
+                                            id="is_trabalhador" value="option1">
+                                        <label class="form-check-label" for="inlineRadio1">Sim</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="is_trabalhador"
+                                            id="is_trabalhador" value="option2">
+                                        <label class="form-check-label" for="inlineRadio2">Não</label>
+                                    </div>
+                                   </div>
                                 </div>
                             </div>
 
@@ -140,7 +159,7 @@
                             <div class="form-group mt-3">
                                 <textarea class="form-control" name="sobre" placeholder="Descreva o que você poderia fazer" required></textarea>
                             </div>
-                            <div class="text-center"><button type="submit">Cadastrar</button></div>
+                            <div class="text-left"><button type="submit">Cadastrar</button></div>
                         </form>
                     </div><!-- End Contact Form -->
 

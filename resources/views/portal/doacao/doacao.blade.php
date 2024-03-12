@@ -72,30 +72,30 @@
                                                         <div class="info-item d-flex">
                                                             <i class="bi bi-geo-alt flex-shrink-0"></i>
                                                             <div>
-                                                              <img src="assets/img/Photo_placeholder.png" alt="">
-                                                              <input type="file" id="image-file"
-                                                              accept="image/x-png, image/jpeg" />
-                                                            
+                                                                <img src="assets/img/Photo_placeholder.png" alt="">
+                                                                <input type="file" id="image-file"
+                                                                    accept="image/x-png, image/jpeg" />
+
                                                             </div>
                                                         </div><!-- End Info Item -->
 
                                                         <div class="info-item d-flex">
                                                             <i class="bi bi-envelope flex-shrink-0"></i>
                                                             <div>
-                                                              <img src="assets/img/Photo_placeholder.png" alt="">
-                                                              <input type="file" id="image-file"
-                                                              accept="image/x-png, image/jpeg" />
-                                                            
+                                                                <img src="assets/img/Photo_placeholder.png" alt="">
+                                                                <input type="file" id="image-file"
+                                                                    accept="image/x-png, image/jpeg" />
+
                                                             </div>
                                                         </div><!-- End Info Item -->
 
                                                         <div class="info-item d-flex">
                                                             <i class="bi bi-phone flex-shrink-0"></i>
                                                             <div>
-                                                              <img src="assets/img/Photo_placeholder.png" alt="">
-                                                              <input type="file" id="image-file"
-                                                              accept="image/x-png, image/jpeg" />
-                                                            
+                                                                <img src="assets/img/Photo_placeholder.png" alt="">
+                                                                <input type="file" id="image-file"
+                                                                    accept="image/x-png, image/jpeg" />
+
                                                             </div>
                                                         </div><!-- End Info Item -->
 
@@ -108,11 +108,13 @@
                                                         class="php-email-form">
 
                                                         <div class="col-md-12 form-group">
-                                                            <input type="text" name="name" class="form-control"
-                                                                id="name" placeholder="Titulo do anúncio" required>
+                                                            <input type="text" name="titulo_do_anuncio"
+                                                                class="form-control" id="titulo_do_anuncio"
+                                                                placeholder="Titulo do anúncio" required>
                                                         </div>
                                                         <div class="col-md-12 form-group mt-3 mt-md-0">
-                                                            <select class="form-select" aria-label="Default select example">
+                                                            <select class="form-select" aria-label="Default select example"
+                                                                name="categoria" id="categoria">
                                                                 <option selected>Selecione a categoria</option>
                                                                 <option value="1">One</option>
                                                                 <option value="2">Two</option>
@@ -120,11 +122,12 @@
                                                             </select>
                                                         </div>
                                                         <div class="col-md-12 form-group mt-3 mt-md-0">
-                                                            <input type="email" class="form-control" name="email"
-                                                                id="email" placeholder="Local de Doação" required>
+                                                            <input type="text" class="form-control" name="local"
+                                                                id="local" placeholder="Local de Doação" required>
                                                         </div>
                                                         <div class="col-md-12 form-group mt-3 mt-md-0">
-                                                            <select class="form-select" aria-label="Default select example">
+                                                            <select class="form-select" aria-label="Default select example"
+                                                                name="estado" id="estado">
                                                                 <option selected>Estado da doação</option>
                                                                 <option value="1">Muito boa condição</option>
                                                                 <option value="2">Estado médio</option>
@@ -135,14 +138,9 @@
                                                         <div class="form-group mt-3">
                                                             <textarea class="form-control" name="message" placeholder="Descrição da doacão" required></textarea>
                                                         </div>
-                                                        <div class="my-3">
-                                                            <div class="loading">Loading</div>
-                                                            <div class="error-message"></div>
-                                                            <div class="sent-message">Your message has been sent. Thank you!
-                                                            </div>
-                                                        </div>
-                                                        <div class="text-center"><button type="submit">Send
-                                                                Message</button></div>
+
+                                                        <div class="text-center"><button type="submit">Cadastrar
+                                                            </button></div>
                                                     </form>
                                                 </div><!-- End Contact Form -->
 
@@ -169,22 +167,34 @@
                                             placeholder="Email" required>
                                     </div>
                                     <div class="col-md-12 form-group mt-2 mt-md-0  mb-2">
-                                        <input type="email" class="form-control" name="email" id="email"
-                                            placeholder="Selecionar Causa" required>
+                                        <select class="form-select" aria-label="Default select example" name="causa"
+                                            id="causa">
+                                            <option selected>Selecione a Causa</option>
+                                            <option value="1">One</option>
+                                            <option value="2">Two</option>
+                                            <option value="3">Three</option>
+                                        </select>
+
                                     </div>
                                     <div class="col-md-12 form-group mt-2 mt-md-0  mb-2">
-                                        <input type="email" class="form-control" name="email" id="email"
+                                        <input type="number" class="form-control" name="qtd_doar" id="qtd_doar"
                                             placeholder="Quantidade a doar" required>
                                     </div>
-                                    <div class="col-md-12 form-group mt-2 mt-md-0  mb-2">
-                                        <input type="email" class="form-control" name="email" id="email"
-                                            placeholder="Área de Interesse?" required>
+
+                                    <div class="form-check form-check-inline">
+                                      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                                      <label class="form-check-label" for="inlineRadio1">Transferência Bancária</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                                      <label class="form-check-label" for="inlineRadio2">Transfência Express</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3" >
+                                      <label class="form-check-label" for="inlineRadio3">Face Pay</label>
                                     </div>
 
-                                    <div class="form-group mt-3">
-                                        <textarea class="form-control" name="message" placeholder="Descreva o que você poderia fazer" required></textarea>
-                                    </div>
-                                    <div class="text-center"><button type="submit">Send Message</button></div>
+                                    <div class="text-center"><button type="submit">Doar</button></div>
                                 </form>
                             </div><!-- End Contact Form -->
                             <div class="col-lg-4 order-1 order-lg-2 text-center">
