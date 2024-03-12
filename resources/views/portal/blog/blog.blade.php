@@ -26,39 +26,46 @@
         <div class="row g-5">
 
           <div class="col-lg-8">
-
+            @php
+            dd( $campanhas)
+       
+        @endphp
             <div class="row gy-4 posts-list">
 
-              @for($i = 1; $i <= 3; $i++)
-              <div class="col-lg-6">
-                <article class="d-flex flex-column">
+                @foreach ($campanhas as $campanha)
+                @php
+                    dd( $campanha)
+               
+                @endphp
+                <div class="col-lg-6">
+                    <article class="d-flex flex-column">
 
-                  <div class="post-img">
-                    <img src="assets/img/blog/blog-1.jpg" alt="" class="img-fluid">
-                  </div>
+                    <div class="post-img">
+                        <img src="assets/img/blog/blog-1.jpg" alt="" class="img-fluid">
+                    </div>
 
-                  <h2 class="title">
-                    <a href="blog-details.html">Dolorum optio tempore voluptas dignissimos cumque fuga qui quibusdam quia</a>
-                  </h2>
+                    <h2 class="title">
+                        <a href="blog-details.html">{{$campanha['titulo']}}</a>
+                    </h2>
 
-                  <div class="meta-top">
-                    <ul>
-                      <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="blog-details.html">John Doe</a></li>
-                      <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-details.html"><time datetime="2022-01-01">Jan 1, 2022</time></a></li>
-                      <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="blog-details.html">12 Comments</a></li>
-                    </ul>
-                  </div>
+                    <div class="meta-top">
+                        <ul>
+                        <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="blog-details.html">John Doe</a></li>
+                        <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-details.html"><time datetime="2022-01-01">Jan 1, 2022</time></a></li>
+                        <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="blog-details.html">12 Comments</a></li>
+                        </ul>
+                    </div>
 
-                  <div class="content">
-                    <p>
-                      Similique neque nam consequuntur ad non maxime aliquam quas. Quibusdam animi praesentium. Aliquam et laboriosam eius aut nostrum quidem aliquid dicta.
-                    </p>
-                  </div>
+                    <div class="content">
+                        <p>
+                        Similique neque nam consequuntur ad non maxime aliquam quas. Quibusdam animi praesentium. Aliquam et laboriosam eius aut nostrum quidem aliquid dicta.
+                        </p>
+                    </div>
 
 
-                </article>
-              </div><!-- End post list item -->
-              @endfor
+                    </article>
+                </div><!-- End post list item -->
+                @endforeach
             </div><!-- End blog posts list -->
 
             <div class="blog-pagination">

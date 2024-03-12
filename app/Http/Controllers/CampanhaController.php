@@ -27,7 +27,9 @@ class CampanhaController extends Controller
             $request->user_id,
             $request->eliminado
         );
-        return response()->json(['data' => $response['data'], 'message' => $response['message'], 'status' => $response['status']]);
+       // return response()->json( $response['data']) ;
+        return view('portal.blog/blog',['campanhas' => response()->json(['data' => $response['data']]) ]);
+        //return response()->json(['data' => $response['data'], 'message' => $response['message'], 'status' => $response['status']]);
     }
 
     /**

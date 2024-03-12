@@ -115,7 +115,7 @@
                                     id="user_name" placeholder="Nome Completo">
                                 <div class="col-md-6 form-group">
                                     <input type="text" name="name" class="form-control" id="name"
-                                        placeholder="Nome Completo" required>
+                                        placeholder="Nome Completo"  required>
                                 </div>
                                 <div class="col-md-6 form-group mt-3 mt-md-0">
                                     <input type="date" class="form-control" name="data_nascimento" id="data_nascimento"
