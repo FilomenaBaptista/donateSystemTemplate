@@ -8,7 +8,7 @@
         <nav id="navbar" class="navbar">
             <ul>
                 {{-- <li><a class="nav-link scrollto" href="index.php#about">Quem Somos</a></li> --}}
-                <li><a class="nav-link scrollto" href="{{ route('campanhas') }}">Campanhas</a></li>
+                <li><a class="nav-link scrollto" href="{{ route('campanha.index') }}">Campanhas</a></li>
                 @guest
                     <li><a class="nav-link scrollto" href="{{ route('voluntario') }}">Quero ser Voluntário</a></li>
                 @endguest

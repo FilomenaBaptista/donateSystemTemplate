@@ -27,17 +27,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-
-    Route::apiResource('campanha', Controllers\CampanhaController::class);
 });
 
 Route::get('/home', function () {
     return view('portal.index');
 })->name('home');
-
-Route::get('/campanhas', function () {
-    return view('portal.blog/blog');
-})->name('campanhas');
 
 Route::get('/voluntario', function () {
     return view('portal.voluntario');
