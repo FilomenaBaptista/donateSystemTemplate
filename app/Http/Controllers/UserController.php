@@ -7,6 +7,7 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Validator;
+use App\Models\User;
 
 /**
  * Class UserController
@@ -14,10 +15,10 @@ use Illuminate\Support\Facades\Validator;
  */
 class UserController extends Controller
 {
-   
+
     public function index(Request $request)
     {
-       
+
         $validator = Validator::make($request->all(), [
             'name' => 'string|nullable',
         ]);
@@ -32,7 +33,7 @@ class UserController extends Controller
 
     /**
      * Get
-     * 
+     *
      * @param Request $request ([
      *      user_id (integer|required, user id),
      * ])
@@ -56,12 +57,12 @@ class UserController extends Controller
         return response()->json(['data' => $response['data'], 'message' => $response['message'], 'status' => $response['status']]);
     }
 
-   
+
     public function store(Request $request) {
         $validator = Validator::make($request->all(), [
             'name' => 'string|required',
             'password' => 'string|required',
-            'email' => 'string|required'
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
         ]);
 
         if ($validator->fails()) {
@@ -78,16 +79,16 @@ class UserController extends Controller
         return response()->json(['data' => $response['data'], 'message' => $response['message'], 'status' => $response['status']]);
     }
 
-    
-   
+
+
 
     /**
-     * Delete 
+     * Delete
      *
      * @param Request $request ([
      *      user_id (numeric|required)
      * ])
-     * @return Response Json data. 
+     * @return Response Json data.
      */
     public function delete(Request $request) {
         $validator = Validator::make($request->all(), [
@@ -126,7 +127,7 @@ class UserController extends Controller
         return response()->json(['data' => $response['data'], 'message' => $response['message'], 'status' => $response['status']]);
     }
 
-   
 
-  
+
+
 }

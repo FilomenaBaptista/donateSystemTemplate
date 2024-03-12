@@ -22,11 +22,11 @@
             <!-- ======= Featured Services Section ======= -->
     <section id="featured-services" class="featured-services">
         <div class="container">
-  
+
           <div class="row gy-4">
 
             <h3 class="ganho">O que eu ganho sendo voluntário?</h3>
-  
+
             <div class="col-xl-3 col-md-6 d-flex" data-aos="zoom-out">
               <div class="service-item position-relative">
                 <div class="icon"><i class="bi bi-activity icon"></i></div>
@@ -34,7 +34,7 @@
                 <p>de habilidades</p>
               </div>
             </div><!-- End Service Item -->
-  
+
             <div class="col-xl-3 col-md-6 d-flex" data-aos="zoom-out" data-aos-delay="200">
               <div class="service-item position-relative">
                 <div class="icon"><i class="bi bi-bounding-box-circles icon"></i></div>
@@ -42,7 +42,7 @@
                 <p class="text-center">Com outras histórias de vida</p>
               </div>
             </div><!-- End Service Item -->
-  
+
             <div class="col-xl-3 col-md-6 d-flex" data-aos="zoom-out" data-aos-delay="400">
               <div class="service-item position-relative">
                 <div class="icon"><i class="bi bi-calendar4-week icon"></i></div>
@@ -50,7 +50,7 @@
                 <p></p>
               </div>
             </div><!-- End Service Item -->
-  
+
             <div class="col-xl-3 col-md-6 d-flex" data-aos="zoom-out" data-aos-delay="600">
               <div class="service-item position-relative">
                 <div class="icon"><i class="bi bi-broadcast icon"></i></div>
@@ -58,9 +58,9 @@
                 <p>e novas perpectivas de experiências de vida</p>
               </div>
             </div><!-- End Service Item -->
-  
+
           </div>
-  
+
         </div>
       </section><!-- End Featured Services Section -->
 
@@ -99,7 +99,8 @@
                     </div>
 
                     <div class="col-lg-6">
-                        <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+                        <form action="{{route('users.store')}}" method="post" role="form" class="php-email-form">
+                            @csrf
                             <div class="row">
                                 <div class="col-md-6 form-group">
                                     <input type="text" name="name" class="form-control" id="name"
@@ -135,7 +136,7 @@
                                 </div>
                             </div>
 
-                       
+
                             <div class="form-group mt-3">
                                 <textarea class="form-control" name="message" placeholder="Descreva o que você poderia fazer" required></textarea>
                             </div>
