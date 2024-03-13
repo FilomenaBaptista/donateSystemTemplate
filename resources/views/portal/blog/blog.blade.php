@@ -143,15 +143,16 @@
   @endsection
 
   @section('js')
-  <script src="{{ asset('js/util.js') }}"></script>
+  <script src="js/jquery-3.6.0.min.js"></script>
+  <script src="js/util.js"></script>
     <script>
         $(document).ready(function() {
-            jQuery.ajax({
+            $.ajax({
             url: '/campanhas-recentes/5',
             type: 'GET',
             dataType: 'json',
             success: function(response) {
-                jQuery('.campanhasRecentes').empty();
+                $('.campanhasRecentes').empty();
                 response.data.forEach(function(campanha) {
                     var html = '<div class="post-item">';
                     html += '<img src="assets/img/blog/blog-recent-1.jpg" alt="" class="flex-shrink-0">';
@@ -160,7 +161,7 @@
                     html += '<time datetime="' + campanha.created_at + '">' + dataResumida( campanha.created_at) + '</time>';
                     html += '</div>';
                     html += '</div>';
-                    jQuery('.campanhasRecentes').append(html);
+                    $('.campanhasRecentes').append(html);
                 });
             },
             error: function(xhr, status, error) {

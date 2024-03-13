@@ -27,7 +27,7 @@
 
         <title>@yield('title', 'Nome do Projeto')</title>
         @yield('css')
-        <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
+      
         
     </head>
 
