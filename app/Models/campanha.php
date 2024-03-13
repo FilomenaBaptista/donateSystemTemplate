@@ -138,4 +138,12 @@ class campanha extends Model
             throw new ModelNotFoundException($e->getCode());
         }
     }
+    public function campanhasRecentes(int $limit)
+    {
+        try {
+            return Campanha::latest()->take($limit)->get();;
+        } catch (ModelNotFoundException $e) {
+            throw new ModelNotFoundException($e->getCode());
+        }
+    }
 }

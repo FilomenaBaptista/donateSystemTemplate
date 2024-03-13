@@ -24,30 +24,15 @@
         <link href="{{'assets/vendor/swiper/swiper-bundle.min.css'}}" rel="stylesheet">
         <link href="{{'assets/css/variables.css'}}" rel="stylesheet">
         <link href="{{'assets/css/main.css'}}" rel="stylesheet">
-        
-        
-
-       {{--  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-        <link href="assets/vendor/aos/aos.css" rel="stylesheet">
-        <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-        <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-        <link href="assets/css/variables.css" rel="stylesheet">
-        <link href="assets/css/main.css" rel="stylesheet"> --}}
 
         <title>@yield('title', 'Nome do Projeto')</title>
         @yield('css')
-
+        <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
+        
     </head>
 
     <body>
-        {{-- <header>
-            <nav>
-                <ul>
-                    <li><a href="{{ route('home') }}">Home</a></li>
-                    <li><a href="{{ route('about') }}">Sobre</a></li>
-                </ul>
-            </nav>
-        </header> --}}
+       
         @include('layouts.header')
 
         <main>
@@ -66,7 +51,9 @@
         <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
         <script src="assets/vendor/php-email-form/validate.js"></script>
         <!-- Template Main JS File -->
-        <script src="assets/js/main.js"></script>
+        <script src="assets/js/main.js"></script> 
+        
+        @yield('js')              
     </body>
 
 </html>

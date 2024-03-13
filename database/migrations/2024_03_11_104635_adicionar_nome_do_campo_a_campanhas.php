@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::table('campanhas', function (Blueprint $table) {
             $table->enum('eliminado',[0, 1])->after('user_id');
+            $table->unsignedBigInteger('categoria_id')->after('user_id');
+            $table->foreign('categoria_id')->references('id')->on('categorias')->onUpdate('cascade')
+                ->onDelete('cascade');
         });
     }
 
@@ -23,6 +26,7 @@ return new class extends Migration
     {
         Schema::table('campanhas', function (Blueprint $table) {
             $table->dropColumn('eliminado');
+            $table->dropColumn('categoria_id');
         });
     }
 };

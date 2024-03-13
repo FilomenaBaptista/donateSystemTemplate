@@ -1,9 +1,14 @@
-
-
 @extends('layouts.app')
 
-  <main id="main">
 
+@section('content')
+  <style>
+      ul.pagination {
+        justify-content: center;
+      }
+  </style>
+
+  <main id="main">
     <!-- ======= Breadcrumbs ======= -->
     <div class="breadcrumbs">
       <div class="container">
@@ -11,7 +16,7 @@
         <div class="d-flex justify-content-between align-items-center">
           <h2>Campanhas</h2>
           <ol>
-            <li><a href="index.html">Home</a></li>
+            <li><a href="{{url('/')}}">Home</a></li>
             <li>Campanhas</li>
           </ol>
         </div>
@@ -43,9 +48,17 @@
 
                     <div class="meta-top">
                         <ul>
-                        <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="blog-details.html">{{$campanha->criador->name}}</a></li>
-                        <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-details.html"><time datetime="2022-01-01"> {{$campanha->created_at->format('M d,  Y') }}</time></a></li>
-                        <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="blog-details.html">{{count($campanha->comentarios)}} Comentários</a></li>
+                        <li class="d-flex align-items-center">
+                            <i class="bi bi-person"></i> <a href="blog-details.html">{{$campanha->criador->name}}</a>
+                        </li>
+                        <li class="d-flex align-items-center">
+                            <i class="bi bi-clock"></i> <a href="blog-details.html">
+                                <time datetime="2022-01-01"> {{$campanha->created_at->format('M d,  Y') }}</time></a>
+                        </li>
+                        <li class="d-flex align-items-center">
+                            <i class="bi bi-chat-dots"></i> <a href="blog-details.html">
+                                {{count($campanha->comentarios)}} Comentários</a>
+                        </li>
                         </ul>
                     </div>
 
@@ -59,13 +72,7 @@
                 @endforeach
             </div><!-- End blog posts list -->
             {{ $campanhas->links('paginacao.custom-pagination') }}
-           <!--  <div class="blog-pagination">
-              <ul class="justify-content-center">
-                <li><a href="#">1</a></li>
-                <li class="active"><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-              </ul>
-            </div> --> 
+         
 
           </div>
 
@@ -81,7 +88,7 @@
               </div><!-- End sidebar search formn-->
 
               <div class="sidebar-item categories">
-                <h3 class="sidebar-title">Categories</h3>
+                <h3 class="sidebar-title">Categorias</h3>
                 <ul class="mt-3">
                   <li><a href="#">General <span>(25)</span></a></li>
                   <li><a href="#">Lifestyle <span>(12)</span></a></li>
@@ -93,52 +100,8 @@
               </div><!-- End sidebar categories-->
 
               <div class="sidebar-item recent-posts">
-                <h3 class="sidebar-title">Recent Posts</h3>
-
-                <div class="mt-3">
-
-                  <div class="post-item mt-3">
-                    <img src="assets/img/blog/blog-recent-1.jpg" alt="" class="flex-shrink-0">
-                    <div>
-                      <h4><a href="blog-post.html">Nihil blanditiis at in nihil autem</a></h4>
-                      <time datetime="2020-01-01">Jan 1, 2020</time>
-                    </div>
-                  </div><!-- End recent post item-->
-
-                  <div class="post-item">
-                    <img src="assets/img/blog/blog-recent-2.jpg" alt="" class="flex-shrink-0">
-                    <div>
-                      <h4><a href="blog-post.html">Quidem autem et impedit</a></h4>
-                      <time datetime="2020-01-01">Jan 1, 2020</time>
-                    </div>
-                  </div><!-- End recent post item-->
-
-                  <div class="post-item">
-                    <img src="assets/img/blog/blog-recent-3.jpg" alt="" class="flex-shrink-0">
-                    <div>
-                      <h4><a href="blog-post.html">Id quia et et ut maxime similique occaecati ut</a></h4>
-                      <time datetime="2020-01-01">Jan 1, 2020</time>
-                    </div>
-                  </div><!-- End recent post item-->
-
-                  <div class="post-item">
-                    <img src="assets/img/blog/blog-recent-4.jpg" alt="" class="flex-shrink-0">
-                    <div>
-                      <h4><a href="blog-post.html">Laborum corporis quo dara net para</a></h4>
-                      <time datetime="2020-01-01">Jan 1, 2020</time>
-                    </div>
-                  </div><!-- End recent post item-->
-
-                  <div class="post-item">
-                    <img src="assets/img/blog/blog-recent-5.jpg" alt="" class="flex-shrink-0">
-                    <div>
-                      <h4><a href="blog-post.html">Et dolores corrupti quae illo quod dolor</a></h4>
-                      <time datetime="2020-01-01">Jan 1, 2020</time>
-                    </div>
-                  </div><!-- End recent post item-->
-
-                </div>
-
+                <h3 class="sidebar-title">Publicações Recentes</h3>
+                <div class="mt-3 campanhasRecentes"></div>
               </div><!-- End sidebar recent posts-->
 
               <div class="sidebar-item tags">
@@ -168,4 +131,32 @@
     </section><!-- End Blog Section -->
 
   </main><!-- End #main -->
+  @endsection
 
+  @section('js')
+  <script src="{{ asset('js/util.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            jQuery.ajax({
+            url: '/campanhas-recentes/5',
+            type: 'GET',
+            dataType: 'json',
+            success: function(response) {
+                jQuery('.campanhasRecentes').empty();
+                response.data.forEach(function(campanha) {
+                    var html = '<div class="post-item">';
+                    html += '<img src="assets/img/blog/blog-recent-1.jpg" alt="" class="flex-shrink-0">';
+                    html += '<div>';
+                    html += '<h4><a href="blog-post.html">' + campanha.titulo + '</a></h4>';
+                    html += '<time datetime="' + campanha.created_at + '">' + dataResumida( campanha.created_at) + '</time>';
+                    html += '</div>';
+                    html += '</div>';
+                    jQuery('.campanhasRecentes').append(html);
+                });
+            },
+            error: function(xhr, status, error) {
+            }
+          });
+      });
+    </script>
+  @endsection

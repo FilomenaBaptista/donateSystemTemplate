@@ -63,3 +63,4 @@ require __DIR__.'/auth.php';
 
 Route::apiResource('campanha', Controllers\CampanhaController::class);
 Route::apiResource('comentarios', Controllers\ComentarioController::class);
+Route::get('/campanhas-recentes/{limit}', [Controllers\CampanhaController::class,'campanhasRecentes'])->name('campanha.recente');

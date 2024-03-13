@@ -27,10 +27,7 @@ class CampanhaController extends Controller
             $request->user_id,
             $request->eliminado
         );
-
-        //return   response()->json($response['data'])->original;
-       
-        //return view('portal.blog/blog')->with('campanhas', $response);
+        
         return view('portal.blog/blog',['campanhas' => $response['data']]);
         //return response()->json(['data' => $response['data'], 'message' => $response['message'], 'status' => $response['status']]);
     }
@@ -119,6 +116,14 @@ class CampanhaController extends Controller
     ) {
         $CampanhaService = new CampanhaService();
         $response = $CampanhaService->deleteCampanha($campanhaId);
+        return response()->json(['data' => $response['data'], 'message' => $response['message'], 'status' => $response['status']]);
+    }
+
+     public function campanhasRecentes(
+        int $limit
+    ){
+        $CampanhaService = new CampanhaService();
+        $response = $CampanhaService->campanhasRecentes($limit);
         return response()->json(['data' => $response['data'], 'message' => $response['message'], 'status' => $response['status']]);
     }
 }

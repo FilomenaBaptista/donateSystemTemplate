@@ -131,6 +131,18 @@ class CampanhaService
         }
     }
 
+    public function  campanhasRecentes(
+        int $limit
+    ) {
+        try {
+            $campanha = new Campanha();
+            $response = $campanha->campanhasRecentes($limit);
+            return StatusHelper::response(['data' => $response, 'tag' => 'LIST.CAMPANHA RECENTE', 'status' => 200]);
+        } catch (Exception $e) {
+            return StatusHelper::response(['tag' => 'LIST.CAMPANHA RECENTE', 'status' => (int) $e->getMessage(),  'line_trace' => __LINE__,'class_trace' => PathHelper::getClassName($this) ]);
+        }
+    }
+
 
 
 }
