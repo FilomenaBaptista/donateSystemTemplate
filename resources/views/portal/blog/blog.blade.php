@@ -33,45 +33,54 @@
           <div class="col-lg-8">
            
             <div class="row gy-4 posts-list">
+              {{--   @dd($campanhas[0]) --}}
 
-                @foreach ($campanhas as $campanha)
-                <div class="col-lg-6">
-                    <article class="d-flex flex-column">
+                @forelse  ($campanhas as $campanha)
+                  <div class="col-lg-6">
+                      <article class="d-flex flex-column">
 
-                    <div class="post-img">
-                        <img src="assets/img/blog/blog-1.jpg" alt="" class="img-fluid">
-                    </div>
+                      <div class="post-img">
+                          <img src="assets/img/blog/blog-1.jpg" alt="" class="img-fluid">
+                      </div>
 
-                    <h2 class="title">
-                        <a href="blog-details.html">{{$campanha->titulo}}</a>
-                    </h2>
+                      <h2 class="title">
+                          <a href="blog-details.html">{{$campanha->titulo}}</a>
+                      </h2>
 
-                    <div class="meta-top">
-                        <ul>
-                        <li class="d-flex align-items-center">
-                            <i class="bi bi-person"></i> <a href="blog-details.html">{{$campanha->criador->name}}</a>
-                        </li>
-                        <li class="d-flex align-items-center">
-                            <i class="bi bi-clock"></i> <a href="blog-details.html">
-                                <time datetime="2022-01-01"> {{$campanha->created_at->format('M d,  Y') }}</time></a>
-                        </li>
-                        <li class="d-flex align-items-center">
-                            <i class="bi bi-chat-dots"></i> <a href="blog-details.html">
-                                {{count($campanha->comentarios)}} Comentários</a>
-                        </li>
-                        </ul>
-                    </div>
+                      <div class="meta-top">
+                          <ul>
+                          <li class="d-flex align-items-center">
+                              <i class="bi bi-person"></i> <a href="blog-details.html">{{$campanha->criador->name}}</a>
+                          </li>
+                          <li class="d-flex align-items-center">
+                              <i class="bi bi-clock"></i> <a href="blog-details.html">
+                                  <time datetime="2022-01-01"> {{$campanha->created_at->format('M d,  Y') }}</time></a>
+                          </li>
+                          <li class="d-flex align-items-center">
+                              <i class="bi bi-chat-dots"></i> <a href="blog-details.html">
+                                  {{count($campanha->comentarios)}} Comentários</a>
+                          </li>
+                          </ul>
+                      </div>
 
-                    <div class="content">
-                        <p>
-                        {{Str::limit($campanha->descricao, 150)}}
-                        </p>
-                    </div>
-                    </article>
-                </div><!-- End post list item -->
-                @endforeach
+                      <div class="content">
+                          <p>
+                          {{Str::limit($campanha->descricao, 150)}}
+                          </p>
+                      </div>
+                      </article>
+                  </div><!-- End post list item -->
+                @empty
+                  <h1 style=" margin-top: 300px;text-align: center;color: #0EA2BD;">Nenhuma campanha disponível</h1>
+                @endforelse
             </div><!-- End blog posts list -->
-            {{ $campanhas->links('paginacao.custom-pagination') }}
+           
+            @isset($campanhas[0])
+            <div class="blog-pagination">
+              {{ $campanhas->links('paginacao.custom-pagination') }}
+            </div>
+            @endisset
+           
          
 
           </div>
