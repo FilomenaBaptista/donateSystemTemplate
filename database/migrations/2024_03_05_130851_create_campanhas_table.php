@@ -15,12 +15,17 @@ return new class extends Migration
             $table->id();
             $table->string('titulo');
             $table->text('descricao');
-            $table->enum('categoria',['Medicina', 'Educação','Alimento','Calçado','Roupas','Decorações','Eletrodomésticos','Acessórios e ração animal','Beleza/Cuidado corporal','Artesanato','Construção e renovação','Cozinha e utensílios de mesa','Manuteção Doméstica','Jardim','Jogos e Brinquedos','Lazer','Equipamento de Escritório','Mobiliário','Tecnologia','Esporte' ]);
+            $table->decimal('quantia', 10, 2)->nullable()->default(0);
             $table->unsignedBigInteger('user_id');
-            $table->timestamps();
+            $table->unsignedBigInteger('categoria_id');
+            $table->enum('eliminado',[0, 1])->default(0);
 
+            $table->foreign('categoria_id')->references('id')->on('categorias')->onUpdate('cascade')
+                ->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')
                 ->onDelete('cascade');
+            
+            $table->timestamps();
         });
     }
 

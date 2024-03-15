@@ -27,9 +27,10 @@ class CampanhaFactory extends Factory
             'user_id' => function () {
                 return \App\Models\User::factory()->create()->id;
             },
-            'categoria_id' => function () {
+            'categoria_id' => $this->faker->randomElement([0, 1,2,3,4,5,6,7,8,9,10]),
+            /* 'categoria_id' => function () {
                 return \App\Models\Categoria::factory()->create()->id;
-            },
+            }, */
             'eliminado' => $this->faker->randomElement(['0', '1']),
         ];
     }

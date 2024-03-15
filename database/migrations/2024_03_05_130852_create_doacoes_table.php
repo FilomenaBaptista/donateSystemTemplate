@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('doador_id');
             $table->unsignedBigInteger('beneficiario_id');
-            $table->decimal('quantia', 10, 2)->nullable();
+            $table->decimal('quantia', 10, 2)->nullable()->default(0);
             $table->enum('estado',['Pendente', 'Aceite','Cancelado',"Não Aceite"]);
-            $table->enum('eliminado',[0, 1]);
+            $table->enum('eliminado',[0, 1])->default(0);
             $table->text('descricao')->nullable();
             $table->timestamps();
 

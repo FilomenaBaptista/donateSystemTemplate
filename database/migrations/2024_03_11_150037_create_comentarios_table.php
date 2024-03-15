@@ -22,7 +22,7 @@ return new class extends Migration
             $table->unsignedBigInteger('campanha_id');
             $table->foreign('campanha_id')->references('id')->on('campanhas')->onUpdate('cascade')
                 ->onDelete('cascade');
-            $table->enum('eliminado',[0, 1]);
+            $table->enum('eliminado',[0, 1])->default(0);
             $table->timestamps();
         });
     }
