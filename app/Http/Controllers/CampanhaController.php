@@ -79,7 +79,8 @@ class CampanhaController extends Controller
             $request->categoria_id,
             $capa
         );
-        return response()->json(['data' => $response['data'], 'message' => $response['message'], 'status' => $response['status']]);
+        return redirect()->route('campanha.create');
+       // return response()->json(['data' => $response['data'], 'message' => $response['message'], 'status' => $response['status']]);
     }
 
     /**
