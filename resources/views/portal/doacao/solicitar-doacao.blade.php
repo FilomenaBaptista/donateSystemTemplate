@@ -136,16 +136,14 @@
                                                         )}}
                                                 </div>
                                                 <div class="col-md-12 input-group mb-3 mt-3 mt-md-0">
-                                                    {{Form::label('quantia', 'Valor a arrecadar?', ['class' => mb-2 label-money'])}}
+                                                    {{Form::label('quantia', 'Valor a arrecadar?', ['class' => 'mb-2 label-money'])}}
                                                     <span class="input-group-text">AKZ</span>
                                                     {{ Form::text('quantia',
                                                         null,
                                                         ['class' => 'form-control',
                                                         'min'=>'0', 'id'=>'quantia',
                                                         'placeholder' => '']
-                                                    )}}
-                                                    <input type="text" id="val-arrecadar" name="val-arrecadar" value="{{ old('val-arrecadar') }}" class="form-control" aria-label="Amount (to the nearest dollar)">
-                                                    <span class="input-group-text">.00</span>
+                                                    )}}<span class="input-group-text">.00</span>
 
                                                 </div>
                                                 <div class="text-center">
