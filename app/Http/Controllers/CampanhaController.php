@@ -7,6 +7,7 @@ use App\Services\CategoriaService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 class CampanhaController extends Controller
 {
@@ -53,19 +54,30 @@ class CampanhaController extends Controller
         $validator = Validator::make($request->all(), [
             'titulo' => 'string|required',
             'descricao' => 'string|required',
-            'categoria' => 'string|required'
+            'categoria_id' => 'int|required',
+            'capa' => 'required|mimes:jpg,jpeg,png,gif'
         ]);
 
         if ($validator->fails()) {
             return response()->json(['data' => '', 'message' => $validator->errors(), 'status' => 400]);
         }
+        $capa="";
+        if ($request->hasFile('capa') && $request->file('capa')->isValid()) :
+            $fileName = time().$request->file('capa')->getClientOriginalName();
+            $path = $request->file('capa')->storeAs('images', $fileName, 'public');
+            $capa = '/storage/'.$path;
+            if (!$path):
+                return redirect()->back()->withInput();
+            endif;
+        endif;
 
         $CampanhaService = new CampanhaService();
         $response = $CampanhaService->createCampanha(
             Auth::user()->id,
             $request->titulo,
             $request->descricao,
-            $request->categoria
+            $request->categoria_id,
+            $capa
         );
         return response()->json(['data' => $response['data'], 'message' => $response['message'], 'status' => $response['status']]);
     }
@@ -96,19 +108,30 @@ class CampanhaController extends Controller
         $validator = Validator::make($request->all(), [
             'titulo' => 'string|required',
             'descricao' => 'string|required',
-            'categoria' => 'string|required'
+            'categoria_id' => 'int|required',
+            'capa' => 'required|mimes:jpg,jpeg,png,gif'
         ]);
 
         if ($validator->fails()) {
             return response()->json(['data' => '', 'message' => $validator->errors(), 'status' => 400]);
         }
+        $capa="";
+        if ($request->hasFile('capa') && $request->file('capa')->isValid()) :
+            $fileName = time().$request->file('capa')->getClientOriginalName();
+            $path = $request->file('capa')->storeAs('images', $fileName, 'public');
+            $capa = '/storage/'.$path;
+            if (!$path):
+                return redirect()->back()->withInput();
+            endif;
+        endif;
 
         $CampanhaService = new CampanhaService();
         $response = $CampanhaService->updateCampanha(
             $id,
             $request->titulo,
             $request->descricao,
-            $request->categoria
+            $request->categoria_id,
+            $capa
         );
         return response()->json(['data' => $response['data'], 'message' => $response['message'], 'status' => $response['status']]);
     }

@@ -3,9 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\User;
-use App\Models\Livro;
-use Illuminate\Support\Facades\DB;
 //use Illuminate\Http\Request;
 
 class FuncoesUteisController extends Controller

@@ -79,14 +79,16 @@ class Campanha extends Model
         int $criadorId,
         string $titulo,
         string $descricao,
-        string $categoria
+        int $categoriaId,
+        string $capa
     ) {
         try {
             $campanha = new campanha();
             $campanha->user_id = $criadorId;
             $campanha->titulo = $titulo;
             $campanha->descricao = $descricao;
-            $campanha->categoria = $categoria;
+            $campanha->categoria_id = $categoriaId;
+            $campanha->capa = $capa;
             $campanha->save();
             return  $campanha;
         } catch (QueryException $e) {
@@ -105,14 +107,16 @@ class Campanha extends Model
         int $campanhaId,
         string $titulo,
         string $descricao,
-        string $categoria
+        int $categoriaId,
+        string $capa
     ) {
         try {
             $campanha = Campanha::find($campanhaId);
             $campanha->update([
-                   'titulo' => $titulo,
-                   'descricao' => $descricao,
-                   'categoria' => $categoria
+                'titulo' => $titulo,
+                'descricao' => $descricao,
+                'categoria_id' => $categoriaId,
+                'capa' => $capa
             ]);
             return $campanha;
         } catch (Exception $e) {
