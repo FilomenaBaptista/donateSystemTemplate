@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Services\CampanhaService;
+use App\Services\CategoriaService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -23,11 +24,11 @@ class CampanhaController extends Controller
             return response()->json(['data' => '', 'message' => $validator->errors(), 'status' => 400]);
         }
         $CampanhaService = new CampanhaService();
-        $response = $CampanhaService->listcampanha(
+        $response = $CampanhaService->listCampanha(
             $request->user_id,
             $request->eliminado
         );
-        
+
         return view('portal.blog/blog',['campanhas' => $response['data']]);
         //return response()->json(['data' => $response['data'], 'message' => $response['message'], 'status' => $response['status']]);
     }
@@ -37,7 +38,11 @@ class CampanhaController extends Controller
      */
     public function create()
     {
-        //
+        $CategoriaService = new CategoriaService();
+        $validacao = new FuncoesUteisController();
+        $response = $CategoriaService->listCategoria();
+        $categorias= $validacao->getNames($response['data']);
+        return view('portal.doacao/solicitar-doacao',['categorias' => $categorias]);
     }
 
     /**

@@ -9,7 +9,7 @@ use Illuminate\Database\QueryException;
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
-class campanha extends Model
+class Campanha extends Model
 {
     use HasFactory;
 
