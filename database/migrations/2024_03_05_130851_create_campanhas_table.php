@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('titulo');
             $table->text('descricao');
             $table->decimal('quantia', 10, 2)->nullable()->default(0);
-            $table->string('capa', 300);
+            $table->string('capa', 300)->nullable();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('categoria_id');
             $table->enum('eliminado',[0, 1])->default(0);
@@ -25,7 +25,7 @@ return new class extends Migration
                 ->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')
                 ->onDelete('cascade');
-            
+
             $table->timestamps();
         });
     }
