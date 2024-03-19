@@ -28,7 +28,7 @@
                     <li class="nav-item col-6 col-md-4 col-lg-4">
                         <a class="nav-link active show" data-bs-toggle="tab" data-bs-target="#tab-1">
                             <i class="bi bi-binoculars color-cyan"></i>
-                            <h4>Doar Bens alimentares</h4>
+                            <h4>Doar Bens Materiais</h4>
                         </a>
                     </li><!-- End Tab 1 Nav -->
 
@@ -69,36 +69,27 @@
                                                         <h3>Foto principal</h3>
 
 
-                                                        <div class="info-item d-flex">
-                                                            <i class="bi bi-geo-alt flex-shrink-0"></i>
-                                                            <div>
-                                                                <img src="assets/img/Photo_placeholder.png" alt="">
-                                                                <input type="file" id="image-file"
-                                                                    accept="image/x-png, image/jpeg" />
-
+                                                        <div class="col-md-12 form-group mt-3 mt-md-0">
+                                                            <label class="mb-2" for="">Adicionar uma foto ou video
+                                                                de capa</label>
+                                                            <div class="d-flex justify-content-center mb-4">
+                                                                <img id="selectedAvatar" name="img_video"
+                                                                    src="https://mdbootstrap.com/img/Photos/Others/placeholder-avatar.jpg"
+                                                                    class="rounded-circle"
+                                                                    style="width: auto; height: 100px; object-fit: cover;"
+                                                                    alt="example placeholder" />
                                                             </div>
-                                                        </div><!-- End Info Item -->
-
-                                                        <div class="info-item d-flex">
-                                                            <i class="bi bi-envelope flex-shrink-0"></i>
-                                                            <div>
-                                                                <img src="assets/img/Photo_placeholder.png" alt="">
-                                                                <input type="file" id="image-file"
-                                                                    accept="image/x-png, image/jpeg" />
-
+                                                            <div class="d-flex justify-content-center">
+                                                                <div class="btn btn-rounded">
+                                                                    <label class="form-label text-white m-1"
+                                                                        for="customFile2">Escolher Imagem</label>
+                                                                    <input type="file" class="form-control d-none"
+                                                                        id="customFile2"
+                                                                        onchange="displaySelectedImage(event, 'selectedAvatar')" />
+                                                                </div>
                                                             </div>
+
                                                         </div><!-- End Info Item -->
-
-                                                        <div class="info-item d-flex">
-                                                            <i class="bi bi-phone flex-shrink-0"></i>
-                                                            <div>
-                                                                <img src="assets/img/Photo_placeholder.png" alt="">
-                                                                <input type="file" id="image-file"
-                                                                    accept="image/x-png, image/jpeg" />
-
-                                                            </div>
-                                                        </div><!-- End Info Item -->
-
                                                     </div>
 
                                                 </div>

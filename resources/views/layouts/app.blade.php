@@ -24,6 +24,7 @@
         <link href="{{'assets/vendor/swiper/swiper-bundle.min.css'}}" rel="stylesheet">
         <link href="{{'assets/css/variables.css'}}" rel="stylesheet">
         <link href="{{'assets/css/main.css'}}" rel="stylesheet">
+        <link href="stylesheet" href="assets/css/font-awesome.min.css">
         
         
 

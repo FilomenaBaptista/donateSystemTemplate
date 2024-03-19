@@ -99,7 +99,7 @@
                     <div class="col-lg-6">
 
                         <div class="img-voluntario">
-                            <img src="assets/img/integration.jpg" alt="">
+                            <img src="assets/img/ccharity.jpg" alt="">
 
                         </div>
 

@@ -64,7 +64,7 @@
         </section><!-- End Featured Services Section -->
 
         <!-- ======= Features Section ======= -->
-        <section id="features" class="features">
+        <section id="features" class="features pt-0">
             <div class="container" data-aos="fade-up">
 
                 <div class="tab-content">
@@ -73,41 +73,48 @@
                         <div class="row gy-4">
                             <div class="col-lg-12 order-2 order-lg-1" data-aos="fade-up" data-aos-delay="100">
 
-                                <section id="contact" class="contact">
+                                <section id="contact" class="contact pt-0">
                                     <div class="container">
 
                                         <div class="container">
 
                                             <div class="row gy-5 gx-lg-5">
 
-                                                <div class="col-lg-4">
+                                                <div class="col-lg-5">
 
                                                     <div class="info">
-                                                        <h3>Get in touch</h3>
-                                                        <p>Et id eius voluptates atque nihil voluptatem enim in tempore
-                                                            minima sit ad mollitia commodi minus.</p>
+                                                        <h3 class="mb-3">Começar uma campanha</h3>
+                                                        <ul>
+                                                            <li>Definir a meta da campanha</li>
+                                                            <li> Contar sua história</li>
+                                                            <li>Incluir fotos ou vídeo</li>
+                                                            <li></li>
+                                                        </ul>
+                                                    
 
-                                                        <div class="info-item d-flex">
+                                                        <div class="info-item ">
                                                             <i class="bi bi-geo-alt flex-shrink-0"></i>
                                                             <div>
-                                                                <h4>Location:</h4>
-                                                                <p>A108 Adam Street, New York, NY 535022</p>
+                                                                <h4>Compartilhar com familiares e amigo:</h4>
+                                                                <ul>
+                                                                    <li>Enviar e-mails</li>
+                                                                    <li> Enviar mensagens de texto</li>
+                                                                    <li>Compartilhar nas redes sociais</li>
+                                                                    <li></li>
+                                                                </ul>
+                                                                
+                                                                
                                                             </div>
                                                         </div><!-- End Info Item -->
 
-                                                        <div class="info-item d-flex">
-                                                            <i class="bi bi-envelope flex-shrink-0"></i>
-                                                            <div>
-                                                                <h4>Email:</h4>
-                                                                <p>info@example.com</p>
-                                                            </div>
-                                                        </div><!-- End Info Item -->
+                                                       
 
-                                                        <div class="info-item d-flex">
+                                                        <div class="info-item ">
                                                             <i class="bi bi-phone flex-shrink-0"></i>
                                                             <div>
-                                                                <h4>Call:</h4>
-                                                                <p>+1 5589 55488 55</p>
+                                                                <h4> Gerenciar doaçõe</h4>
+                                                                <li>Aceitar doações</li>
+                                                                <li>Agradecer aos doadores</li>
                                                             </div>
                                                         </div><!-- End Info Item -->
 
@@ -115,7 +122,7 @@
 
                                                 </div>
 
-                                                <div class="col-lg-8">
+                                                <div class="col-lg-7">
                                                     <form action="forms/contact.php" method="post" role="form"
                                                         class="php-email-form">
 
@@ -152,7 +159,7 @@
                                                                 <img id="selectedAvatar" name="img_video"
                                                                     src="https://mdbootstrap.com/img/Photos/Others/placeholder-avatar.jpg"
                                                                     class="rounded-circle"
-                                                                    style="width: auto; height: 350px; object-fit: cover;"
+                                                                    style="width: auto; height: 100px; object-fit: cover;"
                                                                     alt="example placeholder" />
                                                             </div>
                                                             <div class="d-flex justify-content-center">
@@ -184,8 +191,8 @@
 
                                                         <div class="text-center">
                                                             <button class="mr-5" type="submit">Visualizar
-                                                                campanha</button><button type="submit">Publicar
-                                                                campanha</button>
+                                                                campanha</button><button type="submit">Subimeter para A provação
+                                                                </button>
                                                         </div>
 
                                                     </form>
