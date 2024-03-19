@@ -11,8 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('campanhas', function (Blueprint $table) {
-            $table->enum('eliminado',[0, 1])->after('user_id');
+        Schema::create('categorias', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->timestamps();
         });
     }
 
@@ -21,8 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('campanhas', function (Blueprint $table) {
-            $table->dropColumn('eliminado');
-        });
+        Schema::dropIfExists('categorias');
     }
 };

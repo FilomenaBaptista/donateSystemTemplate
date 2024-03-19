@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Services\CampanhaService;
+use App\Services\CategoriaService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 class CampanhaController extends Controller
 {
@@ -23,14 +25,11 @@ class CampanhaController extends Controller
             return response()->json(['data' => '', 'message' => $validator->errors(), 'status' => 400]);
         }
         $CampanhaService = new CampanhaService();
-        $response = $CampanhaService->listcampanha(
+        $response = $CampanhaService->listCampanha(
             $request->user_id,
             $request->eliminado
         );
 
-        //return   response()->json($response['data'])->original;
-       
-        //return view('portal.blog/blog')->with('campanhas', $response);
         return view('portal.blog/blog',['campanhas' => $response['data']]);
         //return response()->json(['data' => $response['data'], 'message' => $response['message'], 'status' => $response['status']]);
     }
@@ -40,7 +39,11 @@ class CampanhaController extends Controller
      */
     public function create()
     {
-        //
+        $CategoriaService = new CategoriaService();
+        $validacao = new FuncoesUteisController();
+        $response = $CategoriaService->listCategoria();
+        $categorias= $validacao->getNames($response['data']);
+        return view('portal.doacao/solicitar-doacao',['categorias' => $categorias]);
     }
 
     /**
@@ -51,21 +54,33 @@ class CampanhaController extends Controller
         $validator = Validator::make($request->all(), [
             'titulo' => 'string|required',
             'descricao' => 'string|required',
-            'categoria' => 'string|required'
+            'categoria_id' => 'int|required',
+            'capa' => 'required|mimes:jpg,jpeg,png,gif'
         ]);
 
         if ($validator->fails()) {
             return response()->json(['data' => '', 'message' => $validator->errors(), 'status' => 400]);
         }
+        $capa="";
+        if ($request->hasFile('capa') && $request->file('capa')->isValid()) :
+            $fileName = time().$request->file('capa')->getClientOriginalName();
+            $path = $request->file('capa')->storeAs('images', $fileName, 'public');
+            $capa = '/storage/'.$path;
+            if (!$path):
+                return redirect()->back()->withInput();
+            endif;
+        endif;
 
         $CampanhaService = new CampanhaService();
         $response = $CampanhaService->createCampanha(
             Auth::user()->id,
             $request->titulo,
             $request->descricao,
-            $request->categoria
+            $request->categoria_id,
+            $capa
         );
-        return response()->json(['data' => $response['data'], 'message' => $response['message'], 'status' => $response['status']]);
+        return redirect()->route('campanha.create');
+       // return response()->json(['data' => $response['data'], 'message' => $response['message'], 'status' => $response['status']]);
     }
 
     /**
@@ -94,19 +109,30 @@ class CampanhaController extends Controller
         $validator = Validator::make($request->all(), [
             'titulo' => 'string|required',
             'descricao' => 'string|required',
-            'categoria' => 'string|required'
+            'categoria_id' => 'int|required',
+            'capa' => 'required|mimes:jpg,jpeg,png,gif'
         ]);
 
         if ($validator->fails()) {
             return response()->json(['data' => '', 'message' => $validator->errors(), 'status' => 400]);
         }
+        $capa="";
+        if ($request->hasFile('capa') && $request->file('capa')->isValid()) :
+            $fileName = time().$request->file('capa')->getClientOriginalName();
+            $path = $request->file('capa')->storeAs('images', $fileName, 'public');
+            $capa = '/storage/'.$path;
+            if (!$path):
+                return redirect()->back()->withInput();
+            endif;
+        endif;
 
         $CampanhaService = new CampanhaService();
         $response = $CampanhaService->updateCampanha(
             $id,
             $request->titulo,
             $request->descricao,
-            $request->categoria
+            $request->categoria_id,
+            $capa
         );
         return response()->json(['data' => $response['data'], 'message' => $response['message'], 'status' => $response['status']]);
     }
@@ -119,6 +145,14 @@ class CampanhaController extends Controller
     ) {
         $CampanhaService = new CampanhaService();
         $response = $CampanhaService->deleteCampanha($campanhaId);
+        return response()->json(['data' => $response['data'], 'message' => $response['message'], 'status' => $response['status']]);
+    }
+
+     public function campanhasRecentes(
+        int $limit
+    ){
+        $CampanhaService = new CampanhaService();
+        $response = $CampanhaService->campanhasRecentes($limit);
         return response()->json(['data' => $response['data'], 'message' => $response['message'], 'status' => $response['status']]);
     }
 }

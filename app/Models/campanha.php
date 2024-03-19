@@ -9,7 +9,7 @@ use Illuminate\Database\QueryException;
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
-class campanha extends Model
+class Campanha extends Model
 {
     use HasFactory;
 
@@ -79,14 +79,16 @@ class campanha extends Model
         int $criadorId,
         string $titulo,
         string $descricao,
-        string $categoria
+        int $categoriaId,
+        string $capa
     ) {
         try {
             $campanha = new campanha();
             $campanha->user_id = $criadorId;
             $campanha->titulo = $titulo;
             $campanha->descricao = $descricao;
-            $campanha->categoria = $categoria;
+            $campanha->categoria_id = $categoriaId;
+            $campanha->capa = $capa;
             $campanha->save();
             return  $campanha;
         } catch (QueryException $e) {
@@ -105,14 +107,16 @@ class campanha extends Model
         int $campanhaId,
         string $titulo,
         string $descricao,
-        string $categoria
+        int $categoriaId,
+        string $capa
     ) {
         try {
             $campanha = Campanha::find($campanhaId);
             $campanha->update([
-                   'titulo' => $titulo,
-                   'descricao' => $descricao,
-                   'categoria' => $categoria
+                'titulo' => $titulo,
+                'descricao' => $descricao,
+                'categoria_id' => $categoriaId,
+                'capa' => $capa
             ]);
             return $campanha;
         } catch (Exception $e) {
@@ -134,6 +138,14 @@ class campanha extends Model
             $campanha->eliminado = '1';
             $campanha->update();
             return $campanha;
+        } catch (ModelNotFoundException $e) {
+            throw new ModelNotFoundException($e->getCode());
+        }
+    }
+    public function campanhasRecentes(int $limit)
+    {
+        try {
+            return Campanha::latest()->take($limit)->get();;
         } catch (ModelNotFoundException $e) {
             throw new ModelNotFoundException($e->getCode());
         }

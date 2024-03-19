@@ -71,7 +71,8 @@ class CampanhaService
         int $criadorId,
         string $titulo,
         string $descricao,
-        string $categoria
+        int $categoriaId,
+        string $capa
     ) {
         try {
             $campanha = new Campanha();
@@ -79,7 +80,8 @@ class CampanhaService
                 $criadorId,
                 $titulo,
                 $descricao,
-                $categoria
+                $categoriaId,
+                $capa
             );
             return StatusHelper::response(['data' => $response, 'tag' => 'CREATE.CAMPANHA', 'status' => 200]);
         } catch (Exception $e) {
@@ -97,7 +99,8 @@ class CampanhaService
         int $campanhaId,
         string $titulo,
         string $descricao,
-        string $categoria
+        int $categoriaId,
+        string $capa
     ) {
         try {
             $campanha = new Campanha();
@@ -105,7 +108,8 @@ class CampanhaService
                 $campanhaId,
                 $titulo,
                 $descricao,
-                $categoria
+                $categoriaId,
+                $capa
             );
             return StatusHelper::response(['data' => $response, 'tag' => 'UPDATE.CAMPANHA', 'status' => 200]);
         } catch (Exception $e) {
@@ -128,6 +132,18 @@ class CampanhaService
             return StatusHelper::response(['data' => $response, 'tag' => 'DELETE.CAMPANHA', 'status' => 200]);
         } catch (Exception $e) {
             return StatusHelper::response(['tag' => 'DELETE.CAMPANHA', 'status' => (int) $e->getMessage(),  'line_trace' => __LINE__,'class_trace' => PathHelper::getClassName($this) ]);
+        }
+    }
+
+    public function  campanhasRecentes(
+        int $limit
+    ) {
+        try {
+            $campanha = new Campanha();
+            $response = $campanha->campanhasRecentes($limit);
+            return StatusHelper::response(['data' => $response, 'tag' => 'LIST.CAMPANHA RECENTE', 'status' => 200]);
+        } catch (Exception $e) {
+            return StatusHelper::response(['tag' => 'LIST.CAMPANHA RECENTE', 'status' => (int) $e->getMessage(),  'line_trace' => __LINE__,'class_trace' => PathHelper::getClassName($this) ]);
         }
     }
 
