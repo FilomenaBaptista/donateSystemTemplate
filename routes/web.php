@@ -37,9 +37,6 @@ Route::get('/voluntario', function () {
     return view('portal.voluntario');
 })->name('voluntario');
 
-Route::get('/campanha-detail', function () {
-    return view('portal.blog/blog-details');
-})->name('campanhadetail');
 
 Route::get('/historias-de-sucesso', function () {
     return view('portal.blog/historia-de-sucesso');
@@ -57,11 +54,11 @@ Route::get('/encontrar-doacao', function () {
     return view('portal.doacao/encontrar-doacao');
 })->name('encontrardoacao');
 
-
 require __DIR__.'/auth.php';
 
 
 Route::apiResource('campanha', Controllers\CampanhaController::class);
+
 Route::get('/solicitar-doacao', [Controllers\CampanhaController::class,'create'])->name('campanha.create');
 Route::apiResource('comentarios', Controllers\ComentarioController::class);
 Route::get('/campanhas-recentes/{limit}', [Controllers\CampanhaController::class,'campanhasRecentes'])->name('campanha.recente');

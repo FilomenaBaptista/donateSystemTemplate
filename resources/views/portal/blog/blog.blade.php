@@ -1,6 +1,5 @@
 @extends('layouts.app')
 
-
 @section('content')
 <style>
     ul.pagination {
@@ -33,19 +32,17 @@
                 <div class="col-lg-8">
 
                     <div class="row gy-4 posts-list">
-                        {{-- @dd($campanhas[0]) --}}
-
                         @forelse ($campanhas as $campanha)
                         <div class="col-lg-6">
                             <article class="d-flex flex-column">
 
                                 <div class="post-img">
                                    <!--  <img src="assets/img/blog/blog-1.jpg" alt="" class="img-fluid"> -->
-                                    <img src="{{ asset($campanha->capa) }}" alt="Sem foto de capa" class="img-fluid">
+                                    <img src="{{$campanha->capa}}" alt="Sem foto de capa" class="img-fluid">
                                 </div>
 
                                 <h2 class="title">
-                                    <a href="blog-details.html">{{$campanha->titulo}}</a>
+                                    <a href="{{ route('campanha.show' ,$campanha->id) }}">{{$campanha->titulo}}</a>
                                 </h2>
 
                                 <div class="meta-top">
@@ -69,6 +66,9 @@
                                         {{Str::limit($campanha->descricao, 150)}}
                                     </p>
                                 </div>
+                                <div class="read-more mt-auto align-self-end">
+                                    <a href="{{ route('campanha.show' ,$campanha->id) }}">Leia mais</a>
+                                  </div>
                             </article>
                         </div><!-- End post list item -->
                         @empty
@@ -144,8 +144,8 @@
 @endsection
 
 @section('js')
-<script src="js/jquery-3.6.0.min.js"></script>
-<script src="js/util.js"></script>
+<script src="{{asset('js/jquery-3.6.0.min.js')}}"></script>
+<script src="{{asset('js/util.js')}}"></script>
 <script>
     $(document).ready(function() {
         $.ajax({
@@ -156,7 +156,7 @@
                 $('.campanhasRecentes').empty();
                 response.data.forEach(function(campanha) {
                     var html = '<div class="post-item">';
-                    html += '<img src="assets/img/blog/blog-recent-1.jpg" alt="" class="flex-shrink-0">';
+                    html += '<img src="'+campanha.capa +'" alt="" class="flex-shrink-0">';
                     html += '<div>';
                     html += '<h4><a href="blog-post.html">' + campanha.titulo + '</a></h4>';
                     html += '<time datetime="' + campanha.created_at + '">' + dataResumida(campanha.created_at) + '</time>';

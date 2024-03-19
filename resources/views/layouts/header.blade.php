@@ -12,8 +12,10 @@
                 @guest
                     <li><a class="nav-link scrollto" href="{{ route('voluntario') }}">Quero ser Voluntário</a></li>
                 @endguest
-                <li><a class="nav-link scrollto" href="{{ route('campanha.create') }}">Solicitar Doações</a></li>
-                <li><a class="nav-link scrollto" href="{{ route('doar') }}"> Doar</a></li>
+                @auth
+                    <li><a class="nav-link scrollto" href="{{ route('campanha.create') }}">Solicitar Doações</a></li>
+                    <li><a class="nav-link scrollto" href="{{ route('doar') }}"> Doar</a></li>
+                @endauth
                 <li><a class="nav-link scrollto" href="{{ route('historiasdesucesso') }}">Histórias de Sucesso</a></li>
 
                 @if (Route::has('login'))

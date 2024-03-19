@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('titulo');
             $table->text('descricao');
             $table->decimal('quantia', 10, 2)->nullable()->default(0);
-            $table->string('capa', 300)->nullable();
+            $table->string('capa', 255)->nullable()->default('/storage/images/avatar_campanha.jpg');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('categoria_id');
             $table->enum('eliminado',[0, 1])->default(0);

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Campanha;
 use App\Services\CampanhaService;
 use App\Services\CategoriaService;
 use Illuminate\Http\Request;
@@ -30,7 +31,9 @@ class CampanhaController extends Controller
             $request->eliminado
         );
 
-        return view('portal.blog/blog',['campanhas' => $response['data']]);
+       /*  $CategoriaService = new CategoriaService();
+        $categorias = $CategoriaService->listCategoria(); */
+        return view('portal.blog.blog',['campanhas' => $response['data']]);
         //return response()->json(['data' => $response['data'], 'message' => $response['message'], 'status' => $response['status']]);
     }
 
@@ -43,7 +46,8 @@ class CampanhaController extends Controller
         $validacao = new FuncoesUteisController();
         $response = $CategoriaService->listCategoria();
         $categorias= $validacao->getNames($response['data']);
-        return view('portal.doacao/solicitar-doacao',['categorias' => $categorias]);
+       // return view('portal.blog.textEditor' , ['categorias' => $categorias]);
+        return view('portal.doacao.solicitar-doacao' , ['categorias' => $categorias]);
     }
 
     /**
@@ -86,11 +90,14 @@ class CampanhaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(int $campanhaId)
+    public function show(Campanha $campanha)
     {
         $CampanhaService = new CampanhaService();
-        $response = $CampanhaService->getcampanha( $campanhaId);
-        return response()->json(['data' => $response['data'], 'message' => $response['message'], 'status' => $response['status']]);
+        $response = $CampanhaService->getCampanha(
+            $campanha->id
+        );
+        return view('portal.blog.details',['campanha' => $response['data']]);
+      // return response()->json(['data' => $response['data'], 'message' => $response['message'], 'status' => $response['status']]);
     }
 
     /**

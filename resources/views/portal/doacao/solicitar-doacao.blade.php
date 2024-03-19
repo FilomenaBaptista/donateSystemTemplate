@@ -148,7 +148,7 @@
                                                 <div class="col-md-12 form-group mt-3 mt-md-0">
                                                     {{Form::label('capa', 'Adicionar uma foto de capa', ['class' => 'mb-2'])}}
                                                     <div class="d-flex justify-content-center mb-4">
-                                                        <img id="selectedAvatar" name="img_video" src="https://mdbootstrap.com/img/Photos/Others/placeholder-avatar.jpg" class="rounded-circle" style="width: auto; height: 150px; object-fit: cover;" alt="example placeholder" />
+                                                        <img id="selectedAvatar" name="img_video" src="{{asset('img/placeholder-avatar.jpg')}}" class="rounded-circle" style="width: auto; height: 150px; object-fit: cover;" alt="example placeholder" />
                                                     </div>
                                                     <div class="d-flex justify-content-center">
                                                         <div class="btn btn-rounded">
@@ -162,8 +162,7 @@
                                                     <textarea class="form-control" name="descricao" id="descricao" name="message" placeholder="Oi meu nome é Ana, estou arrecadando fundos para..." required>{{ old('descrica') }}</textarea>
                                                 </div>
 
-                                                <div class="text-center">
-                                                    {{ Form::button('Visualizar campanha',['type'=>'submit', 'class'=>'mr-5'])}}
+                                                <div class="mt-3">
                                                     {{ Form::button('Publicar campanha',['type'=>'submit'])}}
                                                 </div>
 
