@@ -58,7 +58,7 @@
                                 </p>
                             </blockquote>
 
-                            <img src="assets/img/blog/blog-inside-post.jpg" class="img-fluid" alt="">
+                            <img src="{{asset('assets/img/blog/blog-inside-post.jpg')}}" class="img-fluid" alt="">
 
                             <h3>Ut repellat blanditiis est dolore sunt dolorum quae.</h3>
                             <p>
@@ -87,50 +87,24 @@
                     <div class="comments">
 
                         <h4 class="comments-count"> {{$campanha->comentarios->count()}} Comentários</h4>
-                        <!-- End comment #1 -->
-
-                        <div id="comment-2" class="comment">
-                            <div class="d-flex">
-                                <div class="comment-img"><img src="assets/img/blog/comments-2.jpg" alt=""></div>
-                                <div>
-                                    <h5><a href="">Aron Alvarado</a> <a href="#" class="reply"><i class="bi bi-reply-fill"></i> Reply</a></h5>
-                                    <time datetime="2020-01-01">01 Jan,2022</time>
-                                    <p>
-                                        Ipsam tempora sequi voluptatem quis sapiente non. Autem itaque eveniet saepe. Officiis illo ut beatae.
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div id="comment-reply-1" class="comment comment-reply">
+                        @forelse ($campanha->comentarios as $comentario)
+                            <div id="comment-2" class="comment">
                                 <div class="d-flex">
-                                    <div class="comment-img"><img src="assets/img/blog/comments-3.jpg" alt=""></div>
+                                    <div class="comment-img"><img src="assets/img/blog/comments-2.jpg" alt=""></div>
                                     <div>
-                                        <h5><a href="">Lynda Small</a> <a href="#" class="reply"><i class="bi bi-reply-fill"></i> Reply</a></h5>
-                                        <time datetime="2020-01-01">01 Jan,2022</time>
+                                        <h5><a href="">{{$comentario->criador->name}}</a> <a href="#" class="reply"><i class="bi bi-reply-fill"></i> Reply</a></h5>
+                                        <time datetime="2020-01-01">{{$comentario->created_at->format('M d,  Y') }}</time>
                                         <p>
-                                            Enim ipsa eum fugiat fuga repellat. Commodi quo quo dicta. Est ullam aspernatur ut vitae quia mollitia id non. Qui ad quas nostrum rerum sed necessitatibus aut est. Eum officiis sed repellat maxime vero nisi natus. Amet nesciunt nesciunt qui illum omnis est et dolor recusandae.
-
-                                            Recusandae sit ad aut impedit et. Ipsa labore dolor impedit et natus in porro aut. Magnam qui cum. Illo similique occaecati nihil modi eligendi. Pariatur distinctio labore omnis incidunt et illum. Expedita et dignissimos distinctio laborum minima fugiat.
-
-                                            Libero corporis qui. Nam illo odio beatae enim ducimus. Harum reiciendis error dolorum non autem quisquam vero rerum neque.
+                                            {{$comentario->conteudo }}
                                         </p>
                                     </div>
                                 </div>
+                            </div>
+                        @empty
+                            
+                        @endforelse
 
-                                <div id="comment-reply-2" class="comment comment-reply">
-                                    <div class="d-flex">
-                                        <div class="comment-img"><img src="assets/img/blog/comments-4.jpg" alt=""></div>
-                                        <div>
-                                            <h5><a href="">Sianna Ramsay</a> <a href="#" class="reply"><i class="bi bi-reply-fill"></i> Reply</a></h5>
-                                            <time datetime="2020-01-01">01 Jan,2022</time>
-                                            <p>
-                                                Et dignissimos impedit nulla et quo distinctio ex nemo. Omnis quia dolores cupiditate et. Ut unde qui eligendi sapiente omnis ullam. Placeat porro est commodi est officiis voluptas repellat quisquam possimus. Perferendis id consectetur necessitatibus.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div><!-- End comment reply #2-->
-                            </div><!-- End comment reply #1-->
-                        </div><!-- End comment #2-->
+                       
                     </div>
                 </div>
 
