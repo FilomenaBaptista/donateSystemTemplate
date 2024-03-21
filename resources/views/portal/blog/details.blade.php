@@ -13,77 +13,86 @@
         <div class="container">
 
             <div class="d-flex justify-content-between align-items-center">
-                <h2>Campanhas</h2>
+                <h2>Campanha</h2>
                 <ol>
-                    <li><a href="{{url('/')}}">Home</a></li>
-                    <li>Campanhas</li>
+                    <li><a class="scrollto" href="{{url('/')}}">Home</a></li>
+                    <li><a class="scrollto" href="{{route('campanha.index')}}">Campanhas</a></li>
+                    <li><a href="{{route('campanha.show' , $campanha->id)}}">Detalhes da campanha</a></li>
                 </ol>
             </div>
 
         </div>
     </div><!-- End Breadcrumbs -->
 
-    <!-- ======= Blog Section ======= -->
+    <!-- ======= Blog Details Section ======= -->
     <section id="blog" class="blog">
         <div class="container" data-aos="fade-up">
 
             <div class="row g-5">
 
                 <div class="col-lg-8">
+                    <article class="blog-details">
 
-                    <div class="row gy-4 posts-list">
-                        @forelse ($campanhas as $campanha)
-                        <div class="col-lg-6">
-                            <article class="d-flex flex-column">
+                        <div class="post-img">
+                            <img src="{{$campanha->capa}}" alt="" class="img-fluid">
+                        </div>
 
-                                <div class="post-img">
-                                   <!--  <img src="assets/img/blog/blog-1.jpg" alt="" class="img-fluid"> -->
-                                    <img src="{{$campanha->capa}}" alt="Sem foto de capa" class="img-fluid">
+                        <h2 class="title">{{$campanha->titulo}}</h2>
+
+                        <div class="meta-top">
+                            <ul>
+                                <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="blog-details.html">{{$campanha->criador->name}}</a></li>
+                                <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-details.html"><time datetime="2020-01-01">{{$campanha->created_at->format('M d,  Y') }}</time></a></li>
+                                <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="blog-details.html"> {{$campanha->comentarios->count()}} Comentários</a></li>
+                            </ul>
+                        </div><!-- End meta top -->
+
+                        <div class="content">
+                            <p>
+                                {!! $campanha->descricao !!}
+                            </p>
+
+                        </div><!-- End post content -->
+
+                        <div class="meta-bottom">
+                            <i class="bi bi-folder"></i>
+                            <ul class="cats">
+                                <li><a href="#">Business</a></li>
+                            </ul>
+
+                            <i class="bi bi-tags"></i>
+                            <ul class="tags">
+                                <li><a href="#">Creative</a></li>
+                                <li><a href="#">Tips</a></li>
+                                <li><a href="#">Marketing</a></li>
+                            </ul>
+                            	<i  class='fas'>&#xf044;</i>
+                        </div><!-- End meta bottom -->
+
+                    </article>
+
+                    <div class="comments">
+
+                        <h4 class="comments-count"> {{$campanha->comentarios->count()}} Comentários</h4>
+                        @forelse ($campanha->comentarios as $comentario)
+                            <div id="comment-2" class="comment">
+                                <div class="d-flex">
+                                    <div class="comment-img"><img src="assets/img/blog/comments-2.jpg" alt=""></div>
+                                    <div>
+                                        <h5><a href="">{{$comentario->criador->name}}</a> <a href="#" class="reply"><i class="bi bi-reply-fill"></i> Reply</a></h5>
+                                        <time datetime="2020-01-01">{{$comentario->created_at->format('M d,  Y') }}</time>
+                                        <p>
+                                            {{$comentario->conteudo }}
+                                        </p>
+                                    </div>
                                 </div>
-
-                                <h2 class="title">
-                                    <a href="{{ route('campanha.show' ,$campanha->id) }}">{{$campanha->titulo}}</a>
-                                </h2>
-
-                                <div class="meta-top">
-                                    <ul>
-                                        <li class="d-flex align-items-center">
-                                            <i class="bi bi-person"></i> <a href="blog-details.html">{{$campanha->criador->name}}</a>
-                                        </li>
-                                        <li class="d-flex align-items-center">
-                                            <i class="bi bi-clock"></i> <a href="blog-details.html">
-                                                <time datetime="2022-01-01"> {{$campanha->created_at->format('M d,  Y') }}</time></a>
-                                        </li>
-                                        <li class="d-flex align-items-center">
-                                            <i class="bi bi-chat-dots"></i> <a href="blog-details.html">
-                                                {{count($campanha->comentarios)}} Comentários</a>
-                                        </li>
-                                    </ul>
-                                </div>
-
-                                <div class="content">
-                                    <p>
-                                        {{Str::limit($campanha->descricao, 150)}}
-                                    </p>
-                                </div>
-                                <div class="read-more mt-auto align-self-end">
-                                    <a href="{{ route('campanha.show' ,$campanha->id) }}">Leia mais</a>
-                                  </div>
-                            </article>
-                        </div><!-- End post list item -->
+                            </div>
                         @empty
-                        <h1 style=" margin-top: 300px;text-align: center;color: #0EA2BD;">Nenhuma campanha disponível</h1>
+                            
                         @endforelse
-                    </div><!-- End blog posts list -->
 
-                    @isset($campanhas[0])
-                    <div class="blog-pagination">
-                        {{ $campanhas->links('paginacao.custom-pagination') }}
+                       
                     </div>
-                    @endisset
-
-
-
                 </div>
 
                 <div class="col-lg-4">
@@ -156,7 +165,7 @@
                 $('.campanhasRecentes').empty();
                 response.data.forEach(function(campanha) {
                     var html = '<div class="post-item">';
-                    html += '<img src="'+campanha.capa +'" alt="" class="flex-shrink-0">';
+                    html += '<img src="' + campanha.capa + '" alt="" class="flex-shrink-0">';
                     html += '<div>';
                     html += '<h4><a href="blog-post.html">' + campanha.titulo + '</a></h4>';
                     html += '<time datetime="' + campanha.created_at + '">' + dataResumida(campanha.created_at) + '</time>';

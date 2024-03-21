@@ -7,10 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\QueryException;
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
 class Comentario extends Model
 {
     use HasFactory;
     protected $fillable = ['conteudo'];
+
+    public function criador(): BelongsTo
+    {return $this->belongsTo(User::class,'user_id');}
 
     /**
      * Get

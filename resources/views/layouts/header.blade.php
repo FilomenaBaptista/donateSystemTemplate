@@ -12,21 +12,34 @@
                 @guest
                     <li><a class="nav-link scrollto" href="{{ route('voluntario') }}">Quero ser Voluntário</a></li>
                 @endguest
-                <li><a class="nav-link scrollto" href="{{ route('campanha.create') }}">Solicitar Doações</a></li>
-                <li><a class="nav-link scrollto" href="{{ route('doar.create') }}"> Doar</a></li>
+               
+                @auth
+                    <li><a class="nav-link scrollto" href="{{ route('campanha.create') }}">Solicitar Doações</a></li>
+                    <li><a class="nav-link scrollto" href="{{ route('doar.create') }}"> Doar</a></li>
+                @endauth
                 <li><a class="nav-link scrollto" href="{{ route('historiasdesucesso') }}">Histórias de Sucesso</a></li>
 
                 @if (Route::has('login'))
 
                     @auth
                         {{-- <li><a href="{{ url('/dashboard') }}" class="nav-link scrollto">Dashboard</a></li> --}}
-                        <li><a href="{{ url('/dashboard') }}" class="nav-link scrollto">{{ Auth::user()->name }}</a></li>
-                        <form method="POST" action="{{ route('logout') }}">
-                            @csrf
-                            <a href="route('logout')"
-                                onclick="event.preventDefault();
-                                    this.closest('form').submit();">Sair</a>
-                        </form>
+                         <li class="dropdown"><a href="{{ url('/dashboard') }}"
+                                class="nav-link scrollto">{{ Auth::user()->name }}</a>
+                            <ul>
+                                <li><a href="">Doações Feitas</a></li>
+                                <li><a href="">Editar de Perfil</a></li>
+                                <li><a href="">Minhas Campanhas</a></li>
+                                <li>
+                                        <form method="POST" action="{{ route('logout') }}">
+                                            @csrf
+                                            <a href="route('logout')"
+                                                onclick="event.preventDefault();
+                                            this.closest('form').submit();">Sair</a>
+                                        </form>
+                                   </li>
+                            </ul>
+                        </li>
+                 
                     @else
                         <li><a href="{{ route('login') }}" class="nav-link scrollto">Entrar</a></li>
                         @if (Route::has('register'))
