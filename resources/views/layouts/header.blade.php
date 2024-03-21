@@ -13,7 +13,7 @@
                     <li><a class="nav-link scrollto" href="{{ route('voluntario') }}">Quero ser Voluntário</a></li>
                 @endguest
                 <li><a class="nav-link scrollto" href="{{ route('campanha.create') }}">Solicitar Doações</a></li>
-                <li><a class="nav-link scrollto" href="{{ route('doar') }}"> Doar</a></li>
+                <li><a class="nav-link scrollto" href="{{ route('doar.create') }}"> Doar</a></li>
                 <li><a class="nav-link scrollto" href="{{ route('historiasdesucesso') }}">Histórias de Sucesso</a></li>
 
                 @if (Route::has('login'))

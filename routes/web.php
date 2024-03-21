@@ -45,9 +45,6 @@ Route::get('/historias-de-sucesso', function () {
     return view('portal.blog/historia-de-sucesso');
 })->name('historiasdesucesso');
 
-Route::get('/doar', function () {
-    return view('portal.doacao/doacao');
-})->name('doar');
 
  Route::get('/solicitar-doacao2', function () {
     return view('portal.doacao/solicitar-doacao2');
@@ -61,6 +58,8 @@ Route::get('/encontrar-doacao', function () {
 require __DIR__.'/auth.php';
 
 
+Route::get('doar-create', [Controllers\DoacaoBensMateriaisController::class,'create'])->name('doar.create');
+Route::apiResource('doar', Controllers\DoacaoBensMateriaisController::class);
 Route::apiResource('campanha', Controllers\CampanhaController::class);
 Route::get('/solicitar-doacao', [Controllers\CampanhaController::class,'create'])->name('campanha.create');
 Route::apiResource('comentarios', Controllers\ComentarioController::class);

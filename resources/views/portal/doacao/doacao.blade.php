@@ -59,88 +59,121 @@
                                 <section id="contact" class="contact">
                                     <div class="container">
 
-                                        <div class="container">
-
+                                    
+                                        {!! Form::open(['route' => 'doar.store', 'class' => 'php-email-form', 'files' => 'true']) !!}
                                             <div class="row gy-5 gx-lg-5">
-
+                                            
                                                 <div class="col-lg-4">
-
+                                                    
                                                     <div class="info">
                                                         <h3>Foto principal</h3>
-
-
+                                                        
                                                         <div class="col-md-12 form-group mt-3 mt-md-0">
-                                                            <label class="mb-2" for="">Adicionar uma foto ou video
-                                                                de capa</label>
+                                                            {{Form::label('capa', 'Adicionar uma foto de capa', ['class' => 'mb-2'])}}
                                                             <div class="d-flex justify-content-center mb-4">
-                                                                <img id="selectedAvatar" name="img_video"
-                                                                    src="https://mdbootstrap.com/img/Photos/Others/placeholder-avatar.jpg"
-                                                                    class="rounded-circle"
-                                                                    style="width: auto; height: 100px; object-fit: cover;"
-                                                                    alt="example placeholder" />
+                                                                <img id="selectedAvatar" name="img_video" src="https://mdbootstrap.com/img/Photos/Others/placeholder-avatar.jpg" class="rounded-circle" style="width: auto; height: 150px; object-fit: cover;" alt="example placeholder" />
                                                             </div>
                                                             <div class="d-flex justify-content-center">
                                                                 <div class="btn btn-rounded">
-                                                                    <label class="form-label text-white m-1"
-                                                                        for="customFile2">Escolher Imagem</label>
-                                                                    <input type="file" class="form-control d-none"
-                                                                        id="customFile2"
-                                                                        onchange="displaySelectedImage(event, 'selectedAvatar')" />
+                                                                    {{Form::label('capa', 'Escolher Imagem', ['class' => 'form-label text-white m-1'])}}
+                                                                    <input type="file" name="capa" class="form-control d-none" id="capa" onchange="displaySelectedImage(event, 'selectedAvatar')" />
                                                                 </div>
                                                             </div>
-
                                                         </div><!-- End Info Item -->
                                                     </div>
 
                                                 </div>
 
                                                 <div class="col-lg-8">
-                                                    <form action="forms/contact.php" method="post" role="form"
-                                                        class="php-email-form">
 
-                                                        <div class="col-md-12 form-group">
-                                                            <input type="text" name="titulo_do_anuncio"  value="{{ old('titulo_do_anuncio') }}"
-                                                                class="form-control" id="titulo_do_anuncio"
-                                                                placeholder="Titulo do anúncio" required>
-                                                        </div>
+                                                    <div class="col-md-12 form-group">
+                                                        {{-- {{ Form::label('titulo', 'Título da Campanha', ['class' => 'mb-2']) }} --}}
+                                                        {{ Form::text('anuncio', null, [
+                                                            'class' => 'form-control',
+                                                            'required' => '',
+                                                            'minlength' => '10',
+                                                            'id' => 'anuncio',
+                                                            'placeholder' => 'Titulo do Anúncio',
+                                                        ]) }}
 
-                                                        <div class="col-md-12 form-group mt-3 mt-md-0">
-                                                            <select class="form-select" aria-label="Default select example"
-                                                                name="categoria" id="categoria"  value="{{ old('categoria') }}">
-                                                                <option selected>Selecione a categoria</option>
-                                                                <option value="1">One</option>
-                                                                <option value="2">Two</option>
-                                                                <option value="3">Three</option>
-                                                            </select>
-                                                        </div>
+                                                    </div>
 
-                                                        <div class="col-md-12 form-group mt-3 mt-md-0">
-                                                            <input type="text" class="form-control" name="local" value="{{ old('local') }}"
-                                                                id="local" placeholder="Local de Doação" required>
-                                                        </div>
+                                                    <div class="col-md-12 form-group mt-3 mt-md-0">
 
-                                                        <div class="col-md-12 form-group mt-3 mt-md-0">
-                                                            <select class="form-select" aria-label="Default select example"
-                                                                name="estado" id="estado" value="{{ old('estado') }}">
-                                                                <option selected>Estado da doação</option>
-                                                                <option value="1">Muito boa condição</option>
-                                                                <option value="2">Estado médio</option>
-                                                                <option value="3">Mal estado</option>
-                                                                <option value="3">Não definível</option>
-                                                            </select>
-                                                        </div>
-                                                        <div class="form-group mt-3">
-                                                            <textarea class="form-control" name="message" placeholder="Descrição da doacão" required></textarea>
-                                                        </div>
+                                                        {{-- {{ Form::label('categoria_id', 'Categoria', ['class' => 'mb-2 col-md-12']) }} --}}
+                                                        {{ Form::select('categoria_id', $categorias, null, [
+                                                            'class' => 'form-select',
+                                                            'required' => '',
+                                                            'id' => 'categoria_id',
+                                                            'placeholder' => 'Selecione a Categoria',
+                                                        ]) }}
 
-                                                        <div class="mt-3"><button type="submit">Cadastrar
-                                                            </button></div>
-                                                    </form>
+                                                    </div>
+
+                                                    <div class="col-md-12 mb-3 mt-3 mt-md-0">
+                                        
+                                                        {{ Form::number('qtd_itens_doar',
+                                                            null,
+                                                            ['class' => 'form-control',
+                                                            'min'=>'0', 'id'=>'qtd_itens_doar',
+                                                            'placeholder' => 'Quantidade de itens a doar']
+                                                        )}}
+                                                    </div>
+
+                                                    <div class="col-md-12 form-group mt-3 mt-md-0">
+            
+                                                        {{ Form::text('local', null, [
+                                                            'class' => 'form-control',
+                                                            'required' => '',
+                                                            'minlength' => '10',
+                                                            'id' => 'local',
+                                                            'placeholder' => 'Local da Doação',
+                                                        ]) }}
+
+
+                                                    </div>
+
+                                                    <div class="col-md-12 form-group mt-3 mt-md-0">
+
+                                                        <select class="form-select" aria-label="Default select example"
+                                                            name="estado_artigo" id="estado_artigo" value="{{ old('estado') }}">
+                                                            <option selected>Estado da doação</option>
+                                                            <option value="1">Muito boa condição</option>
+                                                            <option value="2">Estado médio</option>
+                                                            <option value="3">Mal estado</option>
+                                                            <option value="3">Não definível</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group mt-3">
+                                                        <textarea class="form-control" id="descricao" name="descricao" placeholder="Descrição da doacão" required></textarea>
+                                                    </div>
+                                                    <div class="col-md-6 form-group mt-3 mt-md-0">
+                                                        <label class="label-text" for="">Doador Anónimo?</label>
+                                                       <div>
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="radio" name="is_anonimo" id="is_anonimo" 
+                                                                value="1" @if(old('is_anonimo') == '1') checked @endif>
+                                                            <label class="form-check-label" for="inlineRadio1">Sim</label>
+                                                        </div>
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="radio" name="is_anonimo" id="is_anonimo"
+                                                            value="0" @if(old('is_anonimo') == '0') checked @endif>
+                                                            <label class="form-check-label" for="inlineRadio2">Não</label>
+                                                        </div>
+                                                       </div>
+                                                    </div>
+                                                    <div class="mt-3">
+        
+                                                        {{ Form::button('Submeter para Aprovação', ['type' => 'submit', 'class' => 'mr-5']) }}
+                                                        {{ Form::button('Visualizar Doação', ['type' => 'submit', 'class' => 'mr-5']) }}
+                                                        {{ Form::button('Publicar Doação', ['type' => 'submit']) }}
+
+                                                    </div>
+
                                                 </div><!-- End Contact Form -->
-
                                             </div>
-
                                         </div>
+                                    </form>
                                 </section>
                             </div>
                         </div>
@@ -153,12 +186,12 @@
                                 <form action="forms/contact.php" method="post" role="form" class="php-email-form">
 
                                     <div class="col-md-12 form-group mb-2">
-                                        <input type="text" name="name" class="form-control" id="name" value="{{ old('name') }}"
-                                            placeholder="Nome" required>
+                                        <input type="text" name="name" class="form-control" id="name"
+                                            value="{{ old('name') }}" placeholder="Nome" required>
                                     </div>
                                     <div class="col-md-12 form-group mt-2 mt-md-0  mb-2">
-                                        <input type="email" class="form-control" name="email" id="email" value="{{ old('email') }}"
-                                            placeholder="Email" required>
+                                        <input type="email" class="form-control" name="email" id="email"
+                                            value="{{ old('email') }}" placeholder="Email" required>
                                     </div>
                                     <div class="col-md-12 form-group mt-2 mt-md-0  mb-2">
                                         <select class="form-select" aria-label="Default select example" name="causa"
@@ -172,29 +205,29 @@
                                     </div>
 
                                     <div class="col-md-12 input-group mb-3 mt-3 mt-md-0">
-                                  
+
 
                                         <span class="input-group-text">AKZ</span>
-                                        <input type="text" id="qtd_doar" name="qtd_doar" placeholder="Quantidade a doar"
-                                            value="{{ old('qtd_doar') }}" class="form-control"
-                                            aria-label="Amount (to the nearest dollar)">
+                                        <input type="text" id="qtd_doar" name="qtd_doar"
+                                            placeholder="Quantidade a doar" value="{{ old('qtd_doar') }}"
+                                            class="form-control" aria-label="Amount (to the nearest dollar)">
                                         <span class="input-group-text">.00</span>
 
                                     </div>
 
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="inlineRadioOptions" value="{{ old('name') }}"
-                                            id="inlineRadio1" value="option1">
+                                        <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                                            value="{{ old('name') }}" id="inlineRadio1" value="option1">
                                         <label class="form-check-label" for="inlineRadio1">Transferência Bancária</label>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="inlineRadioOptions" value="{{ old('name') }}"
-                                            id="inlineRadio2" value="option2">
+                                        <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                                            value="{{ old('name') }}" id="inlineRadio2" value="option2">
                                         <label class="form-check-label" for="inlineRadio2">Transfência Express</label>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="inlineRadioOptions" value="{{ old('name') }}"
-                                            id="inlineRadio3" value="option3">
+                                        <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                                            value="{{ old('name') }}" id="inlineRadio3" value="option3">
                                         <label class="form-check-label" for="inlineRadio3">Face Pay</label>
                                     </div>
 
