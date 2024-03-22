@@ -63,12 +63,12 @@
 
                                 <div class="content">
                                     <p>
-                                        {{Str::limit($campanha->descricao, 150)}}
+                                        {!!Str::limit($campanha->descricao, 150)!!}
                                     </p>
                                 </div>
                                 <div class="read-more mt-auto align-self-end">
                                     <a href="{{ route('campanha.show' ,$campanha->id) }}">Leia mais</a>
-                                  </div>
+                                </div>
                             </article>
                         </div><!-- End post list item -->
                         @empty

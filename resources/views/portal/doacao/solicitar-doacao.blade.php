@@ -21,9 +21,26 @@
 
         </div>
     </div><!-- End Breadcrumbs -->
-
+    <section class="featured-services">
+        @if(session()->has('mensagem'))
+            <div id="flash_message" class = "alert alert-success alert-dismissible" role="alert" aria-live="assertive" aria-atomic="true">
+                <strong>{{session()->get('mensagem')}}</strong>
+                <button type="button" class="ml-2 mb-1 close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>  
+            </div>
+        @endif 
+    </section>
     <!-- ======= Featured Services Section ======= -->
     <section id="featured-services" class="featured-services">
+        {{-- @if(session()->has('mensagem'))
+            <div id="flash_message" class = "alert alert-success alert-dismissible" role="alert" aria-live="assertive" aria-atomic="true">
+                <strong>{{session()->get('mensagem')}}</strong>
+                <button type="button" class="ml-2 mb-1 close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>  
+            </div>
+        @endif  --}}
         <div class="container">
 
             <div class="row gy-4">
@@ -82,7 +99,6 @@
                                     <div class="container">
 
                                         <div class="row gy-5 gx-lg-5">
-
                                             <div class="col-lg-4">
 
                                                 <div class="info">
@@ -119,7 +135,12 @@
                                             </div>
 
                                             <div class="col-lg-8">
-                                                {!! Form::open(['route' => 'campanha.store', 'class'=> 'php-email-form','files'=>'true']) !!}
+                                               
+                                                @if (isset($campanha))
+                                                    {{ Form::model( $campanha, ['route' => ['campanha.update',$campanha->id], 'class' => 'form', 'method' => 'put' ] ) }}
+                                                @else
+                                                    {!! Form::open(['route' => 'campanha.store', 'class'=> 'php-email-form','files'=>'true']) !!}
+                                                @endif
 
                                                 <div class="col-md-12 form-group mt-3 mt-md-0">
                                                     {{Form::label('titulo', 'Título da Campanha', ['class' => 'mb-2'])}}
@@ -136,14 +157,14 @@
                                                     {{Form::select('categoria_id',
                                                             $categorias,
                                                             null,
-                                                            ['class' => 'form-select','required'=>'', 'id'=>'categoria_id','placeholder' => 'Selecione a Categoria']
+                                                            ['class' => 'form-control','required'=>'', 'id'=>'categoria_id','placeholder' => 'Selecione a Categoria']
 
                                                         )}}
                                                 </div>
                                                 <div class="col-md-12 input-group mb-3 mt-3 mt-md-0">
                                                     {{Form::label('quantia', 'Valor a arrecadar?', ['class' => 'mb-2 label-money'])}}
                                                     <span class="input-group-text">AKZ</span>
-                                                    {{ Form::text('quantia',
+                                                    {{ Form::number('quantia',
                                                         null,
                                                         ['class' => 'form-control',
                                                         'min'=>'0', 'id'=>'quantia',
@@ -164,7 +185,7 @@
                                                 </div>
                                                 <div class="form-group mt-3">
                                                     <label for="">Descricação</label>
-                                                    <textarea class="form-control" name="descricao" id="descricao" name="message" placeholder="Oi meu nome é Ana, estou arrecadando fundos para..." required>{{ old('descrica') }}</textarea>
+                                                    <textarea class="form-control" name="descricao" id="descricao" required>@if(isset($campanha)) {!!$campanha->descricao !!} @else {{ old('descrica') }} @endif</textarea>
                                                 </div>
 
                                                 <div class="mt-3">
@@ -192,14 +213,14 @@
 
 
 @section('js')
-    <script src="{{asset('js/jquery-3.6.0.min.js')}}"></script> 
+    <script src="{{asset('js/jquery-3.6.0.min.js')}}"></script>
    {{--  <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script> --}}
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <script>
         $('#descricao').summernote({
-          placeholder: 'Hello Bootstrap 4',
+          placeholder: 'Faça uma descrição sobre a doação',
           tabsize: 2,
           height: 150
         });

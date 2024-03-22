@@ -59,5 +59,6 @@ Route::apiResource('doar', Controllers\DoacaoBensMateriaisController::class);
 Route::apiResource('campanha', Controllers\CampanhaController::class);
 
 Route::get('/solicitar-doacao', [Controllers\CampanhaController::class,'create'])->name('campanha.create');
+Route::get('/campanha-editar/{campanha}', [Controllers\CampanhaController::class,'edit'])->name('campanha.edit');
 Route::apiResource('comentarios', Controllers\ComentarioController::class);
 Route::get('/campanhas-recentes/{limit}', [Controllers\CampanhaController::class,'campanhasRecentes'])->name('campanha.recente');
