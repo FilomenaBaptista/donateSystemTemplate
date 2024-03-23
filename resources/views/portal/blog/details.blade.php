@@ -29,13 +29,13 @@
                 <strong>{{session()->get('mensagem')}}</strong>
                 <button type="button" class="ml-2 mb-1 close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
-                </button>  
+                </button>
             </div>
-        @endif 
+        @endif
     </section>
 
     <section id="blog" class="blog">
-      
+
         <div class="container" data-aos="fade-up">
 
             <div class="row g-5">
@@ -79,11 +79,13 @@
 
 
                         </div><!-- End meta bottom -->
-                        <div class="read-more mt-auto align-self-end">
-                            <a class="btn-edit" href="{{ route('campanha.edit' ,$campanha->id) }}">
-                                <i class="bi bi-pencil"></i> Editar
-                            </a>
-                        </div>
+                        @can('edit' , $campanha)
+                            <div class="read-more mt-auto align-self-end">
+                                <a class="btn-edit" href="{{ route('campanha.edit' ,$campanha->id) }}">
+                                    <i class="bi bi-pencil"></i> Editar
+                                </a>
+                            </div>
+                        @endcan
                     </article>
 
                     <div class="comments">
