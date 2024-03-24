@@ -14,12 +14,15 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('username')->nullable();
             $table->string('telefone')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
+            $table->integer('municipio_id')->unsigned();
             $table->string('password');
-            $table->enum('activo',[0, 1])->default(0);
+            $table->enum('activo',[0, 1])->default('1');
+            
+            $table->foreign('municipio_id')->references('id')
+                    ->on('municipios')->onDelete('cascade');
             $table->rememberToken();
             $table->timestamps();
         });
