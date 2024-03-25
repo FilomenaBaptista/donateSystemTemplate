@@ -1,20 +1,20 @@
 <?php
 
+namespace Database\Seeders;
+
 use App\Models\User;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
-class UsersTableSeeder extends Seeder
+class UserTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
-     * @return void
      */
-    public function run()
+    public function run(): void
     {
-        //utilizador root
         $user = User::create([
             'name' => 'SUPER UTILIZADOR',
             'telefone' => '999999999',

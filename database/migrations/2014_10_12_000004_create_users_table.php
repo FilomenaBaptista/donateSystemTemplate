@@ -17,9 +17,10 @@ return new class extends Migration
             $table->string('telefone')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->integer('municipio_id')->unsigned();
+            $table->unsignedBigInteger('municipio_id');
             $table->string('password');
             $table->enum('activo',[0, 1])->default('1');
+            $table->enum('eliminado',[0, 1])->default('0');
             
             $table->foreign('municipio_id')->references('id')
                     ->on('municipios')->onDelete('cascade');

@@ -14,8 +14,12 @@
                 @endguest
                
                 @auth
-                    <li><a class="nav-link scrollto" href="{{ route('campanha.create') }}">Solicitar Doações</a></li>
-                    <li><a class="nav-link scrollto" href="{{ route('doar.create') }}"> Doar</a></li>
+                    @can('REGISTAR CAMPANHA')
+                        <li><a class="nav-link scrollto" href="{{ route('campanha.create') }}">Solicitar Doações</a></li>
+                    @endcan
+                    @can('REGISTAR DOAÇÃO')
+                        <li><a class="nav-link scrollto" href="{{ route('doar.create') }}"> Doar</a></li>
+                    @endcan
                 @endauth
                 <li><a class="nav-link scrollto" href="{{ route('historiasdesucesso') }}">Histórias de Sucesso</a></li>
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Campanha;
+use App\Models\User;
 use App\Services\CampanhaService;
 use App\Services\CategoriaService;
 use Illuminate\Auth\Access\Gate;
@@ -40,11 +41,11 @@ class CampanhaController extends Controller
      */
     public function create()
     {
+        $this->authorize('REGISTAR CAMPANHA');
         $CategoriaService = new CategoriaService();
         $validacao = new FuncoesUteisController();
         $response = $CategoriaService->listCategoria();
         $categorias= $validacao->getNames($response['data']);
-       // return view('portal.blog.textEditor' , ['categorias' => $categorias]);
         return view('portal.doacao.solicitar-doacao' , ['categorias' => $categorias]);
     }
 
@@ -102,7 +103,7 @@ class CampanhaController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Request $request,Campanha $campanha)
+    public function edit(Request $request, Campanha $campanha)
     {
         $this->authorize('edit', $campanha);
 

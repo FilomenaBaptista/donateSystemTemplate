@@ -118,8 +118,8 @@
                         <form action="{{ route('register') }}" method="post" role="form" class="php-email-form">
                             @csrf
                             <div class="row">
-                                <input type="hidden" name="user_name" value="{{ old('user_name') }}" class="form-control"
-                                    id="user_name" placeholder="Nome Completo">
+                                <input type="hidden" name="user_name" value="voluntario" class="form-control"
+                                    id="user_name">
                                 <div class="col-md-6 form-group">
                                     <input type="text" name="name" class="form-control" id="name"
                                         placeholder="Nome Completo"  value="{{ old('name') }}" required>

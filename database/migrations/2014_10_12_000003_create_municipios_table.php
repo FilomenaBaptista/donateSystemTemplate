@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('municipios', function (Blueprint $table) {
             $table->id();
             $table->String('name');
-            $table->bigInteger('provincia_id')->unsigned();
-            $table->bigInteger('user_id')->unsigned();
+            $table->unsignedBigInteger('provincia_id');
+            $table->unsignedBigInteger('user_id');
 
 
             $table->foreign('provincia_id')->references('id')

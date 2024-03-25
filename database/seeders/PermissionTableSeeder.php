@@ -1,5 +1,8 @@
 <?php
 
+namespace Database\Seeders;
+
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
 
@@ -7,8 +10,6 @@ class PermissionTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
-     * @return void
      */
     public function run()
     {
@@ -178,7 +179,7 @@ class PermissionTableSeeder extends Seeder
                 'description' => '',
             ],
             [
-                'name' => 'VER HISTOÁRIA DE SUCESSO',
+                'name' => 'VER HISTÓRIA DE SUCESSO',
                 'slug' => 'VER_HISTORIA_DE_SUCESSO',
                 'description' => '',
             ],
@@ -212,7 +213,22 @@ class PermissionTableSeeder extends Seeder
                 'slug' => 'VER_DOACAO',
                 'description' => '',
             ],
-            //FIM DAS PERMISSÕES DAS OPERAÇÕES DE CONFIGURAÇÃO 
+            [
+                'name' => 'APROVAR CAMPANHA',
+                'slug' => 'APROVAR_CAMPANHA',
+                'description' => '',
+            ],
+            [
+                'name' => 'REJEITAR CAMPANHA',
+                'slug' => 'REJEITAR_CAMPANHA',
+                'description' => '',
+            ],
+            [
+                'name' => 'ELIMINAR CAMPANHA',
+                'slug' => 'ELIMINAR_CAMPANHA',
+                'description' => '',
+            ],
+            //FIM DAS PERMISSÕES DAS OPERAÇÕES DE CONFIGURAÇÃO
 
 
         ]; //fim das permissões
