@@ -42,7 +42,7 @@ class DoacaoBensMateriaisController extends Controller
         $validacao = new FuncoesUteisController();
         $response = $CategoriaService->listCategoria();
         $categorias= $validacao->getNames($response['data']);
-        return view('portal.doacao/doacao',['categorias' => $categorias]);
+        return view('portal.doacao/doar-bens-materiais',['categorias' => $categorias]);
     }
 
     /**

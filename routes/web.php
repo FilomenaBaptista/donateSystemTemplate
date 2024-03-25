@@ -51,6 +51,11 @@ Route::get('/encontrar-doacao', function () {
     return view('portal.doacao/encontrar-doacao');
 })->name('encontrardoacao');
 
+Route::get('/doar-bens-materiais', function () {
+    return view('portal.doacao/doar-bens-materiais');
+})->name('doarbensmateriais');
+
+
 require __DIR__.'/auth.php';
 
 

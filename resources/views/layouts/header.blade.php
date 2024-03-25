@@ -15,7 +15,15 @@
                
                 @auth
                     <li><a class="nav-link scrollto" href="{{ route('campanha.create') }}">Solicitar Doações</a></li>
-                    <li><a class="nav-link scrollto" href="{{ route('doar.create') }}"> Doar</a></li>
+                    <li class="dropdown"><a href="{{ route('doar.create') }}"><span>Doar</span> <i
+                        class="bi bi-chevron-down dropdown-indicator"></i></a>
+                    <ul>
+                      <li><a href="{{route('doar.create')}}">Doação por Bens Materiais </a></li>
+                      <li><a href="#">Doação Monetária</a></li>
+                      <li><a href="#">Doar pela loja</a></li>
+                      
+                    </ul>
+                  </li>
                 @endauth
                 <li><a class="nav-link scrollto" href="{{ route('historiasdesucesso') }}">Histórias de Sucesso</a></li>
 
