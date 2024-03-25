@@ -8,10 +8,11 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Exception;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -21,7 +22,9 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'telefone',
         'password',
+        'municipio_id'
     ];
 
     /**
@@ -33,6 +36,10 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+    
+    public function municipio() {
+        return $this->belongsTo(Municipio::class);
+    }
 
     /**
      * The attributes that should be cast.
@@ -44,12 +51,12 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function index(       
+    public function index(
         string $name = null
     ) {
         try {
             return User::orderBy('id', 'DESC')
-            
+
             ->get([
                 'users.*'
             ]);
@@ -57,7 +64,7 @@ class User extends Authenticatable
             throw new Exception($e->getCode());
         }
     }
-    public function store(       
+    public function store(
         string $name,
         string $email,
         string $userPasswordHashed
@@ -94,4 +101,5 @@ class User extends Authenticatable
             throw new Exception($e->getCode());
         }
     }
+
 }

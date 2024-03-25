@@ -11,7 +11,6 @@
     <!-- ======= Breadcrumbs ======= -->
     <div class="breadcrumbs">
         <div class="container">
-
             <div class="d-flex justify-content-between align-items-center">
                 <h2>Campanha</h2>
                 <ol>
@@ -20,18 +19,29 @@
                     <li><a href="{{route('campanha.show' , $campanha->id)}}">Detalhes da campanha</a></li>
                 </ol>
             </div>
-
         </div>
     </div><!-- End Breadcrumbs -->
 
     <!-- ======= Blog Details Section ======= -->
+    <section class="featured-services container">
+        @if(session()->has('mensagem'))
+            <div id="flash_message" class = "alert alert-success alert-dismissible" role="alert" aria-live="assertive" aria-atomic="true">
+                <strong>{{session()->get('mensagem')}}</strong>
+                <button type="button" class="ml-2 mb-1 close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        @endif
+    </section>
+
     <section id="blog" class="blog">
+
         <div class="container" data-aos="fade-up">
 
             <div class="row g-5">
 
                 <div class="col-lg-8">
-                    <article class="blog-details">
+                    <article class="d-flex flex-column blog-details">
 
                         <div class="post-img">
                             <img src="{{$campanha->capa}}" alt="" class="img-fluid">
@@ -66,9 +76,16 @@
                                 <li><a href="#">Tips</a></li>
                                 <li><a href="#">Marketing</a></li>
                             </ul>
-                            	<i  class='fas'>&#xf044;</i>
-                        </div><!-- End meta bottom -->
 
+
+                        </div><!-- End meta bottom -->
+                        @can('edit' , $campanha)
+                            <div class="read-more mt-auto align-self-end">
+                                <a class="btn-edit" href="{{ route('campanha.edit' ,$campanha->id) }}">
+                                    <i class="bi bi-pencil"></i> Editar
+                                </a>
+                            </div>
+                        @endcan
                     </article>
 
                     <div class="comments">
@@ -88,10 +105,10 @@
                                 </div>
                             </div>
                         @empty
-                            
+
                         @endforelse
 
-                       
+
                     </div>
                 </div>
 
@@ -179,3 +196,6 @@
     });
 </script>
 @endsection
+{{-- @section('js')
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+@endsection --}}

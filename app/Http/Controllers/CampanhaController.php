@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\Campanha;
 use App\Services\CampanhaService;
 use App\Services\CategoriaService;
+use Illuminate\Auth\Access\Gate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
+use PhpParser\Node\Stmt\Return_;
 
 class CampanhaController extends Controller
 {
@@ -30,11 +32,7 @@ class CampanhaController extends Controller
             $request->user_id,
             $request->eliminado
         );
-
-       /*  $CategoriaService = new CategoriaService();
-        $categorias = $CategoriaService->listCategoria(); */
         return view('portal.blog.blog',['campanhas' => $response['data']]);
-        //return response()->json(['data' => $response['data'], 'message' => $response['message'], 'status' => $response['status']]);
     }
 
     /**
@@ -83,6 +81,7 @@ class CampanhaController extends Controller
             $request->categoria_id,
             $capa
         );
+        session()->flash('mensagem', 'CAMPANHA SUBMETIDA COM SUCESSO!!!');
         return redirect()->route('campanha.create');
        // return response()->json(['data' => $response['data'], 'message' => $response['message'], 'status' => $response['status']]);
     }
@@ -103,9 +102,18 @@ class CampanhaController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Request $request)
+    public function edit(Request $request,Campanha $campanha)
     {
-        //
+        $this->authorize('edit', $campanha);
+
+        /* if(!$request->user()->can('edit', $campanha)){
+            abort(403);
+        } */
+        $CategoriaService = new CategoriaService();
+        $validacao = new FuncoesUteisController();
+        $response = $CategoriaService->listCategoria();
+        $categorias= $validacao->getNames($response['data']);
+        return view('portal.doacao.solicitar-doacao' , ['campanha' => $campanha,'categorias' => $categorias]);
     }
 
     /**
@@ -141,7 +149,9 @@ class CampanhaController extends Controller
             $request->categoria_id,
             $capa
         );
-        return response()->json(['data' => $response['data'], 'message' => $response['message'], 'status' => $response['status']]);
+        session()->flash('mensagem', 'CAMPANHA ALTERADA COM SUCESSO!!!');
+        return redirect()->route('campanha.show',$id);
+       // return response()->json(['data' => $response['data'], 'message' => $response['message'], 'status' => $response['status']]);
     }
 
     /**

@@ -84,7 +84,11 @@ h6 {
 # Sections & Section Header
 --------------------------------------------------------------*/
 section {
+<<<<<<< HEAD
   padding: 50px 0;
+=======
+  padding: 0px;
+>>>>>>> 1882e612de47b8d5782770661e893994f2118e8d
   overflow: hidden;
 }
 
@@ -115,7 +119,7 @@ section {
 # Breadcrumbs
 --------------------------------------------------------------*/
 .breadcrumbs {
-  padding: 60px 0;
+  padding: 25px 0;
   background: rgba(var(--color-secondary-rgb), 0.05);
   min-height: 40px;
   margin-top: 76px;

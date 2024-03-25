@@ -1,0 +1,70 @@
+a.btn-edit {
+    display: inline-block;
+    background: var(--color-primary);
+    color: var(--color-white);
+    padding: 8px 30px;
+    transition: 0.3s;
+    font-size: 14px;
+    border-radius: 4px;
+}
+a.btn-remove {
+    display: inline-block;
+    background: var(--bs-danger);
+    color: var(--color-white);
+    padding: 8px 30px;
+    transition: 0.3s;
+    font-size: 14px;
+    border-radius: 4px;
+}
+
+.form-control {
+    height: 55px !important;
+}
+
+#flash_message{
+    z-index: 5;
+     width: 400px;
+    right: 10px;
+    position: absolute; 
+   /*  display: none; */
+}
+
+ .alert-success {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+}
+.alert-dismissible {
+    padding-right: 4rem;
+}
+.alert {
+    position: relative;
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+} 
+ .alert-dismissible .close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0.75rem 1.25rem;
+    color: inherit;
+} 
+ button.close {
+    padding: 0;
+    background-color: transparent;
+    border: 0;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+} 
+
+.close {
+    float: right;
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1;
+    text-shadow: 0 1px 0 #fff;
+    opacity: .5;
+}

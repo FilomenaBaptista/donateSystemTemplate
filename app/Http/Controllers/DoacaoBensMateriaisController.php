@@ -61,7 +61,7 @@ class DoacaoBensMateriaisController extends Controller
             'is_anonimo' => 'int|required'
         ]);
 
-       
+
         if ($validator->fails()) {
             return response()->json(['data' => '', 'message' => $validator->errors(), 'status' => 400]);
         }
@@ -86,7 +86,7 @@ class DoacaoBensMateriaisController extends Controller
             $request->estado_artigo,
             $request->descricao,
             $request->is_anonimo
-          
+
         );
         return redirect()->route('doar.create');
     }
