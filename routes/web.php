@@ -2,6 +2,7 @@
 
 use App\Http\Controllers;
 use App\Http\Controllers\ProfileController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -57,7 +58,6 @@ Route::get('/doar-money', function () {
 Route::get('/doar-loja', function () {
     return view('portal.doacao/doar-loja');
 })->name('doarloja');
-
 
 require __DIR__.'/auth.php';
 

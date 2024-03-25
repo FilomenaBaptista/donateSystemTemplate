@@ -97,11 +97,8 @@ class UserService
         string $password
     ) {
         try {
-            $UserService = new UserService();
             
-            //$userSalt = $UserService->getSalt($email);
             $User = new User();
-            //$password = hash('SHA256', $userSalt . $password);
             $password = hash('SHA256',$password);
             $response = $User->login($email, $password);
 

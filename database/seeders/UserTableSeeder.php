@@ -18,7 +18,7 @@ class UserTableSeeder extends Seeder
         $user = User::create([
             'name' => 'SUPER UTILIZADOR',
             'telefone' => '999999999',
-            'email'  => 'testenicodemos@gmail.com',
+            'email'  => 'teste@gmail.com',
             'municipio_id' => 5,
             'password' => Hash::make('password'),
             'remember_token' => Str::random(10)
