@@ -136,7 +136,15 @@
                                             </div>
 
                                             <div class="col-lg-8">
-                                               
+                                                @if ($errors->any())
+                                                    <div class="alert alert-danger">
+                                                        <ul>
+                                                            @foreach ($errors->all() as $error)
+                                                                <li>{{ $error }}</li>
+                                                            @endforeach
+                                                        </ul>
+                                                    </div>
+                                                @endif
                                                 @if (isset($campanha))
                                                     {{ Form::model( $campanha, ['route' => ['campanha.update',$campanha->id], 'class' => 'form', 'method' => 'put' ] ) }}
                                                 @else
@@ -175,7 +183,10 @@
                                                 <div class="col-md-12 form-group mt-3 mt-md-0">
                                                     {{Form::label('capa', 'Adicionar uma foto de capa', ['class' => 'mb-2'])}}
                                                     <div class="d-flex justify-content-center mb-4">
-                                                        <img id="selectedAvatar" name="img_video" src="{{asset('img/placeholder-avatar.jpg')}}" class="rounded-circle" style="width: auto; height: 150px; object-fit: cover;" alt="example placeholder" />
+                                                        <img id="selectedAvatar" name="img_video"
+                                                         src="@if( isset($campanha)) {{$campanha->capa}} @else {{asset('img/placeholder-avatar.jpg')}} @endif" 
+                                                         class="rounded-circle" style="width: auto; height: 150px; object-fit: cover;" 
+                                                         alt="example placeholder" />
                                                     </div>
                                                     <div class="d-flex justify-content-center">
                                                         <div class="btn btn-rounded">

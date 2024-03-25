@@ -54,6 +54,7 @@ class CampanhaController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('REGISTAR CAMPANHA');
         $validator = Validator::make($request->all(), [
             'titulo' => 'string|required',
             'descricao' => 'string|required',
@@ -106,10 +107,6 @@ class CampanhaController extends Controller
     public function edit(Request $request, Campanha $campanha)
     {
         $this->authorize('edit', $campanha);
-
-        /* if(!$request->user()->can('edit', $campanha)){
-            abort(403);
-        } */
         $CategoriaService = new CategoriaService();
         $validacao = new FuncoesUteisController();
         $response = $CategoriaService->listCategoria();
@@ -130,7 +127,12 @@ class CampanhaController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return response()->json(['data' => '', 'message' => $validator->errors(), 'status' => 400]);
+           // return response()->json(['data' => '', 'message' => $validator->errors(), 'status' => 400]);
+           if ($validator->fails()) {
+            return redirect()->back()
+                                    ->withErrors($validator)
+                                    ->withInput();
+        }
         }
         $capa="";
         if ($request->hasFile('capa') && $request->file('capa')->isValid()) :
