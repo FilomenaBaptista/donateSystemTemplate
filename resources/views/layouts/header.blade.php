@@ -14,16 +14,19 @@
                 @endguest
                
                 @auth
-                    <li><a class="nav-link scrollto" href="{{ route('campanha.create') }}">Solicitar Doações</a></li>
-                    <li class="dropdown"><a href="{{ route('doar.create') }}"><span>Doar</span> <i
-                        class="bi bi-chevron-down dropdown-indicator"></i></a>
-                    <ul>
-                      <li><a href="{{route('doar.create')}}">Doação por Bens Materiais </a></li>
-                      <li><a href="{{route('doarmoney')}}">Doação Monetária</a></li>
-                      <li><a href="{{route('doarloja')}}">Doar pela loja</a></li>
-                      
-                    </ul>
-                  </li>
+                    @can('REGISTAR CAMPANHA')
+                        <li><a class="nav-link scrollto" href="{{ route('campanha.create') }}">Solicitar Doações</a></li>
+                    @endcan
+                    @can('VER DOAÇÃO')
+                        <li class="dropdown"><a href="{{ route('doar.create') }}"><span>Doar</span> <i
+                            class="bi bi-chevron-down dropdown-indicator"></i></a>
+                        <ul>
+                            <li><a href="{{route('doar.create')}}">Doação por Bens Materiais </a></li>
+                            <li><a href="{{route('doarmoney')}}">Doação Monetária</a></li>
+                            <li><a href="{{route('doarloja')}}">Doar pela loja</a></li>
+                        </ul>
+                        </li>
+                    @endcan
                 @endauth
                 <li><a class="nav-link scrollto" href="{{ route('historiasdesucesso') }}">Histórias de Sucesso</a></li>
 

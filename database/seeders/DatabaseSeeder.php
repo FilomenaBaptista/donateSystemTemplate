@@ -6,6 +6,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 
+
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -15,9 +16,16 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
         $this->call([
-            CategoriaSeeder::class
+            CategoriaSeeder::class,
+            PermissionTableSeeder::class,
+            RoleTableSeeder::class,
+            PaisSeeder::class,
+            ProvinciaSeeder::class,
+            MunicipioSeeder::class,
+            UserTableSeeder::class,
+            RegraSeeder::class,
         ]);
-         \App\Models\Campanha::factory(10)->create();
+        // \App\Models\Campanha::factory(10)->create();
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',

@@ -45,9 +45,10 @@ class RegisteredUserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'municipio_id'=>5
         ]);
 
-         if( $request->username == "voluntario"){
+         if( $request->user_name == "voluntario"){
             $voluntario = Voluntario::create([
                 'data_nascimento'=>$request->data_nascimento,
                 'endereço'=>$request->endereço,
@@ -55,8 +56,9 @@ class RegisteredUserController extends Controller
                 'profissao'=>$request->profissao,
                 'area_de_interesse'=>$request->area_de_interesse,
                 'sobre'=>$request->sobre,
-                'user_id'=> $user->id,
+                'user_id'=> $user->id
             ]);
+            $user->assignRole(3);
         } 
 
         event(new Registered($user));

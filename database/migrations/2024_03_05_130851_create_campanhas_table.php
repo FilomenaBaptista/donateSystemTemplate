@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('capa', 255)->nullable()->default('/storage/images/avatar_campanha.jpg');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('categoria_id');
+            $table->enum('estado', ['Pendente', 'Aprovado', 'Rejeitado', 'Concluido'])->default('Pendente');
             $table->enum('eliminado',[0, 1])->default(0);
 
             $table->foreign('categoria_id')->references('id')->on('categorias')->onUpdate('cascade')

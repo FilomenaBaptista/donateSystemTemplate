@@ -42,11 +42,6 @@ Route::get('/historias-de-sucesso', function () {
     return view('portal.blog/historia-de-sucesso');
 })->name('historiasdesucesso');
 
-
- Route::get('/solicitar-doacao2', function () {
-    return view('portal.doacao/solicitar-doacao2');
-})->name('solicitardoacao');
-
 Route::get('/encontrar-doacao', function () {
     return view('portal.doacao/encontrar-doacao');
 })->name('encontrardoacao');
