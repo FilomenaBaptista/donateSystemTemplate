@@ -20,10 +20,10 @@
         </div><!-- End Breadcrumbs -->
 
         <!-- ======= Featured Services Section ======= -->
-        <section id="featured-services" class="featured-services">
+        <section id="featured-services py-5" class="featured-services">
             <div class="container">
 
-                <div class="row gy-4">
+                <div class="row gy-4 py-5">
 
                     <h3 class="ganho">O que eu ganho sendo voluntário?</h3>
 
@@ -66,7 +66,7 @@
         
         <!-- End Featured Services Section -->
 
-        <section class="banner-description" style="background-image: url('assets/img/Photo_placeholder.png')">
+        <section class="banner-description py-5" style="background-image: url('assets/img/voluntario-bk.jpg')">
             <div class="container">
 
                 <div class="row gy-5 gx-lg-5">
@@ -99,7 +99,7 @@
                     <div class="col-lg-6">
 
                         <div class="img-voluntario">
-                            <img src="assets/img/ccharity.jpg" alt="">
+                            <img src="assets/img/voluntariao.jpg" alt="">
 
                         </div>
 
@@ -153,7 +153,7 @@
                                 </select>
                                    
                                 </div>
-                                <div class="col-md-6 form-group mt-3 mt-md-0">
+                                <div class="col-md-6 form-group mt-md-0">
                                     <label class="label-text" for="">Trabalha actualmente?</label>
                                    <div>
                                     <div class="form-check form-check-inline">
@@ -170,11 +170,10 @@
                                 </div>
                             </div>
 
-
                             <div class="form-group mt-3">
                                 <textarea class="form-control" name="sobre" placeholder="Descreva o que você poderia fazer" required>{{ old('sobre') }}</textarea>
                             </div>
-                            <div class="text-left"><button type="submit">Cadastrar</button></div>
+                            <div class="text-left pt-3"><button type="submit">Cadastrar</button></div>
                         </form>
                     </div><!-- End Contact Form -->
 

@@ -55,6 +55,14 @@ Route::get('/doar-bens-materiais', function () {
     return view('portal.doacao/doar-bens-materiais');
 })->name('doarbensmateriais');
 
+Route::get('/doar-money', function () {
+    return view('portal.doacao/doar-money');
+})->name('doarmoney');
+
+Route::get('/doar-loja', function () {
+    return view('portal.doacao/doar-loja');
+})->name('doarloja');
+
 
 require __DIR__.'/auth.php';
 
