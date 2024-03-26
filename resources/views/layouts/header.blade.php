@@ -10,7 +10,7 @@
                 {{-- <li><a class="nav-link scrollto" href="index.php#about">Quem Somos</a></li> --}}
                 <li><a class="nav-link scrollto" href="{{ route('campanha.index') }}">Campanhas</a></li>
                 @guest
-                    <li><a class="nav-link scrollto" href="{{ route('voluntario') }}">Quero ser Voluntário</a></li>
+                    <li><a class="nav-link scrollto" href="{{ route('voluntario') }}">Voluntário</a></li>
                 @endguest
                
                 @auth
