@@ -44,7 +44,7 @@
                     <article class="d-flex flex-column blog-details">
 
                         <div class="post-img">
-                            <img src="{{$campanha->capa}}" alt="" class="img-fluid">
+                            <img src="{{$campanha->imagem}}" alt="" class="img-fluid">
                         </div>
 
                         <h2 class="title">{{$campanha->titulo}}</h2>
@@ -182,7 +182,7 @@
                 $('.campanhasRecentes').empty();
                 response.data.forEach(function(campanha) {
                     var html = '<div class="post-item">';
-                    html += '<img src="' + campanha.capa + '" alt="" class="flex-shrink-0">';
+                    html += '<img src="' + campanha.imagem + '" alt="" class="flex-shrink-0">';
                     html += '<div>';
                     html += '<h4><a href="blog-post.html">' + campanha.titulo + '</a></h4>';
                     html += '<time datetime="' + campanha.created_at + '">' + dataResumida(campanha.created_at) + '</time>';

@@ -31,17 +31,17 @@
                 </button>  
             </div>
         @endif 
+        @if ($errors->any())
+        <div id="flash_error" class = "alert alert-danger alert-dismissible" role="alert" aria-live="assertive" aria-atomic="true">
+            <strong>Erro ao registar, <br> verificar os campos abaixo</strong>
+            <button type="button" class="ml-2 mb-1 close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>  
+        </div>
+        @endif
     </section>
     <!-- ======= Featured Services Section ======= -->
     <section id="featured-services" class="featured-services">
-        {{-- @if(session()->has('mensagem'))
-            <div id="flash_message" class = "alert alert-success alert-dismissible" role="alert" aria-live="assertive" aria-atomic="true">
-                <strong>{{session()->get('mensagem')}}</strong>
-                <button type="button" class="ml-2 mb-1 close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>  
-            </div>
-        @endif  --}}
         <div class="container">
 
             <div class="row gy-4">
@@ -136,15 +136,6 @@
                                             </div>
 
                                             <div class="col-lg-8">
-                                                @if ($errors->any())
-                                                    <div class="alert alert-danger">
-                                                        <ul>
-                                                            @foreach ($errors->all() as $error)
-                                                                <li>{{ $error }}</li>
-                                                            @endforeach
-                                                        </ul>
-                                                    </div>
-                                                @endif
                                                 @if (isset($campanha))
                                                     {{ Form::model( $campanha, ['route' => ['campanha.update',$campanha->id], 'class' => 'form', 'method' => 'put' ] ) }}
                                                 @else
@@ -152,7 +143,14 @@
                                                 @endif
 
                                                 <div class="col-md-12 form-group mt-3 mt-md-0">
+                                                    {{ Form::hidden ('imagem',null,
+                                                        ['class' => 'form-control',
+                                                        'id'=>'imagem', 'readonly'=>'true',]
+                                                    )}}
                                                     {{Form::label('titulo', 'Título da Campanha', ['class' => 'mb-2'])}}
+                                                    @error('titulo')
+                                                        <div class="alert alert-danger">{{ $message }}</div>
+                                                    @enderror
                                                     {{ Form::text('titulo',
                                                         null,
                                                         ['class' => 'form-control',
@@ -181,23 +179,45 @@
                                                     )}}<span class="input-group-text">.00</span>
                                                 </div>
                                                 <div class="col-md-12 form-group mt-3 mt-md-0">
-                                                    {{Form::label('capa', 'Adicionar uma foto de capa', ['class' => 'mb-2'])}}
+                                                    {{Form::label('capa_legenda', 'Adicionar uma foto de capa*', ['class' => 'mb-2'])}}
+                                                    @error('imagem')
+                                                        <div class="alert alert-danger">{{ $message }}</div>
+                                                    @enderror
                                                     <div class="d-flex justify-content-center mb-4">
                                                         <img id="selectedAvatar" name="img_video"
-                                                         src="@if( isset($campanha)) {{$campanha->capa}} @else {{asset('img/placeholder-avatar.jpg')}} @endif" 
+                                                         src="@if( isset($campanha)) 
+                                                                {{$campanha->imagem}} 
+                                                                @else 
+                                                                    @if( null !== old('imagem') ) 
+                                                                        {{old('imagem')}} 
+                                                                    @else 
+                                                                        {{asset('img/placeholder-avatar.jpg')}} 
+                                                                @endif 
+                                                            @endif" 
                                                          class="rounded-circle" style="width: auto; height: 150px; object-fit: cover;" 
                                                          alt="example placeholder" />
                                                     </div>
                                                     <div class="d-flex justify-content-center">
                                                         <div class="btn btn-rounded">
                                                             {{Form::label('capa', 'Escolher Imagem', ['class' => 'form-label text-white m-1'])}}
+                                                           
                                                             <input type="file" name="capa" class="form-control d-none" id="capa" onchange="displaySelectedImage(event, 'selectedAvatar')" />
                                                         </div>
                                                     </div>
+                                                   
                                                 </div>
                                                 <div class="form-group mt-3">
-                                                    <label for="">Descricação</label>
-                                                    <textarea class="form-control" name="descricao" id="descricao" required>@if(isset($campanha)) {!!$campanha->descricao !!} @else {{ old('descrica') }} @endif</textarea>
+                                                    <label for="">Descricação*</label> 
+                                                    @error('descricao')
+                                                        <div class="alert alert-danger">{{ $message }}</div>
+                                                    @enderror
+                                                   {{--  @if( $errors->has('descricao') )
+                                                        <span class="has-error">
+                                                            {{ $errors->first('descricao') }}
+                                                        </span>
+                                                    @endif --}}
+                                                    <textarea class="form-control" name="descricao" id="descricao" required>@if(isset($campanha)) {!!$campanha->descricao !!} @else {{ old('descricao') }} @endif</textarea>
+                                                   
                                                 </div>
 
                                                 <div class="mt-3">

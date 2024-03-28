@@ -72,7 +72,7 @@ class CampanhaService
         string $titulo,
         string $descricao,
         int $categoriaId,
-        string $capa
+        string $imagem
     ) {
         try {
             $campanha = new Campanha();
@@ -81,7 +81,7 @@ class CampanhaService
                 $titulo,
                 $descricao,
                 $categoriaId,
-                $capa
+                $imagem
             );
             return StatusHelper::response(['data' => $response, 'tag' => 'CREATE.CAMPANHA', 'status' => 200]);
         } catch (Exception $e) {
@@ -100,7 +100,7 @@ class CampanhaService
         string $titulo,
         string $descricao,
         int $categoriaId,
-        string $capa
+        string $imagem
     ) {
         try {
             $campanha = new Campanha();
@@ -109,7 +109,7 @@ class CampanhaService
                 $titulo,
                 $descricao,
                 $categoriaId,
-                $capa
+                $imagem
             );
             return StatusHelper::response(['data' => $response, 'tag' => 'UPDATE.CAMPANHA', 'status' => 200]);
         } catch (Exception $e) {

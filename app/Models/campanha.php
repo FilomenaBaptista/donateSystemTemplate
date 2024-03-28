@@ -13,7 +13,7 @@ class Campanha extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['titulo','descricao','categoria'];
+    protected $fillable = ['titulo','descricao','categoria_id', 'imagem','quantia', 'estado'];
 
     public function criador(): BelongsTo
     {return $this->belongsTo(User::class,'user_id');}
@@ -80,7 +80,7 @@ class Campanha extends Model
         string $titulo,
         string $descricao,
         int $categoriaId,
-        string $capa
+        string $imagem
     ) {
         try {
             $campanha = new campanha();
@@ -88,10 +88,10 @@ class Campanha extends Model
             $campanha->titulo = $titulo;
             $campanha->descricao = $descricao;
             $campanha->categoria_id = $categoriaId;
-            $campanha->capa = $capa;
+            $campanha->imagem = $imagem;
             $campanha->save();
             return  $campanha;
-        } catch (QueryException $e) {
+        } catch (Exception $e) {
             throw new Exception($e->getCode());
         }
     }
@@ -108,7 +108,7 @@ class Campanha extends Model
         string $titulo,
         string $descricao,
         int $categoriaId,
-        string $capa
+        string $imagem
     ) {
         try {
             $campanha = Campanha::find($campanhaId);
@@ -116,7 +116,7 @@ class Campanha extends Model
                 'titulo' => $titulo,
                 'descricao' => $descricao,
                 'categoria_id' => $categoriaId,
-                'capa' => $capa
+                'imagem' => $imagem
             ]);
             return $campanha;
         } catch (Exception $e) {

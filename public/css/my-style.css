@@ -21,7 +21,7 @@ a.btn-remove {
     height: 55px !important;
 }
 
-#flash_message{
+#flash_message, #flash_error{
     z-index: 5;
      width: 400px;
     right: 10px;
@@ -68,3 +68,13 @@ a.btn-remove {
     text-shadow: 0 1px 0 #fff;
     opacity: .5;
 }
+
+.has-error {
+    color: #f32020;
+}
+/* .has-error {
+    color: #a91919;
+    padding: 5px;
+    background: #ebadad;
+    border-radius: 5px
+} */

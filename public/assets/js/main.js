@@ -307,6 +307,7 @@ function displaySelectedImage(event, elementId) {
 
       reader.onload = function(e) {
           selectedImage.src = e.target.result;
+          document.getElementById('imagem').value = e.target.result;
       };
 
       reader.readAsDataURL(fileInput.files[0]);

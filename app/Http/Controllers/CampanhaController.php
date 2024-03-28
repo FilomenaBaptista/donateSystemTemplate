@@ -6,6 +6,7 @@ use App\Models\Campanha;
 use App\Models\User;
 use App\Services\CampanhaService;
 use App\Services\CategoriaService;
+use App\Services\UtilitarioService;
 use Illuminate\Auth\Access\Gate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -43,10 +44,9 @@ class CampanhaController extends Controller
     {
         $this->authorize('REGISTAR CAMPANHA');
         $CategoriaService = new CategoriaService();
-        $validacao = new FuncoesUteisController();
         $response = $CategoriaService->listCategoria();
-        $categorias= $validacao->getNames($response['data']);
-        return view('portal.doacao.solicitar-doacao' , ['categorias' => $categorias]);
+        return view('portal.blog.solicitar-doacao' , 
+                    ['categorias' => UtilitarioService::getNameToSelect($response['data'])]);
     }
 
     /**
@@ -55,35 +55,23 @@ class CampanhaController extends Controller
     public function store(Request $request)
     {
         $this->authorize('REGISTAR CAMPANHA');
-        $validator = Validator::make($request->all(), [
-            'titulo' => 'string|required',
-            'descricao' => 'string|required',
-            'categoria_id' => 'int|required',
-            'capa' => 'required|mimes:jpg,jpeg,png,gif'
-        ]);
 
-        if ($validator->fails()) {
-            return response()->json(['data' => '', 'message' => $validator->errors(), 'status' => 400]);
-        }
-        $capa="";
-        if ($request->hasFile('capa') && $request->file('capa')->isValid()) :
-            $fileName = time().$request->file('capa')->getClientOriginalName();
-            $path = $request->file('capa')->storeAs('images', $fileName, 'public');
-            $capa = '/storage/'.$path;
-            if (!$path):
-                return redirect()->back()->withInput();
-            endif;
-        endif;
-
+        $request->validate([
+            'titulo' => ['required', 'string', 'min:20', 'max:255'],
+            'descricao' => ['required'],
+            'categoria_id' => ['required', 'int'],
+            'imagem' => ['required'],
+        ]); 
         $CampanhaService = new CampanhaService();
-        $response = $CampanhaService->createCampanha(
+        $CampanhaService->createCampanha(
             Auth::user()->id,
             $request->titulo,
             $request->descricao,
             $request->categoria_id,
-            $capa
+            $request->imagem
+            //UtilitarioService::imageToBase64($request, "capa")
         );
-        session()->flash('mensagem', 'CAMPANHA SUBMETIDA COM SUCESSO!!!');
+        session()->flash('mensagem', 'SUCESSO!!!');
         return redirect()->route('campanha.create');
        // return response()->json(['data' => $response['data'], 'message' => $response['message'], 'status' => $response['status']]);
     }
@@ -111,38 +99,20 @@ class CampanhaController extends Controller
         $validacao = new FuncoesUteisController();
         $response = $CategoriaService->listCategoria();
         $categorias= $validacao->getNames($response['data']);
-        return view('portal.doacao.solicitar-doacao' , ['campanha' => $campanha,'categorias' => $categorias]);
+        return view('portal.blog.solicitar-doacao' , ['campanha' => $campanha,'categorias' => $categorias]);
     }
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, int $id)
-    {
-        $validator = Validator::make($request->all(), [
-            'titulo' => 'string|required',
-            'descricao' => 'string|required',
-            'categoria_id' => 'int|required',
-            'capa' => 'required|mimes:jpg,jpeg,png,gif'
-        ]);
-
-        if ($validator->fails()) {
-           // return response()->json(['data' => '', 'message' => $validator->errors(), 'status' => 400]);
-           if ($validator->fails()) {
-            return redirect()->back()
-                                    ->withErrors($validator)
-                                    ->withInput();
-        }
-        }
-        $capa="";
-        if ($request->hasFile('capa') && $request->file('capa')->isValid()) :
-            $fileName = time().$request->file('capa')->getClientOriginalName();
-            $path = $request->file('capa')->storeAs('images', $fileName, 'public');
-            $capa = '/storage/'.$path;
-            if (!$path):
-                return redirect()->back()->withInput();
-            endif;
-        endif;
+    { 
+        $request->validate([
+            'titulo' => ['required', 'string', 'min:20', 'max:255'],
+            'descricao' => ['required'],
+            'categoria_id' => ['required', 'int'],
+            'imagem' => ['required'],
+        ]); 
 
         $CampanhaService = new CampanhaService();
         $response = $CampanhaService->updateCampanha(
@@ -150,11 +120,10 @@ class CampanhaController extends Controller
             $request->titulo,
             $request->descricao,
             $request->categoria_id,
-            $capa
+            $request->imagem
         );
         session()->flash('mensagem', 'CAMPANHA ALTERADA COM SUCESSO!!!');
         return redirect()->route('campanha.show',$id);
-       // return response()->json(['data' => $response['data'], 'message' => $response['message'], 'status' => $response['status']]);
     }
 
     /**
