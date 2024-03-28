@@ -9,33 +9,38 @@ use Illuminate\Database\QueryException;
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
-class DoacaoBensMateriais extends Model
+class DoacaoFisica extends Model
 {
     use HasFactory;
 
+    protected $table = 'doacao_bens_materiais';
     protected $fillable = ['capa','anuncio','categoria','qtd_itens_doar','local','estado_artigo','descricao','is_anonimo','user_id'];
 
-    public function doarBensMateriais(): BelongsTo
+    public function doar(): BelongsTo
     {return $this->belongsTo(User::class,'user_id');}
 
-    public function comentarios()
+    /* public function comentarios()
     {return $this->hasMany(Comentario::class);}
-
-    public function listDoacaoBensMateriais(
-        int $doacoaoId = null,
+ */
+    public function listDoacaoFisica(
+        int $criadorId = null,
         int $eliminado = null
     ) {
          try {
             $with['comentarios'] = 'comentarios';
-            $query =  DoacaoBensMateriais::from('doacao_bens_materiais as dbm')
-            ->with('criador')
+            $query =  DoacaoFisica::from('doacao_bens_materiais as dbm')
+           /*  ->with('criador') */
             ->orderBy('dbm.id', 'DESC');
 
-            if ($doacoaoId !== null) {
-                $query->where('dbm.user_id', '=', $doacoaoId);
+
+          /*   if ($with['comentarios'] !== 'comentarios') {
+                $query->with('comentarios');
+            } */
+            if ($criadorId !== null) {
+                $query->where('dbm.user_id', '=', $criadorId);
             }
             if (!is_null($eliminado)) {
-                $query->where('dbm.eliminado', '=', $doacoaoId);
+                $query->where('dbm.eliminado', '=', $criadorId);
             }
 
             return $query->paginate(6);
@@ -51,14 +56,14 @@ class DoacaoBensMateriais extends Model
      * @throws Exception This exception will be thrown if there is a problem executing the database query,
      * returning the fault code
      */
-    public function getDoacaoBensMateriais(
-        int $doacaoBensMateriaisId
+    public function getDoacaoFisica(
+        int $doacaoFisicaId
     ) {
         try {
-            return DoacaoBensMateriais::from('doacao_bens_materiais as dbm')
+            return DoacaoFisica::from('doacao_bens_materiais as dbm')
             ->with('criador')
             ->with('comentarios')
-            ->where('dbm.id', $doacaoBensMateriaisId)
+            ->where('dbm.id', $doacaoFisicaId)
             ->first(['dbm.*']);
         } catch (QueryException $e) {
             throw new Exception($e->getCode());
@@ -72,7 +77,7 @@ class DoacaoBensMateriais extends Model
      * @throws Exception This exception will be thrown if there is a problem executing the database query,
      * returning the fault code
      */
-    public function createDoacaoBensMateriais(
+    public function createDoacaoFisica(
         int $doacoaoId,
         string $capa,
         string $anuncio,
@@ -84,18 +89,19 @@ class DoacaoBensMateriais extends Model
         int $isAnonimo
     ) {
         try {
-            $doacaoBensMateriais = new DoacaoBensMateriais();
-            $doacaoBensMateriais->user_id = $doacoaoId;
-            $doacaoBensMateriais->capa = $capa;
-            $doacaoBensMateriais->anuncio = $anuncio;
-            $doacaoBensMateriais->categoria_id = $categoriaId;
-            $doacaoBensMateriais->qtd_itens_doar = $qtdItensDoar;
-            $doacaoBensMateriais->local = $local;
-            $doacaoBensMateriais->estado_artigo = $estadoArtigo;
-            $doacaoBensMateriais->descricao = $descricao;
-            $doacaoBensMateriais->is_anonimo = $isAnonimo;
-            $doacaoBensMateriais->save();
-            return  $doacaoBensMateriais;
+          
+            $doacaoFisica = new DoacaoFisica();
+            $doacaoFisica->user_id = $doacoaoId;
+            $doacaoFisica->capa = $capa;
+            $doacaoFisica->anuncio = $anuncio;
+            $doacaoFisica->categoria_id = $categoriaId;
+            $doacaoFisica->qtd_itens_doar = $qtdItensDoar;
+            $doacaoFisica->local = $local;
+            $doacaoFisica->estado_artigo = $estadoArtigo;
+            $doacaoFisica->descricao = $descricao;
+            $doacaoFisica->is_anonimo = $isAnonimo;
+            $doacaoFisica->save();
+            return  $doacaoFisica;
         } catch (QueryException $e) {
             throw new Exception($e->getCode());
         }
@@ -108,8 +114,8 @@ class DoacaoBensMateriais extends Model
      * @throws Exception This exception will be thrown if there is a problem executing the database query,
      * returning the fault code
      */
-    public function updateDoacaoBensMateriais(
-        int $doacaoBensMateriaisId,
+    public function updateDoacaoFisica(
+        int $doacaoFisicaId,
         string $capa,
         string $anuncio,
         int $categoriaId,
@@ -120,8 +126,8 @@ class DoacaoBensMateriais extends Model
         int $isAnonimo
     ) {
         try {
-            $doacaoBensMateriais = DoacaoBensMateriais::find($doacaoBensMateriaisId);
-            $doacaoBensMateriais->update([
+            $doacaoFisica = DoacaoFisica::find($doacaoFisicaId);
+            $doacaoFisica->update([
                 'capa' => $capa,
                 'anuncio' => $anuncio,
                 'categoria_id' => $qtdItensDoar,
@@ -131,7 +137,7 @@ class DoacaoBensMateriais extends Model
                 'descricao' => $descricao,
                 'is_anonimo' => $isAnonimo,
             ]);
-            return $doacaoBensMateriais;
+            return $doacaoFisica;
         } catch (Exception $e) {
             throw new Exception($e->getCode());
         }
@@ -144,13 +150,13 @@ class DoacaoBensMateriais extends Model
     * @throws Exception This exception will be thrown if there is a problem executing the database query,
     * returning the fault code
     */
-    public function deleteDoacaoBensMateriais(int $doacaoBensMateriaisId)
+    public function deleteDoacaoFisica(int $doacaoFisicaId)
     {
         try {
-            $doacaoBensMateriais = DoacaoBensMateriais::findOrFail($doacaoBensMateriaisId);
-            $doacaoBensMateriais->eliminado = '1';
-            $doacaoBensMateriais->update();
-            return $doacaoBensMateriais;
+            $doacaoFisica = DoacaoFisica::findOrFail($doacaoFisicaId);
+            $doacaoFisica->eliminado = '1';
+            $doacaoFisica->update();
+            return $doacaoFisica;
         } catch (ModelNotFoundException $e) {
             throw new ModelNotFoundException($e->getCode());
         }
@@ -158,7 +164,7 @@ class DoacaoBensMateriais extends Model
     public function campanhasRecentes(int $limit)
     {
         try {
-            return Campanha::latest()->take($limit)->get();;
+            return DoacaoFisica::latest()->take($limit)->get();;
         } catch (ModelNotFoundException $e) {
             throw new ModelNotFoundException($e->getCode());
         }

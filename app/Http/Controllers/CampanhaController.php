@@ -32,7 +32,11 @@ class CampanhaController extends Controller
             $request->user_id,
             $request->eliminado
         );
-        return view('portal.blog.blog',['campanhas' => $response['data']]);
+
+        $CategoriaService = new CategoriaService();
+        $categorias = $CategoriaService->listCategoria();
+
+        return view('portal.blog.blog',['campanhas' => $response['data'],'categorias' => $categorias['data']]);
     }
 
     /**
@@ -45,7 +49,7 @@ class CampanhaController extends Controller
         $response = $CategoriaService->listCategoria();
         $categorias= $validacao->getNames($response['data']);
        // return view('portal.blog.textEditor' , ['categorias' => $categorias]);
-        return view('portal.doacao.solicitar-doacao' , ['categorias' => $categorias]);
+        return view('portal.doacao.solicitar-doacao' , ['categorias' => $categorias]); 
     }
 
     /**

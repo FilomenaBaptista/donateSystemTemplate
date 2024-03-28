@@ -2,7 +2,7 @@
     <div class="container-fluid d-flex align-items-center justify-content-between">
 
         <a href="{{ route('home') }}" class="logo d-flex align-items-center scrollto me-auto me-lg-0">
-            <h1>KuKurisa.<span>.</span></h1>
+            <img src="{{asset('assets/img/logo.png')}}" alt="KuKurisa">
         </a>
 
         <nav id="navbar" class="navbar">
@@ -15,7 +15,7 @@
                
                 @auth
                     <li><a class="nav-link scrollto" href="{{ route('campanha.create') }}">Solicitar Doações</a></li>
-                    <li class="dropdown"><a href="{{ route('doar.create') }}"><span>Doar</span> <i
+                    <li class="dropdown"><a href="{{ route('doacao.index') }}"><span>Doações</span> <i
                         class="bi bi-chevron-down dropdown-indicator"></i></a>
                     <ul>
                       <li><a href="{{route('doar.create')}}">Doação por Bens Materiais </a></li>
