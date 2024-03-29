@@ -39,6 +39,26 @@ class CampanhaController extends Controller
         return view('portal.blog.blog',['campanhas' => $response['data'],'categorias' => $categorias['data']]);
     }
 
+
+    public function campanhaHome(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'user_id' => 'int|nullable',
+            'eliminado' => 'int|nullable'
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['data' => '', 'message' => $validator->errors(), 'status' => 400]);
+        }
+        $CampanhaService = new CampanhaService();
+        $response = $CampanhaService->listCampanha(
+            $request->user_id,
+            $request->eliminado
+        );
+
+        return view('portal.index',['campanhas' => $response['data']]);
+    }
+
     /**
      * Show the form for creating a new resource.
      */

@@ -10,7 +10,8 @@
                     data-aos="zoom-out">
                     <div class="container conteudo-home">
                         <h2>Bem vindo ao </h2>
-                        <p> nosso site onde sua história, seu projeto, sua paixão ganham vida. Aqui, cada narrativa tem o poder de tocar corações e cada iniciativa o potencial de mudar destinos..</p>
+                        <p> nosso site onde sua história, seu projeto, sua paixão ganham vida. Aqui, cada narrativa tem o
+                            poder de tocar corações e cada iniciativa o potencial de mudar destinos..</p>
                         <p>O Seu espaço para fazer a diferença: juntos, transformamos vidas.</p>
                         <div class="d-flex">
                             <a href="#about" class="btn-get-started scrollto">Faça uma doação </a>
@@ -25,6 +26,7 @@
                     <img class="w-100 img-fluid animated" src="assets/img/donate-pri.png" alt="" srcset="">
                 </div>
             </div>
+            <section class="Ajude-nes container-fluid">ola mundo</section>
         </div>
 
     </section>
@@ -197,8 +199,7 @@
 
                 <div class="row gy-4 py-2">
 
-                    <div
-                        class="col-lg-7 d-flex flex-column justify-content-center align-items-stretch  order-2 order-lg-1">
+                    <div class="col-lg-7 d-flex flex-column justify-content-center align-items-stretch  order-2 order-lg-1">
 
                         <div class="content px-xl-5">
                             <h3>Perguntas <strong>Frequentes</strong></h3>
@@ -331,67 +332,24 @@
                 </div>
 
                 <div class="row">
+                    @forelse ($campanhas as $campanha)
+                        <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
+                            <div class="post-box">
+                                <div class="post-img"><img src="{{ $campanha->capa }}" class="img-fluid" alt="">
+                                </div>
+                                <div class="meta">
+                                    <span class="post-date">{{ $campanha->created_at->format('M d,  Y') }}</span>
+                                    <span class="post-author"> {{ $campanha->criador->name }}</span>
+                                </div>
+                                <h3 class="post-title"> <a
+                                        href="{{ route('campanha.show', $campanha->id) }}">{{ $campanha->titulo }}</a></h3>
+                                <p> {!! Str::limit($campanha->descricao, 150) !!}</p>
 
-                    <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
-                        <div class="post-box">
-                            <div class="post-img"><img src="assets/img/blog/blog-1.jpg" class="img-fluid"
-                                    alt=""></div>
-                            <div class="meta">
-                                <span class="post-date">Tue, December 12</span>
-                                <span class="post-author"> / Julia Parker</span>
                             </div>
-                            <h3 class="post-title">Doações de Alimento</h3>
-                            <p>Produtos embalados e fechados com DLC (data de validade)
-                                As frutas
-                                Os vegetais
-
-
-                                Exemplos de doações autorizadas:
-                                Massa, arroz, cereais, açúcar e outros alimentos secos
-                                Bolos, barras de cereais, chocolate,…
-                                Chocolate em pó, chá, café, etc.
-                                Os produtos enlatados
-                                Compotas, mel e pastas para barrar
-                                Bebidas não alcoólicas (leite, suco de maçã, refrigerante, etc.)
-                                Latas de leite infantil
-                                Suplemento alimentar...</p>
-                            <a href="blog-details.html" class="readmore stretched-link"><span>Read More</span><i
-                                    class="bi bi-arrow-right"></i></a>
                         </div>
-                    </div>
-
-                    <div class="col-lg-4" data-aos="fade-up" data-aos-delay="400">
-                        <div class="post-box">
-                            <div class="post-img"><img src="assets/img/blog/blog-2.jpg" class="img-fluid"
-                                    alt=""></div>
-                            <div class="meta">
-                                <span class="post-date">Fri, September 05</span>
-                                <span class="post-author"> / Mario Douglas</span>
-                            </div>
-                            <h3 class="post-title">Et repellendus molestiae qui est sed omnis voluptates magnam</h3>
-                            <p>Voluptatem nesciunt omnis libero autem tempora enim ut ipsam id. Odit quia ab eum assumenda.
-                                Quisquam omnis aliquid necessitatibus tempora consectetur doloribus...</p>
-                            <a href="blog-details.html" class="readmore stretched-link"><span>Read More</span><i
-                                    class="bi bi-arrow-right"></i></a>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4" data-aos="fade-up" data-aos-delay="600">
-                        <div class="post-box">
-                            <div class="post-img"><img src="assets/img/blog/blog-3.jpg" class="img-fluid"
-                                    alt=""></div>
-                            <div class="meta">
-                                <span class="post-date">Tue, July 27</span>
-                                <span class="post-author"> / Lisa Hunter</span>
-                            </div>
-                            <h3 class="post-title">Quia assumenda est et veritatis aut quae</h3>
-                            <p>Quia nam eaque omnis explicabo similique eum quaerat similique laboriosam. Quis omnis
-                                repellat sed quae consectetur magnam veritatis dicta nihil...</p>
-                            <a href="blog-details.html" class="readmore stretched-link"><span>Read More</span><i
-                                    class="bi bi-arrow-right"></i></a>
-                        </div>
-                    </div>
-
+                        @empty
+                        <h1 style=" margin-top: 300px;text-align: center;color: #0EA2BD;">Nenhuma campanha disponível</h1>
+                    @endforelse
                 </div>
 
             </div>
@@ -412,57 +370,57 @@
                                 experiência para todes - independe de gênero, raça ou etnia - que permite conhecer novas
                                 realidades, se engajar em uma causa social, contribuir com suas habilidades, e até mesmo
                                 desenvolver novas competências...</p>
-                                <p>Transforme a Compaixão em Ação. Sua Habilidade pode ser o Presente que Muda o Mundo!</p>
+                            <p>Transforme a Compaixão em Ação. Sua Habilidade pode ser o Presente que Muda o Mundo!</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-         <!-- ======= Featured Services Section ======= -->
-         <section id="featured-services py-5" class="featured-services">
-          <div class="container">
+        <!-- ======= Featured Services Section ======= -->
+        <section id="featured-services py-5" class="featured-services">
+            <div class="container">
 
-              <div class="row gy-4 py-5">
+                <div class="row gy-4 py-5">
 
-                  <h3 class="ganho">O que eu ganho sendo voluntário?</h3>
+                    <h3 class="ganho">O que eu ganho sendo voluntário?</h3>
 
-                  <div class="col-xl-3 col-md-6 d-flex" data-aos="zoom-out">
-                      <div class="service-item position-relative">
-                          <div class="icon"><i class="bi bi-activity icon"></i></div>
-                          <h4><a href="" class="stretched-link text-center">Desenvolvimento</a></h4>
-                          <p>de habilidades</p>
-                      </div>
-                  </div><!-- End Service Item -->
+                    <div class="col-xl-3 col-md-6 d-flex" data-aos="zoom-out">
+                        <div class="service-item position-relative">
+                            <div class="icon"><i class="bi bi-activity icon"></i></div>
+                            <h4><a href="" class="stretched-link text-center">Desenvolvimento</a></h4>
+                            <p>de habilidades</p>
+                        </div>
+                    </div><!-- End Service Item -->
 
-                  <div class="col-xl-3 col-md-6 d-flex" data-aos="zoom-out" data-aos-delay="200">
-                      <div class="service-item position-relative">
-                          <div class="icon"><i class="bi bi-bounding-box-circles icon"></i></div>
-                          <h4><a href="" class="stretched-link text-center">CONEXÃO</a></h4>
-                          <p class="text-center">Com outras histórias de vida</p>
-                      </div>
-                  </div><!-- End Service Item -->
+                    <div class="col-xl-3 col-md-6 d-flex" data-aos="zoom-out" data-aos-delay="200">
+                        <div class="service-item position-relative">
+                            <div class="icon"><i class="bi bi-bounding-box-circles icon"></i></div>
+                            <h4><a href="" class="stretched-link text-center">CONEXÃO</a></h4>
+                            <p class="text-center">Com outras histórias de vida</p>
+                        </div>
+                    </div><!-- End Service Item -->
 
-                  <div class="col-xl-3 col-md-6 d-flex" data-aos="zoom-out" data-aos-delay="400">
-                      <div class="service-item position-relative">
-                          <div class="icon"><i class="bi bi-calendar4-week icon"></i></div>
-                          <h4><a href="" class="stretched-link text-center">Conhecimento</a></h4>
-                          <p></p>
-                      </div>
-                  </div><!-- End Service Item -->
+                    <div class="col-xl-3 col-md-6 d-flex" data-aos="zoom-out" data-aos-delay="400">
+                        <div class="service-item position-relative">
+                            <div class="icon"><i class="bi bi-calendar4-week icon"></i></div>
+                            <h4><a href="" class="stretched-link text-center">Conhecimento</a></h4>
+                            <p></p>
+                        </div>
+                    </div><!-- End Service Item -->
 
-                  <div class="col-xl-3 col-md-6 d-flex" data-aos="zoom-out" data-aos-delay="600">
-                      <div class="service-item position-relative">
-                          <div class="icon"><i class="bi bi-broadcast icon"></i></div>
-                          <h4><a href="" class="stretched-link text-center">Trocas</a></h4>
-                          <p>e novas perpectivas de experiências de vida</p>
-                      </div>
-                  </div><!-- End Service Item -->
+                    <div class="col-xl-3 col-md-6 d-flex" data-aos="zoom-out" data-aos-delay="600">
+                        <div class="service-item position-relative">
+                            <div class="icon"><i class="bi bi-broadcast icon"></i></div>
+                            <h4><a href="" class="stretched-link text-center">Trocas</a></h4>
+                            <p>e novas perpectivas de experiências de vida</p>
+                        </div>
+                    </div><!-- End Service Item -->
 
-              </div>
+                </div>
 
-          </div>
-      </section>
+            </div>
+        </section>
 
     </main><!-- End #main -->
 @endsection

@@ -84,8 +84,8 @@ h6 {
 # Sections & Section Header
 --------------------------------------------------------------*/
 section {
- padding: 50px 0;
- padding: 0px;
+  padding: 50px 0;
+  padding: 0px;
   overflow: hidden;
 }
 
@@ -2793,6 +2793,7 @@ label.mb-2.label-money {
   border: 1px solid rgba(var(--color-secondary-rgb), 0.3);
   padding: 3px 10px;
   position: relative;
+  height: 55px;
 }
 
 .blog .sidebar .search-form form input[type=text] {
@@ -2800,6 +2801,8 @@ label.mb-2.label-money {
   padding: 4px;
   border-radius: 4px;
   width: calc(100% - 40px);
+  height: 50px;
+  margin-top: -1px;
 }
 
 .blog .sidebar .search-form form input[type=text]:focus {
@@ -3377,9 +3380,11 @@ article.d-flex.flex-column.blog-details {
   background: #ff713d;
   font-family: var(--font-secondary);
 }
+
 .botao-doar button.btn:hover {
   background: #ff713d;
 }
+
 .progress-bar {
   display: flex;
   flex-direction: column;
@@ -3397,7 +3402,8 @@ article.d-flex.flex-column.blog-details {
   background-color: #07a1bd !important;
 }
 
-.progress, .progress-stacked {
+.progress,
+.progress-stacked {
   height: 5px;
 }
 
@@ -3411,9 +3417,11 @@ article.d-flex.flex-column.blog-details {
   font-size: 19px;
   border-radius: 100%;
 }
+
 .share-link.mb-3 a {
   padding-right: 10px;
 }
+
 .share-link.mb-3 {
   text-align: center;
 }
@@ -3421,6 +3429,7 @@ article.d-flex.flex-column.blog-details {
 .share-link.mb-3 a i:hover {
   color: #ff713d;
 }
+
 span.qtd_doacoes_view {
   line-height: 40px;
 }
