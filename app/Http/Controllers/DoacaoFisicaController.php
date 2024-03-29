@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\DoacaoBensMateriaisService;
-use App\Models\DoacaoBensMateriais;
+use App\Services\DoacaoFisicaService;
+use App\Models\DoacaoFisica;
 use App\Services\CategoriaService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class DoacaoBensMateriaisController extends Controller
+class DoacaoFisicaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -24,13 +24,15 @@ class DoacaoBensMateriaisController extends Controller
         if ($validator->fails()) {
             return response()->json(['data' => '', 'message' => $validator->errors(), 'status' => 400]);
         }
-        $DoacaoBensMateriaisService = new DoacaoBensMateriaisService();
-        $response = $DoacaoBensMateriaisService->listDoacaoBensMateriais(
+        $DoacaoFisicaService = new DoacaoFisicaService();
+        $response = $DoacaoFisicaService->listDoacaoFisica(
             $request->user_id,
             $request->eliminado
         );
-
-        return view('portal.doacao/doacao',['doacoes' => $response['data']]);
+       
+        $CategoriaService = new CategoriaService();
+        $categorias = $CategoriaService->listCategoria();
+        return view('portal.doacao/doacao',['doacoesFisicas' => $response['data'], 'categorias' => $categorias['data']]);
     }
 
     /**
@@ -61,10 +63,12 @@ class DoacaoBensMateriaisController extends Controller
             'is_anonimo' => 'int|required'
         ]);
 
-
+   
         if ($validator->fails()) {
             return response()->json(['data' => '', 'message' => $validator->errors(), 'status' => 400]);
         }
+
+
         $capa="";
         if ($request->hasFile('capa') && $request->file('capa')->isValid()) :
             $fileName = time().$request->file('capa')->getClientOriginalName();
@@ -74,9 +78,10 @@ class DoacaoBensMateriaisController extends Controller
                 return redirect()->back()->withInput();
             endif;
         endif;
-
-        $DoacaoBensMateriaisService = new DoacaoBensMateriaisService();
-        $response = $DoacaoBensMateriaisService-> createDoacaoBensMateriais(
+       
+        $DoacaoFisicaService = new DoacaoFisicaService();
+       
+        $response = $DoacaoFisicaService->createDoacaoFisica(
             Auth::user()->id,
             $capa,
             $request->anuncio,
@@ -88,26 +93,34 @@ class DoacaoBensMateriaisController extends Controller
             $request->is_anonimo
 
         );
+
+        session()->flash('mensagem', 'DOAÇÃO SUBMETIDA COM SUCESSO!!!');
         return redirect()->route('doar.create');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(int $doacaoBensMateriaisId)
+    public function show(DoacaoFisica $doacaoFisicaId)
     {
-        $DoacaoBensMateriaisService = new DoacaoBensMateriaisService();
-        $response = $DoacaoBensMateriaisService->getDoacaoBensMateriais( $doacaoBensMateriaisId);
-        return response()->json(['data' => $response['data'], 'message' => $response['message'], 'status' => $response['status']]);
+        $DoacaoFisicaService = new DoacaoFisicaService();
+        $response = $DoacaoFisicaService->getDoacaoFisica( $doacaoFisicaId ->id);
+        // return response()->json(['data' => $response['data'], 'message' => $response['message'], 'status' => $response['status']]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(DoacaoBensMateriais $doacaoBensMateriais)
-    {
-        //
-    }
+    // public function edit(Request $request, DoacaoFisica $doacaoFisica)
+    // {
+    //     $this->authorize('edit', $doacaoFisica);
+
+    //     $CategoriaService = new DoacaoFisicaService();
+    //     $validacao = new FuncoesUteisController();
+    //     $response = $CategoriaService->listCategoria();
+    //     $categorias= $validacao->getNames($response['data']);
+    //     return view('portal.doacao.solicitar-doacao' , ['campanha' => $doacaoFisica,'categorias' => $categorias]);
+    // }
 
     /**
      * Update the specified resource in storage.
@@ -138,8 +151,8 @@ class DoacaoBensMateriaisController extends Controller
             endif;
         endif;
 
-        $DoacaoBensMateriaisService = new DoacaoBensMateriaisService();
-        $response = $DoacaoBensMateriaisService->updateDoacaoBensMateriais(
+        $DoacaoFisicaService = new DoacaoFisicaService();
+        $response = $DoacaoFisicaService->updateDoacaoFisica(
             $id,
             $capa,
             $request->anuncio,
@@ -156,10 +169,10 @@ class DoacaoBensMateriaisController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(  int $doacaoBensMateriaisId)
+    public function destroy(  int $doacaoId)
     {
-        $DoacaoBensMateriaisService = new DoacaoBensMateriaisService();
-        $response = $DoacaoBensMateriaisService->deleteDoacaoBensMateriais($doacaoBensMateriaisId);
+        $DoacaoFisicaService = new DoacaoFisicaService();
+        $response = $DoacaoFisicaService->deleteDoacaoFisica($doacaoId);
         return response()->json(['data' => $response['data'], 'message' => $response['message'], 'status' => $response['status']]);
     }
 
@@ -167,8 +180,8 @@ class DoacaoBensMateriaisController extends Controller
     public function doacoesRecentes(
         int $limit
     ){
-        $DoacaoBensMateriaisService = new DoacaoBensMateriaisService();
-        $response = $DoacaoBensMateriaisService->DoacaoBensMateriaissRecentes($limit);
+        $DoacaoFisicaService = new DoacaoFisicaService();
+        $response = $DoacaoFisicaService->DoacaoFisicaRecentes($limit);
         return response()->json(['data' => $response['data'], 'message' => $response['message'], 'status' => $response['status']]);
     }
 }

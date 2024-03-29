@@ -58,11 +58,24 @@ Route::get('/doar-loja', function () {
     return view('portal.doacao/doar-loja');
 })->name('doarloja');
 
+Route::get('/doacao', function () {
+    return view('portal.doacao/doacao');
+})->name('doacao');
+
+
 require __DIR__.'/auth.php';
 
 
-Route::get('doar-create', [Controllers\DoacaoBensMateriaisController::class,'create'])->name('doar.create');
-Route::apiResource('doar', Controllers\DoacaoBensMateriaisController::class);
+
+Route::apiResource('doar', Controllers\DoacaoFisicaController::class);
+Route::apiResource('doacao', Controllers\DoacaoFisicaController::class);
+Route::get('doar-create', [Controllers\DoacaoFisicaController::class,'create'])->name('doar.create');
+// Route::get('/campanha-editar/{campanha}', [Controllers\CampanhaController::class,'edit'])->name('campanha.edit');
+// Route::apiResource('comentarios', Controllers\ComentarioController::class);
+// Route::get('/campanhas-recentes/{limit}', [Controllers\CampanhaController::class,'campanhasRecentes'])->name('campanha.recente');
+
+
+
 Route::apiResource('campanha', Controllers\CampanhaController::class);
 
 Route::get('/solicitar-doacao', [Controllers\CampanhaController::class,'create'])->name('campanha.create');

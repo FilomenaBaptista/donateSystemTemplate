@@ -13,6 +13,9 @@ class Categoria extends Model
 
     public function campanhas(){
         return $this->hasMany(Campanha::class,'categoria_id','id');}
+    
+    public function doacaoFisicas(){
+        return $this->hasMany(DoacaoFisica::class,'categoria_id','id');}
 
     public function listCategoria(
         string $name = null
@@ -20,14 +23,20 @@ class Categoria extends Model
          try {
 
             $query = Categoria::orderBy('categorias.name', 'ASC')
-            ->withCount('campanhas');
+            ->withCount('campanhas')
+            ->withCount('doacaoFisicas');
+
              if ($name !== null) {
                 $query->where('categorias.name', '=', $name);
+
             }
+            
+             
             return $query->get(); 
         } catch (Exception $e) {
             throw new Exception($e->getCode());
         }
+
     }
 
     public function getNames($dados){

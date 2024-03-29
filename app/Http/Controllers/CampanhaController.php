@@ -34,7 +34,11 @@ class CampanhaController extends Controller
             $request->user_id,
             $request->eliminado
         );
-        return view('portal.blog.blog',['campanhas' => $response['data']]);
+
+        $CategoriaService = new CategoriaService();
+        $categorias = $CategoriaService->listCategoria();
+
+        return view('portal.blog.blog',['campanhas' => $response['data'],'categorias' => $categorias['data']]);
     }
 
     /**
@@ -45,7 +49,7 @@ class CampanhaController extends Controller
         $this->authorize('REGISTAR CAMPANHA');
         $CategoriaService = new CategoriaService();
         $response = $CategoriaService->listCategoria();
-        return view('portal.blog.solicitar-doacao' , 
+        return view('portal.blog.solicitar-doacao' ,
                     ['categorias' => UtilitarioService::getNameToSelect($response['data'])]);
     }
 
@@ -61,7 +65,7 @@ class CampanhaController extends Controller
             'descricao' => ['required'],
             'categoria_id' => ['required', 'int'],
             'imagem' => ['required'],
-        ]); 
+        ]);
         $CampanhaService = new CampanhaService();
         $CampanhaService->createCampanha(
             Auth::user()->id,
@@ -106,13 +110,13 @@ class CampanhaController extends Controller
      * Update the specified resource in storage.
      */
     public function update(Request $request, int $id)
-    { 
+    {
         $request->validate([
             'titulo' => ['required', 'string', 'min:20', 'max:255'],
             'descricao' => ['required'],
             'categoria_id' => ['required', 'int'],
             'imagem' => ['required'],
-        ]); 
+        ]);
 
         $CampanhaService = new CampanhaService();
         $response = $CampanhaService->updateCampanha(

@@ -24,7 +24,7 @@
     </div><!-- End Breadcrumbs -->
 
     <!-- ======= Blog Section ======= -->
-    <section id="blog" class="blog">
+    <section id="blog" class="blog py-5">
         <div class="container" data-aos="fade-up">
 
             <div class="row g-5">
@@ -89,7 +89,7 @@
 
                     <div class="sidebar">
                         <div class="sidebar-item search-form">
-                            <h3 class="sidebar-title">Search</h3>
+                            <h3 class="sidebar-title">Pesquisar</h3>
                             <form action="" class="mt-3">
                                 <input type="text">
                                 <button type="submit"><i class="bi bi-search"></i></button>
@@ -99,12 +99,9 @@
                         <div class="sidebar-item categories">
                             <h3 class="sidebar-title">Categorias</h3>
                             <ul class="mt-3">
-                                <li><a href="#">General <span>(25)</span></a></li>
-                                <li><a href="#">Lifestyle <span>(12)</span></a></li>
-                                <li><a href="#">Travel <span>(5)</span></a></li>
-                                <li><a href="#">Design <span>(22)</span></a></li>
-                                <li><a href="#">Creative <span>(8)</span></a></li>
-                                <li><a href="#">Educaion <span>(14)</span></a></li>
+                                @foreach ($categorias as $categoria)
+                                <li><a href="#">{{ $categoria->name }} <span>({{ $categoria->campanhas_count }})</span></a></li>
+                            @endforeach
                             </ul>
                         </div><!-- End sidebar categories-->
 
@@ -112,24 +109,7 @@
                             <h3 class="sidebar-title">Publicações Recentes</h3>
                             <div class="mt-3 campanhasRecentes"></div>
                         </div><!-- End sidebar recent posts-->
-
-                        <div class="sidebar-item tags">
-                            <h3 class="sidebar-title">Tags</h3>
-                            <ul class="mt-3">
-                                <li><a href="#">App</a></li>
-                                <li><a href="#">IT</a></li>
-                                <li><a href="#">Business</a></li>
-                                <li><a href="#">Mac</a></li>
-                                <li><a href="#">Design</a></li>
-                                <li><a href="#">Office</a></li>
-                                <li><a href="#">Creative</a></li>
-                                <li><a href="#">Studio</a></li>
-                                <li><a href="#">Smart</a></li>
-                                <li><a href="#">Tips</a></li>
-                                <li><a href="#">Marketing</a></li>
-                            </ul>
-                        </div><!-- End sidebar tags-->
-
+                     <!-- End sidebar tags-->
                     </div><!-- End Blog Sidebar -->
 
                 </div>

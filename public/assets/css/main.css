@@ -84,11 +84,8 @@ h6 {
 # Sections & Section Header
 --------------------------------------------------------------*/
 section {
-<<<<<<< HEAD
-  padding: 50px 0;
-=======
-  padding: 0px;
->>>>>>> 1882e612de47b8d5782770661e893994f2118e8d
+ padding: 50px 0;
+ padding: 0px;
   overflow: hidden;
 }
 
@@ -119,7 +116,7 @@ section {
 # Breadcrumbs
 --------------------------------------------------------------*/
 .breadcrumbs {
-  padding: 65px 0;
+  padding: 20px 0;
   background: rgba(var(--color-secondary-rgb), 0.05);
   min-height: 40px;
   margin-top: 76px;
@@ -130,6 +127,7 @@ section {
   font-size: 30px;
   font-weight: 300;
   margin: 0;
+  color: #4f4c4c;
 }
 
 .breadcrumbs ol {
@@ -217,7 +215,7 @@ section {
 # Header
 --------------------------------------------------------------*/
 .header {
-  padding: 15px 0;
+  padding: 11px 0;
   transition: all 0.5s;
   z-index: 997;
 }
@@ -228,7 +226,7 @@ section {
 }
 
 .header .logo img {
-  max-height: 40px;
+  max-height: 60px;
   margin-right: 6px;
 }
 
@@ -301,7 +299,7 @@ section {
     justify-content: space-between;
     padding: 14px 20px;
     font-family: var(--font-secondary);
-    font-size: 16px;
+    font-size: 20px;
     font-weight: 400;
     color: rgba(var(--color-secondary-dark-rgb), 0.7);
     white-space: nowrap;
@@ -567,15 +565,15 @@ section {
   background: url("../img/hero-bg.png") center center;
   background-size: cover;
   position: relative;
-  padding: 120px 0 60px;
+  padding: 120px 0 0;
 }
 
 .hero-animated h2 {
   margin: 0 0 10px 0;
-  font-size: 48px;
-  font-weight: 300;
-  color: var(--color-secondary);
+  font-weight: 600;
+  color: #462b85;
   font-family: var(--font-secondary);
+  font-size: 4rem;
 }
 
 .hero-animated h2 span {
@@ -585,8 +583,9 @@ section {
 .hero-animated p {
   color: rgba(var(--color-secondary-rgb), 0.8);
   margin: 0 0 30px 0;
-  font-size: 20px;
+  font-size: 22px;
   font-weight: 400;
+  width: 599px;
 }
 
 .hero-animated .animated {
@@ -596,7 +595,7 @@ section {
 
 @media (min-width: 992px) {
   .hero-animated .animated {
-    max-width: 45%;
+    max-width: 90%;
   }
 }
 
@@ -613,14 +612,14 @@ section {
 }
 
 .hero-animated .btn-get-started {
-  font-size: 16px;
+  font-size: 20px;
   font-weight: 400;
   display: inline-block;
-  padding: 10px 28px;
+  padding: 12px 30px;
   border-radius: 4px;
   transition: 0.5s;
   color: var(--color-white);
-  background: var(--color-primary);
+  background: #ff4a1e;
   font-family: var(--font-secondary);
 }
 
@@ -1650,15 +1649,16 @@ div#tab1 p {
   background-size: cover;
   position: relative;
 }
+
 .testimonials::after {
-content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: -1;
-    width: 100%;
-    height: 100%;
-    background: rgba(232, 237, 238, .8);
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  background: rgba(232, 237, 238, .8);
 }
 
 .testimonials::before {
@@ -1749,6 +1749,7 @@ content: '';
   background-color: rgba(var(--color-white-rgb), 0.4);
   opacity: 0.5;
 }
+
 .swiper-wrapper {
   position: relative;
   width: 25%;
@@ -2371,9 +2372,11 @@ content: '';
   padding: 10px 12px;
   height: 180px;
 }
+
 span.input-group-text {
   height: 55px;
 }
+
 .contact .php-email-form button[type=submit] {
   background: var(--color-primary);
   border: 0;
@@ -2387,9 +2390,11 @@ span.input-group-text {
 .contact .php-email-form button[type=submit]:hover {
   background: rgba(var(--color-primary-rgb), 0.85);
 }
+
 .btn.btn-rounded {
   background: #0ea2bd;
 }
+
 button {
   background: var(--color-primary);
   border: 0;
@@ -2399,20 +2404,25 @@ button {
   border-radius: 0;
   width: auto;
 }
+
 select {
   height: 55px;
   margin-bottom: 10px;
 }
+
 input {
   height: 55px;
   margin-bottom: 10px;
 }
+
 label {
   color: #000000ab;
 }
+
 label.mb-2.label-money {
   width: 48rem;
 }
+
 @keyframes animate-loading {
   0% {
     transform: rotate(0deg);
@@ -3240,7 +3250,7 @@ h1.logo {
   color: #1895ae;
 }
 
-.form-control{
+.form-control {
   height: 55px;
 }
 
@@ -3269,6 +3279,7 @@ h1.logo {
   border: 1px solid #aaa;
   border-radius: 4px;
 }
+
 .select2-container .select2-selection--single {
   box-sizing: border-box;
   cursor: pointer;
@@ -3277,10 +3288,12 @@ h1.logo {
   user-select: none;
   -webkit-user-select: none;
 }
+
 .select2-container--default .select2-selection--single .select2-selection__rendered {
   color: #444;
   line-height: 28px;
 }
+
 .select2-container .select2-selection--single .select2-selection__rendered {
   display: block;
   padding-left: 8px;
@@ -3289,6 +3302,7 @@ h1.logo {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
 .select2-container--default .select2-selection--single .select2-selection__arrow b {
   border-color: #888 transparent transparent transparent;
   border-style: solid;
@@ -3301,13 +3315,16 @@ h1.logo {
   top: 50%;
   width: 0;
 }
+
 .bo4 {
   border: 1px solid #e6e6e6;
   border-radius: 2px;
 }
+
 .w-size12 {
   width: 200px;
 }
+
 .select2-hidden-accessible {
   border: 0 !important;
   clip: rect(0 0 0 0) !important;
@@ -3318,6 +3335,7 @@ h1.logo {
   position: absolute !important;
   width: 1px !important;
 }
+
 .wrap-pic-w img {
   width: 100%;
 }
@@ -3328,4 +3346,81 @@ h1.logo {
 
 .img-voluntario img {
   width: 100%;
+}
+
+
+.circulo-img img {
+  width: 96px;
+  position: absolute;
+  right: 9px;
+  top: 338px;
+}
+
+.conteudo-home {
+  margin-left: 31px;
+  margin-top: 12vh;
+}
+
+article.d-flex.flex-column.blog-details {
+  height: 90vh;
+}
+
+.botao-doar button.btn {
+  font-size: 18px;
+  font-weight: 600;
+  display: inline-block;
+  padding: 8px 30px;
+  border-radius: 16px;
+  transition: 0.5s;
+  color: var(--color-white);
+  width: 100%;
+  background: #ff713d;
+  font-family: var(--font-secondary);
+}
+.botao-doar button.btn:hover {
+  background: #ff713d;
+}
+.progress-bar {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  color: var(--bs-progress-bar-color);
+  text-align: center;
+  white-space: nowrap;
+  background-color: #07a1bd;
+  transition: var(--bs-progress-bar-transition);
+}
+
+.bg-info {
+  --bs-bg-opacity: 1;
+  background-color: #07a1bd !important;
+}
+
+.progress, .progress-stacked {
+  height: 5px;
+}
+
+.share-link.mb-3 a i {
+  color: #07a1bd;
+  display: inline-block;
+  pointer-events: none;
+  vertical-align: text-top;
+  background: #e1dddb85;
+  padding: 7px 12px;
+  font-size: 19px;
+  border-radius: 100%;
+}
+.share-link.mb-3 a {
+  padding-right: 10px;
+}
+.share-link.mb-3 {
+  text-align: center;
+}
+
+.share-link.mb-3 a i:hover {
+  color: #ff713d;
+}
+span.qtd_doacoes_view {
+  line-height: 40px;
 }

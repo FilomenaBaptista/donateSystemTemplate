@@ -14,9 +14,9 @@
             <div class="d-flex justify-content-between align-items-center">
                 <h2>Campanha</h2>
                 <ol>
-                    <li><a class="scrollto" href="{{url('/')}}">Home</a></li>
-                    <li><a class="scrollto" href="{{route('campanha.index')}}">Campanhas</a></li>
-                    <li><a href="{{route('campanha.show' , $campanha->id)}}">Detalhes da campanha</a></li>
+                    <li><a class="scrollto" href="{{ url('/') }}">Home</a></li>
+                    <li><a class="scrollto" href="{{ route('campanha.index') }}">Campanhas</a></li>
+                    <li><a href="{{ route('campanha.show', $campanha->id) }}">Detalhes da campanha</a></li>
                 </ol>
             </div>
         </div>
@@ -24,17 +24,17 @@
 
     <!-- ======= Blog Details Section ======= -->
     <section class="featured-services container">
-        @if(session()->has('mensagem'))
-            <div id="flash_message" class = "alert alert-success alert-dismissible" role="alert" aria-live="assertive" aria-atomic="true">
-                <strong>{{session()->get('mensagem')}}</strong>
-                <button type="button" class="ml-2 mb-1 close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
+        @if (session()->has('mensagem'))
+        <div id="flash_message" class="alert alert-success alert-dismissible" role="alert" aria-live="assertive" aria-atomic="true">
+            <strong>{{ session()->get('mensagem') }}</strong>
+            <button type="button" class="ml-2 mb-1 close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
         @endif
     </section>
 
-    <section id="blog" class="blog">
+    <section id="blog" class="blog py-4">
 
         <div class="container" data-aos="fade-up">
 
@@ -44,16 +44,18 @@
                     <article class="d-flex flex-column blog-details">
 
                         <div class="post-img">
-                            <img src="{{$campanha->imagem}}" alt="" class="img-fluid">
+                            <img src="{{ $campanha->imagem }}" alt="" class="img-fluid">
                         </div>
 
-                        <h2 class="title">{{$campanha->titulo}}</h2>
+                        <h2 class="title">{{ $campanha->titulo }}</h2>
 
                         <div class="meta-top">
                             <ul>
-                                <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="blog-details.html">{{$campanha->criador->name}}</a></li>
-                                <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-details.html"><time datetime="2020-01-01">{{$campanha->created_at->format('M d,  Y') }}</time></a></li>
-                                <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="blog-details.html"> {{$campanha->comentarios->count()}} Comentários</a></li>
+                                <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="blog-details.html">{{ $campanha->criador->name }}</a></li>
+                                <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-details.html"><time datetime="2020-01-01">{{ $campanha->created_at->format('M d,  Y') }}</time></a>
+                                </li>
+                                <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="blog-details.html"> {{ $campanha->comentarios->count() }} Comentários</a>
+                                </li>
                             </ul>
                         </div><!-- End meta top -->
 
@@ -69,43 +71,33 @@
                             <ul class="cats">
                                 <li><a href="#">Business</a></li>
                             </ul>
-
-                            <i class="bi bi-tags"></i>
-                            <ul class="tags">
-                                <li><a href="#">Creative</a></li>
-                                <li><a href="#">Tips</a></li>
-                                <li><a href="#">Marketing</a></li>
-                            </ul>
-
-
                         </div><!-- End meta bottom -->
-                        @can('edit' , $campanha)
-                            <div class="read-more mt-auto align-self-end">
-                                <a class="btn-edit" href="{{ route('campanha.edit' ,$campanha->id) }}">
-                                    <i class="bi bi-pencil"></i> Editar
-                                </a>
-                            </div>
+                        @can('edit', $campanha)
+                        <div class="read-more mt-auto align-self-end">
+                            <a class="btn-edit" href="{{ route('campanha.edit', $campanha->id) }}">
+                                <i class="bi bi-pencil"></i> Editar
+                            </a>
+                        </div>
                         @endcan
                     </article>
 
                     <div class="comments">
-
-                        <h4 class="comments-count"> {{$campanha->comentarios->count()}} Comentários</h4>
+                        <h4 class="comments-count"> {{ $campanha->comentarios->count() }} Comentários</h4>
                         @forelse ($campanha->comentarios as $comentario)
-                            <div id="comment-2" class="comment">
-                                <div class="d-flex">
-                                    <div class="comment-img"><img src="assets/img/blog/comments-2.jpg" alt=""></div>
-                                    <div>
-                                        <h5><a href="">{{$comentario->criador->name}}</a> <a href="#" class="reply"><i class="bi bi-reply-fill"></i> Reply</a></h5>
-                                        <time datetime="2020-01-01">{{$comentario->created_at->format('M d,  Y') }}</time>
-                                        <p>
-                                            {{$comentario->conteudo }}
-                                        </p>
-                                    </div>
+                        <div id="comment-2" class="comment">
+                            <div class="d-flex">
+                                <div class="comment-img"><img src="assets/img/blog/comments-2.jpg" alt="">
+                                </div>
+                                <div>
+                                    <h5><a href="">{{ $comentario->criador->name }}</a> <a href="#" class="reply"><i class="bi bi-reply-fill"></i> Reply</a></h5>
+                                    <time datetime="2020-01-01">{{ $comentario->created_at->format('M d,  Y') }}</time>
+                                    <p>
+                                        {{ $comentario->conteudo }}
+                                    </p>
                                 </div>
                             </div>
+                        </div>
                         @empty
-
                         @endforelse
 
 
@@ -116,24 +108,54 @@
 
                     <div class="sidebar">
                         <div class="sidebar-item search-form">
-                            <h3 class="sidebar-title">Search</h3>
-                            <form action="" class="mt-3">
-                                <input type="text">
-                                <button type="submit"><i class="bi bi-search"></i></button>
-                            </form>
-                        </div><!-- End sidebar search formn-->
+                            <h3 class="sidebar-title">30.000 kz Arrecadados da Meta 345.000kz</h3>
 
-                        <div class="sidebar-item categories">
-                            <h3 class="sidebar-title">Categorias</h3>
-                            <ul class="mt-3">
-                                <li><a href="#">General <span>(25)</span></a></li>
-                                <li><a href="#">Lifestyle <span>(12)</span></a></li>
-                                <li><a href="#">Travel <span>(5)</span></a></li>
-                                <li><a href="#">Design <span>(22)</span></a></li>
-                                <li><a href="#">Creative <span>(8)</span></a></li>
-                                <li><a href="#">Educaion <span>(14)</span></a></li>
-                            </ul>
+                        </div><!-- End sidebar search formn-->
+                        <div class="progress mt-3">
+                            <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+
+                        <span class="qtd_doacoes_view">4,5K doações</span>
+                        <div class="botao-doar py-3">
+                            <button class="btn">Doar Agora</button>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                                Launch demo modal
+                            </button>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            ...
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-primary">Save changes</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div><!-- End sidebar categories-->
+
+                        <div class="share-link mb-3">
+                            <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+                            <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+                            <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+                            <a href="#" class="google-plus"><i class="bi bi-skype"></i></a>
+                            <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+                        </div>
+
+                        <div class="sidebar-item recent-doacoes">
+                            <i class="bi bi-graph-up"></i>
+                            <strong class="sidebar-title">4,3K pessoas acabaram de doar</strong>
+                        </div>
 
                         <div class="sidebar-item recent-posts">
                             <h3 class="sidebar-title">Publicações Recentes</h3>
@@ -143,17 +165,6 @@
                         <div class="sidebar-item tags">
                             <h3 class="sidebar-title">Tags</h3>
                             <ul class="mt-3">
-                                <li><a href="#">App</a></li>
-                                <li><a href="#">IT</a></li>
-                                <li><a href="#">Business</a></li>
-                                <li><a href="#">Mac</a></li>
-                                <li><a href="#">Design</a></li>
-                                <li><a href="#">Office</a></li>
-                                <li><a href="#">Creative</a></li>
-                                <li><a href="#">Studio</a></li>
-                                <li><a href="#">Smart</a></li>
-                                <li><a href="#">Tips</a></li>
-                                <li><a href="#">Marketing</a></li>
                             </ul>
                         </div><!-- End sidebar tags-->
 
@@ -170,8 +181,8 @@
 @endsection
 
 @section('js')
-<script src="{{asset('js/jquery-3.6.0.min.js')}}"></script>
-<script src="{{asset('js/util.js')}}"></script>
+<script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
+<script src="{{ asset('js/util.js') }}"></script>
 <script>
     $(document).ready(function() {
         $.ajax({
@@ -182,10 +193,12 @@
                 $('.campanhasRecentes').empty();
                 response.data.forEach(function(campanha) {
                     var html = '<div class="post-item">';
-                    html += '<img src="' + campanha.imagem + '" alt="" class="flex-shrink-0">';
+                    html += '<img src="' + campanha.imagem +
+                        '" alt="" class="flex-shrink-0">';
                     html += '<div>';
                     html += '<h4><a href="blog-post.html">' + campanha.titulo + '</a></h4>';
-                    html += '<time datetime="' + campanha.created_at + '">' + dataResumida(campanha.created_at) + '</time>';
+                    html += '<time datetime="' + campanha.created_at + '">' + dataResumida(
+                        campanha.created_at) + '</time>';
                     html += '</div>';
                     html += '</div>';
                     $('.campanhasRecentes').append(html);
@@ -196,6 +209,3 @@
     });
 </script>
 @endsection
-{{-- @section('js')
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-@endsection --}}
