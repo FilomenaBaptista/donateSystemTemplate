@@ -32,7 +32,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: var(--font-primary);
+  font-family: Futura, sans-serif;
 }
 
 /*--------------------------------------------------------------
@@ -84,8 +84,8 @@ h6 {
 # Sections & Section Header
 --------------------------------------------------------------*/
 section {
- padding: 50px 0;
- padding: 0px;
+  padding: 50px 0;
+  padding: 0px;
   overflow: hidden;
 }
 
@@ -1644,7 +1644,6 @@ div#tab1 p {
 --------------------------------------------------------------*/
 .testimonials {
   padding: 100px 0;
-  background: url("../img/donate-bg.jpg.webp") no-repeat;
   background-position: center center;
   background-size: cover;
   position: relative;
@@ -1665,7 +1664,7 @@ div#tab1 p {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(var(--color-secondary-dark-rgb), 0.8);
+  background: #c2c2c200;
 }
 
 .testimonials .section-header {
@@ -1687,6 +1686,7 @@ div#tab1 p {
 .testimonials .testimonial-item .testimonial-img {
   width: 100%;
   margin: 0 auto;
+  height: 65vh;
 }
 
 .testimonials .testimonial-item h3 {
@@ -1698,7 +1698,7 @@ div#tab1 p {
 
 .testimonials .testimonial-item h4 {
   font-size: 14px;
-  color: rgba(var(--color-white-rgb), 0.6);
+  color: rgb(255 113 61);
   margin: 0 0 15px 0;
 }
 
@@ -1752,7 +1752,7 @@ div#tab1 p {
 
 .swiper-wrapper {
   position: relative;
-  width: 25%;
+  width: 34%;
   height: 100%;
   z-index: 1;
   display: flex;
@@ -1909,7 +1909,7 @@ div#tab1 p {
 }
 
 .faq .content p {
-  font-size: 15px;
+  font-size: 18px;
   color: var(--color-gray);
 }
 
@@ -2185,6 +2185,10 @@ div#tab1 p {
   overflow: hidden;
   position: relative;
   border-radius: 10px;
+}
+
+.post-img .img-fluid{
+  height: 380px !important;
 }
 
 .recent-blog-posts .post-box .post-img img {
@@ -2793,6 +2797,7 @@ label.mb-2.label-money {
   border: 1px solid rgba(var(--color-secondary-rgb), 0.3);
   padding: 3px 10px;
   position: relative;
+  height: 55px;
 }
 
 .blog .sidebar .search-form form input[type=text] {
@@ -2800,6 +2805,8 @@ label.mb-2.label-money {
   padding: 4px;
   border-radius: 4px;
   width: calc(100% - 40px);
+  height: 50px;
+  margin-top: -1px;
 }
 
 .blog .sidebar .search-form form input[type=text]:focus {
@@ -3377,9 +3384,11 @@ article.d-flex.flex-column.blog-details {
   background: #ff713d;
   font-family: var(--font-secondary);
 }
+
 .botao-doar button.btn:hover {
   background: #ff713d;
 }
+
 .progress-bar {
   display: flex;
   flex-direction: column;
@@ -3397,7 +3406,8 @@ article.d-flex.flex-column.blog-details {
   background-color: #07a1bd !important;
 }
 
-.progress, .progress-stacked {
+.progress,
+.progress-stacked {
   height: 5px;
 }
 
@@ -3411,9 +3421,11 @@ article.d-flex.flex-column.blog-details {
   font-size: 19px;
   border-radius: 100%;
 }
+
 .share-link.mb-3 a {
   padding-right: 10px;
 }
+
 .share-link.mb-3 {
   text-align: center;
 }
@@ -3421,6 +3433,309 @@ article.d-flex.flex-column.blog-details {
 .share-link.mb-3 a i:hover {
   color: #ff713d;
 }
+
 span.qtd_doacoes_view {
   line-height: 40px;
+}
+
+section.Ajude-nes {
+  background: #f2f8f9db;
+  padding: 60px;
+}
+
+.donation-banner p {
+  font-size: 16px;
+  margin-bottom: 20px;
+  line-height: 1.75;
+}
+
+.donation-banner span {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.emoji {
+  font-size: 2.5em;
+  line-height: 1em;
+}
+
+.column-content {
+  text-align-last: center;
+}
+
+.content-card {
+  padding: 30px;
+}
+
+h2.text-center.doe-hoje {
+  font-family: Futura, sans-serif;
+  font-weight: 500;
+  letter-spacing: 0em;
+  padding: 0 150px 60px 150px;
+  line-height: 1.3;
+  font-size: 40px;
+}
+
+.h3-tittle {
+  font-family: Futura, sans-serif;
+  font-weight: 600;
+  letter-spacing: 0em;
+  line-height: 1.3;
+  font-size: 20px;
+}
+
+.column-content img {
+  width: 76px;
+  color: red;
+}
+
+.recent-blog-posts.post-box.post-img .img-fluid {
+  max-width: 100%;
+  height: 400px;
+}
+
+.subhead {
+  font-family: "metropolis-semibold", sans-serif;
+  font-size: 1.6rem;
+  line-height: 1.3125;
+  text-transform: uppercase;
+  letter-spacing: 0.25rem;
+  color: #cc147f;
+  margin-top: 0;
+  margin-bottom: 2.1rem;
+}
+
+.display-1 {
+  font-size: 3rem;
+  line-height: 1.3;
+  letter-spacing: 0;
+  color: #000000;
+  letter-spacing: -0.03rem;
+  margin-top: 0;
+}
+
+[data-aos^="fade"][data-aos^="fade"].aos-animate {
+  opacity: 1;
+  transform: translate(0);
+}
+
+.process__col::before {
+  content: attr(data-item);
+  display: block;
+  font-size: 2.1rem;
+  text-align: center;
+  color: #ffffff;
+  background-color: #ff7846;
+  height: 48px;
+  width: 48px;
+  line-height: 48px;
+  border-radius: 50%;
+  box-shadow: 0 0 0 18px #ffffff;
+  position: absolute;
+  left: 20px;
+  top: 0;
+}
+
+.process__text {
+  margin-left: 7.5rem;
+  padding-right: 30px;
+}
+
+.process h4 {
+  font-size: 2.2rem;
+  line-height: 1.5;
+  margin-top: 0;
+  position: relative;
+  color: #56309e;
+}
+
+.process {
+  margin-top: 4.2rem;
+  position: relative;
+}
+
+.process {
+  margin-top: 4.2rem;
+  position: relative;
+}
+
+.process__vline-left,
+.process__vline-right {
+  display: block;
+  width: 1px;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.15);
+  position: absolute;
+}
+
+.process__vline-right {
+  top: 0;
+  left: calc(50% + 20px + 24px);
+}
+
+.process__vline-left,
+.process__vline-right {
+  display: block;
+  width: 1px;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.15);
+  position: absolute;
+}
+
+[data-aos^="fade"][data-aos^="fade"].aos-animate {
+  opacity: 1;
+  transform: translate(0);
+}
+
+[data-aos][data-aos][data-aos-delay="300"].aos-animate,
+body[data-aos-delay="300"] [data-aos].aos-animate {
+  transition-delay: 0.3s;
+}
+
+.process__col {
+  position: relative;
+  min-height: 15.6rem;
+}
+
+.block-1-2 .col-block {
+  width: 50%;
+}
+
+[class*="col-"] {
+  float: left;
+  padding: 0 20px;
+}
+
+[data-aos][data-aos][data-aos-easing="ease-in-sine"],
+body[data-aos-easing="ease-in-sine"] [data-aos] {
+  transition-timing-function: cubic-bezier(0.47, 0, 0.745, 0.715);
+}
+.process__vline-left, .process__vline-right {
+  display: block;
+  width: 1px;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.15);
+  position: absolute;
+}
+.process__vline-left {
+  top: 0;
+  left: calc(20px + 24px);
+}
+.row.who-campnahas {
+  width: 89%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+section.banner-description.py-5{
+  background: #6139bc40;
+}
+
+section.banner-description.py-5 h2 {
+  color: black;
+  font-size: 20px;
+  font-family: Futura, sans-serif;
+  font-weight: 500;
+  letter-spacing: 0em;
+  padding: 0 150px 60px 150px;
+  line-height: 1.3;
+  font-size: 40px;
+  max-width: 100%;
+}
+
+.button-voluntario.justify-content-center {
+  width: auto;
+  background: #ff4a1e;
+  padding: 12px;
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 30px;
+}
+
+button.btn {
+  color: white;
+  font-size: 20px;
+}
+.button-voluntario.justify-content-center.pt-3 button a {
+  color: white;
+}
+.section-heading .entry-title {
+  position: relative;
+  padding-bottom: 24px;
+  font-size: 36px;
+  font-weight: 600;
+}
+
+.home-page-limestone .section-heading .entry-title {
+  padding-bottom: 36px;
+  line-height: 1.6;
+  color: white;
+}
+
+.section-heading .entry-title::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 64px;
+  height: 4px;
+  border-radius: 2px;
+  background: #ff5a00;
+}
+
+.counter-box .start-counter {
+  margin-top: 10px;
+  font-size: 48px;
+  font-weight: 500;
+  color: #262626;
+}
+
+.home-page-limestone {
+  padding: 96px 0;
+}
+
+.counter-box .counter-k {
+  font-size: 24px;
+  font-weight: 500;
+}
+.counter-box .entry-title {
+  margin-top: 16px;
+  font-size: 14px;
+  color: #595858;
+}
+
+section.voluntario h4 {
+  font-family: Futura, sans-serif;
+  font-weight: 600;
+  letter-spacing: 0em;
+  line-height: 1.3;
+  font-size: 20px;
+}
+
+section.voluntario p {
+  font-size: 18px;
+  background: white;
+  padding: 30px;
+  border-radius: 20px;
+}
+
+section.voluntario img {
+  width: 100%;
+  padding-bottom: 20px;
+}
+section.voluntario {
+  background: #07a1bd;
+}
+
+section#who-campnahas {
+  background: #bfdae140;
+  padding: 60px;
+}
+section#faq {
+  background: #297eeb2e;
+}
+section#recent-blog-posts\ py-5 {
+  background: #eff6f7;
 }

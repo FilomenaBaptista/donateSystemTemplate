@@ -1,7 +1,7 @@
 <header id="header" class="header fixed-top" data-scrollto-offset="0">
     <div class="container-fluid d-flex align-items-center justify-content-between">
 
-        <a href="{{ route('home') }}" class="logo d-flex align-items-center scrollto me-auto me-lg-0">
+        <a href="{{ route('campanha.home') }}" class="logo d-flex align-items-center scrollto me-auto me-lg-0">
             <img src="{{asset('assets/img/logo.png')}}" alt="KuKurisa">
         </a>
 

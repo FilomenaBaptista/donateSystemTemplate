@@ -66,7 +66,7 @@
                                     </p>
                                 </div>
                                 <div class="read-more mt-auto align-self-end">
-                                    <a href="{{ route('campanha.show' ,$campanha->id) }}">Leia mais</a>
+                                    <a href="{{ route('campanha.show', $campanha->id) }}">Leia mais</a>
                                 </div>
                             </article>
                         </div><!-- End post list item -->

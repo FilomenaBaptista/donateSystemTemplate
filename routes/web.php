@@ -15,10 +15,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('portal.index');
-});
-
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -69,6 +65,7 @@ require __DIR__.'/auth.php';
 
 Route::apiResource('doar', Controllers\DoacaoFisicaController::class);
 Route::apiResource('doacao', Controllers\DoacaoFisicaController::class);
+
 Route::get('doar-create', [Controllers\DoacaoFisicaController::class,'create'])->name('doar.create');
 // Route::get('/campanha-editar/{campanha}', [Controllers\CampanhaController::class,'edit'])->name('campanha.edit');
 // Route::apiResource('comentarios', Controllers\ComentarioController::class);
@@ -77,6 +74,8 @@ Route::get('doar-create', [Controllers\DoacaoFisicaController::class,'create'])-
 
 
 Route::apiResource('campanha', Controllers\CampanhaController::class);
+
+Route::get('/', [Controllers\CampanhaController::class, 'campanhaHome'])->name('campanha.home');
 Route::get('/solicitar-doacao', [Controllers\CampanhaController::class,'create'])->name('campanha.create');
 Route::get('/campanha-editar/{campanha}', [Controllers\CampanhaController::class,'edit'])->name('campanha.edit');
 Route::apiResource('comentarios', Controllers\ComentarioController::class);
