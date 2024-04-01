@@ -22,13 +22,15 @@ class CampanhaService
      */
     public function listCampanha(
         int $criadorId = null,
-        int $eliminado = null
+        int $eliminado = null,
+        string $search = null
     ) {
         try {
             $campanha = new Campanha();
                $response = $campanha->listCampanha(
                 $criadorId,
-                $eliminado
+                $eliminado,
+                $search
             ); 
               /*  $response = DataTables::of($campanha->listCampanha(
                 $criadorId,
@@ -136,11 +138,15 @@ class CampanhaService
     }
 
     public function  campanhasRecentes(
-        int $limit
+        int $limit, 
+        int $excepto_id = null
     ) {
         try {
             $campanha = new Campanha();
-            $response = $campanha->campanhasRecentes($limit);
+            $response = $campanha->campanhasRecentes(
+                $limit,
+                $excepto_id
+            );
             return StatusHelper::response(['data' => $response, 'tag' => 'LIST.CAMPANHA RECENTE', 'status' => 200]);
         } catch (Exception $e) {
             return StatusHelper::response(['tag' => 'LIST.CAMPANHA RECENTE', 'status' => (int) $e->getMessage(),  'line_trace' => __LINE__,'class_trace' => PathHelper::getClassName($this) ]);

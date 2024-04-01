@@ -23,7 +23,8 @@ class Campanha extends Model
 
     public function listcampanha(
         int $criadorId = null,
-        int $eliminado = null
+        int $eliminado = null,
+        string $search = null
     ) {
          try {
             $with['comentarios'] = 'comentarios';
@@ -40,8 +41,11 @@ class Campanha extends Model
             if (!is_null($eliminado)) {
                 $query->where('c.eliminado', '=', $criadorId);
             }
+            if (!empty($search)) {
+                $query->where('c.titulo', 'like', "%".$search."%");
+            }
 
-            return $query->paginate(6);
+            return $query->paginate(6)->withQueryString();
         } catch (QueryException $e) {
             throw new Exception($e->getCode());
         }
@@ -142,10 +146,17 @@ class Campanha extends Model
             throw new ModelNotFoundException($e->getCode());
         }
     }
-    public function campanhasRecentes(int $limit)
-    {
+    public function campanhasRecentes(
+        int $limit, 
+        int $excepto_id = null
+    ){
         try {
-            return Campanha::latest()->take($limit)->get();;
+            $query = Campanha::latest()->take($limit);
+
+            if(!is_null($excepto_id)){
+                $query->where('id', '!=', $excepto_id);
+            }
+            return  $query->get();
         } catch (ModelNotFoundException $e) {
             throw new ModelNotFoundException($e->getCode());
         }

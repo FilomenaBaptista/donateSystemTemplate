@@ -183,27 +183,12 @@
 <script src="{{ asset('js/util.js') }}"></script>
 <script>
     $(document).ready(function() {
-        $.ajax({
-            url: '/campanhas-recentes/5',
-            type: 'GET',
-            dataType: 'json',
-            success: function(response) {
-                $('.campanhasRecentes').empty();
-                response.data.forEach(function(campanha) {
-                    var html = '<div class="post-item">';
-                    html += '<img src="' + campanha.imagem +
-                        '" alt="" class="flex-shrink-0">';
-                    html += '<div>';
-                    html += '<h4><a href="blog-post.html">' + campanha.titulo + '</a></h4>';
-                    html += '<time datetime="' + campanha.created_at + '">' + dataResumida(
-                        campanha.created_at) + '</time>';
-                    html += '</div>';
-                    html += '</div>';
-                    $('.campanhasRecentes').append(html);
-                });
-            },
-            error: function(xhr, status, error) {}
-        });
+        var dados = {
+            route: "{{ route('campanha.show',0) }}",
+            limit: 5,
+            excepto_id: "{{$campanha->id}}" 
+        };
+        campanhaRecentes(dados)
     });
 </script>
 @endsection

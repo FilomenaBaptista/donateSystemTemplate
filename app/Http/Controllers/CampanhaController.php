@@ -32,8 +32,12 @@ class CampanhaController extends Controller
         $CampanhaService = new CampanhaService();
         $response = $CampanhaService->listCampanha(
             $request->user_id,
-            $request->eliminado
+            $request->eliminado,
+            $request->search
         );
+        if(!empty($request->search)){
+            session()->flash('search', $request->search);
+        }
 
         $CategoriaService = new CategoriaService();
         $categorias = $CategoriaService->listCategoria();
@@ -142,10 +146,15 @@ class CampanhaController extends Controller
     }
 
      public function campanhasRecentes(
+        Request $request, 
         int $limit
     ){
         $CampanhaService = new CampanhaService();
-        $response = $CampanhaService->campanhasRecentes($limit);
+        $response = $CampanhaService->campanhasRecentes(
+            $request->limit,
+            $request->excepto_id
+        );
+        return   $response;
         return response()->json(['data' => $response['data'], 'message' => $response['message'], 'status' => $response['status']]);
     }
 }

@@ -16,7 +16,7 @@
                 <h2>Campanhas</h2>
                 <ol>
                     <li><a href="{{url('/')}}">Home</a></li>
-                    <li>Campanhas</li>
+                    <li><a class="scrollto" href="{{ route('campanha.index') }}">Campanhas</a></li>
                 </ol>
             </div>
 
@@ -90,10 +90,11 @@
                     <div class="sidebar">
                         <div class="sidebar-item search-form">
                             <h3 class="sidebar-title">Pesquisar</h3>
-                            <form action="" class="mt-3">
-                                <input type="text">
-                                <button type="submit"><i class="bi bi-search"></i></button>
-                            </form>
+                            {!! Form::open(['route' => 'campanha.index','method' => 'GET', 'class'=> 'mt-3']) !!}
+                                <input type="text" name="search" id="search" value="{{session()->get('search')}}">
+                                {{ Form::button('',['type'=>'submit','class' => 'bi bi-search'])}}
+                            {!! Form::close() !!}
+                          
                         </div><!-- End sidebar search formn-->
 
                         <div class="sidebar-item categories">
@@ -123,29 +124,14 @@
 @endsection
 
 @section('js')
-<script src="{{asset('js/jquery-3.6.0.min.js')}}"></script>
 <script src="{{asset('js/util.js')}}"></script>
 <script>
     $(document).ready(function() {
-        $.ajax({
-            url: '/campanhas-recentes/5',
-            type: 'GET',
-            dataType: 'json',
-            success: function(response) {
-                $('.campanhasRecentes').empty();
-                response.data.forEach(function(campanha) {
-                    var html = '<div class="post-item">';
-                    html += '<img src="'+campanha.imagem +'" alt="" class="flex-shrink-0">';
-                    html += '<div>';
-                    html += '<h4><a href="blog-post.html">' + campanha.titulo + '</a></h4>';
-                    html += '<time datetime="' + campanha.created_at + '">' + dataResumida(campanha.created_at) + '</time>';
-                    html += '</div>';
-                    html += '</div>';
-                    $('.campanhasRecentes').append(html);
-                });
-            },
-            error: function(xhr, status, error) {}
-        });
+        var dados = {
+            route: "{{ route('campanha.show',0) }}",
+            limit: 5
+        };
+        campanhaRecentes(dados)
     });
 </script>
 @endsection
