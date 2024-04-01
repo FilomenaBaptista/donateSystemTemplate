@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Campanha;
+use App\Models\DoacaoFisica;
 use App\Services\CampanhaService;
 use App\Services\CategoriaService;
 use Illuminate\Auth\Access\Gate;
@@ -50,13 +51,17 @@ class CampanhaController extends Controller
         if ($validator->fails()) {
             return response()->json(['data' => '', 'message' => $validator->errors(), 'status' => 400]);
         }
+
         $CampanhaService = new CampanhaService();
         $response = $CampanhaService->listCampanha(
             $request->user_id,
             $request->eliminado
         );
 
-        return view('portal.index',['campanhas' => $response['data']]);
+        $doacaoFisica = new DoacaoFisica();
+        $doacoes = $doacaoFisica->listDoacaoFisica();
+  
+        return view('portal.index',['campanhas' => $response['data'],'doacoes' => $doacoes['data']]);
     }
 
     /**

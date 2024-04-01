@@ -4,7 +4,7 @@
     <section id="hero-animated" class="hero-animated d-flex align-items-center">
         <div id="overlay"> </div>
 
-        <div class="container-fluid">
+        <div class="container-fluid p-0">
             <div class="row">
                 <div class="col-md-6 col-lg-6 col-sm-12 justify-content-left align-items-center text-left position-relative"
                     data-aos="zoom-out">
@@ -26,74 +26,52 @@
                     <img class="w-100 img-fluid animated" src="assets/img/donate-pri.png" alt="" srcset="">
                 </div>
             </div>
-            <section class="Ajude-nes container-fluid">ola mundo</section>
+
         </div>
 
     </section>
-
-    <main id="main">
-        <!-- ======= About Section ======= -->
-        <section id="about" class="about">
-            <div class="container" data-aos="fade-up">
-
-                <div class="section-header">
-                    <h2> Sobre nós</h2>
-                    </h2>
-                </div>
-
-                <div class="row g-4 g-lg-5" data-aos="fade-up" data-aos-delay="200">
-
-                    <div class="col-lg-5">
-                        <div class="about-img">
-                            <img src="assets/img/about.jpg" class="img-fluid" alt="">
+    <section class="Ajude-nes">
+        <div class="donation-banner">
+            <p class="text-center"> Ajude </p>
+            <h2 class="text-center doe-hoje">Doe hoje e seja o motivo pelo qual a mudança começa. Juntos, podemos construir
+                um futuro melhor!</h2>
+            <div class="container mt-5">
+                <div class="row">
+                    <!-- Coluna 1 -->
+                    <div class="col-md-4">
+                        <div class="column-content">
+                            <img class="pb-3" src="assets/img/coracao.png" alt="">
+                            <h3 class="h3-tittle">Toque Corações:</h3>
+                            <p>sua doação leva calor e apoio a quem mais precisa.</p>
                         </div>
                     </div>
 
-                    <div class="col-lg-7">
-                        <h3 class="pt-0 pt-lg-5">Um pouco sobre nós</h3>
-
-                        <!-- Tab Content -->
-                        <div class="tab-content">
-
-                            <div class="tab-pane fade show active" id="tab1">
-
-                                <div class="d-flex align-items-center mt-4">
-
-                                </div>
-                                <p>Bem-vindo ao nosso site de arrecadação de fundos on-line, onde você pode compartilhar
-                                    facilmente sua história, projeto ou causa.</p>
-
-                                <div class="d-flex align-items-center mt-4">
-
-
-                                </div>
-                                <p> Nosso objetivo é ajudá-lo a alcançar o máximo de apoio possível para sua causa, seja por
-                                    meio de mensagens de texto ou redes sociais. Junte-se a nós como voluntário e apoie as
-                                    causas que mais importam para você.</p>
-
-                                <div class="d-flex align-items-center mt-4">
-
-                                </div>
-                                <p> Cada pequena contribuição faz a diferença. Faça sua doação aqui - lembre-se, o que pode
-                                    parecer pouco para você pode significar muito para quem precisa..</p>
-                                <p> Juntos, podemos fazer um impacto positivo significativo...</p>
-
-                            </div><!-- End Tab 1 Content -->
-
-
+                    <!-- Coluna 2 -->
+                    <div class="col-md-4">
+                        <div class="column-content">
+                            <img class="pb-3" src="assets/img/estrelas.png" alt="">
+                            <h3 class="h3-tittle">Ilumine Vidas:</h3>
+                            <p>mesmo um pequeno ato de bondade pode ser um grande raio de luz.</p>
                         </div>
-
                     </div>
 
+                    <!-- Coluna 3 -->
+                    <div class="col-md-4">
+                        <div class="column-content">
+                            <img class="pb-3" src="assets/img/ame.png" alt="">
+                            <h3 class="h3-tittle">Compartilhe Abundância:</h3>
+                            <p>o que você doa se multiplica em alegria e gratidão.</p>
+                        </div>
+                    </div>
                 </div>
-
             </div>
-        </section><!-- End About Section -->
-
+        </div>
+    </section>
+    <main id="main">
         <!-- ======= Testimonials Section ======= -->
         <section id="testimonials" class="testimonials">
             <div class="container" data-aos="fade-up">
-                <h1 class="py-5 text-white">Doações Em Destaque</h1>
+                <h1 class="py-5">Doações Em Destaque</h1>
 
                 <div class="testimonials-slider swiper">
                     <div class="swiper-wrapper">
@@ -102,14 +80,13 @@
                             <div class="testimonial-item">
                                 <img src="assets/img/testimonials/testimonials-1.jpg" class="testimonial-img"
                                     alt="">
-                                <h3>Saul Goodman</h3>
+                                <h3>Roupas Disponineis para doação</h3>
                                 <h4>Ceo &amp; Founder</h4>
 
                                 <p class="text-black">
                                     <i class="bi bi-quote quote-icon-left"></i>
-                                    Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit
-                                    rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam,
-                                    risus at semper.
+                                    l. Os itens mais comumente doados incluem roupas, alimentos, brinquedos, móveis,
+                                    eletrodomésticos, livros e até veículos.
                                     <i class="bi bi-quote quote-icon-right"></i>
                                 </p>
                             </div>
@@ -122,48 +99,32 @@
                                         alt="">
                                 </div>
 
-                                <h3>Jena Karlis</h3>
+                                <h3>Alimentos disponiveis para doação</h3>
 
                                 <div class="content-card">
                                     <p>
                                         <i class="bi bi-quote quote-icon-left"></i>
-                                        Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid
-                                        cillum eram malis quorum velit fore eram velit sunt aliqua noster fugiat irure amet
-                                        legam anim culpa.
+                                        l. Os itens mais comumente doados incluem roupas, alimentos, brinquedos, móveis,
+                                        eletrodomésticos, livros e até veículos.
                                         <i class="bi bi-quote quote-icon-right"></i>
                                     </p>
                                 </div>
                             </div>
                         </div><!-- End testimonial item -->
 
-                        <div class="swiper-slide">
-                            <div class="testimonial-item">
-                                <img src="assets/img/testimonials/testimonials-3.jpg" class="testimonial-img"
-                                    alt="">
-                                <h3>Jena Karlis</h3>
-                                <h4>Store Owner</h4>
-
-                                <p>
-                                    <i class="bi bi-quote quote-icon-left"></i>
-                                    Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem veniam
-                                    duis minim tempor labore quem eram duis noster aute amet eram fore quis sint minim.
-                                    <i class="bi bi-quote quote-icon-right"></i>
-                                </p>
-                            </div>
-                        </div><!-- End testimonial item -->
+                        <!-- End testimonial item -->
 
                         <div class="swiper-slide">
                             <div class="testimonial-item">
                                 <img src="assets/img/testimonials/testimonials-4.jpg" class="testimonial-img"
                                     alt="">
-                                <h3>Matt Brandon</h3>
+                                <h3>Pasta disponivel para doação</h3>
                                 <h4>Freelancer</h4>
 
                                 <p>
                                     <i class="bi bi-quote quote-icon-left"></i>
-                                    Fugiat enim eram quae cillum dolore dolor amet nulla culpa multos export minim fugiat
-                                    minim velit minim dolor enim duis veniam ipsum anim magna sunt elit fore quem dolore
-                                    labore illum veniam.
+                                    l. Os itens mais comumente doados incluem roupas, alimentos, brinquedos, móveis,
+                                    eletrodomésticos, livros e até veículos..
                                     <i class="bi bi-quote quote-icon-right"></i>
                                 </p>
                             </div>
@@ -173,14 +134,13 @@
                             <div class="testimonial-item">
                                 <img src="assets/img/testimonials/testimonials-5.jpg" class="testimonial-img"
                                     alt="">
-                                <h3>John Larson</h3>
+                                <h3>Calçados Disponiveis para doação</h3>
                                 <h4>Entrepreneur</h4>
 
                                 <p>
                                     <i class="bi bi-quote quote-icon-left"></i>
-                                    Quis quorum aliqua sint quem legam fore sunt eram irure aliqua veniam tempor noster
-                                    veniam enim culpa labore duis sunt culpa nulla illum cillum fugiat legam esse veniam
-                                    culpa fore nisi cillum quid.
+                                    l. Os itens mais comumente doados incluem roupas, alimentos, brinquedos, móveis,
+                                    eletrodomésticos, livros e até veículos.
                                     <i class="bi bi-quote quote-icon-right"></i>
                                 </p>
                             </div>
@@ -192,6 +152,155 @@
 
             </div>
         </section><!-- End Testimonials Section -->
+        
+        <section id="who-campnahas" class="s-who-campnahas">
+            <div class="row section-header" data-aos="fade-up">
+                {{-- <div class="col-full">
+                    <h1 class="display-1">Como Começar uma camapanha
+                    </h1>
+                </div> --}}
+            </div>
+            <div class="row who-campnahas">
+                <div class="about-process process block-1-2 block-tab-full">
+                    <div class="process__vline-left"></div>
+                    <div class="process__vline-right"></div>
+                    <div class="col-block process__col" data-item="1" data-aos="fade-up">
+                        <div class="process__text">
+                            <h4>Começe uma campanha</h4>
+                            <ul>
+                                <li>Definir a meta da campanha</li>
+                                <li>Contar sua história</li>
+                                <li>Incluir fotos ou vídeo</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-block process__col" data-item="2" data-aos="fade-up">
+                        <div class="process__text">
+                            <h4>Compartilhe com familiares e amigos</h4>
+                            <ul>
+                                <li> Enviar e-mails</li>
+                                <li>Enviar mensagens de texto</li>
+                                <li>Compartilhar nas redes sociais</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-block process__col" data-item="3" data-aos="fade-up">
+                        <div class="process__text">
+                            <h4>Gerencie doações</h4>
+                            <ul>
+                                <li>Aceitar doações</li>
+                                <li>Agradecer aos doadores</li>
+                                <li>Retirar fundos</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-block process__col" data-item="4" data-aos="fade-up">
+                        <div class="process__text">
+                            <h4>Configure transferência Bancária</h4>
+                            <p>
+                                Quos dolores saepe mollitia deserunt accusamus autem reprehenderit. Voluptas facere animi
+                                explicabo non quis magni recusandae.
+                                Numquam debitis pariatur omnis facere unde. Laboriosam minus amet nesciunt est. Et saepe eos
+                                maxime tempore quasi deserunt ab.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======= Recent Blog Posts Section ======= -->
+        <section id="recent-blog-posts py-5" class="recent-blog-posts">
+
+            <div class="container py-5" data-aos="fade-up">
+
+                <div class="section-header">
+                    <h2>Campanhas</h2>
+                    <p>Postadas recentemente</p>
+                </div>
+
+                <div class="row">
+                    @forelse ($campanhas as $campanha)
+                        <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
+                            <div class="post-box">
+                                <div class="post-img"><img src="{{ $campanha->capa }}" class="img-fluid" alt="">
+                                </div>
+                                <div class="meta">
+                                    <span class="post-date">{{ $campanha->created_at->format('M d,  Y') }}</span>
+                                    <span class="post-author"> {{ $campanha->criador->name }}</span>
+                                </div>
+                                <h3 class="post-title"> <a
+                                        href="{{ route('campanha.show', $campanha->id) }}">{{ $campanha->titulo }}</a></h3>
+                                <p> {!! Str::limit($campanha->descricao, 150) !!}</p>
+
+                            </div>
+                        </div>
+                    @empty
+                        <h1 style=" margin-top: 300px;text-align: center;color: #0EA2BD;">Nenhuma campanha disponível</h1>
+                    @endforelse
+                    <div class="button-voluntario justify-content-center pt-3">
+                        <button class="btn"><a href="{{ route('campanha.index') }}">Ver Todas</a></button>
+                    </div>
+                </div>
+                
+            </div>
+
+        </section>
+
+        <section class="voluntario">
+            <div class="home-page-limestone">
+                <div class="container">
+                    <div class="row align-items-end">
+                        <div class="coL-12 col-lg-6">
+                            <div class="section-heading">
+                                <h2 class="entry-title">Transforme a Compaixão em ação, desenvolva novas habilidades, ganhe experiências valiosas, sua Habilidade pode ser o Presente
+                                    que Muda o Mundo!.</h2>
+                               <p class="pt-3 pb-3 text-p-voluntario">O voluntariado é motivado por um desejo de contribuir para o bem-estar da comunidade ou de um grupo específico, seja por meio de ações sociais, ambientais, educacionais, de saúde, culturais, entre outras áreas.</p>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6">
+                           <img class="" src="assets/img/donate-pri.png" alt="" srcset="">
+                        </div>
+                        {{-- <div class="milestones d-flex flex-wrap justify-content-between">
+                            <div class="col-12 col-sm-4 mt-5 mt-lg-0">
+                                <div class="col-xl-3 col-md-6 d-flex" data-aos="zoom-out" data-aos-delay="400">
+                                    <div class="service-item position-relative">
+                                       <img src="assets/img/testimonials/knowledge.png" alt="">
+                                        <h4>Conhecimento</h4>
+                                        <p></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-4 mt-5 mt-lg-0">
+                                <div class="col-xl-3 col-md-6 d-flex" data-aos="zoom-out" data-aos-delay="200">
+                                    <div class="service-item position-relative">
+                                        <img src="assets/img/testimonials/trabalho-em-equipe.png" alt="">
+                                        <h4> Conexão</h4>
+                                        <p class="text-center">Com outras histórias de vida</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-4 mt-5 mt-lg-0">
+                                <div class="counter-box">
+                                    <div class="col-xl-3 col-md-6 d-flex" data-aos="zoom-out" data-aos-delay="600">
+                                        <div class="service-item position-relative">
+                                            <img src="assets/img/testimonials/development.png" alt="">
+                                            <h4>Desenvolvimento</h4>
+                                            <p>de habilidades</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> --}}
+                        <div class="button-voluntario justify-content-center pt-3">
+                            <button class="btn"><a href="{{ route('voluntario') }}">Seja um voluntário</a></button>
+                        </div>
+                    </div>
+                    </div>
+            </div>
+        </section>
+
+
 
         <!-- ======= F.A.Q Section ======= -->
         <section id="faq" class="faq py-5">
@@ -199,14 +308,15 @@
 
                 <div class="row gy-4 py-2">
 
-                    <div class="col-lg-7 d-flex flex-column justify-content-center align-items-stretch  order-2 order-lg-1">
+                    <div
+                        class="col-lg-7 d-flex flex-column justify-content-center align-items-stretch  order-2 order-lg-1">
 
                         <div class="content px-xl-5">
                             <h3>Perguntas <strong>Frequentes</strong></h3>
                             <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                                labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit
-                            </p>
+                                Bem-vindos à nossa seção de Perguntas Frequentes! Aqui, você encontrará respostas para
+                                algumas das dúvidas mais comuns sobre como participar, contribuir e se envolver em nossa
+                                plataforma.
                         </div>
 
                         <div class="accordion accordion-flush px-xl-5" id="faqlist">
@@ -221,9 +331,8 @@
                                 </h3>
                                 <div id="faq-content-1" class="accordion-collapse collapse" data-bs-parent="#faqlist">
                                     <div class="accordion-body">
-                                        Feugiat pretium nibh ipsum consequat. Tempus iaculis urna id volutpat lacus laoreet
-                                        non curabitur gravida. Venenatis lectus magna fringilla urna porttitor rhoncus dolor
-                                        purus non.
+                                        Você pode doar uma ampla gama de itens, incluindo alimentos não perecíveis, roupas
+                                        em bom estado, eletrônicos funcionais, livros e brinquedos.
                                     </div>
                                 </div>
                             </div><!-- # Faq item-->
@@ -238,10 +347,9 @@
                                 </h3>
                                 <div id="faq-content-2" class="accordion-collapse collapse" data-bs-parent="#faqlist">
                                     <div class="accordion-body">
-                                        Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id interdum
-                                        velit laoreet id donec ultrices. Fringilla phasellus faucibus scelerisque eleifend
-                                        donec pretium. Est pellentesque elit ullamcorper dignissim. Mauris ultrices eros in
-                                        cursus turpis massa tincidunt dui.
+                                        Após o término de sua campanha de arrecadação, o valor total será transferido para a
+                                        conta bancária que você especificou no momento do cadastro. Lembre-se de que pode
+                                        levar alguns dias úteis para que os fundos estejam disponíveis em sua conta.
                                     </div>
                                 </div>
                             </div><!-- # Faq item-->
@@ -285,10 +393,10 @@
                                 <div id="faq-content-4" class="accordion-collapse collapse" data-bs-parent="#faqlist">
                                     <div class="accordion-body">
                                         <i class="bi bi-question-circle question-icon"></i>
-                                        Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id interdum
-                                        velit laoreet id donec ultrices. Fringilla phasellus faucibus scelerisque eleifend
-                                        donec pretium. Est pellentesque elit ullamcorper dignissim. Mauris ultrices eros in
-                                        cursus turpis massa tincidunt dui.
+                                        Sim, é possível que outra pessoa crie uma campanha em seu nome, desde que tenha
+                                        todas as informações necessárias e sua permissão para fazê-lo. Essa pode ser uma
+                                        ótima maneira de receber apoio se você não se sentir confortável ou capaz de
+                                        gerenciar uma campanha sozinho(a).
                                     </div>
                                 </div>
                             </div><!-- # Faq item-->
@@ -303,9 +411,9 @@
                                 </h3>
                                 <div id="faq-content-5" class="accordion-collapse collapse" data-bs-parent="#faqlist">
                                     <div class="accordion-body">
-                                        Molestie a iaculis at erat pellentesque adipiscing commodo. Dignissim suspendisse in
-                                        est ante in. Nunc vel risus commodo viverra maecenas accumsan. Sit amet nisl
-                                        suscipit adipiscing bibendum est. Purus gravida quis blandit turpis cursus in
+                                        Após realizar sua doação, coordenaremos a entrega dos itens doados diretamente para
+                                        a organização ou indivíduo beneficiado. Você receberá atualizações por e-mail sobre
+                                        o status da entrega, garantindo transparência e rastreabilidade de sua contribuição.
                                     </div>
                                 </div>
                             </div><!-- # Faq item-->
@@ -315,112 +423,11 @@
                     </div>
 
                     <div class="col-lg-5 align-items-stretch order-1 order-lg-2 img"
-                        style='background-image: url("assets/img/faq.jpg");'>&nbsp;</div>
+                        style='background-image: url("assets/img/perFQA.jpg");'>&nbsp;</div>
                 </div>
 
             </div>
         </section><!-- End F.A.Q Section -->
-
-        <!-- ======= Recent Blog Posts Section ======= -->
-        <section id="recent-blog-posts py-5" class="recent-blog-posts">
-
-            <div class="container" data-aos="fade-up">
-
-                <div class="section-header">
-                    <h2>Campanhas</h2>
-                    <p>Postadas recentemente</p>
-                </div>
-
-                <div class="row">
-                    @forelse ($campanhas as $campanha)
-                        <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
-                            <div class="post-box">
-                                <div class="post-img"><img src="{{ $campanha->capa }}" class="img-fluid" alt="">
-                                </div>
-                                <div class="meta">
-                                    <span class="post-date">{{ $campanha->created_at->format('M d,  Y') }}</span>
-                                    <span class="post-author"> {{ $campanha->criador->name }}</span>
-                                </div>
-                                <h3 class="post-title"> <a
-                                        href="{{ route('campanha.show', $campanha->id) }}">{{ $campanha->titulo }}</a></h3>
-                                <p> {!! Str::limit($campanha->descricao, 150) !!}</p>
-
-                            </div>
-                        </div>
-                        @empty
-                        <h1 style=" margin-top: 300px;text-align: center;color: #0EA2BD;">Nenhuma campanha disponível</h1>
-                    @endforelse
-                </div>
-
-            </div>
-
-        </section><!-- End Recent Blog Posts Section -->
-
-        <section class="banner-description py-5" style="background-image: url('assets/img/voluntario-bk.jpg')">
-            <div class="container">
-
-                <div class="row gy-5 gx-lg-5">
-
-                    <div class="col-lg-12">
-
-                        <div class="section-header">
-                            <h2>Seja um Voluntário</h2>
-                            <p>O voluntariado é sobre troca de experiência, conhecimento, serviço, apoio, carinho, amor,
-                                existindo um ganho não apenas para a organização, mas também para o voluntário. É uma
-                                experiência para todes - independe de gênero, raça ou etnia - que permite conhecer novas
-                                realidades, se engajar em uma causa social, contribuir com suas habilidades, e até mesmo
-                                desenvolver novas competências...</p>
-                            <p>Transforme a Compaixão em Ação. Sua Habilidade pode ser o Presente que Muda o Mundo!</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ======= Featured Services Section ======= -->
-        <section id="featured-services py-5" class="featured-services">
-            <div class="container">
-
-                <div class="row gy-4 py-5">
-
-                    <h3 class="ganho">O que eu ganho sendo voluntário?</h3>
-
-                    <div class="col-xl-3 col-md-6 d-flex" data-aos="zoom-out">
-                        <div class="service-item position-relative">
-                            <div class="icon"><i class="bi bi-activity icon"></i></div>
-                            <h4><a href="" class="stretched-link text-center">Desenvolvimento</a></h4>
-                            <p>de habilidades</p>
-                        </div>
-                    </div><!-- End Service Item -->
-
-                    <div class="col-xl-3 col-md-6 d-flex" data-aos="zoom-out" data-aos-delay="200">
-                        <div class="service-item position-relative">
-                            <div class="icon"><i class="bi bi-bounding-box-circles icon"></i></div>
-                            <h4><a href="" class="stretched-link text-center">CONEXÃO</a></h4>
-                            <p class="text-center">Com outras histórias de vida</p>
-                        </div>
-                    </div><!-- End Service Item -->
-
-                    <div class="col-xl-3 col-md-6 d-flex" data-aos="zoom-out" data-aos-delay="400">
-                        <div class="service-item position-relative">
-                            <div class="icon"><i class="bi bi-calendar4-week icon"></i></div>
-                            <h4><a href="" class="stretched-link text-center">Conhecimento</a></h4>
-                            <p></p>
-                        </div>
-                    </div><!-- End Service Item -->
-
-                    <div class="col-xl-3 col-md-6 d-flex" data-aos="zoom-out" data-aos-delay="600">
-                        <div class="service-item position-relative">
-                            <div class="icon"><i class="bi bi-broadcast icon"></i></div>
-                            <h4><a href="" class="stretched-link text-center">Trocas</a></h4>
-                            <p>e novas perpectivas de experiências de vida</p>
-                        </div>
-                    </div><!-- End Service Item -->
-
-                </div>
-
-            </div>
-        </section>
 
     </main><!-- End #main -->
 @endsection
