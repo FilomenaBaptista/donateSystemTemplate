@@ -223,7 +223,7 @@
                     @forelse ($campanhas as $campanha)
                         <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
                             <div class="post-box">
-                                <div class="post-img"><img src="{{ $campanha->capa }}" class="img-fluid" alt="">
+                                <div class="post-img"><img src="{{ $campanha->imagem }}" class="img-fluid" alt="">
                                 </div>
                                 <div class="meta">
                                     <span class="post-date">{{ $campanha->created_at->format('M d,  Y') }}</span>

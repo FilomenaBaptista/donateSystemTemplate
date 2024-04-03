@@ -16,7 +16,7 @@
                 <h2>Campanhas</h2>
                 <ol>
                     <li><a href="{{url('/')}}">Home</a></li>
-                    <li><a class="scrollto" href="{{ route('campanha.index') }}">Campanhas</a></li>
+                    <li>Campanhas</li>
                 </ol>
             </div>
 

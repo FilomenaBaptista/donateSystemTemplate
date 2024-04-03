@@ -59,10 +59,7 @@ class CampanhaController extends Controller
         }
 
         $CampanhaService = new CampanhaService();
-        $response = $CampanhaService->listCampanha(
-            $request->user_id,
-            $request->eliminado
-        );
+        $response = $CampanhaService->campanhasRecentes(3);
 
         $doacaoFisica = new DoacaoFisica();
         $doacoes = $doacaoFisica->listDoacaoFisica();
@@ -179,7 +176,6 @@ class CampanhaController extends Controller
             $request->limit,
             $request->excepto_id
         );
-        return   $response;
         return response()->json(['data' => $response['data'], 'message' => $response['message'], 'status' => $response['status']]);
     }
 }
