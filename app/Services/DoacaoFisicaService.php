@@ -55,8 +55,10 @@ class DoacaoFisicaService
             $response = $doacaoFisica->getDoacaoFisica(
                 $doacaoFisicaId
             );
+          
             return StatusHelper::response(['data' => $response, 'tag' => 'GET.DOACAOFISICA', 'status' => 200]);
         } catch (Exception $e) {
+           
             return StatusHelper::response(['tag' => 'GET.DOACAOFISICA', 'status' => (int) $e->getMessage(), 'line_trace' => __LINE__, 'class_trace' => PathHelper::getClassName($this)]);
         }
     }

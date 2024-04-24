@@ -24,8 +24,8 @@ class DoacaoFisicaController extends Controller
         if ($validator->fails()) {
             return response()->json(['data' => '', 'message' => $validator->errors(), 'status' => 400]);
         }
-        $DoacaoFisicaService = new DoacaoFisicaService();
-        $response = $DoacaoFisicaService->listDoacaoFisica(
+        $doacaoFisicaService = new DoacaoFisicaService();
+        $response = $doacaoFisicaService->listDoacaoFisica(
             $request->user_id,
             $request->eliminado
         );
@@ -101,26 +101,27 @@ class DoacaoFisicaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(DoacaoFisica $doacaoFisicaId)
+    public function show($id)
     {
-        $DoacaoFisicaService = new DoacaoFisicaService();
-        $response = $DoacaoFisicaService->getDoacaoFisica( $doacaoFisicaId ->id);
+        $doacaoFisicaService = new DoacaoFisicaService();
+        $response = $doacaoFisicaService->getDoacaoFisica( $id);
+        return view('portal.doacao/donate-details',['doacao' => $response['data']]);
         // return response()->json(['data' => $response['data'], 'message' => $response['message'], 'status' => $response['status']]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    // public function edit(Request $request, DoacaoFisica $doacaoFisica)
-    // {
-    //     $this->authorize('edit', $doacaoFisica);
+    public function edit(Request $request, DoacaoFisica $doacaoFisica)
+    {
+        $this->authorize('edit', $doacaoFisica);
 
-    //     $CategoriaService = new DoacaoFisicaService();
-    //     $validacao = new FuncoesUteisController();
-    //     $response = $CategoriaService->listCategoria();
-    //     $categorias= $validacao->getNames($response['data']);
-    //     return view('portal.doacao.solicitar-doacao' , ['campanha' => $doacaoFisica,'categorias' => $categorias]);
-    // }
+        $CategoriaService = new CategoriaService();
+        $validacao = new FuncoesUteisController();
+        $response = $CategoriaService->listCategoria();
+        $categorias= $validacao->getNames($response['data']);
+        return view('portal.doacao.solicitar-doacao' , ['campanha' => $doacaoFisica,'categorias' => $categorias]);
+    }
 
     /**
      * Update the specified resource in storage.

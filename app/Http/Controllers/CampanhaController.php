@@ -66,8 +66,8 @@ class CampanhaController extends Controller
 
         $doacaoFisica = new DoacaoFisica();
         $doacoes = $doacaoFisica->listDoacaoFisica();
-  
-        return view('portal.index',['campanhas' => $response['data'],'doacoes' => $doacoes['data']]);
+
+        return view('portal.index',['campanhas' => $response['data'],'doacoes' => $doacoes]);
     }
 
     /**
@@ -170,7 +170,7 @@ class CampanhaController extends Controller
         return response()->json(['data' => $response['data'], 'message' => $response['message'], 'status' => $response['status']]);
     }
 
-     public function campanhasRecentes(
+    public function campanhasRecentes(
         Request $request, 
         int $limit
     ){
@@ -179,7 +179,6 @@ class CampanhaController extends Controller
             $request->limit,
             $request->excepto_id
         );
-        return   $response;
         return response()->json(['data' => $response['data'], 'message' => $response['message'], 'status' => $response['status']]);
     }
 }

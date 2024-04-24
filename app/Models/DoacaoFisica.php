@@ -16,12 +16,12 @@ class DoacaoFisica extends Model
     protected $table = 'doacao_bens_materiais';
     protected $fillable = ['capa','anuncio','categoria','qtd_itens_doar','local','estado_artigo','descricao','is_anonimo','user_id'];
 
-    public function doar(): BelongsTo
+    public function criador(): BelongsTo
     {return $this->belongsTo(User::class,'user_id');}
 
-    /* public function comentarios()
+    public function comentarios()
     {return $this->hasMany(Comentario::class);}
- */
+
     public function listDoacaoFisica(
         int $criadorId = null,
         int $eliminado = null
@@ -29,13 +29,13 @@ class DoacaoFisica extends Model
          try {
             $with['comentarios'] = 'comentarios';
             $query =  DoacaoFisica::from('doacao_bens_materiais as dbm')
-           /*  ->with('criador') */
+           ->with('criador') 
             ->orderBy('dbm.id', 'DESC');
 
 
-          /*   if ($with['comentarios'] !== 'comentarios') {
+           if ($with['comentarios'] !== 'comentarios') {
                 $query->with('comentarios');
-            } */
+            } 
             if ($criadorId !== null) {
                 $query->where('dbm.user_id', '=', $criadorId);
             }
@@ -43,7 +43,7 @@ class DoacaoFisica extends Model
                 $query->where('dbm.eliminado', '=', $criadorId);
             }
 
-            return $query->paginate(6);
+            return $query->paginate(6)->withQueryString();
         } catch (QueryException $e) {
             throw new Exception($e->getCode());
         }
@@ -62,10 +62,10 @@ class DoacaoFisica extends Model
         try {
             return DoacaoFisica::from('doacao_bens_materiais as dbm')
             ->with('criador')
-            ->with('comentarios')
+            //->with('comentarios')
             ->where('dbm.id', $doacaoFisicaId)
             ->first(['dbm.*']);
-        } catch (QueryException $e) {
+        } catch (Exception $e) {
             throw new Exception($e->getCode());
         }
     }

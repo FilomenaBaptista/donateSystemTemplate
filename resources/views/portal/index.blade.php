@@ -40,7 +40,7 @@
                     <!-- Coluna 1 -->
                     <div class="col-md-4">
                         <div class="column-content">
-                            <img class="pb-3" src="assets/img/coracao.png" alt="">
+                            <img class="pb-3" src="assets/img/doe.png" alt="">
                             <h3 class="h3-tittle">Toque Corações:</h3>
                             <p>sua doação leva calor e apoio a quem mais precisa.</p>
                         </div>
@@ -49,7 +49,7 @@
                     <!-- Coluna 2 -->
                     <div class="col-md-4">
                         <div class="column-content">
-                            <img class="pb-3" src="assets/img/estrelas.png" alt="">
+                            <img class="pb-3" src="assets/img/ilumine.png" alt="">
                             <h3 class="h3-tittle">Ilumine Vidas:</h3>
                             <p>mesmo um pequeno ato de bondade pode ser um grande raio de luz.</p>
                         </div>
@@ -75,76 +75,26 @@
 
                 <div class="testimonials-slider swiper">
                     <div class="swiper-wrapper">
-
+                        @forelse ($doacoes as $doacao)
                         <div class="swiper-slide">
                             <div class="testimonial-item">
-                                <img src="assets/img/testimonials/testimonials-1.jpg" class="testimonial-img"
-                                    alt="">
-                                <h3>Roupas Disponineis para doação</h3>
-                                <h4>Ceo &amp; Founder</h4>
+                                <img src="{{ $doacao->capa }}" alt="Sem foto de capa" class="img-fluid">
+                                <h2 class="title">
+                                    <a
+                                        href="{{ route('doacao.show', $doacao->id) }}">{{ $doacao->anuncio }}</a>
+                                </h2>
+                                <h4><i class="bi bi-person"></i> <a href="blog-details.html">{{$doacao->criador->name}}</a> &amp; Founder</h4>
 
                                 <p class="text-black">
                                     <i class="bi bi-quote quote-icon-left"></i>
-                                    l. Os itens mais comumente doados incluem roupas, alimentos, brinquedos, móveis,
-                                    eletrodomésticos, livros e até veículos.
+                                    {!! Str::limit($doacao->descricao, 150) !!}
                                     <i class="bi bi-quote quote-icon-right"></i>
                                 </p>
                             </div>
                         </div><!-- End testimonial item -->
-
-                        <div class="swiper-slide">
-                            <div class="testimonial-item">
-                                <div class="imag-card">
-                                    <img src="assets/img/testimonials/testimonials-2.jpg" class="testimonial-img"
-                                        alt="">
-                                </div>
-
-                                <h3>Alimentos disponiveis para doação</h3>
-
-                                <div class="content-card">
-                                    <p>
-                                        <i class="bi bi-quote quote-icon-left"></i>
-                                        l. Os itens mais comumente doados incluem roupas, alimentos, brinquedos, móveis,
-                                        eletrodomésticos, livros e até veículos.
-                                        <i class="bi bi-quote quote-icon-right"></i>
-                                    </p>
-                                </div>
-                            </div>
-                        </div><!-- End testimonial item -->
-
-                        <!-- End testimonial item -->
-
-                        <div class="swiper-slide">
-                            <div class="testimonial-item">
-                                <img src="assets/img/testimonials/testimonials-4.jpg" class="testimonial-img"
-                                    alt="">
-                                <h3>Pasta disponivel para doação</h3>
-                                <h4>Freelancer</h4>
-
-                                <p>
-                                    <i class="bi bi-quote quote-icon-left"></i>
-                                    l. Os itens mais comumente doados incluem roupas, alimentos, brinquedos, móveis,
-                                    eletrodomésticos, livros e até veículos..
-                                    <i class="bi bi-quote quote-icon-right"></i>
-                                </p>
-                            </div>
-                        </div><!-- End testimonial item -->
-
-                        <div class="swiper-slide">
-                            <div class="testimonial-item">
-                                <img src="assets/img/testimonials/testimonials-5.jpg" class="testimonial-img"
-                                    alt="">
-                                <h3>Calçados Disponiveis para doação</h3>
-                                <h4>Entrepreneur</h4>
-
-                                <p>
-                                    <i class="bi bi-quote quote-icon-left"></i>
-                                    l. Os itens mais comumente doados incluem roupas, alimentos, brinquedos, móveis,
-                                    eletrodomésticos, livros e até veículos.
-                                    <i class="bi bi-quote quote-icon-right"></i>
-                                </p>
-                            </div>
-                        </div><!-- End testimonial item -->
+                        @empty
+                        <h1 style=" margin-top: 300px;text-align: center;color: #0EA2BD;">Nenhuma campanha disponível</h1>
+                    @endforelse
 
                     </div>
                     <div class="swiper-pagination"></div>
@@ -153,12 +103,8 @@
             </div>
         </section><!-- End Testimonials Section -->
         
-        <section id="who-campnahas" class="s-who-campnahas">
+        {{-- <section id="who-campnahas" class="s-who-campnahas">
             <div class="row section-header" data-aos="fade-up">
-                {{-- <div class="col-full">
-                    <h1 class="display-1">Como Começar uma camapanha
-                    </h1>
-                </div> --}}
             </div>
             <div class="row who-campnahas">
                 <div class="about-process process block-1-2 block-tab-full">
@@ -207,7 +153,7 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section> --}}
 
         <!-- ======= Recent Blog Posts Section ======= -->
         <section id="recent-blog-posts py-5" class="recent-blog-posts">
@@ -238,8 +184,8 @@
                     @empty
                         <h1 style=" margin-top: 300px;text-align: center;color: #0EA2BD;">Nenhuma campanha disponível</h1>
                     @endforelse
-                    <div class="button-voluntario justify-content-center pt-3">
-                        <button class="btn"><a href="{{ route('campanha.index') }}">Ver Todas</a></button>
+                    <div class="campanha justify-content-center pt-3">
+                        <button class="btn button-voluntario"><a href="{{ route('campanha.index') }}">Ver Todas</a></button>
                     </div>
                 </div>
                 
@@ -261,39 +207,8 @@
                         <div class="col-12 col-lg-6">
                            <img class="" src="assets/img/donate-pri.png" alt="" srcset="">
                         </div>
-                        {{-- <div class="milestones d-flex flex-wrap justify-content-between">
-                            <div class="col-12 col-sm-4 mt-5 mt-lg-0">
-                                <div class="col-xl-3 col-md-6 d-flex" data-aos="zoom-out" data-aos-delay="400">
-                                    <div class="service-item position-relative">
-                                       <img src="assets/img/testimonials/knowledge.png" alt="">
-                                        <h4>Conhecimento</h4>
-                                        <p></p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-sm-4 mt-5 mt-lg-0">
-                                <div class="col-xl-3 col-md-6 d-flex" data-aos="zoom-out" data-aos-delay="200">
-                                    <div class="service-item position-relative">
-                                        <img src="assets/img/testimonials/trabalho-em-equipe.png" alt="">
-                                        <h4> Conexão</h4>
-                                        <p class="text-center">Com outras histórias de vida</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-sm-4 mt-5 mt-lg-0">
-                                <div class="counter-box">
-                                    <div class="col-xl-3 col-md-6 d-flex" data-aos="zoom-out" data-aos-delay="600">
-                                        <div class="service-item position-relative">
-                                            <img src="assets/img/testimonials/development.png" alt="">
-                                            <h4>Desenvolvimento</h4>
-                                            <p>de habilidades</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> --}}
-                        <div class="button-voluntario justify-content-center pt-3">
-                            <button class="btn"><a href="{{ route('voluntario') }}">Seja um voluntário</a></button>
+                        <div class="voluntario justify-content-center pt-3">
+                            <button class="btn button-voluntario"><a class="text-center" href="{{ route('voluntario') }}">Seja um voluntário</a></button>
                         </div>
                     </div>
                     </div>

@@ -62,119 +62,90 @@
                                     </div>
 
                                     <div class="col-lg-8">
-
-                                        <div class="col-md-12 form-group">
-                                            {{-- {{ Form::label('titulo', 'Título da Campanha', ['class' => 'mb-2']) }} --}}
-                                            {{ Form::text('anuncio', null, [
-                                                'class' => 'form-control',
-                                                'required' => '',
-                                                'minlength' => '10',
-                                                'id' => 'anuncio',
-                                                'placeholder' => 'Titulo do Anúncio',
-                                            ]) }}
-
+                                        <div class="row">
+                                            <div class="col">
+                                                {{ Form::text('anuncio', null, [
+                                                    'class' => 'form-control',
+                                                    'required' => '',
+                                                    'minlength' => '10',
+                                                    'id' => 'anuncio',
+                                                    'placeholder' => 'Titulo do Anúncio',
+                                                ]) }}
+                                            </div>
+                                            <div class="col">
+                                                {{ Form::select('categoria_id', $categorias, null, [
+                                                    'class' => 'form-select',
+                                                    'required' => '',
+                                                    'id' => 'categoria_id',
+                                                    'placeholder' => 'Selecione a Categoria',
+                                                ]) }}
+                                            </div>
                                         </div>
 
-                                        <div class="col-md-12 form-group mt-3 mt-md-0">
-
-                                            {{ Form::select('categoria_id', $categorias, null, [
-                                                'class' => 'form-select',
-                                                'required' => '',
-                                                'id' => 'categoria_id',
-                                                'placeholder' => 'Selecione a Categoria',
-                                            ]) }}
-
+                                        <div class="row">
+                                            <div class="col">
+                                                {{ Form::number('qtd_itens_doar', null, [
+                                                    'class' => 'form-control',
+                                                    'min' => '0',
+                                                    'id' => 'qtd_itens_doar',
+                                                    'placeholder' => 'Quantidade de itens a doar',
+                                                ]) }}
+                                            </div>
+                                            <div class="col">
+                                                {{ Form::text('local', null, [
+                                                    'class' => 'form-control',
+                                                    'required' => '',
+                                                    'minlength' => '10',
+                                                    'id' => 'local',
+                                                    'placeholder' => 'Local da Doação',
+                                                ]) }}
+                                            </div>
                                         </div>
 
-                                        <div class="col-md-12 mb-3 mt-3 mt-md-0">
-
-                                            {{ Form::number('qtd_itens_doar', null, [
-                                                'class' => 'form-control',
-                                                'min' => '0',
-                                                'id' => 'qtd_itens_doar',
-                                                'placeholder' => 'Quantidade de itens a doar',
-                                            ]) }}
-                                        </div>
-
-                                        <div class="col-md-12 form-group mt-3 mt-md-0">
-
-                                            {{ Form::text('local', null, [
-                                                'class' => 'form-control',
-                                                'required' => '',
-                                                'minlength' => '10',
-                                                'id' => 'local',
-                                                'placeholder' => 'Local da Doação',
-                                            ]) }}
-
-
-                                        </div>
-
-                                        <div class="col-md-12 form-group mt-3 mt-md-0">
-
-                                            <select class="form-select" aria-label="Default select example"
-                                                name="estado_artigo" id="estado_artigo" value="{{ old('estado') }}">
-                                                <option selected>Estado da doação</option>
-                                                <option value="1">Muito boa condição</option>
-                                                <option value="2">Estado médio</option>
-                                                <option value="3">Mal estado</option>
-                                                <option value="3">Não definível</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group ml-3">
-                                            <label for="">Descricação</label>
-                                            <textarea class="form-control" name="descricao" id="descricao" name="message"
-                                                placeholder="Oi meu nome é Ana, estou arrecadando fundos para..." required>{{ old('descrica') }}</textarea>
-                                        </div>
-
-                                        <div class="col-md-6 form-group mt-3 mt-md-0">
-                                            <label class="label-text" for="">Doador Anónimo?</label>
-                                            <div>
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio" name="is_anonimo"
-                                                        id="is_anonimo" value="1"
-                                                        @if (old('is_anonimo') == '1') checked @endif>
-                                                    <label class="form-check-label" for="inlineRadio1">Sim</label>
-                                                </div>
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio" name="is_anonimo"
-                                                        id="is_anonimo" value="0"
-                                                        @if (old('is_anonimo') == '0') checked @endif>
-                                                    <label class="form-check-label" for="inlineRadio2">Não</label>
+                                        <div class="row">
+                                            <div class="col">
+                                                <select class="form-select" aria-label="Default select example"
+                                                    name="estado_artigo" id="estado_artigo" value="{{ old('estado') }}">
+                                                    <option selected>Estado da doação</option>
+                                                    <option value="1">Muito boa condição</option>
+                                                    <option value="2">Estado médio</option>
+                                                    <option value="3">Mal estado</option>
+                                                    <option value="3">Não definível</option>
+                                                </select>
+                                            </div>
+                                            <div class="col">
+                                                <label class="label-text mt-2" for="">Doador Anónimo?</label>
+                                                <div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="is_anonimo"
+                                                            id="is_anonimo" value="1"
+                                                            @if (old('is_anonimo') == '1') checked @endif>
+                                                        <label class="form-check-label" for="inlineRadio1">Sim</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="is_anonimo"
+                                                            id="is_anonimo" value="0"
+                                                            @if (old('is_anonimo') == '0') checked @endif>
+                                                        <label class="form-check-label" for="inlineRadio2">Não</label>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="mt-3 ml-2">
-
-                                            {{ Form::button('Submeter para Aprovação', ['type' => 'submit', 'class' => 'mr-2']) }}
-                                            {{ Form::button('Visualizar Doação', ['type' => 'submit', 'data-toggle' => 'modal', 'data-target' => '#exampleModalCenter','class' => 'mr-2']) }}
-                                      
-                                              <!-- Modal -->
-                                              <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                                <div class="modal-dialog modal-dialog-centered" role="document">
-                                                  <div class="modal-content">
-                                                    <div class="modal-header">
-                                                      <h5 class="modal-title" id="exampleModalLongTitle">Doação feita</h5>
-                                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                      </button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                      <button type="button" class="btn btn-primary">Save changes</button>
-                                                    </div>
-                                                  </div>
-                                                </div>
-                                              </div>
-                                            {{ Form::button('Publicar Doação', ['type' => 'submit']) }}
-
+                                        <div class="row">
+                                            <div class="col">
+                                                <label class="mt-1 mb-3 text-bold">Descricação</label>
+                                                <textarea class="form-control" name="descricao" id="descricao" name="message"
+                                                    placeholder="Oi meu nome é Ana, estou arrecadando fundos para..." required>{{ old('descrica') }}</textarea>
+                                            </div>
                                         </div>
-                                        {{-- <button type="button" class="btn btn-primary" data-toggle="modal"
-                                            data-target=".bd-example-modal-lg">Large modal</button> --}}
 
+                                        <div class="row mt-3">
+                                            <div class="col-md-12 form-group">
 
+                                                {{ Form::button('Submeter para Aprovação', ['type' => 'submit', 'class' => 'mr-2']) }}
+                                                {{ Form::button('Publicar Doação', ['type' => 'submit']) }}
+                                            </div>
+                                        </div>
 
                                     </div><!-- End Contact Form -->
                                 </div>

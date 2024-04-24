@@ -12,11 +12,11 @@
         <div class="breadcrumbs">
             <div class="container">
                 <div class="d-flex justify-content-between align-items-center">
-                    <h2>Campanha</h2>
+                    <h2>Doações</h2>
                     <ol>
                         <li><a class="scrollto" href="{{ url('/') }}">Home</a></li>
-                        <li><a class="scrollto" href="{{ route('campanha.index') }}">Campanhas</a></li>
-                        <li><a href="{{ route('campanha.show', $campanha->id) }}">Detalhes da campanha</a></li>
+                        <li><a class="scrollto" href="{{ route('doacao.index') }}">Doações</a></li>
+                        <li><a href="{{ route('doacao.show', $doacao->id) }}">Detalhes da Doação</a></li>
                     </ol>
                 </div>
             </div>
@@ -45,28 +45,28 @@
                         <article class="d-flex flex-column blog-details">
 
                             <div class="post-img">
-                                <img src="{{ $campanha->imagem }}" alt="" class="img-fluid">
+                                <img src="{{ $doacao->imagem }}" alt="" class="img-fluid">
                             </div>
 
-                            <h2 class="title">{{ $campanha->titulo }}</h2>
+                            <h2 class="title">{{ $doacao->anuncio }}</h2>
 
                             <div class="meta-top">
                                 <ul>
                                     <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a
-                                            href="blog-details.html">{{ $campanha->criador->name }}</a></li>
+                                            href="blog-details.html">{{ $doacao->criador->name }}</a></li>
                                     <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a
                                             href="blog-details.html"><time
-                                                datetime="2020-01-01">{{ $campanha->created_at->format('M d,  Y') }}</time></a>
+                                                datetime="2020-01-01">{{ $doacao->created_at->format('M d,  Y') }}</time></a>
                                     </li>
-                                    <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a
-                                            href="blog-details.html"> {{ $campanha->comentarios->count() }} Comentários</a>
-                                    </li>
+                                    {{-- <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a
+                                            href="blog-details.html"> {{ $doacao->comentarios->count() }} Comentários</a>
+                                    </li> --}}
                                 </ul>
                             </div><!-- End meta top -->
 
                             <div class="content">
                                 <p>
-                                    {!! $campanha->descricao !!}
+                                    {!! $doacao->descricao !!}
                                 </p>
 
                             </div><!-- End post content -->
@@ -74,21 +74,21 @@
                             <div class="meta-bottom">
                                 <i class="bi bi-folder"></i>
                                 <ul class="cats">
-                                    <li><a href="#">Business</a></li>
+                                    <li><a href="#">{{ $doacao->criador->name }}</a></li>
                                 </ul>
                             </div><!-- End meta bottom -->
-                            @can('edit', $campanha)
+                            @can('edit', $doacao)
                                 <div class="read-more mt-auto align-self-end">
-                                    <a class="btn-edit" href="{{ route('campanha.edit', $campanha->id) }}">
+                                    <a class="btn-edit" href="{{ route('doacao.edit', $doacao->id) }}">
                                         <i class="bi bi-pencil"></i> Editar
                                     </a>
                                 </div>
                             @endcan
                         </article>
 
-                        <div class="comments">
-                            <h4 class="comments-count"> {{ $campanha->comentarios->count() }} Comentários</h4>
-                            @forelse ($campanha->comentarios as $comentario)
+                        {{-- <div class="comments">
+                            <h4 class="comments-count"> {{ $doacao->comentarios->count() }} Comentários</h4>
+                            @forelse ($doacao->comentarios as $comentario)
                                 <div id="comment-2" class="comment">
                                     <div class="d-flex">
                                         <div class="comment-img"><img src="assets/img/blog/comments-2.jpg" alt="">
@@ -108,7 +108,7 @@
                             @endforelse
 
 
-                        </div>
+                        </div> --}}
                     </div>
 
                     <div class="col-lg-4">
@@ -147,13 +147,13 @@
                                                                 <form action="forms/contact.php" method="post"
                                                                     role="form" class="php-email-form">
                                                                     <div class="post-img-pagamento">
-                                                                        <img src="{{ $campanha->imagem }}" alt="" class="img-fluid">
+                                                                        <img src="{{ $doacao->imagem }}" alt="" class="img-fluid">
                                                                     </div>
-                                                                    <h5>Você está apoiando a Campanha:
-                                                                        {{ $campanha->titulo }}</h5>
+                                                                    <h5>Você está apoiando a doacao:
+                                                                        {{ $doacao->titulo }}</h5>
                                                                     <p>
                                                                         Sua doação beneficiará:
-                                                                        {{ $campanha->criador->name }}</p>
+                                                                        {{ $doacao->criador->name }}</p>
                                                                     <div
                                                                         class="col-md-12 input-group mb-3 mt-3 mt-md-0 p-0">
                                                                         <span class="input-group-text">AKZ</span>
@@ -226,7 +226,7 @@
 
                             <div class="sidebar-item recent-posts">
                                 <h3 class="sidebar-title">Publicações Recentes</h3>
-                                <div class="mt-3 campanhasRecentes"></div>
+                                <div class="mt-3 doacaosRecentes"></div>
                             </div><!-- End sidebar recent posts-->
 
                             <div class="sidebar-item tags">
@@ -252,11 +252,11 @@
     <script>
         $(document).ready(function() {
             var dados = {
-                route: "{{ route('campanha.show', 0) }}",
+                route: "{{ route('doacao.show', 0) }}",
                 limit: 5,
-                excepto_id: "{{ $campanha->id }}"
+                excepto_id: "{{ $doacao->id }}"
             };
-            campanhaRecentes(dados)
+            doacaoRecentes(dados)
         });
     </script>
 @endsection

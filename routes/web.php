@@ -62,16 +62,15 @@ Route::get('/doacao', function () {
 require __DIR__.'/auth.php';
 
 
-
+//Doacao
 Route::apiResource('doar', Controllers\DoacaoFisicaController::class);
+
 Route::apiResource('doacao', Controllers\DoacaoFisicaController::class);
-
+Route::get('/doacao-editar/{doacao}', [Controllers\DoacaoFisicaController::class,'edit'])->name('doacao.edit');
+Route::any('/doacao-recentes/{limit}', [Controllers\DoacaoFisicaController::class,'doacoesRecentes'])->name('doacao.recente');
 Route::get('doar-create', [Controllers\DoacaoFisicaController::class,'create'])->name('doar.create');
-// Route::get('/campanha-editar/{campanha}', [Controllers\CampanhaController::class,'edit'])->name('campanha.edit');
-// Route::apiResource('comentarios', Controllers\ComentarioController::class);
-// Route::get('/campanhas-recentes/{limit}', [Controllers\CampanhaController::class,'campanhasRecentes'])->name('campanha.recente');
 
-
+//Campanha
 
 Route::apiResource('campanha', Controllers\CampanhaController::class);
 
