@@ -41,14 +41,35 @@
                                             <img src="{{ $doacaoFisica->capa }}" alt="Sem foto de capa" class="img-fluid">
                                         </div>
 
+                                        <h2 class="title">
+                                            <a
+                                                href="{{ route('doacao.show', $doacaoFisica->id) }}">{{ $doacaoFisica->anuncio }}</a>
+                                        </h2>
+                                        <div class="meta-top">
+                                            <ul>
+                                                <li class="d-flex align-items-center">
+                                                    <i class="bi bi-person"></i> <a href="blog-details.html">{{$doacaoFisica->criador->name}}</a>
+                                                </li>
+                                                <li class="d-flex align-items-center">
+                                                    <i class="bi bi-clock"></i> <a href="blog-details.html">
+                                                        <time datetime="2022-01-01"> {{$doacaoFisica->created_at->format('M d,  Y') }}</time></a>
+                                                </li>
+                                                <li class="d-flex align-items-center">
+                                                    <i class="bi bi-chat-dots"></i> 
+                                                    {{-- <a href="blog-details.html">
+                                                        {{count($doacaoFisica->comentarios)}} Comentários</a> --}}
+                                                </li>
+                                            </ul>
+                                        </div>
                                         <div class="content">
                                             <p>
                                                 {!! Str::limit($doacaoFisica->descricao, 150) !!}
                                             </p>
                                         </div>
-                                        {{-- <div class="read-more mt-auto align-self-end">
-                                    <a href="{{ route('doacaoFisica.show' ,$doacaoFisica->id) }}">Leia mais</a>
-                                </div> --}}
+
+                                        <div class="read-more mt-auto align-self-end">
+                                            <a href="{{ route('doacao.show', $doacaoFisica->id) }}">Ler mais</a>
+                                        </div>
                                     </article>
                                 </div><!-- End post list item -->
                             @empty
