@@ -73,7 +73,7 @@
             <div class="container" data-aos="fade-up">
                 <h1 class="py-5">Doações Em Destaque</h1>
 
-                <div class="testimonials-slider swiper">
+                <div class="@if (count($doacoes) > 0) {{'testimonials-slider swiper'}} @endif">
                     <div class="swiper-wrapper">
                         @forelse ($doacoes as $doacao)
                         <div class="swiper-slide">

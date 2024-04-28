@@ -84,16 +84,21 @@ class Campanha extends Model
         string $titulo,
         string $descricao,
         int $categoriaId,
+        int $quantia,
         string $imagem
     ) {
         try {
+         
             $campanha = new campanha();
+            
             $campanha->user_id = $criadorId;
             $campanha->titulo = $titulo;
             $campanha->descricao = $descricao;
             $campanha->categoria_id = $categoriaId;
+            $campanha->quantia = $quantia;
             $campanha->imagem = $imagem;
             $campanha->save();
+           
             return  $campanha;
         } catch (Exception $e) {
             throw new Exception($e->getCode());

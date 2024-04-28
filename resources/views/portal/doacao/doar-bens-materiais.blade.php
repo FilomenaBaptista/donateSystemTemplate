@@ -71,6 +71,9 @@
                                                     'id' => 'anuncio',
                                                     'placeholder' => 'Titulo do Anúncio',
                                                 ]) }}
+                                                 @error('anuncio')
+                                                 <div class="alert alert-danger">{{ $message }}</div>
+                                             @enderror
                                             </div>
                                             <div class="col">
                                                 {{ Form::select('categoria_id', $categorias, null, [
@@ -146,7 +149,7 @@
                                                 {{ Form::button('Publicar Doação', ['type' => 'submit']) }}
                                             </div>
                                         </div>
-
+                                        {!! Form::close() !!}
                                     </div><!-- End Contact Form -->
                                 </div>
                             </div>

@@ -50,9 +50,21 @@ Route::get('/doar-money', function () {
     return view('portal.doacao/doar-money');
 })->name('doarmoney');
 
-Route::get('/doar-loja', function () {
-    return view('portal.doacao/doar-loja');
-})->name('doarloja');
+Route::get('/shop', function () {
+    return view('portal.doacao/shop');
+})->name('shop');
+
+Route::get('/shop-detail', function () {
+    return view('portal.doacao/shop-detail');
+})->name('shopdetail');
+
+Route::get('/carrinho', function () {
+    return view('portal.doacao/carrinho');
+})->name('carrinho');
+
+Route::get('/checkout', function () {
+    return view('portal.doacao/checkout');
+})->name('checkout');
 
 Route::get('/doacao', function () {
     return view('portal.doacao/doacao');
@@ -60,6 +72,10 @@ Route::get('/doacao', function () {
 
 
 require __DIR__.'/auth.php';
+
+
+//API
+Route::get('/api-leke', Controllers\ApiController::class);
 
 
 //Doacao

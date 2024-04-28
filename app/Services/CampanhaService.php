@@ -74,17 +74,21 @@ class CampanhaService
         string $titulo,
         string $descricao,
         int $categoriaId,
+        int $quantia,
         string $imagem
     ) {
         try {
+          
             $campanha = new Campanha();
             $response = $campanha->createCampanha(
                 $criadorId,
                 $titulo,
                 $descricao,
                 $categoriaId,
+                $quantia,
                 $imagem
             );
+        
             return StatusHelper::response(['data' => $response, 'tag' => 'CREATE.CAMPANHA', 'status' => 200]);
         } catch (Exception $e) {
             return StatusHelper::response(['tag' => 'CREATE.CAMPANHA', 'status' => (int) $e->getMessage(),  'line_trace' => __LINE__,'class_trace' => PathHelper::getClassName($this) ]);

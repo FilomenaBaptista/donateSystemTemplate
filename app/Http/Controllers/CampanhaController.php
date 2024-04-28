@@ -90,17 +90,21 @@ class CampanhaController extends Controller
             'titulo' => ['required', 'string', 'min:20', 'max:255'],
             'descricao' => ['required'],
             'categoria_id' => ['required', 'int'],
+            'quantia' => ['required', 'int'],
             'imagem' => ['required'],
         ]);
         $CampanhaService = new CampanhaService();
+        
         $CampanhaService->createCampanha(
             Auth::user()->id,
             $request->titulo,
             $request->descricao,
             $request->categoria_id,
+            $request->quantia,
             $request->imagem
             //UtilitarioService::imageToBase64($request, "capa")
         );
+   
         session()->flash('mensagem', 'SUCESSO!!!');
         return redirect()->route('campanha.create');
        // return response()->json(['data' => $response['data'], 'message' => $response['message'], 'status' => $response['status']]);

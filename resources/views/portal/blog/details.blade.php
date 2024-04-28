@@ -166,16 +166,75 @@
                                                                         <span class="input-group-text">.00</span>
 
                                                                     </div>
+
+                                                                    <form class="bs-example" action="">
+                                                                        <div class="panel-group" id="accordion">
+                                                                          <div class="panel panel-default">
+                                                                            <div class="panel-heading">
+                                                                              <h4 class="panel-title">
+                                                                                  <label for='r11' style='width: 350px;'>
+                                                                                    <input type='radio' id='r11' name='occupation' value='Working' required /> Working
+                                                                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"></a>
+                                                                                  </label>
+                                                                              </h4>
+                                                                            </div>
+                                                                            <div id="collapseOne" class="panel-collapse collapse in">
+                                                                              <div class="panel-body">
+                                                                                <p>HTML stands for HyperText Markup Language. HTML is the main markup language for describing the structure of Web pages. <a href="http://www.tutorialrepublic.com/html-tutorial/" target="_blank">Learn more.</a></p>
+                                                                              </div>
+                                                                            </div>
+                                                                          </div>
+                                                                          <div class="panel panel-default">
+                                                                            <div class="panel-heading">
+                                                                              <h4 class=panel-title>
+                                                                                  <label for='r12' style='width: 350px;'>
+                                                                                    <input type='radio' id='r12' name='occupation' value='Not-Working' required /> Not Working
+                                                                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"></a>
+                                                                                  </label>
+                                                                              </h4>
+                                                                            </div>
+                                                                            <div id="collapseTwo" class="panel-collapse collapse">
+                                                                              <div class="panel-body">
+                                                                                <p>Bootstrap is a powerful front-end framework for faster and easier web development. It is a collection of CSS and HTML conventions. <a href="http://www.tutorialrepublic.com/twitter-bootstrap-tutorial/" target="_blank">Learn more.</a></p>
+                                                                              </div>
+                                                                            </div>
+                                                                          </div>
+                                                                        </div>
+                                                                      </form>
                                                                     <div class="formas-de-pagamento">
                                                                         <p> Forma de pagamento</p>
+{{-- 
+                                                                        <div class="accordion-item row">
+                                                                            <h2 class="accordion-header" id="headingTwo">
+                                                                                <input class=" accordion-button collapsed" type="radio" name="inlineRadioOptions" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" value="{{ old('name') }}"
+                                                                                id="inlineRadio1" value="option1" >
+                                                                                <label class="form-check-label-radio"
+                                                                                for="inlineRadio1">Transferência
+                                                                                Bancária</label>
+                                                                            </h2>
+                                                                            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                                                                              <div class="accordion-body">
+                                                                                <strong>Nome do Beneficiário</strong> AO06004400006729503010102 <code><label class="form-label" for="customFile"></label>
+                                                                                    <input type="file" class="form-control" id="customFile" /></code>
+                                                                                    
+                                                                            </div>
+                                                                        </div> --}}
+
                                                                         <div class="form-check form-check-inline">
-                                                                            <input class="form-check-input" type="radio"
+                                                                            <input class="form-check-input  accordion-button collapsed" type="radio" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" 
                                                                                 name="inlineRadioOptions"
                                                                                 value="{{ old('name') }}"
-                                                                                id="inlineRadio1" value="option1">
+                                                                                id="inlineRadio1" value="option1" >
                                                                             <label class="form-check-label"
                                                                                 for="inlineRadio1">Transferência
                                                                                 Bancária</label>
+                                                                                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                                                                                    <div class="accordion-body">
+                                                                                      <strong>Nome do Beneficiário</strong> AO06004400006729503010102 <code><label class="form-label" for="customFile"></label>
+                                                                                          <input type="file" class="form-control" id="customFile" /></code>
+                                                                                          
+                                                                                  </div>
+                                                                              </div>
                                                                         </div>
                                                                         <div class="form-check form-check-inline">
                                                                             <input class="form-check-input" type="radio"
@@ -258,5 +317,12 @@
             };
             campanhaRecentes(dados)
         });
+        $('#r11').on('click', function(){
+            $(this).parent().find('a').trigger('click')
+        })
+
+        $('#r12').on('click', function(){
+            $(this).parent().find('a').trigger('click')
+        })
     </script>
 @endsection
