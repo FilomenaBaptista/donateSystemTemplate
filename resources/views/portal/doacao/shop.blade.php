@@ -183,7 +183,11 @@
                                                 <div class="text-white px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">{{$product['categories'][0]['name']}}</div>
                                                 <div class="p-4 border  border-top-0 rounded-bottom">
                                                     <h4>{{$product['name']}}</h4>
-                                                    <p> {!! $product['description'] !!}</p>
+                                                    <p>
+                                                        <a href="{{ route('shopdetail', $product['id']) }}">
+                                                            {!!Str::limit( $product['description'], 83)!!}
+                                                        </a>
+                                                    </p>
                                                     <div class="d-flex justify-content-between flex-lg-wrap">
                                                         <p class="text-dark fs-5 fw-bold mb-0">Kz {{$product['price']}} / kg</p>
                                                         <a href="#" class="btn border  rounded-pill px-3 text-primary"><i class="bi bi-bag-check-fill me-2 text-primary"></i> Adicionar ao carrinnho</a>

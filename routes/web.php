@@ -54,9 +54,9 @@ Route::get('/doar-money', function () {
     return view('portal.doacao/shop');
 })->name('shop'); */
 
-Route::get('/shop-detail', function () {
+/* Route::get('/shop-detail', function () {
     return view('portal.doacao/shop-detail');
-})->name('shopdetail');
+})->name('shopdetail'); */
 
 Route::get('/carrinho', function () {
     return view('portal.doacao/carrinho');
@@ -99,4 +99,5 @@ Route::get('/solicitar-doacao', [Controllers\CampanhaController::class,'create']
 Route::get('/campanha-editar/{campanha}', [Controllers\CampanhaController::class,'edit'])->name('campanha.edit');
 Route::apiResource('comentarios', Controllers\ComentarioController::class);
 Route::any('/campanhas-recentes/{limit}', [Controllers\CampanhaController::class,'campanhasRecentes'])->name('campanha.recente');
-Route::any('/shop', [Controllers\CampanhaController::class,'shop'])->name('campanha.shop');
+Route::any('/shop', [Controllers\CampanhaController::class,'shop'])->name('shop');
+Route::any('/shop-detail/{id}', [Controllers\CampanhaController::class,'shopdetail'])->name('shopdetail');

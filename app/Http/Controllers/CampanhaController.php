@@ -185,4 +185,9 @@ class CampanhaController extends Controller
         $products = Http::get($url);
         return view('portal.doacao/shop',['products' => $products->json()]);
     }
+    public function shopdetail($id){
+        $url = 'https://fnx.ao/wp-json/wc/v3/products/'.$id.'?consumer_key=ck_bbcc18e176c8ac191e3b3a17580e3b712104f8a1&consumer_secret=cs_f92f47e3020fda9e7fed62da9a1c6b860824f96d';
+        $product = Http::get($url);
+        return view('portal.doacao/shop-detail',['product' => $product->json()]);
+    }
 }
