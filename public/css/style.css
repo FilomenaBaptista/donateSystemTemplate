@@ -27,6 +27,17 @@
 }
 /*** Spinner End ***/
 
+.text-white.px-3.py-1.rounded.position-absolute {
+    background: #ff713d;
+}
+
+.border {
+    border: var(--bs-border-width) var(--bs-border-style) #ff4a1e !important;
+}
+
+.p-4.border.border-top-0.rounded-bottom {
+    border: var(--bs-border-width) var(--bs-border-style) #ff4a1e !important;
+}
 
 /*** Button Start ***/
 .btn {

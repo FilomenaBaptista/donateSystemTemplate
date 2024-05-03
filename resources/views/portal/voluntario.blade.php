@@ -11,8 +11,9 @@
                 <div class="d-flex justify-content-between align-items-center">
                     <h2>Voluntário</h2>
                     <ol>
-                        <li><a href="index.html">Home</a></li>
-                        <li>Voluntário</li>
+                        <li><a href="home.php">Home</a></li>
+                        <li><a href="index.html">Listar Voluntários</a></li>
+                        <li><a href="voluntario.php">Cadastrar Voluntário</a></li>
                     </ol>
                 </div>
 

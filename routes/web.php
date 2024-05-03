@@ -70,6 +70,10 @@ Route::get('/doacao', function () {
     return view('portal.doacao/doacao');
 })->name('doacao');
 
+Route::get('/listar-voluntarios', function () {
+    return view('portal.listar-voluntarios');
+})->name('listarvoluntarios');
+
 
 require __DIR__.'/auth.php';
 
