@@ -20,7 +20,7 @@
                     class="bi bi-chevron-down dropdown-indicator"></i></a>
                     <ul>
                     <li><a href="{{route('doar.create')}}">Doação por Bens Materiais </a></li>
-                    <li><a href="{{route('shop')}}">Doar pela loja</a></li>
+                    <li><a href="{{route('campanha.shop')}}">Doar pela loja</a></li>
                     </ul>
                 </li>
                 @endcan

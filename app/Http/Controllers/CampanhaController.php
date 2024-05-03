@@ -8,12 +8,10 @@ use App\Models\DoacaoFisica;
 use App\Services\CampanhaService;
 use App\Services\CategoriaService;
 use App\Services\UtilitarioService;
-use Illuminate\Auth\Access\Gate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\Rule;
-use PhpParser\Node\Stmt\Return_;
+use Illuminate\Support\Facades\Http;
 
 class CampanhaController extends Controller
 {
@@ -94,7 +92,7 @@ class CampanhaController extends Controller
             'imagem' => ['required'],
         ]);
         $CampanhaService = new CampanhaService();
-        
+
         $CampanhaService->createCampanha(
             Auth::user()->id,
             $request->titulo,
@@ -104,7 +102,7 @@ class CampanhaController extends Controller
             $request->imagem
             //UtilitarioService::imageToBase64($request, "capa")
         );
-   
+
         session()->flash('mensagem', 'SUCESSO!!!');
         return redirect()->route('campanha.create');
        // return response()->json(['data' => $response['data'], 'message' => $response['message'], 'status' => $response['status']]);
@@ -172,7 +170,7 @@ class CampanhaController extends Controller
     }
 
     public function campanhasRecentes(
-        Request $request, 
+        Request $request,
         int $limit
     ){
         $CampanhaService = new CampanhaService();
@@ -181,5 +179,10 @@ class CampanhaController extends Controller
             $request->excepto_id
         );
         return response()->json(['data' => $response['data'], 'message' => $response['message'], 'status' => $response['status']]);
+    }
+    public function shop(){
+        $url = 'https://fnx.ao/wp-json/wc/v3/products?consumer_key=ck_bbcc18e176c8ac191e3b3a17580e3b712104f8a1&consumer_secret=cs_f92f47e3020fda9e7fed62da9a1c6b860824f96d';
+        $products = Http::get($url);
+        return view('portal.doacao/shop',['products' => $products->json()]);
     }
 }
