@@ -3828,3 +3828,24 @@ section#faq {
   -o-flex-wrap: wrap;
   flex-wrap: wrap;
 }
+
+.accordion-button{
+  width: 440px;
+
+}
+.accordion-button::after{
+  display: none;
+}
+
+.accordion-item {
+   border: none; 
+}
+
+.post-img-pagamento img {
+  position: absolute;
+  top: -25px;
+  left: 0px;
+}
+.post-img-pagamento {
+  height: 320px;
+}

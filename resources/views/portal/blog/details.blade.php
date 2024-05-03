@@ -167,7 +167,7 @@
                                                                         <span class="input-group-text">.00</span>
 
                                                                     </div>
-                                                                  
+
 
                                                                     <div class="formas-de-pagamento">
                                                                         <p> Forma de pagamento</p>
@@ -175,82 +175,63 @@
                                                                         <form class="bs-example" action="">
                                                                             <div class="accordion" id="accordionExample">
                                                                                 <div class="accordion-item">
-                                                                                  <h2 class="accordion-header" id="headingOne">
-                                                                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                                                                        Transferência Bancária
-                                                                                    </button>
-                                                                                  </h2>
-                                                                                  <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                                                                                    <div class="accordion-body">
-                                                                                      <strong>Nome do Beneficiário.</strong>  AO06004400006729503010102 .
-                                                                                      <label for="">Anexar comprovativo</label>
-                                                                                      <input type="file"
-                                                                                      class="form-control"
-                                                                                      id="customFile" />
+                                                                                    <h2 class="accordion-header"
+                                                                                        id="headingOne">
+                                                                                        <button class="accordion-button"
+                                                                                            type="button"
+                                                                                            data-bs-toggle="collapse"
+                                                                                            data-bs-target="#collapseOne"
+                                                                                            aria-expanded="true"
+                                                                                            aria-controls="collapseOne">
+                                                                                            Transferência Bancária
+                                                                                        </button>
+                                                                                    </h2>
+                                                                                    <div id="collapseOne"
+                                                                                        class="accordion-collapse collapse show"
+                                                                                        aria-labelledby="headingOne"
+                                                                                        data-bs-parent="#accordionExample">
+                                                                                        <div class="accordion-body">
+                                                                                            <strong>Nome do
+                                                                                                Beneficiário.</strong>
+                                                                                            AO06004400006729503010102 .
+                                                                                            <label for="">Anexar
+                                                                                                comprovativo</label>
+                                                                                            <input type="file"
+                                                                                                class="form-control"
+                                                                                                id="customFile" />
+                                                                                        </div>
                                                                                     </div>
-                                                                                  </div>
                                                                                 </div>
                                                                                 <div class="accordion-item">
-                                                                                  <h2 class="accordion-header" id="headingTwo">
-                                                                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo"><input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                                                                                        Transferência Express
-                                                                                    </button>
-                                                                                  </h2>
-                                                                                  <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-                                                                                    <div class="accordion-body">
-                                                                                      <strong>This is the second item's accordion body.</strong><code>.AO06004400006729503010102 </code>, .
+                                                                                    <h2 class="accordion-header"
+                                                                                        id="headingTwo">
+                                                                                        <button
+                                                                                            class="accordion-button collapsed"
+                                                                                            type="button"
+                                                                                            data-bs-toggle="collapse"
+                                                                                            data-bs-target="#collapseTwo"
+                                                                                            aria-expanded="false"
+                                                                                            aria-controls="collapseTwo"><input
+                                                                                                class="form-check-input"
+                                                                                                type="radio"
+                                                                                                name="flexRadioDefault"
+                                                                                                id="flexRadioDefault1">
+                                                                                            Transferência Express
+                                                                                        </button>
+                                                                                    </h2>
+                                                                                    <div id="collapseTwo"
+                                                                                        class="accordion-collapse collapse"
+                                                                                        aria-labelledby="headingTwo"
+                                                                                        data-bs-parent="#accordionExample">
+                                                                                        <div class="accordion-body">
+                                                                                            <strong>This is the second
+                                                                                                item's accordion
+                                                                                                body.</strong><code>.AO06004400006729503010102
+                                                                                            </code>, .
+                                                                                        </div>
                                                                                     </div>
-                                                                                  </div>
                                                                                 </div>
-                                                                              
-                                                                              </div>
 
-
-                                                                            <div class="panel-group" id="accordion">
-                                                                                <div class="panel panel-default">
-                                                                                    <div class="accordion-item">
-                                                                                        <h2 class="accordion-header" id="headingOne">
-                                                                                          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                                                                              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"> Transferência
-                                                                                              Bancária
-                                                                                          </button>
-                                                                                        </h2>
-                                                                                        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                                                                                            <div class="accordion-body">
-                                                                                                <strong>Nome do Beneficiário</strong>
-                                                                                                AO06004400006729503010102 <code><label
-                                                                                                        class="form-label"
-                                                                                                        for="customFile"></label>
-                                                                                                    <input type="file"
-                                                                                                        class="form-control"
-                                                                                                        id="customFile" />
-                                                                                            </div>
-                                                                                        </div>
-                                                                                      </div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="panel-group" id="accordion">
-                                                                                <div class="panel panel-default">
-                                                                                    <div class="accordion-item">
-                                                                                        <h2 class="accordion-header" id="headingOne">
-                                                                                          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                                                                              <input class="form-check-input"  id="inlineRadio2 type="radio" name="transferenciaExpress" value="{{ old('transferencia-express') }}" id="flexRadioDefault1"> Transferência
-                                                                                              Express
-                                                                                          </button>
-                                                                                        </h2>
-                                                                                        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                                                                                            <div class="accordion-body">
-                                                                                                <strong>Numero de telefone</strong>
-                                                                                                922558512 <code><label
-                                                                                                        class="form-label"
-                                                                                                        for="customFile"></label>
-                                                                                                    <input type="file"
-                                                                                                        class="form-control"
-                                                                                                        id="customFile" />
-                                                                                            </div>
-                                                                                        </div>
-                                                                                      </div>
-                                                                                </div>
                                                                             </div>
                                                                         </form>
                                                                     </div>
