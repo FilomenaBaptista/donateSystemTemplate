@@ -20,6 +20,17 @@
 
             </div>
         </div><!-- End Breadcrumbs -->
+  <section class="featured-services container">
+            @if (session()->has('mensagem'))
+                <div id="flash_message" class="alert alert-success alert-dismissible" role="alert" aria-live="assertive"
+                    aria-atomic="true">
+                    <strong>{{ session()->get('mensagem') }}</strong>
+                    <button type="button" class="ml-2 mb-1 close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            @endif
+        </section>
 
         <!-- ======= Features Section ======= -->
         <section id="features" class="features">

@@ -201,6 +201,6 @@ class CampanhaController extends Controller
             null,
             $request->estado
         );
-        return view('portal.blog/historia-de-sucesso',['campanhas' => $response['data']]);
+        return view('portal.blog/historia-de-sucesso',['campanha' => $response['data']]);
     }
 }
