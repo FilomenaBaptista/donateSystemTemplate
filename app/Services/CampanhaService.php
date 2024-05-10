@@ -23,15 +23,17 @@ class CampanhaService
     public function listCampanha(
         int $criadorId = null,
         int $eliminado = null,
-        string $search = null
+        string $search = null,
+        string $estado = null
     ) {
         try {
             $campanha = new Campanha();
                $response = $campanha->listCampanha(
                 $criadorId,
                 $eliminado,
-                $search
-            ); 
+                $search,
+                $estado
+            );
               /*  $response = DataTables::of($campanha->listCampanha(
                 $criadorId,
                 $eliminado
@@ -78,7 +80,7 @@ class CampanhaService
         string $imagem
     ) {
         try {
-          
+
             $campanha = new Campanha();
             $response = $campanha->createCampanha(
                 $criadorId,
@@ -88,7 +90,7 @@ class CampanhaService
                 $quantia,
                 $imagem
             );
-        
+
             return StatusHelper::response(['data' => $response, 'tag' => 'CREATE.CAMPANHA', 'status' => 200]);
         } catch (Exception $e) {
             return StatusHelper::response(['tag' => 'CREATE.CAMPANHA', 'status' => (int) $e->getMessage(),  'line_trace' => __LINE__,'class_trace' => PathHelper::getClassName($this) ]);
@@ -142,7 +144,7 @@ class CampanhaService
     }
 
     public function  campanhasRecentes(
-        int $limit, 
+        int $limit,
         int $excepto_id = null
     ) {
         try {

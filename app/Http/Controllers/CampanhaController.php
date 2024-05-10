@@ -22,7 +22,8 @@ class CampanhaController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'user_id' => 'int|nullable',
-            'eliminado' => 'int|nullable'
+            'eliminado' => 'int|nullable',
+            'estado' => 'string|nullable'
         ]);
 
         if ($validator->fails()) {
@@ -32,7 +33,8 @@ class CampanhaController extends Controller
         $response = $CampanhaService->listCampanha(
             $request->user_id,
             $request->eliminado,
-            $request->search
+            $request->search,
+            $request->estado
         );
         if(!empty($request->search)){
             session()->flash('search', $request->search);
@@ -189,5 +191,16 @@ class CampanhaController extends Controller
         $url = 'https://fnx.ao/wp-json/wc/v3/products/'.$id.'?consumer_key=ck_bbcc18e176c8ac191e3b3a17580e3b712104f8a1&consumer_secret=cs_f92f47e3020fda9e7fed62da9a1c6b860824f96d';
         $product = Http::get($url);
         return view('portal.doacao/shop-detail',['product' => $product->json()]);
+    }
+    public function historiasdesucesso(Request $request){
+       
+        $CampanhaService = new CampanhaService();
+        $response = $CampanhaService->listCampanha(
+            null,
+            null,
+            null,
+            $request->estado
+        );
+        return view('portal.blog/historia-de-sucesso',['campanha' => $response['data']]);
     }
 }

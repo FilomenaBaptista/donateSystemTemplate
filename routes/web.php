@@ -34,9 +34,9 @@ Route::get('/voluntario', function () {
 })->name('voluntario');
 
 
-Route::get('/historias-de-sucesso', function () {
+/* Route::get('/historias-de-sucesso', function () {
     return view('portal.blog/historia-de-sucesso');
-})->name('historiasdesucesso');
+})->name('historiasdesucesso'); */
 
 Route::get('/encontrar-doacao', function () {
     return view('portal.doacao/encontrar-doacao');
@@ -97,3 +97,4 @@ Route::apiResource('comentarios', Controllers\ComentarioController::class);
 Route::any('/campanhas-recentes/{limit}', [Controllers\CampanhaController::class,'campanhasRecentes'])->name('campanha.recente');
 Route::any('/shop', [Controllers\CampanhaController::class,'shop'])->name('shop');
 Route::any('/shop-detail/{id}', [Controllers\CampanhaController::class,'shopdetail'])->name('shopdetail');
+Route::any('/historias-de-sucesso', [Controllers\CampanhaController::class,'historiasdesucesso'])->name('historiasdesucesso');

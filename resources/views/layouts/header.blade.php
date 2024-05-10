@@ -25,7 +25,7 @@
                 </li>
                 @endcan
 
-                <li><a class="nav-link scrollto" href="{{ route('historiasdesucesso') }}">Histórias de Sucesso</a></li>
+                <li><a class="nav-link scrollto" href="{{ route('historiasdesucesso',['estado' => 'Concluido']) }}">Histórias de Sucesso</a></li>
 
                 @if (Route::has('login'))
 
