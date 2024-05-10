@@ -189,7 +189,7 @@
                                                         </a>
                                                     </p>
                                                     <div class="d-flex justify-content-between flex-lg-wrap">
-                                                        <p class="text-dark fs-5 fw-bold mb-0">Kz {{$product['price']}} / kg</p>
+                                                        <p class="text-dark fs-5 fw-bold mb-0">Kz {{ number_format($product['price'], 2, ',', '.') }} / kg</p>
                                                         <a href="#" class="btn border  rounded-pill px-3 text-primary"><i class="bi bi-bag-check-fill me-2 text-primary"></i> Adicionar ao carrinnho</a>
                                                     </div>
                                                 </div>
@@ -200,7 +200,7 @@
                                     </h1>
                                     @endforelse
                                 </div>
-                                    <div class="col-12">
+                                   {{--  <div class="col-12">
                                         <div class="pagination d-flex justify-content-center mt-5">
                                             <a href="#" class="rounded">&laquo;</a>
                                             <a href="#" class="active rounded">1</a>
@@ -211,7 +211,7 @@
                                             <a href="#" class="rounded">6</a>
                                             <a href="#" class="rounded">&raquo;</a>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </div>
                         </div>

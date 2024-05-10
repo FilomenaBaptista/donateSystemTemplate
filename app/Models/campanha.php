@@ -24,7 +24,8 @@ class Campanha extends Model
     public function listcampanha(
         int $criadorId = null,
         int $eliminado = null,
-        string $search = null
+        string $search = null,
+        string $estado = null
     ) {
          try {
             $with['comentarios'] = 'comentarios';
@@ -43,6 +44,9 @@ class Campanha extends Model
             }
             if (!empty($search)) {
                 $query->where('c.titulo', 'like', "%".$search."%");
+            }
+            if (!empty($estado)) {
+                $query->where('c.estado', $estado);
             }
 
             return $query->paginate(6)->withQueryString();
@@ -88,9 +92,9 @@ class Campanha extends Model
         string $imagem
     ) {
         try {
-         
+
             $campanha = new campanha();
-            
+
             $campanha->user_id = $criadorId;
             $campanha->titulo = $titulo;
             $campanha->descricao = $descricao;
@@ -98,7 +102,7 @@ class Campanha extends Model
             $campanha->quantia = $quantia;
             $campanha->imagem = $imagem;
             $campanha->save();
-           
+
             return  $campanha;
         } catch (Exception $e) {
             throw new Exception($e->getCode());
@@ -152,7 +156,7 @@ class Campanha extends Model
         }
     }
     public function campanhasRecentes(
-        int $limit, 
+        int $limit,
         int $excepto_id = null
     ){
         try {
