@@ -22,6 +22,11 @@ return new class extends Migration
             $table->unsignedBigInteger('campanha_id');
             $table->foreign('campanha_id')->references('id')->on('campanhas')->onUpdate('cascade')
                 ->onDelete('cascade');
+         
+
+            $table->unsignedBigInteger('doacao_id');
+            $table->foreign('doacao_id')->references('id')->on('doacao_bens_materiais')->onUpdate('cascade')
+                ->onDelete('cascade');
             $table->enum('eliminado',[0, 1])->default(0);
             $table->timestamps();
         });

@@ -14,35 +14,42 @@ class DoacaoFisica extends Model
     use HasFactory;
 
     protected $table = 'doacao_bens_materiais';
-    protected $fillable = ['capa','anuncio','categoria','qtd_itens_doar','local','estado_artigo','descricao','is_anonimo','user_id'];
+    protected $fillable = ['capa', 'anuncio', 'categoria', 'qtd_itens_doar', 'local', 'estado_artigo', 'descricao', 'is_anonimo', 'user_id'];
 
     public function criador(): BelongsTo
-    {return $this->belongsTo(User::class,'user_id');}
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 
     public function comentarios()
-    {return $this->hasMany(Comentario::class);}
+    {
+        return $this->hasMany(Comentario::class);
+    }
 
     public function listDoacaoFisica(
         int $criadorId = null,
-        int $eliminado = null
+        int $eliminado = null,
+        string $search = null
     ) {
-         try {
+        try {
             $with['comentarios'] = 'comentarios';
             $query =  DoacaoFisica::from('doacao_bens_materiais as dbm')
-           ->with('criador') 
-            ->orderBy('dbm.id', 'DESC');
+                ->with('criador')
+                ->orderBy('dbm.id', 'DESC');
 
 
-           if ($with['comentarios'] !== 'comentarios') {
+            if ($with['comentarios'] !== 'comentarios') {
                 $query->with('comentarios');
-            } 
+            }
             if ($criadorId !== null) {
                 $query->where('dbm.user_id', '=', $criadorId);
             }
             if (!is_null($eliminado)) {
                 $query->where('dbm.eliminado', '=', $criadorId);
             }
-
+            if (!empty($search)) {
+                $query->where('dbm.anuncio', 'like', "%" . $search . "%");
+            }
             return $query->paginate(6)->withQueryString();
         } catch (QueryException $e) {
             throw new Exception($e->getCode());
@@ -61,10 +68,10 @@ class DoacaoFisica extends Model
     ) {
         try {
             return DoacaoFisica::from('doacao_bens_materiais as dbm')
-            ->with('criador')
-            //->with('comentarios')
-            ->where('dbm.id', $doacaoFisicaId)
-            ->first(['dbm.*']);
+                ->with('criador')
+                //->with('comentarios')
+                ->where('dbm.id', $doacaoFisicaId)
+                ->first(['dbm.*']);
         } catch (Exception $e) {
             throw new Exception($e->getCode());
         }
@@ -89,7 +96,7 @@ class DoacaoFisica extends Model
         int $isAnonimo
     ) {
         try {
-          
+
             $doacaoFisica = new DoacaoFisica();
             $doacaoFisica->user_id = $doacoaoId;
             $doacaoFisica->capa = $capa;
@@ -144,12 +151,12 @@ class DoacaoFisica extends Model
     }
 
     /**
-    * Delete
-    *
-    * @return Collection data deleted
-    * @throws Exception This exception will be thrown if there is a problem executing the database query,
-    * returning the fault code
-    */
+     * Delete
+     *
+     * @return Collection data deleted
+     * @throws Exception This exception will be thrown if there is a problem executing the database query,
+     * returning the fault code
+     */
     public function deleteDoacaoFisica(int $doacaoFisicaId)
     {
         try {
@@ -161,10 +168,17 @@ class DoacaoFisica extends Model
             throw new ModelNotFoundException($e->getCode());
         }
     }
-    public function campanhasRecentes(int $limit)
-    {
+    public function campanhasRecentes(
+        int $limit,
+        int $excepto_id = null
+    ) {
         try {
-            return DoacaoFisica::latest()->take($limit)->get();;
+            
+            $query = DoacaoFisica::latest()->take($limit);
+            if(!is_null($excepto_id)){
+                $query->where('id', '!=', $excepto_id);
+            }
+            return  $query->get();
         } catch (ModelNotFoundException $e) {
             throw new ModelNotFoundException($e->getCode());
         }
