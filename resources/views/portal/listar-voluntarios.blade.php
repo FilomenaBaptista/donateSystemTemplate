@@ -1,56 +1,162 @@
 @extends('layouts.app')
 
-<div class="accordion py-5" id="accordionExample" >
-    <div class="accordion-item">
-      <h2 class="accordion-header" id="headingOne">
-        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"> Accordion Item #1
-        </button>
-      </h2>
-      <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-        <div class="accordion-body">
-          <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-        </div>
-      </div>
-    </div>
-    <div class="accordion-item">
-      <h2 class="accordion-header" id="headingTwo">
-        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-          Accordion Item #2
-        </button>
-      </h2>
-      <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-        <div class="accordion-body">
-          <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-        </div>
-      </div>
-    </div>
-    <div class="accordion-item">
-      <h2 class="accordion-header" id="headingThree">
-        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-          Accordion Item #3
-        </button>
-      </h2>
-      <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-        <div class="accordion-body">
-          <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-        </div>
-      </div>
-    </div>
-  </div>
+<main>
 
-<style>
-    .bs-example {
-        margin: 20px;
-    }
-</style>
+        <!-- ======= Breadcrumbs ======= -->
+        <div class="breadcrumbs">
+          <div class="container">
 
-<script>
-    $('#r11').on('click', function() {
-        $(this).parent().find('a').trigger('click')
-    })
+              <div class="d-flex justify-content-between align-items-center">
+                  <h2>Encontrar Voluntários</h2>
+                  <ol>
+                      <li><a href="index.html">Home</a></li>
+                      <li>Solicitar Doação</li>
+                  </ol>
+              </div>
 
-    $('#r12').on('click', function() {
-        $(this).parent().find('a').trigger('click')
-    })
-</script>
+          </div>
+      </div><!-- End Breadcrumbs -->
+
+  <section id="shop-detail" class="shop-detail">
+
+    <!-- Cart Page Start -->
+ <div class="container-fluid py-5">
+     <div class="container py-5">
+         <div class="table-responsive">
+             <table class="table">
+                 <thead>
+                   <tr>
+                     <th scope="col">Id</th>
+                     <th scope="col">Nome</th>
+                     <th scope="col">Email</th>
+                     <th scope="col">Telefone</th>
+                     <th scope="col">Profissão</th>
+                     <th scope="col">Trabalha actualmente</th>
+                     <th scope="col">Descrição</th>
+                     <th scope="col">Acções</th>
+                   </tr>
+                 </thead>
+                 <tbody>
+                     <tr>
+                         <th scope="row">
+                             <div class="d-flex align-items-center">
+                                 <img src="img/vegetable-item-3.png" class="img-fluid me-5 rounded-circle" style="width: 80px; height: 80px;" alt="">
+                             </div>
+                         </th>
+                         <td>
+                             <p class="mb-0 mt-4">Big Banana</p>
+                         </td>
+                         <td>
+                             <p class="mb-0 mt-4">2.99 $</p>
+                         </td>
+                         <td>
+                             <div class="input-group quantity mt-4" style="width: 100px;">
+                                 <div class="input-group-btn">
+                                     <button class="btn btn-sm btn-minus rounded-circle bg-light border" >
+                                     <i class="bi bi-dash-lg"></i>
+                                     </button>
+                                 </div>
+                                 <input type="text" class="form-control form-control-sm text-center border-0" value="1">
+                                 <div class="input-group-btn">
+                                     <button class="btn btn-sm btn-
+                                      rounded-circle bg-light border">
+                                         <i class="bi bi-plus-lg"></i>
+                                     </button>
+                                 </div>
+                             </div>
+                         </td>
+                         <td>
+                             <p class="mb-0 mt-4">2.99 $</p>
+                         </td>
+                         <td>
+                             <button class="btn btn-md rounded-circle bg-light border mt-4" >
+                                 <i class="bi bi-x text-danger"></i>
+                             </button>
+                         </td>
+                     
+                     </tr>
+                     <tr>
+                         <th scope="row">
+                             <div class="d-flex align-items-center">
+                                 <img src="img/vegetable-item-5.jpg" class="img-fluid me-5 rounded-circle" style="width: 80px; height: 80px;" alt="" alt="">
+                             </div>
+                         </th>
+                         <td>
+                             <p class="mb-0 mt-4">Potatoes</p>
+                         </td>
+                         <td>
+                             <p class="mb-0 mt-4">2.99 $</p>
+                         </td>
+                         <td>
+                             <div class="input-group quantity mt-4" style="width: 100px;">
+                                 <div class="input-group-btn">
+                                     <button class="btn btn-sm btn-minus rounded-circle bg-light border" >
+                                     <i class="bi bi-dash-lg"></i>
+                                     </button>
+                                 </div>
+                                 <input type="text" class="form-control form-control-sm text-center border-0" value="1">
+                                 <div class="input-group-btn">
+                                     <button class="btn btn-sm btn-plus rounded-circle bg-light border">
+                                         <i class="bi bi-plus-lg"></i>
+                                     </button>
+                                 </div>
+                             </div>
+                         </td>
+                         <td>
+                             <p class="mb-0 mt-4">2.99 $</p>
+                         </td>
+                         <td>
+                             <button class="btn btn-md rounded-circle bg-light border mt-4" >
+                                 <i class="bi bi-x text-danger"></i>
+                             </button>
+                         </td>
+                     </tr>
+                     <tr>
+                         <th scope="row">
+                             <div class="d-flex align-items-center">
+                                 <img src="img/vegetable-item-2.jpg" class="img-fluid me-5 rounded-circle" style="width: 80px; height: 80px;" alt="" alt="">
+                             </div>
+                         </th>
+                         <td>
+                             <p class="mb-0 mt-4">Awesome Brocoli</p>
+                         </td>
+                         <td>
+                             <p class="mb-0 mt-4">2.99 $</p>
+                         </td>
+                         <td>
+                             <div class="input-group quantity mt-4" style="width: 100px;">
+                                 <div class="input-group-btn">
+                                     <button class="btn btn-sm btn-minus rounded-circle bg-light border" >
+                                     <i class="bi bi-dash-lg"></i>
+                                     </button>
+                                 </div>
+                                 <input type="text" class="form-control form-control-sm text-center border-0" value="1">
+                                 <div class="input-group-btn">
+                                     <button class="btn btn-sm btn-plus rounded-circle bg-light border">
+                                         <i class="bi bi-plus-lg"></i>
+                                     </button>
+                                 </div>
+                             </div>
+                         </td>
+                         <td>
+                             <p class="mb-0 mt-4">2.99 $</p>
+                         </td>
+                         <td>
+                             <button class="btn btn-md rounded-circle bg-light border mt-4" >
+                                 <i class="bi bi-x text-danger"></i>
+                             </button>
+                         </td>
+                     </tr>
+                 </tbody>
+             </table>
+         </div>
+         <div class="mt-5">
+             <input type="text" class="border-0 border-bottom rounded me-5 py-3 mb-4" placeholder="Coupon Code">
+             <button class="btn border-secondary rounded-pill px-4 py-3 text-primary" type="button">Apply Coupon</button>
+         </div>
+     </div>
+ </div>
+ <!-- Cart Page End -->
+ </section>
+ <!-- Fruits Shop End-->
+</main>

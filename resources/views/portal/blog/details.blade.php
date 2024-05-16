@@ -40,7 +40,6 @@
             <div class="container" data-aos="fade-up">
 
                 <div class="row g-5">
-
                     <div class="col-lg-8">
                         <article class="d-flex flex-column blog-details">
 
@@ -86,14 +85,18 @@
                             @endcan
                         </article>
 
+                        
+                       
                         <div class="comments">
                             <h4 class="comments-count"> {{ $campanha->comentarios->count() }} Comentários</h4>
+                          
                             @forelse ($campanha->comentarios as $comentario)
                                 <div id="comment-2" class="comment">
                                     <div class="d-flex">
                                         <div class="comment-img"><img src="assets/img/blog/comments-2.jpg" alt="">
                                         </div>
                                         <div>
+                                   
                                             <h5><a href="">{{ $comentario->criador->name }}</a> <a href="#"
                                                     class="reply"><i class="bi bi-reply-fill"></i> Reply</a></h5>
                                             <time
@@ -106,9 +109,23 @@
                                 </div>
                             @empty
                             @endforelse
+                            <div class="reply-form">
 
-
+                                <h4>Adicionar Comentário</h4>
+                                <form action="">
+                                  <div class="row">
+                                  <div class="row">
+                                    <div class="col form-group">
+                                      <textarea name="comment" class="form-control" placeholder="Seu Commentário*"></textarea>
+                                    </div>
+                                  </div>
+                                  <button type="submit" class="btn btn-primary">Comentar</button>
+                
+                                </form>
+                
+                              </div>
                         </div>
+                    </div>
                     </div>
 
                     <div class="col-lg-4">
@@ -167,7 +184,7 @@
                                                                         <span class="input-group-text">.00</span>
 
                                                                     </div>
-                                                                  
+
 
                                                                     <div class="formas-de-pagamento">
                                                                         <p> Forma de pagamento</p>
@@ -175,89 +192,73 @@
                                                                         <form class="bs-example" action="">
                                                                             <div class="accordion" id="accordionExample">
                                                                                 <div class="accordion-item">
-                                                                                  <h2 class="accordion-header" id="headingOne">
-                                                                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                                                                        Transferência Bancária
-                                                                                    </button>
-                                                                                  </h2>
-                                                                                  <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                                                                                    <div class="accordion-body">
-                                                                                      <strong>Nome do Beneficiário.</strong>  AO06004400006729503010102 .
-                                                                                      <label for="">Anexar comprovativo</label>
-                                                                                      <input type="file"
-                                                                                      class="form-control"
-                                                                                      id="customFile" />
+                                                                                    <h2 class="accordion-header"
+                                                                                        id="headingOne">
+                                                                                        <button class="accordion-button ml-2"
+                                                                                            type="button"
+                                                                                            data-bs-toggle="collapse"
+                                                                                            data-bs-target="#collapseOne"
+                                                                                            aria-expanded="true"
+                                                                                            aria-controls="collapseOne"><input
+                                                                                            class="form-check-input"
+                                                                                            type="radio"
+                                                                                            name="flexRadioDefault"
+                                                                                            id="flexRadioDefault1">
+                                                                                            Transferência Bancária
+                                                                                        </button>
+                                                                                    </h2>
+                                                                                    <div id="collapseOne"
+                                                                                        class="accordion-collapse collapse show"
+                                                                                        aria-labelledby="headingOne"
+                                                                                        data-bs-parent="#accordionExample">
+                                                                                        <div class="accordion-body">
+                                                                                            <strong class="mb-2">Nome do
+                                                                                                Beneficiário.</strong>
+                                                                                            AO06004400006729503010102 .
+                                                                                            <label class="mt-2" for="">Anexar
+                                                                                                comprovativo</label>
+                                                                                            <input type="file"
+                                                                                                class="form-control"
+                                                                                                id="customFile" />
+                                                                                        </div>
                                                                                     </div>
-                                                                                  </div>
                                                                                 </div>
                                                                                 <div class="accordion-item">
-                                                                                  <h2 class="accordion-header" id="headingTwo">
-                                                                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo"><input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                                                                                        Transferência Express
-                                                                                    </button>
-                                                                                  </h2>
-                                                                                  <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-                                                                                    <div class="accordion-body">
-                                                                                      <strong>This is the second item's accordion body.</strong><code>.AO06004400006729503010102 </code>, .
+                                                                                    <h2 class="accordion-header"
+                                                                                        id="headingTwo">
+                                                                                        <button
+                                                                                            class="accordion-button collapsed"
+                                                                                            type="button"
+                                                                                            data-bs-toggle="collapse"
+                                                                                            data-bs-target="#collapseTwo"
+                                                                                            aria-expanded="false"
+                                                                                            aria-controls="collapseTwo"><input
+                                                                                                class="form-check-input mr-2"
+                                                                                                type="radio"
+                                                                                                name="flexRadioDefault"
+                                                                                                id="flexRadioDefault1">
+                                                                                            Transferência Express
+                                                                                        </button>
+                                                                                    </h2>
+                                                                                    <div id="collapseTwo"
+                                                                                        class="accordion-collapse collapse"
+                                                                                        aria-labelledby="headingTwo"
+                                                                                        data-bs-parent="#accordionExample">
+                                                                                        <div class="accordion-body">
+                                                                                            <strong>Número do Benficiario.</strong>922 56 78 98
+                                                                                            
+                                                                                        </div>
                                                                                     </div>
-                                                                                  </div>
                                                                                 </div>
-                                                                              
-                                                                              </div>
 
-
-                                                                            <div class="panel-group" id="accordion">
-                                                                                <div class="panel panel-default">
-                                                                                    <div class="accordion-item">
-                                                                                        <h2 class="accordion-header" id="headingOne">
-                                                                                          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                                                                              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"> Transferência
-                                                                                              Bancária
-                                                                                          </button>
-                                                                                        </h2>
-                                                                                        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                                                                                            <div class="accordion-body">
-                                                                                                <strong>Nome do Beneficiário</strong>
-                                                                                                AO06004400006729503010102 <code><label
-                                                                                                        class="form-label"
-                                                                                                        for="customFile"></label>
-                                                                                                    <input type="file"
-                                                                                                        class="form-control"
-                                                                                                        id="customFile" />
-                                                                                            </div>
-                                                                                        </div>
-                                                                                      </div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="panel-group" id="accordion">
-                                                                                <div class="panel panel-default">
-                                                                                    <div class="accordion-item">
-                                                                                        <h2 class="accordion-header" id="headingOne">
-                                                                                          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                                                                              <input class="form-check-input"  id="inlineRadio2 type="radio" name="transferenciaExpress" value="{{ old('transferencia-express') }}" id="flexRadioDefault1"> Transferência
-                                                                                              Express
-                                                                                          </button>
-                                                                                        </h2>
-                                                                                        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                                                                                            <div class="accordion-body">
-                                                                                                <strong>Numero de telefone</strong>
-                                                                                                922558512 <code><label
-                                                                                                        class="form-label"
-                                                                                                        for="customFile"></label>
-                                                                                                    <input type="file"
-                                                                                                        class="form-control"
-                                                                                                        id="customFile" />
-                                                                                            </div>
-                                                                                        </div>
-                                                                                      </div>
-                                                                                </div>
                                                                             </div>
                                                                         </form>
                                                                     </div>
-                                                                    <div class="modal-footer-btn">
-                                                                        <button type="button py-3" class="btn">Doar
-                                                                            Agora</button>
-                                                                    </div>
+                                                                    <div class="modal-footer mt-4">
+                                                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                      </div>
+                                                                
                                                                 </form>
                                                             </div>
                                                         </div>
@@ -286,20 +287,10 @@
                             <div class="sidebar-item recent-posts">
                                 <h3 class="sidebar-title">Publicações Recentes</h3>
                                 <div class="mt-3 campanhasRecentes"></div>
-                            </div><!-- End sidebar recent posts-->
-
-                            <div class="sidebar-item tags">
-                                <h3 class="sidebar-title">Tags</h3>
-                                <ul class="mt-3">
-                                </ul>
-                            </div><!-- End sidebar tags-->
-
+                            </div>
                         </div><!-- End Blog Sidebar -->
-
                     </div>
-
                 </div>
-
             </div>
         </section><!-- End Blog Section -->
 

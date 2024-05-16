@@ -154,11 +154,15 @@ class DoacaoFisicaService
     }
 
     public function  DoacaoFisicaRecentes(
-        int $limit
+        int $limit,
+        int $excepto_id = null
     ) {
         try {
             $DoacaoFisica = new DoacaoFisica();
-            $response = $DoacaoFisica->DoacaoFisicasRecentes($limit);
+            $response = $DoacaoFisica->DoacaoFisicasRecentes(
+                $limit,
+                $excepto_id
+            );
             return StatusHelper::response(['data' => $response, 'tag' => 'LIST.DOACAOFISICA RECENTE', 'status' => 200]);
         } catch (Exception $e) {
             return StatusHelper::response(['tag' => 'LIST.DOACAOFISICA RECENTE', 'status' => (int) $e->getMessage(),  'line_trace' => __LINE__,'class_trace' => PathHelper::getClassName($this) ]);

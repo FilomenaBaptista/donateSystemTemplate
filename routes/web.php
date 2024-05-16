@@ -50,14 +50,6 @@ Route::get('/doar-money', function () {
     return view('portal.doacao/doar-money');
 })->name('doarmoney');
 
-/* Route::get('/shop', function () {
-    return view('portal.doacao/shop');
-})->name('shop'); */
-
-/* Route::get('/shop-detail', function () {
-    return view('portal.doacao/shop-detail');
-})->name('shopdetail'); */
-
 Route::get('/carrinho', function () {
     return view('portal.doacao/carrinho');
 })->name('carrinho');
@@ -73,6 +65,10 @@ Route::get('/doacao', function () {
 Route::get('/listar-voluntarios', function () {
     return view('portal.listar-voluntarios');
 })->name('listarvoluntarios');
+
+Route::get('/user-perfil', function () {
+    return view('portal.user-perfil');
+})->name('userperfil');
 
 
 require __DIR__.'/auth.php';

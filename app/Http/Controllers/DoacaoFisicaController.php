@@ -179,10 +179,14 @@ class DoacaoFisicaController extends Controller
 
 
     public function doacoesRecentes(
+        Request $request,
         int $limit
     ){
         $DoacaoFisicaService = new DoacaoFisicaService();
-        $response = $DoacaoFisicaService->DoacaoFisicaRecentes($limit);
+        $response = $DoacaoFisicaService->DoacaoFisicaRecentes(
+            $request->limit,
+            $request->excepto_id
+        );
         return response()->json(['data' => $response['data'], 'message' => $response['message'], 'status' => $response['status']]);
     }
 }

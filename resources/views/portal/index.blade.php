@@ -32,7 +32,6 @@
     </section>
     <section class="Ajude-nes">
         <div class="donation-banner">
-            <p class="text-center"> Ajude </p>
             <h2 class="text-center doe-hoje">Doe hoje e seja o motivo pelo qual a mudança começa. Juntos, podemos construir
                 um futuro melhor!</h2>
             <div class="container mt-5">

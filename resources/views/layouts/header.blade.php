@@ -34,9 +34,9 @@
                          <li class="dropdown"><a href="{{ url('/dashboard') }}"
                                 class="nav-link scrollto">{{ Auth::user()->name }}</a>
                             <ul>
-                                <li><a href="">Doações Feitas</a></li>
-                                <li><a href="">Editar de Perfil</a></li>
-                                <li><a href="">Minhas Campanhas</a></li>
+                                <li><a href="{{ route('doacao.index') }}">Doações Feitas</a></li>
+                                <li><a href="{{ route('userperfil') }}">Editar de Perfil</a></li>
+                                <li><a href="{{ route('campanha.index') }}">Minhas Campanhas</a></li>
                                 <li>
                                         <form method="POST" action="{{ route('logout') }}">
                                             @csrf
