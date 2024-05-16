@@ -99,6 +99,6 @@ Route::get('/solicitar-doacao', [Controllers\CampanhaController::class,'create']
 Route::get('/campanha-editar/{campanha}', [Controllers\CampanhaController::class,'edit'])->name('campanha.edit');
 Route::apiResource('comentarios', Controllers\ComentarioController::class);
 Route::any('/campanhas-recentes/{limit}', [Controllers\CampanhaController::class,'campanhasRecentes'])->name('campanha.recente');
-Route::any('/shop', [Controllers\CampanhaController::class,'shop'])->name('shop');
-Route::any('/shop-detail/{id}', [Controllers\CampanhaController::class,'shopdetail'])->name('shopdetail');
+Route::any('/shop', [Controllers\CampanhaController::class,'shop'])->middleware(['auth'])->name('shop');
+Route::any('/shop-detail/{id}', [Controllers\CampanhaController::class,'shopdetail'])->middleware(['auth'])->name('shopdetail');
 Route::any('/historias-de-sucesso', [Controllers\CampanhaController::class,'historiasdesucesso'])->name('historiasdesucesso');

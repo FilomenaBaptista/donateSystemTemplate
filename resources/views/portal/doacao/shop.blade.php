@@ -22,7 +22,16 @@
 
             </div>
         </div>
-
+        <section class="featured-services container">
+            @if (session()->has('error'))
+                <div id="flash_error" class="alert alert-danger alert-dismissible" role="alert" aria-live="assertive"
+                    aria-atomic="true">
+                    <strong>{{ session()->get('error') }}</strong>
+                    <button type="button" class="ml-2 mb-1 close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            @endif
 
         <section id="shop" class="shop">
 

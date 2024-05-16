@@ -8,6 +8,7 @@ use App\Models\DoacaoFisica;
 use App\Services\CampanhaService;
 use App\Services\CategoriaService;
 use App\Services\UtilitarioService;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -184,13 +185,26 @@ class CampanhaController extends Controller
     }
     public function shop(){
         $url = 'https://fnx.ao/wp-json/wc/v3/products?consumer_key=ck_bbcc18e176c8ac191e3b3a17580e3b712104f8a1&consumer_secret=cs_f92f47e3020fda9e7fed62da9a1c6b860824f96d';
-        $products = Http::get($url);
-        return view('portal.doacao/shop',['products' => $products->json()]);
+        try {
+            $products = Http::get($url);
+            $products =$products->json();
+        } catch (Exception $e) {
+            session()->flash('error', 'Não foi possível conectar ao servidor');
+            $products = [];
+        }
+        return view('portal.doacao/shop',['products' => $products]);
     }
+    
     public function shopdetail($id){
         $url = 'https://fnx.ao/wp-json/wc/v3/products/'.$id.'?consumer_key=ck_bbcc18e176c8ac191e3b3a17580e3b712104f8a1&consumer_secret=cs_f92f47e3020fda9e7fed62da9a1c6b860824f96d';
-        $product = Http::get($url);
-        return view('portal.doacao/shop-detail',['product' => $product->json()]);
+        try {
+            $product = Http::get($url);
+            $product =$product->json();
+        } catch (Exception $e) {
+            session()->flash('error', 'Não foi possível conectar ao servidor');
+            $product = null;
+        }
+        return view('portal.doacao/shop-detail',['product' => $product]);
     }
     public function historiasdesucesso(Request $request){
        
