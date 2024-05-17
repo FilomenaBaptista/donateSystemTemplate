@@ -21,7 +21,17 @@
 
             </div>
         </div><!-- End Breadcrumbs -->
-
+        <section class="featured-services container">
+            @if (session()->has('mensagem'))
+                <div id="flash_message" class="alert alert-success alert-dismissible" role="alert" aria-live="assertive"
+                    aria-atomic="true">
+                    <strong>{{ session()->get('mensagem') }}</strong>
+                    <button type="button" class="ml-2 mb-1 close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            @endif
+        </section>
         <section class="donation-material py-5">
             <div class="tab-pane active show " id="tab-1">
                 <div class="row gy-4">
@@ -29,9 +39,13 @@
 
                         <section id="contact" class="contact">
                             <div class="container">
+                                @if (isset($doacao))
+                                    {{ Form::model($doacao, ['route' => ['doar.update', $doacao->id], 'class' => 'form', 'method' => 'put']) }}
+                                @else
+                                    {!! Form::open(['route' => 'doar.store', 'class' => 'php-email-form', 'files' => 'true']) !!}
+                                @endif
 
 
-                                {!! Form::open(['route' => 'doar.store', 'class' => 'php-email-form', 'files' => 'true']) !!}
                                 <div class="row gy-5 gx-lg-5">
 
                                     <div class="col-lg-4">
@@ -40,22 +54,37 @@
                                             <h3>Foto principal</h3>
 
                                             <div class="col-md-12 form-group mt-3 mt-md-0">
-                                                {{ Form::label('capa', 'Adicionar uma foto de capa', ['class' => 'mb-2']) }}
-                                                <div class="d-flex justify-content-center mb-4">
-                                                    <img id="selectedAvatar" name="img_video"
-                                                        src="https://mdbootstrap.com/img/Photos/Others/placeholder-avatar.jpg"
-                                                        class="rounded-circle"
-                                                        style="width: auto; height: 150px; object-fit: cover;"
-                                                        alt="example placeholder" />
-                                                </div>
-                                                <div class="d-flex justify-content-center">
-                                                    <div class="btn btn-rounded">
-                                                        {{ Form::label('capa', 'Escolher Imagem', ['class' => 'form-label text-white m-1']) }}
-                                                        <input type="file" name="capa" class="form-control d-none"
-                                                            id="capa"
-                                                            onchange="displaySelectedImage(event, 'selectedAvatar')" />
+                                                <div class="col-md-12 form-group mt-3 mt-md-0">
+                                                    {{ Form::hidden('imagem', null, ['class' => 'form-control', 'id' => 'imagem', 'readonly' => 'true']) }}
+                                                    {{ Form::label('capa_legenda', 'Adicionar uma foto de capa*', ['class' => 'mb-2']) }}
+                                                    @error('imagem')
+                                                        <div class="alert alert-danger">{{ $message }}</div>
+                                                    @enderror
+                                                    <div class="d-flex justify-content-center mb-4">
+                                                        <img id="selectedAvatar" name="img_video"
+                                                            src="@if (isset($campanha)) {{ $campanha->imagem }} 
+                                                            @else 
+                                                                @if (null !== old('imagem')) 
+                                                                    {{ old('imagem') }} 
+                                                                @else 
+                                                                    {{ asset('img/placeholder-avatar.jpg') }} @endif 
+                                                        @endif"
+                                                            class="rounded-circle"
+                                                            style="width: auto; height: 150px; object-fit: cover;"
+                                                            alt="example placeholder" />
                                                     </div>
+                                                    <div class="d-flex justify-content-center">
+                                                        <div class="btn btn-rounded">
+                                                            {{ Form::label('capa', 'Escolher Imagem', ['class' => 'form-label text-white m-1']) }}
+
+                                                            <input type="file" name="capa" class="form-control d-none"
+                                                                id="capa"
+                                                                onchange="displaySelectedImage(event, 'selectedAvatar')" />
+                                                        </div>
+                                                    </div>
+
                                                 </div>
+
                                             </div><!-- End Info Item -->
                                         </div>
 
@@ -71,9 +100,9 @@
                                                     'id' => 'anuncio',
                                                     'placeholder' => 'Titulo do Anúncio',
                                                 ]) }}
-                                                 @error('anuncio')
-                                                 <div class="alert alert-danger">{{ $message }}</div>
-                                             @enderror
+                                                @error('anuncio')
+                                                    <div class="alert alert-danger">{{ $message }}</div>
+                                                @enderror
                                             </div>
                                             <div class="col">
                                                 {{ Form::select('categoria_id', $categorias, null, [

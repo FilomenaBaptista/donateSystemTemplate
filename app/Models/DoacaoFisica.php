@@ -14,7 +14,7 @@ class DoacaoFisica extends Model
     use HasFactory;
 
     protected $table = 'doacao_bens_materiais';
-    protected $fillable = ['capa', 'anuncio', 'categoria', 'qtd_itens_doar', 'local', 'estado_artigo', 'descricao', 'is_anonimo', 'user_id'];
+    protected $fillable = ['imagem', 'anuncio', 'categoria', 'qtd_itens_doar', 'local', 'estado_artigo', 'descricao', 'is_anonimo', 'user_id'];
 
     public function criador(): BelongsTo
     {
@@ -69,7 +69,7 @@ class DoacaoFisica extends Model
         try {
             return DoacaoFisica::from('doacao_bens_materiais as dbm')
                 ->with('criador')
-                //->with('comentarios')
+                // ->with('comentarios')
                 ->where('dbm.id', $doacaoFisicaId)
                 ->first(['dbm.*']);
         } catch (Exception $e) {
@@ -86,7 +86,7 @@ class DoacaoFisica extends Model
      */
     public function createDoacaoFisica(
         int $doacoaoId,
-        string $capa,
+        string $imagem,
         string $anuncio,
         int $categoriaId,
         int $qtdItensDoar,
@@ -99,7 +99,7 @@ class DoacaoFisica extends Model
 
             $doacaoFisica = new DoacaoFisica();
             $doacaoFisica->user_id = $doacoaoId;
-            $doacaoFisica->capa = $capa;
+            $doacaoFisica->imagem = $imagem;
             $doacaoFisica->anuncio = $anuncio;
             $doacaoFisica->categoria_id = $categoriaId;
             $doacaoFisica->qtd_itens_doar = $qtdItensDoar;
@@ -123,7 +123,7 @@ class DoacaoFisica extends Model
      */
     public function updateDoacaoFisica(
         int $doacaoFisicaId,
-        string $capa,
+        string $imagem,
         string $anuncio,
         int $categoriaId,
         int $qtdItensDoar,
@@ -135,7 +135,7 @@ class DoacaoFisica extends Model
         try {
             $doacaoFisica = DoacaoFisica::find($doacaoFisicaId);
             $doacaoFisica->update([
-                'capa' => $capa,
+                'imagem' => $imagem,
                 'anuncio' => $anuncio,
                 'categoria_id' => $qtdItensDoar,
                 'qtd_itens_doar' => $categoriaId,

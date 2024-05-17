@@ -52,38 +52,24 @@ class DoacaoFisicaController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'capa' => 'required|mimes:jpg,jpeg,png,gif',
-            'anuncio' => 'string|required',
-            'categoria_id' => 'int|required',
-            'qtd_itens_doar' => 'int|required',
-            'estado_artigo' => 'string|required',
-            'local' => 'string|required',
-            'descricao' => 'string|required',
-            'is_anonimo' => 'int|required'
+        $this->authorize('REGISTAR DOAÇÃO');
+
+        $request->validate([
+            'imagem' => ['required'],
+            'anuncio' => ['required', 'string', 'min:15', 'max:255'],
+            'categoria_id' =>['required', 'int'],
+            'qtd_itens_doar' => ['required','int'],
+            'estado_artigo' => ['required'],
+            'local' => ['required'],
+            'descricao' => ['required'],
+            'is_anonimo' => ['required', 'int']
         ]);
-
-   
-        if ($validator->fails()) {
-            return response()->json(['data' => '', 'message' => $validator->errors(), 'status' => 400]);
-        }
-
-
-        $capa="";
-        if ($request->hasFile('capa') && $request->file('capa')->isValid()) :
-            $fileName = time().$request->file('capa')->getClientOriginalName();
-            $path = $request->file('capa')->storeAs('images', $fileName, 'public');
-            $capa = '/storage/'.$path;
-            if (!$path):
-                return redirect()->back()->withInput();
-            endif;
-        endif;
        
         $DoacaoFisicaService = new DoacaoFisicaService();
        
-        $response = $DoacaoFisicaService->createDoacaoFisica(
+        $DoacaoFisicaService->createDoacaoFisica(
             Auth::user()->id,
-            $capa,
+            $request->imagem,
             $request->anuncio,
             $request->categoria_id,
             $request->qtd_itens_doar,
@@ -112,15 +98,15 @@ class DoacaoFisicaController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Request $request, DoacaoFisica $doacaoFisica)
+    public function edit(Request $request, DoacaoFisica $doacao)
     {
-        $this->authorize('edit', $doacaoFisica);
+        $this->authorize('edit', $doacao);
 
         $CategoriaService = new CategoriaService();
         $validacao = new FuncoesUteisController();
         $response = $CategoriaService->listCategoria();
         $categorias= $validacao->getNames($response['data']);
-        return view('portal.doacao.solicitar-doacao' , ['campanha' => $doacaoFisica,'categorias' => $categorias]);
+        return view('portal.doacao/doar-bens-materiais' , ['doacao' => $doacao,'categorias' => $categorias]);
     }
 
     /**
@@ -128,8 +114,8 @@ class DoacaoFisicaController extends Controller
      */
     public function update(Request $request, int $id)
     {
-        $validator = Validator::make($request->all(), [
-            'capa' => 'required|mimes:jpg,jpeg,png,gif',
+        $request->validate([
+            'imagem' => 'required|mimes:jpg,jpeg,png,gif',
             'anuncio' => 'string|required',
             'categoria_id' => 'int|required',
             'qtd_itens_doar' => 'int|required',
@@ -139,23 +125,10 @@ class DoacaoFisicaController extends Controller
             'is_anonimo' => 'int|required'
         ]);
 
-        if ($validator->fails()) {
-            return response()->json(['data' => '', 'message' => $validator->errors(), 'status' => 400]);
-        }
-        $capa="";
-        if ($request->hasFile('capa') && $request->file('capa')->isValid()) :
-            $fileName = time().$request->file('capa')->getClientOriginalName();
-            $path = $request->file('capa')->storeAs('images', $fileName, 'public');
-            $capa = '/storage/'.$path;
-            if (!$path):
-                return redirect()->back()->withInput();
-            endif;
-        endif;
-
         $DoacaoFisicaService = new DoacaoFisicaService();
         $response = $DoacaoFisicaService->updateDoacaoFisica(
             $id,
-            $capa,
+            $request->imagem,
             $request->anuncio,
             $request->categoria_id,
             $request->qtd_itens_doar,
@@ -164,7 +137,9 @@ class DoacaoFisicaController extends Controller
             $request->descricao,
             $request->is_anonimo
         );
-        return response()->json(['data' => $response['data'], 'message' => $response['message'], 'status' => $response['status']]);
+
+        session()->flash('mensagem', 'DOAÇÃO ALTERADA COM SUCESSO!!!');
+        return redirect()->route('doar.show',$id);
     }
 
     /**

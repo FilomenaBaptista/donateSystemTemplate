@@ -38,7 +38,7 @@
 
                                         <div class="post-img">
                                             <!--  <img src="assets/img/blog/blog-1.jpg" alt="" class="img-fluid"> -->
-                                            <img src="{{ $doacaoFisica->capa }}" alt="Sem foto de capa" class="img-fluid">
+                                            <img src="{{ $doacaoFisica->imagem }}" alt="Sem foto de capa" class="img-fluid">
                                         </div>
 
                                         <h2 class="title">
