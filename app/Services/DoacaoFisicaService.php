@@ -55,7 +55,7 @@ class DoacaoFisicaService
             $response = $doacaoFisica->getDoacaoFisica(
                 $doacaoFisicaId
             );
-          
+
             return StatusHelper::response(['data' => $response, 'tag' => 'GET.DOACAOFISICA', 'status' => 200]);
         } catch (Exception $e) {
            
@@ -71,7 +71,7 @@ class DoacaoFisicaService
      */
     public function createDoacaoFisica(
         int $doadorId,
-        string $capa,
+        string $imagem,
         string $anuncio,
         int $categoriaId,
         int $qtdItensDoar,
@@ -84,7 +84,7 @@ class DoacaoFisicaService
             $doacaoFisica = new DoacaoFisica();
             $response = $doacaoFisica->createDoacaoFisica(
                 $doadorId,
-                $capa,
+                $imagem,
                 $anuncio,
                 $categoriaId,
                 $qtdItensDoar,
@@ -107,7 +107,7 @@ class DoacaoFisicaService
      */
     public function updateDoacaoFisica(
         int $DoacaoFisicaId,
-        string $capa,
+        string $imagem,
         string $anuncio,
         int $categoriaId,
         int $qtdItensDoar,
@@ -120,7 +120,7 @@ class DoacaoFisicaService
             $DoacaoFisica = new DoacaoFisica();
             $response = $DoacaoFisica->updateDoacaoFisica(
                 $DoacaoFisicaId,
-                $capa,
+                $imagem,
                 $anuncio,
                 $categoriaId,
                 $qtdItensDoar,

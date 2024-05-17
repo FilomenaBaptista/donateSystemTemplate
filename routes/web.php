@@ -84,7 +84,7 @@ Route::apiResource('doar', Controllers\DoacaoFisicaController::class);
 Route::apiResource('doacao', Controllers\DoacaoFisicaController::class);
 Route::get('/doacao-editar/{doacao}', [Controllers\DoacaoFisicaController::class,'edit'])->name('doacao.edit');
 Route::any('/doacao-recentes/{limit}', [Controllers\DoacaoFisicaController::class,'doacoesRecentes'])->name('doacao.recente');
-Route::get('doar-create', [Controllers\DoacaoFisicaController::class,'create'])->name('doar.create');
+Route::get('/doar-create', [Controllers\DoacaoFisicaController::class,'create'])->name('doar.create');
 
 //Campanha
 

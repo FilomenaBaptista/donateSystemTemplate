@@ -38,16 +38,21 @@ class Comentario extends Model
 
     public function createComentario(
         int $userId,
-        int $campanhaId,
+        int $id,
+        string $tipo,
         string $conteudo
     ) {
         try {
             $comentario = new Comentario();
             $comentario->user_id = $userId;
-            $comentario->campanha_id = $campanhaId;
+            if ($tipo == 'Campanha') {
+                $comentario->campanha_id = $id;
+            }else {
+                $comentario->doacao_id = $id;
+            }
+         
             $comentario->conteudo = $conteudo;
             $comentario->save();
-            return $comentario;
         } catch (QueryException $e) {
             throw new Exception($e->getCode());
         }

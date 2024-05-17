@@ -31,7 +31,8 @@ class ComentarioController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'campanha_id' => 'int|required',
+            'id' => 'int|required',
+            'tipo'=> 'string|required',
             'conteudo' => 'string|required'
         ]);
 
@@ -41,12 +42,13 @@ class ComentarioController extends Controller
 
         $ComentarioService = new ComentarioService();
         $response = $ComentarioService->createComentario(
-            1,
-           // Auth::user()->id,
-            $request->campanha_id,
+            Auth::user()->id,
+            $request->id,
+            $request->tipo,
             $request->conteudo
         );
-        return response()->json(['data' => $response['data'], 'message' => $response['message'], 'status' => $response['status']]);
+       // return response()->json(['data' => $response['data'], 'message' => $response['message'], 'status' => $response['status']]);
+        return redirect(url()->previous());
     }
 
     /**
@@ -71,7 +73,7 @@ class ComentarioController extends Controller
     public function update(Request $request, int $comentarioId)
     {
         $validator = Validator::make($request->all(), [
-            'campanha_id' => 'int|required',
+            'id' => 'int|required',
             'conteudo' => 'string|required'
         ]);
 

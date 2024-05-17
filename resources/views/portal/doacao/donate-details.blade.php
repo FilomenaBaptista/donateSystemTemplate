@@ -80,20 +80,28 @@
                             @can('edit', $doacao)
                                 <div class="read-more mt-auto align-self-end">
                                     <a class="btn-edit" href="{{ route('doacao.edit', $doacao->id) }}">
+                                        <i class="bi bi-phone-fill"></i> Contactar Doador
+                                    </a>
+                                    <a class="btn-edit bg-orange" href="{{ route('doacao.edit', $doacao->id) }}">
                                         <i class="bi bi-pencil"></i> Editar
+                                    </a>
+                                    <a class="btn-edit bg-danger" href="{{ route('doacao.edit', $doacao->id) }}">
+                                        <i class="bi bi-trash-fill"></i> Deletar
                                     </a>
                                 </div>
                             @endcan
                         </article>
-
+                       
                         {{-- <div class="comments">
                             <h4 class="comments-count"> {{ $doacao->comentarios->count() }} Comentários</h4>
+                          
                             @forelse ($doacao->comentarios as $comentario)
                                 <div id="comment-2" class="comment">
                                     <div class="d-flex">
                                         <div class="comment-img"><img src="assets/img/blog/comments-2.jpg" alt="">
                                         </div>
                                         <div>
+                                   
                                             <h5><a href="">{{ $comentario->criador->name }}</a> <a href="#"
                                                     class="reply"><i class="bi bi-reply-fill"></i> Reply</a></h5>
                                             <time
@@ -106,8 +114,21 @@
                                 </div>
                             @empty
                             @endforelse
+                            <div class="reply-form">
 
-
+                                <h4>Adicionar Comentário</h4>
+                                <form action="">
+                                  <div class="row">
+                                  <div class="row">
+                                    <div class="col form-group">
+                                      <textarea name="comment" class="form-control" placeholder="Seu Commentário*"></textarea>
+                                    </div>
+                                  </div>
+                                  <button type="submit" class="btn btn-primary">Comentar</button>
+                
+                                </form>
+                
+                              </div>
                         </div> --}}
                     </div>
 
@@ -115,103 +136,17 @@
 
                         <div class="sidebar">
                             <div class="sidebar-item search-form">
-                                <h3 class="sidebar-title">30.000 kz Arrecadados da Meta 345.000kz</h3>
+                                <h3 class="sidebar-title">2 <span>pessoas inscreveram-se para Doação</span></h3>
 
                             </div><!-- End sidebar search formn-->
-                            <div class="progress mt-3">
+                            <div class="progress mt-3 mb-4">
                                 <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50"
                                     aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
 
-                            <span class="qtd_doacoes_view">4,5K doações</span>
-                            <div class="botao-doar py-3">
-                                <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                    Doar Agora
-                                </button>
-
-                                <!-- Modal -->
-                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                                    aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-
-
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                aria-label="Close"></button>
-
-                                            <div class="modal-body">
-                                                <section class="donation-money">
-                                                    <div class=" container tab-pane" id="tab-2">
-                                                        <div class="row gy-4">
-                                                            <div class="col-lg-12">
-                                                                <form action="forms/contact.php" method="post"
-                                                                    role="form" class="php-email-form">
-                                                                    <div class="post-img-pagamento">
-                                                                        <img src="{{ $doacao->imagem }}" alt="" class="img-fluid">
-                                                                    </div>
-                                                                    <h5>Você está apoiando a doacao:
-                                                                        {{ $doacao->titulo }}</h5>
-                                                                    <p>
-                                                                        Sua doação beneficiará:
-                                                                        {{ $doacao->criador->name }}</p>
-                                                                    <div
-                                                                        class="col-md-12 input-group mb-3 mt-3 mt-md-0 p-0">
-                                                                        <span class="input-group-text">AKZ</span>
-                                                                        <input type="text" id="qtd_doar"
-                                                                            name="qtd_doar"
-                                                                            placeholder="Quantidade a doar"
-                                                                            value="{{ old('qtd_doar') }}"
-                                                                            class="form-control"
-                                                                            aria-label="Amount (to the nearest dollar)">
-                                                                        <span class="input-group-text">.00</span>
-
-                                                                    </div>
-                                                                    <div class="formas-de-pagamento">
-                                                                        <p> Forma de pagamento</p>
-                                                                        <div class="form-check form-check-inline">
-                                                                            <input class="form-check-input" type="radio"
-                                                                                name="inlineRadioOptions"
-                                                                                value="{{ old('name') }}"
-                                                                                id="inlineRadio1" value="option1">
-                                                                            <label class="form-check-label"
-                                                                                for="inlineRadio1">Transferência
-                                                                                Bancária</label>
-                                                                        </div>
-                                                                        <div class="form-check form-check-inline">
-                                                                            <input class="form-check-input" type="radio"
-                                                                                name="inlineRadioOptions"
-                                                                                value="{{ old('name') }}"
-                                                                                id="inlineRadio2" value="option2">
-                                                                            <label class="form-check-label"
-                                                                                for="inlineRadio2">Transfência
-                                                                                Express</label>
-                                                                        </div>
-                                                                        <div class="form-check form-check-inline">
-                                                                            <input class="form-check-input" type="radio"
-                                                                                name="inlineRadioOptions"
-                                                                                value="{{ old('name') }}"
-                                                                                id="inlineRadio3" value="option3">
-                                                                            <label class="form-check-label"
-                                                                                for="inlineRadio3">Face Pay</label>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="modal-footer-btn">
-                                                                        <button type="button py-3" class="btn">Doar
-                                                                            Agora</button>
-                                                                    </div>
-                                                                </form>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </section>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div><!-- End sidebar categories-->
-
+                    <!-- End sidebar categories-->
                             <div class="share-link mb-3">
+                               <title>Compartilhar</title>
                                 <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
                                 <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
                                 <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
@@ -219,21 +154,10 @@
                                 <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
                             </div>
 
-                            <div class="sidebar-item recent-doacoes">
-                                <i class="bi bi-graph-up"></i>
-                                <strong class="sidebar-title">4,3K pessoas acabaram de doar</strong>
-                            </div>
-
                             <div class="sidebar-item recent-posts">
                                 <h3 class="sidebar-title">Publicações Recentes</h3>
-                                <div class="mt-3 doacaosRecentes"></div>
+                                <div class="mt-3 doacoesRecentes"></div>
                             </div><!-- End sidebar recent posts-->
-
-                            <div class="sidebar-item tags">
-                                <h3 class="sidebar-title">Tags</h3>
-                                <ul class="mt-3">
-                                </ul>
-                            </div><!-- End sidebar tags-->
 
                         </div><!-- End Blog Sidebar -->
 
@@ -256,7 +180,7 @@
                 limit: 5,
                 excepto_id: "{{ $doacao->id }}"
             };
-            doacaoRecentes(dados)
+            doacoesRecentes(dados)
         });
     </script>
 @endsection

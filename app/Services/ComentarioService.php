@@ -43,14 +43,16 @@ class ComentarioService
      */
     public function createComentario(
         int $userId,
-        int $campanhaId,
+        int $id,
+        string $tipo,
         string $conteudo
     ) {
         try {
             $comentario = new Comentario();
             $response = $comentario->createComentario(
                 $userId,
-                $campanhaId,
+                $id,
+                $tipo,
                 $conteudo
             );
             return StatusHelper::response(['data' => $response, 'tag' => 'CREATE.COMENTARIO', 'status' => 200]);
