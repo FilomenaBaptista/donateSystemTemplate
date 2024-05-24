@@ -45,8 +45,16 @@
                                     {!! Form::open(['route' => 'doar.store', 'class' => 'php-email-form', 'files' => 'true']) !!}
                                 @endif
 
-
                                 <div class="row gy-5 gx-lg-5">
+                                    @if ($errors->any())
+                                        <div class="alert alert-danger">
+                                            <ul>
+                                                @foreach ($errors->all() as $error)
+                                                    <li>{{ $error }}</li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                    @endif
 
                                     <div class="col-lg-4">
 
@@ -62,7 +70,7 @@
                                                     @enderror
                                                     <div class="d-flex justify-content-center mb-4">
                                                         <img id="selectedAvatar" name="img_video"
-                                                            src="@if (isset($campanha)) {{ $campanha->imagem }} 
+                                                            src="@if (isset($doacao)) {{ $doacao->imagem }} 
                                                             @else 
                                                                 @if (null !== old('imagem')) 
                                                                     {{ old('imagem') }} 
@@ -136,13 +144,23 @@
 
                                         <div class="row">
                                             <div class="col">
-                                                <select class="form-select" aria-label="Default select example"
-                                                    name="estado_artigo" id="estado_artigo" value="{{ old('estado') }}">
-                                                    <option selected>Estado da doação</option>
-                                                    <option value="1">Muito boa condição</option>
-                                                    <option value="2">Estado médio</option>
-                                                    <option value="3">Mal estado</option>
-                                                    <option value="3">Não definível</option>
+                                                @php
+                                                    $estadosDoacao = [
+                                                        'Novo',
+                                                        'Perfeitas Condições',
+                                                        'Estado Médio',
+                                                        'Mal Estado',
+                                                    ];
+                                                @endphp
+                                                <select class="form-select" name="estado_artigo" id="estado_artigo">
+                                                    <option>Estado da doação</option>
+                                                    @foreach ($estadosDoacao as $estado)
+                                                    
+                                                        <option value="{{ $estado }}"
+                                                            {{ old('estado_artigo', $doacao->estado_artigo ?? '') == $estado ? 'selected' : '' }}>
+                                                            {{ $estado }}
+                                                        </option>
+                                                    @endforeach
                                                 </select>
                                             </div>
                                             <div class="col">
@@ -167,15 +185,20 @@
                                             <div class="col">
                                                 <label class="mt-1 mb-3 text-bold">Descricação</label>
                                                 <textarea class="form-control" name="descricao" id="descricao" name="message"
-                                                    placeholder="Oi meu nome é Ana, estou arrecadando fundos para..." required>{{ old('descrica') }}</textarea>
+                                                    placeholder="Oi meu nome é Ana, estou arrecadando fundos para..." required>{{ old('descrica') }}
+                                                @if (isset($doacao))
+                                                    {!! $doacao->descricao !!}
+@else
+{{ old('descricao') }} @endif
+                                                </textarea>
                                             </div>
                                         </div>
 
                                         <div class="row mt-3">
                                             <div class="col-md-12 form-group">
 
-                                                {{ Form::button('Submeter para Aprovação', ['type' => 'submit', 'class' => 'mr-2']) }}
-                                                {{ Form::button('Publicar Doação', ['type' => 'submit']) }}
+                                                {{ Form::button('Publicar', ['type' => 'submit', 'class' => 'mr-2']) }}
+                                                {{-- {{ Form::button('Publicar Doação', ['type' => 'submit']) }} --}}
                                             </div>
                                         </div>
                                         {!! Form::close() !!}

@@ -90,7 +90,7 @@
 
                         <div class="sidebar">
                             <div class="sidebar-item search-form">
-                                <h3 class="sidebar-title">Search</h3>
+                                <h3 class="sidebar-title">Pesquisar</h3>
                                 <form action="" class="mt-3">
                                     <input type="text">
                                     <button type="submit"><i class="bi bi-search"></i></button>
@@ -109,7 +109,7 @@
 
                             <div class="sidebar-item recent-posts">
                                 <h3 class="sidebar-title">Publicações Recentes</h3>
-                                <div class="mt-3 campanhasRecentes"></div>
+                                <div class="mt-3 doacoesRecentes"></div>
                             </div><!-- End sidebar recent posts-->
 
                         </div><!-- End Blog Sidebar -->
@@ -129,28 +129,11 @@
     <script src="{{ asset('js/util.js') }}"></script>
     <script>
         $(document).ready(function() {
-            $.ajax({
-                url: '/doacao-recentes/5',
-                type: 'GET',
-                dataType: 'json',
-                success: function(response) {
-                    $('.doacaoRecentes').empty();
-                    response.data.forEach(function(doacaoFisica) {
-                        var html = '<div class="post-item">';
-                        html += '<img src="' + doacaoFisica.capa +
-                            '" alt="" class="flex-shrink-0">';
-                        html += '<div>';
-                        html += '<h4><a href="blog-post.html">' + doacaoFisica.titulo +
-                            '</a></h4>';
-                        html += '<time datetime="' + doacaoFisica.created_at + '">' +
-                            dataResumida(doacaoFisica.created_at) + '</time>';
-                        html += '</div>';
-                        html += '</div>';
-                        $('.doacaoRecentes').append(html);
-                    });
-                },
-                error: function(xhr, status, error) {}
-            });
-        });
+        var dados = {
+            route: "{{ route('doar.show',0) }}",
+            limit: 5
+        };
+        doacaoRecentes(dados)
+    });
     </script>
 @endsection

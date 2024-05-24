@@ -19,7 +19,7 @@ class Campanha extends Model
     {return $this->belongsTo(User::class,'user_id');}
 
     public function comentarios()
-    {return $this->hasMany(Comentario::class);}
+    {return $this->hasMany(Comentario::class, 'campanha_id');}
 
     public function listcampanha(
         int $criadorId = null,
@@ -40,7 +40,9 @@ class Campanha extends Model
                 $query->where('c.user_id', '=', $criadorId);
             }
             if (!is_null($eliminado)) {
-                $query->where('c.eliminado', '=', $criadorId);
+                $query->where('c.eliminado', '=', $eliminado);
+            }else{
+                $query->where('c.eliminado', '=', '0');
             }
             if (!empty($search)) {
                 $query->where('c.titulo', 'like', "%".$search."%");
@@ -165,6 +167,9 @@ class Campanha extends Model
             if(!is_null($excepto_id)){
                 $query->where('id', '!=', $excepto_id);
             }
+           
+             $query->where('eliminado', '=', '0');
+            
             return  $query->get();
         } catch (ModelNotFoundException $e) {
             throw new ModelNotFoundException($e->getCode());

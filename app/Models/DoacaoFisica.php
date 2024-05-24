@@ -23,7 +23,7 @@ class DoacaoFisica extends Model
 
     public function comentarios()
     {
-        return $this->hasMany(Comentario::class);
+        return $this->hasMany(Comentario::class, 'doacao_id');
     }
 
     public function listDoacaoFisica(
@@ -45,7 +45,9 @@ class DoacaoFisica extends Model
                 $query->where('dbm.user_id', '=', $criadorId);
             }
             if (!is_null($eliminado)) {
-                $query->where('dbm.eliminado', '=', $criadorId);
+                $query->where('dbm.eliminado', '=', $eliminado);
+            }else{
+                $query->where('dbm.eliminado', '=', '0');
             }
             if (!empty($search)) {
                 $query->where('dbm.anuncio', 'like', "%" . $search . "%");
@@ -67,12 +69,14 @@ class DoacaoFisica extends Model
         int $doacaoFisicaId
     ) {
         try {
+           
             return DoacaoFisica::from('doacao_bens_materiais as dbm')
                 ->with('criador')
-                // ->with('comentarios')
+                ->with('comentarios')
                 ->where('dbm.id', $doacaoFisicaId)
                 ->first(['dbm.*']);
         } catch (Exception $e) {
+            // return $e->getMessage();
             throw new Exception($e->getCode());
         }
     }
@@ -93,7 +97,7 @@ class DoacaoFisica extends Model
         string $local,
         string $estadoArtigo,
         string $descricao,
-        int $isAnonimo
+        int $isAnonimo = null
     ) {
         try {
 
@@ -130,7 +134,7 @@ class DoacaoFisica extends Model
         string $local,
         string $estadoArtigo,
         string $descricao,
-        int $isAnonimo
+        int $isAnonimo = null
     ) {
         try {
             $doacaoFisica = DoacaoFisica::find($doacaoFisicaId);
@@ -168,7 +172,7 @@ class DoacaoFisica extends Model
             throw new ModelNotFoundException($e->getCode());
         }
     }
-    public function campanhasRecentes(
+    public function doacoesRecentes(
         int $limit,
         int $excepto_id = null
     ) {
@@ -178,6 +182,9 @@ class DoacaoFisica extends Model
             if(!is_null($excepto_id)){
                 $query->where('id', '!=', $excepto_id);
             }
+
+            $query->where('eliminado', '=', '0');
+
             return  $query->get();
         } catch (ModelNotFoundException $e) {
             throw new ModelNotFoundException($e->getCode());

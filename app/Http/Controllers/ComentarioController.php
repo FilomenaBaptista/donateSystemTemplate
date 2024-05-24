@@ -39,15 +39,17 @@ class ComentarioController extends Controller
         if ($validator->fails()) {
             return response()->json(['data' => '', 'message' => $validator->errors(), 'status' => 400]);
         }
+     
 
         $ComentarioService = new ComentarioService();
+     
         $response = $ComentarioService->createComentario(
             Auth::user()->id,
             $request->id,
             $request->tipo,
             $request->conteudo
         );
-       // return response()->json(['data' => $response['data'], 'message' => $response['message'], 'status' => $response['status']]);
+        //return response()->json(['data' => $response['data'], 'message' => $response['message'], 'status' => $response['status']]);
         return redirect(url()->previous());
     }
 

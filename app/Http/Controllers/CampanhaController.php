@@ -169,7 +169,9 @@ class CampanhaController extends Controller
     ) {
         $CampanhaService = new CampanhaService();
         $response = $CampanhaService->deleteCampanha($campanhaId);
-        return response()->json(['data' => $response['data'], 'message' => $response['message'], 'status' => $response['status']]);
+        session()->flash('mensagem', 'CAMPANHA EXLUÍDA COM SUCESSO!!!');
+        return redirect()->route('campanha.index', $campanhaId);
+        // return response()->json(['data' => $response['data'], 'message' => $response['message'], 'status' => $response['status']]);
     }
 
     public function campanhasRecentes(

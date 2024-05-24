@@ -77,7 +77,7 @@
                         @forelse ($doacoes as $doacao)
                         <div class="swiper-slide">
                             <div class="testimonial-item">
-                                <img src="{{ $doacao->capa }}" alt="Sem foto de capa" class="img-fluid">
+                                <img src="{{ $doacao->imagem }}" alt="Sem foto de capa" class="img-fluid">
                                 <h2 class="title">
                                     <a
                                         href="{{ route('doacao.show', $doacao->id) }}">{{ $doacao->anuncio }}</a>

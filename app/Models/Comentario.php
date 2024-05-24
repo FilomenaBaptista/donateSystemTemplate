@@ -47,13 +47,14 @@ class Comentario extends Model
             $comentario->user_id = $userId;
             if ($tipo == 'Campanha') {
                 $comentario->campanha_id = $id;
-            }else {
+            }else if ($tipo == 'Doacao') {
                 $comentario->doacao_id = $id;
             }
          
             $comentario->conteudo = $conteudo;
             $comentario->save();
         } catch (QueryException $e) {
+            return $e->getMessage();
             throw new Exception($e->getCode());
         }
     }

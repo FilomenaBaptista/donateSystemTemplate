@@ -31,9 +31,6 @@
                     </button>
                 </div>
             @endif
-        </section>
-        <!-- ======= Blog Details Section ======= -->
-        <section class="featured-services container">
             @if (session()->has('mensagem'))
                 <div id="flash_message" class="alert alert-success alert-dismissible" role="alert" aria-live="assertive"
                     aria-atomic="true">
@@ -44,6 +41,8 @@
                 </div>
             @endif
         </section>
+        <!-- ======= Blog Details Section ======= -->
+
 
         <section id="blog" class="blog py-4">
 
@@ -68,13 +67,19 @@
                                             href="blog-details.html"><time
                                                 datetime="2020-01-01">{{ $doacao->created_at->format('M d,  Y') }}</time></a>
                                     </li>
-                                    {{-- <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a
+                                    <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a
                                             href="blog-details.html"> {{ $doacao->comentarios->count() }} Comentários</a>
-                                    </li> --}}
+                                    </li>
                                 </ul>
                             </div><!-- End meta top -->
 
                             <div class="content">
+                                <p>
+                                    {!! $doacao->estado_artigo !!}
+                                </p>
+                                <p>
+                                    {!! $doacao->local !!}
+                                </p>
                                 <p>
                                     {!! $doacao->descricao !!}
                                 </p>
@@ -95,14 +100,14 @@
                                     <a class="btn-edit bg-orange" href="{{ route('doacao.edit', $doacao->id) }}">
                                         <i class="bi bi-pencil"></i> Editar
                                     </a>
-                                    <a class="btn-edit bg-danger" href="{{ route('doacao.edit', $doacao->id) }}">
+                                    <a class="btn-edit bg-danger" href="{{ route('doacao.destroy', $doacao->id) }}">
                                         <i class="bi bi-trash-fill"></i> Deletar
                                     </a>
                                 </div>
                             @endcan
                         </article>
-                       
-                        {{-- <div class="comments">
+
+                        <div class="comments">
                             <h4 class="comments-count"> {{ $doacao->comentarios->count() }} Comentários</h4>
                           
                             @forelse ($doacao->comentarios as $comentario)
@@ -124,22 +129,27 @@
                                 </div>
                             @empty
                             @endforelse
+                            @auth
                             <div class="reply-form">
 
                                 <h4>Adicionar Comentário</h4>
-                                <form action="">
-                                  <div class="row">
-                                  <div class="row">
-                                    <div class="col form-group">
-                                      <textarea name="comment" class="form-control" placeholder="Seu Commentário*"></textarea>
-                                    </div>
-                                  </div>
-                                  <button type="submit" class="btn btn-primary">Comentar</button>
-                
+
+                                <form action="/comentarios" method="POST">
+                                    @csrf
+                                    <input type="hidden" value="Doacao" name="tipo">
+                                    <input type="hidden" value="{{ $doacao->id }}" name="id">
+                                        <div class="row">
+                                            <div class="col form-group">
+                                                <textarea name="conteudo" class="form-control" placeholder="Seu Commentário*"></textarea>
+
+                                            </div>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Comentar</button>
+
                                 </form>
-                
-                              </div>
-                        </div> --}}
+                            </div>
+                        @endauth
+                        </div>
                     </div>
 
                     <div class="col-lg-4">
@@ -154,9 +164,9 @@
                                     aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
 
-                    <!-- End sidebar categories-->
+                            <!-- End sidebar categories-->
                             <div class="share-link mb-3">
-                               <title>Compartilhar</title>
+                                <title>Compartilhar</title>
                                 <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
                                 <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
                                 <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
@@ -190,7 +200,7 @@
                 limit: 5,
                 excepto_id: "{{ $doacao->id }}"
             };
-            doacoesRecentes(dados)
+            doacaoRecentes(dados)
         });
     </script>
 @endsection

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('categoria_id');
             $table->unsignedBigInteger('qtd_itens_doar');
             $table->string('local');
-            $table->string('estado_artigo');
+            $table->enum('estado_artigo', [ 'Novo','Perfeitas Condições', 'Estado Médio', 'Mal Estado']);
             $table->text('descricao');
             $table->enum('is_anonimo',[1,0]);
             $table->unsignedBigInteger('user_id');

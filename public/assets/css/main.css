@@ -84,8 +84,7 @@ h6 {
 # Sections & Section Header
 --------------------------------------------------------------*/
 section {
-  padding: 50px 0;
-  padding: 0px;
+  padding: 0px 0px 60px 0px;
   overflow: hidden;
 }
 
@@ -359,7 +358,7 @@ section {
   .navbar .dropdown ul {
     display: block;
     position: absolute;
-    left: -50px;
+    left:0px;
     top: 100%;
     margin: 0;
     padding: 0 0 10px 0;
@@ -368,6 +367,7 @@ section {
     visibility: hidden;
     background: var(--color-secondary);
     transition: 0.3s;
+    width: 260px;
   }
 
   .navbar .dropdown ul li {
@@ -2617,6 +2617,7 @@ label.mb-2.label-money {
 
 .blog .blog-details .content {
   margin-top: 20px;
+  height: auto;
 }
 
 .blog .blog-details .content h3 {
@@ -3376,7 +3377,7 @@ h1.logo {
 }
 
 article.d-flex.flex-column.blog-details {
-  height: 90vh;
+  height: auto;
 }
 
 .botao-doar button.btn {
@@ -3447,7 +3448,7 @@ span.qtd_doacoes_view {
 }
 
 section.Ajude-nes {
-  background: #ff4a1e94;
+  background: #35167de0;
   padding: 100px;
 }
 
@@ -3882,4 +3883,11 @@ input#flexRadioDefault1 {
 section#Perfil-User-theme {
   padding: 130px;
   background: #c2c2c233;
+}
+.content img {
+  width: 200px !important;
+}
+
+section.featured-services.container {
+  display: none;
 }

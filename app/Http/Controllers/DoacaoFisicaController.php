@@ -8,6 +8,7 @@ use App\Services\CategoriaService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 class DoacaoFisicaController extends Controller
 {
@@ -53,18 +54,19 @@ class DoacaoFisicaController extends Controller
     public function store(Request $request)
     {
         $this->authorize('REGISTAR DOAÇÃO');
-
+        $estadosValidos = ['Novo', 'Perfeitas Condições', 'Estado Médio', 'Mal Estado'];
+        
         $request->validate([
             'imagem' => ['required'],
             'anuncio' => ['required', 'string', 'min:15', 'max:255'],
             'categoria_id' =>['required', 'int'],
             'qtd_itens_doar' => ['required','int'],
-            'estado_artigo' => ['required'],
+            'estado_artigo' => ['required', Rule::in($estadosValidos)],
             'local' => ['required'],
             'descricao' => ['required'],
-            'is_anonimo' => ['required', 'int']
+            'is_anonimo' => ['nullable', 'int']
         ]);
-       
+
         $DoacaoFisicaService = new DoacaoFisicaService();
        
         $DoacaoFisicaService->createDoacaoFisica(
@@ -91,6 +93,7 @@ class DoacaoFisicaController extends Controller
     {
         $doacaoFisicaService = new DoacaoFisicaService();
         $response = $doacaoFisicaService->getDoacaoFisica( $id);
+  
         return view('portal.doacao/donate-details',['doacao' => $response['data']]);
         // return response()->json(['data' => $response['data'], 'message' => $response['message'], 'status' => $response['status']]);
     }
@@ -114,15 +117,18 @@ class DoacaoFisicaController extends Controller
      */
     public function update(Request $request, int $id)
     {
+
+        $estadosValidos = ['Novo', 'Perfeitas Condições', 'Estado Médio', 'Mal Estado'];
+
         $request->validate([
-            'imagem' => 'required|mimes:jpg,jpeg,png,gif',
+            'imagem' => 'required',
             'anuncio' => 'string|required',
             'categoria_id' => 'int|required',
             'qtd_itens_doar' => 'int|required',
-            'estado_artigo' => 'string|required',
+            'estado_artigo' => ['required', Rule::in($estadosValidos)],
             'local' => 'string|required',
             'descricao' => 'string|required',
-            'is_anonimo' => 'int|required'
+            'is_anonimo' => 'int|nullable'
         ]);
 
         $DoacaoFisicaService = new DoacaoFisicaService();
@@ -149,7 +155,9 @@ class DoacaoFisicaController extends Controller
     {
         $DoacaoFisicaService = new DoacaoFisicaService();
         $response = $DoacaoFisicaService->deleteDoacaoFisica($doacaoId);
-        return response()->json(['data' => $response['data'], 'message' => $response['message'], 'status' => $response['status']]);
+        session()->flash('mensagem', 'CAMPANHA EXLUÍDA COM SUCESSO!!!');
+        return redirect()->route('doar.index', $doacaoId);
+        // return response()->json(['data' => $response['data'], 'message' => $response['message'], 'status' => $response['status']]);
     }
 
 
@@ -158,7 +166,7 @@ class DoacaoFisicaController extends Controller
         int $limit
     ){
         $DoacaoFisicaService = new DoacaoFisicaService();
-        $response = $DoacaoFisicaService->DoacaoFisicaRecentes(
+        $response = $DoacaoFisicaService->doacoesRecentes(
             $request->limit,
             $request->excepto_id
         );

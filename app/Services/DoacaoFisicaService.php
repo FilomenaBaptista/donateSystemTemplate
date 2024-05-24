@@ -51,7 +51,9 @@ class DoacaoFisicaService
         int $doacaoFisicaId
     ) {
         try {
+            
             $doacaoFisica = new DoacaoFisica();
+          
             $response = $doacaoFisica->getDoacaoFisica(
                 $doacaoFisicaId
             );
@@ -78,7 +80,7 @@ class DoacaoFisicaService
         string $local,
         string $estadoArtigo,
         string $descricao,
-        int $isAnonimo
+        int $isAnonimo =  null
     ) {
         try {
             $doacaoFisica = new DoacaoFisica();
@@ -114,7 +116,7 @@ class DoacaoFisicaService
         string $local,
         string $estadoArtigo,
         string $descricao,
-        int $isAnonimo
+        int $isAnonimo = null
     ) {
         try {
             $DoacaoFisica = new DoacaoFisica();
@@ -153,13 +155,13 @@ class DoacaoFisicaService
         }
     }
 
-    public function  DoacaoFisicaRecentes(
+    public function  doacoesRecentes(
         int $limit,
         int $excepto_id = null
     ) {
         try {
             $DoacaoFisica = new DoacaoFisica();
-            $response = $DoacaoFisica->DoacaoFisicasRecentes(
+            $response = $DoacaoFisica->doacoesRecentes(
                 $limit,
                 $excepto_id
             );

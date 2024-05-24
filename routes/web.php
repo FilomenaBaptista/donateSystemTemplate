@@ -83,7 +83,8 @@ Route::apiResource('doar', Controllers\DoacaoFisicaController::class);
 
 Route::apiResource('doacao', Controllers\DoacaoFisicaController::class);
 Route::get('/doacao-editar/{doacao}', [Controllers\DoacaoFisicaController::class,'edit'])->name('doacao.edit');
-Route::any('/doacao-recentes/{limit}', [Controllers\DoacaoFisicaController::class,'doacoesRecentes'])->name('doacao.recente');
+Route::get('/doacao-destroy/{doacao}', [Controllers\DoacaoFisicaController::class,'destroy'])->name('doacao.destroy');
+Route::any('/doacoes-recentes/{limit}', [Controllers\DoacaoFisicaController::class,'doacoesRecentes'])->name('doacao.recente');
 Route::get('/doar-create', [Controllers\DoacaoFisicaController::class,'create'])->name('doar.create');
 
 //Campanha
@@ -93,6 +94,7 @@ Route::apiResource('campanha', Controllers\CampanhaController::class);
 Route::get('/', [Controllers\CampanhaController::class, 'campanhaHome'])->name('campanha.home');
 Route::get('/solicitar-doacao', [Controllers\CampanhaController::class,'create'])->name('campanha.create');
 Route::get('/campanha-editar/{campanha}', [Controllers\CampanhaController::class,'edit'])->name('campanha.edit');
+Route::get('/campanha-destroy/{campanha}', [Controllers\CampanhaController::class,'destroy'])->name('campanha.destroy');
 Route::apiResource('comentarios', Controllers\ComentarioController::class);
 Route::any('/campanhas-recentes/{limit}', [Controllers\CampanhaController::class,'campanhasRecentes'])->name('campanha.recente');
 Route::any('/shop', [Controllers\CampanhaController::class,'shop'])->middleware(['auth'])->name('shop');

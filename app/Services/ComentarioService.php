@@ -57,6 +57,7 @@ class ComentarioService
             );
             return StatusHelper::response(['data' => $response, 'tag' => 'CREATE.COMENTARIO', 'status' => 200]);
         } catch (Exception $e) {
+            return $e->getMessage();
             return StatusHelper::response(['tag' => 'CREATE.COMENTARIO', 'status' => (int) $e->getMessage(),  'line_trace' => __LINE__,'class_trace' => PathHelper::getClassName($this) ]);
         }
     }
