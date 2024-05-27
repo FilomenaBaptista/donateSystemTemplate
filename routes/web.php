@@ -50,9 +50,9 @@ Route::get('/doar-money', function () {
     return view('portal.doacao/doar-money');
 })->name('doarmoney');
 
-Route::get('/carrinho', function () {
+/* Route::get('/carrinho', function () {
     return view('portal.doacao/carrinho');
-})->name('carrinho');
+})->name('carrinho'); */
 
 Route::get('/checkout', function () {
     return view('portal.doacao/checkout');
@@ -97,4 +97,9 @@ Route::apiResource('comentarios', Controllers\ComentarioController::class);
 Route::any('/campanhas-recentes/{limit}', [Controllers\CampanhaController::class,'campanhasRecentes'])->name('campanha.recente');
 Route::any('/shop', [Controllers\CampanhaController::class,'shop'])->middleware(['auth'])->name('shop');
 Route::any('/shop-detail/{id}', [Controllers\CampanhaController::class,'shopdetail'])->middleware(['auth'])->name('shopdetail');
+Route::any('/order', [Controllers\CampanhaController::class,'fazerPedido'])->middleware(['auth'])->name('fazerPedido');
 Route::any('/historias-de-sucesso', [Controllers\CampanhaController::class,'historiasdesucesso'])->name('historiasdesucesso');
+
+Route::get('/carrinho', [Controllers\CartController::class, 'index'])->name('cart.index');
+Route::any('/cart', [Controllers\CartController::class, 'store'])->name('cart.store');
+Route::delete('/cart/{id}', [Controllers\CartController::class, 'destroy'])->name('cart.destroy');

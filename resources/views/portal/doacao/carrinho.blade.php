@@ -5,6 +5,9 @@
         ul.pagination {
             justify-content: center;
         }
+        .py-5 {
+            padding-top: 0 !important;
+        }
     </style>
 
     <main id="main">
@@ -29,132 +32,77 @@
            <!-- Cart Page Start -->
         <div class="container-fluid py-5">
             <div class="container py-5">
-                <div class="table-responsive">
-                    <table class="table">
-                        <thead>
-                          <tr>
-                            <th scope="col">Produtos</th>
-                            <th scope="col">Nome</th>
-                            <th scope="col">Preço</th>
-                            <th scope="col">Quantidae</th>
-                            <th scope="col">Total</th>
-                            <th scope="col">Excluir</th>
-                          </tr>
-                        </thead>
-                        <tbody>
+                @if (empty($cart))
+                    <h1 style="text-align: center;color: #0EA2BD;">Seu carrinho está vazio.
+                    </h1>
+                @else
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
                             <tr>
-                                <th scope="row">
-                                    <div class="d-flex align-items-center">
-                                        <img src="img/vegetable-item-3.png" class="img-fluid me-5 rounded-circle" style="width: 80px; height: 80px;" alt="">
-                                    </div>
-                                </th>
-                                <td>
-                                    <p class="mb-0 mt-4">Big Banana</p>
-                                </td>
-                                <td>
-                                    <p class="mb-0 mt-4">2.99 $</p>
-                                </td>
-                                <td>
-                                    <div class="input-group quantity mt-4" style="width: 100px;">
-                                        <div class="input-group-btn">
-                                            <button class="btn btn-sm btn-minus rounded-circle bg-light border" >
-                                            <i class="bi bi-dash-lg"></i>
-                                            </button>
-                                        </div>
-                                        <input type="text" class="form-control form-control-sm text-center border-0" value="1">
-                                        <div class="input-group-btn">
-                                            <button class="btn btn-sm btn-
-                                             rounded-circle bg-light border">
-                                                <i class="bi bi-plus-lg"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <p class="mb-0 mt-4">2.99 $</p>
-                                </td>
-                                <td>
-                                    <button class="btn btn-md rounded-circle bg-light border mt-4" >
-                                        <i class="bi bi-x text-danger"></i>
-                                    </button>
-                                </td>
-                            
+                                <th scope="col">Produtos</th>
+                                <th scope="col">Nome</th>
+                                <th scope="col">Preço</th>
+                                <th scope="col">Quantidae</th>
+                                <th scope="col">Total</th>
+                                <th scope="col">Excluir</th>
                             </tr>
-                            <tr>
-                                <th scope="row">
-                                    <div class="d-flex align-items-center">
-                                        <img src="img/vegetable-item-5.jpg" class="img-fluid me-5 rounded-circle" style="width: 80px; height: 80px;" alt="" alt="">
-                                    </div>
-                                </th>
-                                <td>
-                                    <p class="mb-0 mt-4">Potatoes</p>
-                                </td>
-                                <td>
-                                    <p class="mb-0 mt-4">2.99 $</p>
-                                </td>
-                                <td>
-                                    <div class="input-group quantity mt-4" style="width: 100px;">
-                                        <div class="input-group-btn">
-                                            <button class="btn btn-sm btn-minus rounded-circle bg-light border" >
-                                            <i class="bi bi-dash-lg"></i>
-                                            </button>
-                                        </div>
-                                        <input type="text" class="form-control form-control-sm text-center border-0" value="1">
-                                        <div class="input-group-btn">
-                                            <button class="btn btn-sm btn-plus rounded-circle bg-light border">
-                                                <i class="bi bi-plus-lg"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <p class="mb-0 mt-4">2.99 $</p>
-                                </td>
-                                <td>
-                                    <button class="btn btn-md rounded-circle bg-light border mt-4" >
-                                        <i class="bi bi-x text-danger"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">
-                                    <div class="d-flex align-items-center">
-                                        <img src="img/vegetable-item-2.jpg" class="img-fluid me-5 rounded-circle" style="width: 80px; height: 80px;" alt="" alt="">
-                                    </div>
-                                </th>
-                                <td>
-                                    <p class="mb-0 mt-4">Awesome Brocoli</p>
-                                </td>
-                                <td>
-                                    <p class="mb-0 mt-4">2.99 $</p>
-                                </td>
-                                <td>
-                                    <div class="input-group quantity mt-4" style="width: 100px;">
-                                        <div class="input-group-btn">
-                                            <button class="btn btn-sm btn-minus rounded-circle bg-light border" >
-                                            <i class="bi bi-dash-lg"></i>
-                                            </button>
-                                        </div>
-                                        <input type="text" class="form-control form-control-sm text-center border-0" value="1">
-                                        <div class="input-group-btn">
-                                            <button class="btn btn-sm btn-plus rounded-circle bg-light border">
-                                                <i class="bi bi-plus-lg"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <p class="mb-0 mt-4">2.99 $</p>
-                                </td>
-                                <td>
-                                    <button class="btn btn-md rounded-circle bg-light border mt-4" >
-                                        <i class="bi bi-x text-danger"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                            </thead>
+                            <tbody>
+                                @foreach ($cart as $item)
+                                    <tr  id="{{$item['product_id']}}" 
+                                        data-product-id="{{$item['product_id']}}"
+                                        data-product-name="{{ $item['name'] }}" 
+                                        data-product-price="{{$item['price']}}" 
+                                        data-product-image="{{ $item['image'] }}"
+                                    >
+                                        <th scope="row">
+                                            <div class="d-flex align-items-center">
+                                                <img src="{{ $item['image'] }}" class="img-fluid me-5 rounded-circle" style="width: 80px; height: 80px;" alt="{{ $item['name'] }}">
+                                            </div>
+                                        </th>
+                                        <td>
+                                            <p class="mb-0 mt-4">{{ $item['name'] }}</p>
+                                        </td>
+                                        <td>
+                                            <p class="mb-0 mt-4">Kz {{ number_format($item['price'], 2) }}</p>
+                                        </td>
+                                        <td>
+                                            <div class="input-group quantity mt-4" style="width: 100px;">
+                                                <div class="input-group-btn">
+                                                    <button class="btn btn-sm btn-minus rounded-circle bg-light border" >
+                                                    <i class="bi bi-dash-lg"></i>
+                                                    </button>
+                                                </div>
+                                                <input type="text" class="form-control form-control-sm text-center border-0" value="{{ $item['quantity'] }}" id="quantity-{{$item['product_id']}}">
+                                                <div class="input-group-btn">
+                                                    <button class="btn btn-sm btn-
+                                                    rounded-circle bg-light border">
+                                                        <i class="bi bi-plus-lg"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <p class="mb-0 mt-4"> Kz {{ number_format(($item['price'] * $item['quantity']), 2) }}</p>
+                                        </td>
+                                        <td>
+                                            <form action="{{ route('cart.destroy', $item['product_id']) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button class="btn btn-md rounded-circle bg-light border mt-4" >
+                                                    <i class="bi bi-x text-danger"></i>
+                                                </button>
+                                            </form>
+                                        </td>
+                                    
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                @endif
+
                 <div class="mt-5">
                     <input type="text" class="border-0 border-bottom rounded me-5 py-3 mb-4" placeholder="Coupon Code">
                     <button class="btn border-secondary rounded-pill px-4 py-3 text-primary" type="button">Apply Coupon</button>
@@ -195,32 +143,41 @@
 @endsection
 
 @section('js')
-    <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
     <script src="{{ asset('js/util.js') }}"></script>
     <script>
-        Kz(document).ready(function() {
-            Kz.ajax({
-                url: '/doacao-recentes/5',
-                type: 'GET',
-                dataType: 'json',
-                success: function(response) {
-                    Kz('.doacaoRecentes').empty();
-                    response.data.forEach(function(doacaoFisica) {
-                        var html = '<div class="post-item">';
-                        html += '<img src="' + doacaoFisica.capa +
-                            '" alt="" class="flex-shrink-0">';
-                        html += '<div>';
-                        html += '<h4><a href="blog-post.html">' + doacaoFisica.titulo +
-                            '</a></h4>';
-                        html += '<time datetime="' + doacaoFisica.created_at + '">' +
-                            dataResumida(doacaoFisica.created_at) + '</time>';
-                        html += '</div>';
-                        html += '</div>';
-                        Kz('.doacaoRecentes').append(html);
-                    });
-                },
-                error: function(xhr, status, error) {}
+    document.addEventListener('DOMContentLoaded', function() {
+        // Seleciona todos os botões de adicionar ao carrinho
+        const addToCartButtons = document.querySelectorAll('.bi-plus-lg');
+        const remToCartButtons = document.querySelectorAll('.bi-dash-lg');
+
+        addToCartButtons.forEach(button => {
+            button.addEventListener('click', function(event) {
+                event.preventDefault();
+                // Obtém os dados do produto
+                const productElement = button.closest('[data-product-id]');
+                const productId = productElement.getAttribute('data-product-id');
+                const productName = productElement.getAttribute('data-product-name');
+                const productPrice = productElement.getAttribute('data-product-price');
+                const productImage = productElement.getAttribute('data-product-image');
+               // const productQuantity = productElement.getAttribute('data-quantity');
+
+                // Cria um objeto do produto
+                const dados = {
+                    product_id: productId,
+                    name: productName,
+                    price: productPrice,
+                    image: productImage,
+                    via: 'ajax',
+                    action: '+'
+                };
+                addCart(dados)
+                //console.log(product);
+                //$("#quantity-"+productId).val(parseInt( $("#quantity-"+productId).val()) + 1);
             });
         });
+    });
+</script>
+
+        
     </script>
 @endsection

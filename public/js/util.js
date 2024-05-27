@@ -30,3 +30,18 @@ function campanhaRecentes(dados) {
         error: function (xhr, status, error) { }
     });
 }
+function addCart(dados) {
+    $.ajax({
+        url: '/cart',
+        type: 'get',
+        dataType: 'json',
+        data: dados,
+        success: function (response) { 
+            console.log(dados);
+            $("#quantity-" + dados.product_id).val(parseInt( $("#quantity-" + dados.product_id).val()) + 1);
+        },
+        error: function (xhr, status, error) { 
+            console.log(xhr)
+        }
+    });
+}
