@@ -184,7 +184,7 @@
                             <div class="col-lg-9">
                                 <div class="row g-4 justify-content-center">
                                     @forelse ($products as $product)
-                                        <div class="col-md-6 col-lg-6 col-xl-4">
+                                        <div class="col-md-6 col-lg-6 col-xl-4" id="{{$product['id']}}">
                                             <div class="rounded position-relative fruite-item">
                                                 <div class="fruite-img">
                                                     <img src="{{$product['images'][0]['src']}}" class="img-fluid w-100 rounded-top" alt="">
@@ -199,7 +199,17 @@
                                                     </p>
                                                     <div class="d-flex justify-content-between flex-lg-wrap">
                                                         <p class="text-dark fs-5 fw-bold mb-0">Kz {{ number_format($product['price'], 2, ',', '.') }} / kg</p>
-                                                        <a href="#" class="btn border  rounded-pill px-3 text-primary"><i class="bi bi-bag-check-fill me-2 text-primary"></i> Adicionar ao carrinnho</a>
+                                                        {{-- <a href="#" class="btn border  rounded-pill px-3 text-primary"><i class="bi bi-bag-check-fill me-2 text-primary"></i> Adicionar ao carrinnho</a> --}}
+                                                        <form action="{{ route('cart.store') }}" method="POST">
+                                                            @csrf
+                                                            <input type="hidden" name="product_id" value="{{$product['id']}}">
+                                                            <input type="hidden" name="name" value="{{$product['name']}}">
+                                                            <input type="hidden" name="price" value="{{$product['price']}}">
+                                                            <input type="hidden" name="image" value="{{$product['images'][0]['src']}}">
+                                                            <button type="submit" class="btn border rounded-pill px-3 text-primary">
+                                                                <i class="bi bi-bag-check-fill me-2 text-primary"></i>Adicionar ao carrinho
+                                                            </button>
+                                                        </form>
                                                     </div>
                                                 </div>
                                             </div>
@@ -234,32 +244,9 @@
 @endsection
 
 @section('js')
-    <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
     <script src="{{ asset('js/util.js') }}"></script>
     <script>
-        Kz(document).ready(function() {
-            Kz.ajax({
-                url: '/doacao-recentes/5',
-                type: 'GET',
-                dataType: 'json',
-                success: function(response) {
-                    Kz('.doacaoRecentes').empty();
-                    response.data.forEach(function(doacaoFisica) {
-                        var html = '<div class="post-item">';
-                        html += '<img src="' + doacaoFisica.capa +
-                            '" alt="" class="flex-shrink-0">';
-                        html += '<div>';
-                        html += '<h4><a href="blog-post.html">' + doacaoFisica.titulo +
-                            '</a></h4>';
-                        html += '<time datetime="' + doacaoFisica.created_at + '">' +
-                            dataResumida(doacaoFisica.created_at) + '</time>';
-                        html += '</div>';
-                        html += '</div>';
-                        Kz('.doacaoRecentes').append(html);
-                    });
-                },
-                error: function(xhr, status, error) {}
-            });
-        });
+      
+       
     </script>
 @endsection

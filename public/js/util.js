@@ -31,6 +31,7 @@ function campanhaRecentes(dados) {
     });
 }
 
+
 function doacaoRecentes(dados) {
     $.ajax({
         url: '/doacoes-recentes/5',
@@ -58,3 +59,20 @@ function doacaoRecentes(dados) {
         }
     });
 }
+
+function addCart(dados) {
+    $.ajax({
+        url: '/cart',
+        type: 'get',
+        dataType: 'json',
+        data: dados,
+        success: function (response) { 
+            console.log(dados);
+            $("#quantity-" + dados.product_id).val(parseInt( $("#quantity-" + dados.product_id).val()) + 1);
+        },
+        error: function (xhr, status, error) { 
+            console.log(xhr)
+        }
+    });
+}
+
