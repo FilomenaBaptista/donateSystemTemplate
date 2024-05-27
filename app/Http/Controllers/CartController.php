@@ -25,7 +25,15 @@ class CartController extends Controller
         
         $cart = session()->get('cart', []);
         if (isset($cart[$product['product_id']])) {
-            $cart[$product['product_id']]['quantity']++;
+            if(isset($request->via)){
+                if(isset($request->action) && $request->action == '+'){
+                    $cart[$product['product_id']]['quantity']++;
+                }else{
+                    $cart[$product['product_id']]['quantity']--;
+                }
+            }else{
+                $cart[$product['product_id']]['quantity']++;
+            }
         } else {
             $cart[$product['product_id']] = $product;
         }

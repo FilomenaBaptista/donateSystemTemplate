@@ -50,7 +50,7 @@
                             </thead>
                             <tbody>
                                 @foreach ($cart as $item)
-                                    <tr  id="{{$item['product_id']}}" 
+                                    <tr id="{{$item['product_id']}}" 
                                         data-product-id="{{$item['product_id']}}"
                                         data-product-name="{{ $item['name'] }}" 
                                         data-product-price="{{$item['price']}}" 
@@ -65,7 +65,7 @@
                                             <p class="mb-0 mt-4">{{ $item['name'] }}</p>
                                         </td>
                                         <td>
-                                            <p class="mb-0 mt-4">Kz {{ number_format($item['price'], 2) }}</p>
+                                            <p class="mb-0 mt-4">Kz {{ number_format($item['price'], 2, ',', '.') }}</p>
                                         </td>
                                         <td>
                                             <div class="input-group quantity mt-4" style="width: 100px;">
@@ -84,7 +84,7 @@
                                             </div>
                                         </td>
                                         <td>
-                                            <p class="mb-0 mt-4"> Kz {{ number_format(($item['price'] * $item['quantity']), 2) }}</p>
+                                            <p class="mb-0 mt-4" id="total-{{$item['product_id']}}"> Kz {{ number_format(($item['price'] * $item['quantity']), 2, ',', '.') }}</p>
                                         </td>
                                         <td>
                                             <form action="{{ route('cart.destroy', $item['product_id']) }}" method="POST">
@@ -145,34 +145,42 @@
 @section('js')
     <script src="{{ asset('js/util.js') }}"></script>
     <script>
+        function addRemItemCarrinho(button, action){
+            const productElement = button.closest('[data-product-id]');
+            const productId = productElement.getAttribute('data-product-id');
+            const productName = productElement.getAttribute('data-product-name');
+            const productPrice = productElement.getAttribute('data-product-price');
+            const productImage = productElement.getAttribute('data-product-image');
+            // Cria um objeto do produto
+            const dados = {
+                product_id: productId,
+                name: productName,
+                price: productPrice,
+                image: productImage,
+                via: 'ajax',
+                action: action
+            };
+            return dados;
+        }
     document.addEventListener('DOMContentLoaded', function() {
         // Seleciona todos os botões de adicionar ao carrinho
         const addToCartButtons = document.querySelectorAll('.bi-plus-lg');
+        // Seleciona todos os botões de reduzir ao carrinho
         const remToCartButtons = document.querySelectorAll('.bi-dash-lg');
 
         addToCartButtons.forEach(button => {
             button.addEventListener('click', function(event) {
                 event.preventDefault();
-                // Obtém os dados do produto
-                const productElement = button.closest('[data-product-id]');
-                const productId = productElement.getAttribute('data-product-id');
-                const productName = productElement.getAttribute('data-product-name');
-                const productPrice = productElement.getAttribute('data-product-price');
-                const productImage = productElement.getAttribute('data-product-image');
-               // const productQuantity = productElement.getAttribute('data-quantity');
-
-                // Cria um objeto do produto
-                const dados = {
-                    product_id: productId,
-                    name: productName,
-                    price: productPrice,
-                    image: productImage,
-                    via: 'ajax',
-                    action: '+'
-                };
-                addCart(dados)
-                //console.log(product);
-                //$("#quantity-"+productId).val(parseInt( $("#quantity-"+productId).val()) + 1);
+                addCart(addRemItemCarrinho(button, '+'))
+            });
+        });
+        remToCartButtons.forEach(button => {
+            button.addEventListener('click', function(event) {
+                event.preventDefault();
+                let dados = addRemItemCarrinho(button, '-')
+                if(parseInt( $("#quantity-" + dados.product_id).val()) > 1){
+                    addCart(dados)
+                }
             });
         });
     });

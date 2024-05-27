@@ -60,15 +60,32 @@ function doacaoRecentes(dados) {
     });
 }
 
+function formatCurrencyAngola(value) {
+    let number = parseFloat(value).toFixed(2); // Garantir que temos duas casas decimais
+    let parts = number.split('.'); // Separar a parte inteira da parte decimal
+    let integerPart = parts[0];
+    let decimalPart = parts[1];
+
+    // Adicionar separadores de milhares
+    integerPart = integerPart.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+
+    return `Kz ${integerPart},${decimalPart}`;
+}
+
 function addCart(dados) {
     $.ajax({
         url: '/cart',
         type: 'get',
         dataType: 'json',
         data: dados,
-        success: function (response) { 
-            console.log(dados);
-            $("#quantity-" + dados.product_id).val(parseInt( $("#quantity-" + dados.product_id).val()) + 1);
+        success: function (response) {
+            if(dados.action == '+'){
+                $("#quantity-" + dados.product_id).val(parseInt( $("#quantity-" + dados.product_id).val()) + 1);
+            }else{
+                $("#quantity-" + dados.product_id).val(parseInt( $("#quantity-" + dados.product_id).val()) - 1);
+            }
+            total = dados.price * parseInt( $("#quantity-" + dados.product_id).val());
+            $("#total-" + dados.product_id).text(formatCurrencyAngola(total));
         },
         error: function (xhr, status, error) { 
             console.log(xhr)

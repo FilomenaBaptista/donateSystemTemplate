@@ -199,7 +199,6 @@
                                                     </p>
                                                     <div class="d-flex justify-content-between flex-lg-wrap">
                                                         <p class="text-dark fs-5 fw-bold mb-0">Kz {{ number_format($product['price'], 2, ',', '.') }} / kg</p>
-                                                        {{-- <a href="#" class="btn border  rounded-pill px-3 text-primary"><i class="bi bi-bag-check-fill me-2 text-primary"></i> Adicionar ao carrinnho</a> --}}
                                                         <form action="{{ route('cart.store') }}" method="POST">
                                                             @csrf
                                                             <input type="hidden" name="product_id" value="{{$product['id']}}">
@@ -244,9 +243,5 @@
 @endsection
 
 @section('js')
-    <script src="{{ asset('js/util.js') }}"></script>
-    <script>
-      
-       
-    </script>
+
 @endsection

@@ -1368,7 +1368,7 @@ div#tab1 p {
   padding: 12px 24px;
   border-radius: 5px;
   transition: 0.3s;
-  display: -nline-flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   color: var(--color-white);

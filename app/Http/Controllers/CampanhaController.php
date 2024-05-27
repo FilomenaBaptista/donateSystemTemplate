@@ -21,9 +21,9 @@ class CampanhaController extends Controller
      */
 
     private $proxy = [
-        'http'  => 'http://proxy.jupiter.co.ao:3128',
-        'https' => 'http://proxy.jupiter.co.ao:3128'
-        //'no'    => ['localhost', '127.0.0.1'], // Hosts que não devem usar o proxy
+        /* 'http'  => 'http://proxy.jupiter.co.ao:3128',
+        'https' => 'http://proxy.jupiter.co.ao:3128', */
+        'no'    => ['localhost', '127.0.0.1'], // Hosts que não devem usar o proxy
     ];
     private $api = 'https://fnx.ao/wp-json/wc/v3/';
     private $consumer_key = 'ck_bbcc18e176c8ac191e3b3a17580e3b712104f8a1';
