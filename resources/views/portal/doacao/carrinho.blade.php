@@ -19,7 +19,8 @@
                     <h2>Doações</h2>
                     <ol>
                         <li><a href="{{ url('/') }}">Home</a></li>
-                        <li>Doações</li>
+                        <li><a href="{{ route('shop') }}">Loja</a></li>
+                        <li>Carrinho</li>
                     </ol>
                 </div>
 

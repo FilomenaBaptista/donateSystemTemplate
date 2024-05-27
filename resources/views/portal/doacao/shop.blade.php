@@ -16,7 +16,8 @@
                     <h2>Doações</h2>
                     <ol>
                         <li><a href="{{ url('/') }}">Home</a></li>
-                        <li>Doações</li>
+                        <li>Loja</li>
+                        <li><a href="{{ route('cart.index') }}">Carrinho</a></li>
                     </ol>
                 </div>
 
