@@ -65,11 +65,30 @@ function formatCurrencyAngola(value) {
     let parts = number.split('.'); // Separar a parte inteira da parte decimal
     let integerPart = parts[0];
     let decimalPart = parts[1];
-
     // Adicionar separadores de milhares
     integerPart = integerPart.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
 
     return `Kz ${integerPart},${decimalPart}`;
+}
+
+function currencyAngolaToFloat(currencyString) {
+    // Remove "Kz" e espaços
+    let numberString = currencyString.replace('Kz', '').trim();
+    // Substitui pontos por nada e vírgula por ponto
+    numberString = numberString.replace(/\./g, '').replace(',', '.');
+    // Converte para float
+    return parseFloat(numberString);
+}
+
+function updateSubTotal() {
+    var subTotal = 0;
+    var cartItems = document.querySelectorAll('#cart-items tr');
+    cartItems.forEach(function(item) {
+        var productId = item.getAttribute('data-product-id');
+        subTotal += currencyAngolaToFloat($("#total-" + productId).text());
+    });
+    $('#subtotal').text(formatCurrencyAngola(subTotal));
+    $('#total').text(formatCurrencyAngola(subTotal + currencyAngolaToFloat( $('#envio').text())));
 }
 
 function addCart(dados) {
@@ -86,6 +105,7 @@ function addCart(dados) {
             }
             total = dados.price * parseInt( $("#quantity-" + dados.product_id).val());
             $("#total-" + dados.product_id).text(formatCurrencyAngola(total));
+            updateSubTotal()
         },
         error: function (xhr, status, error) { 
             console.log(xhr)

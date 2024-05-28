@@ -195,7 +195,8 @@ class CampanhaController extends Controller
         );
         return response()->json(['data' => $response['data'], 'message' => $response['message'], 'status' => $response['status']]);
     }
-    public function shop(){
+    public function shop()
+    {
         $url = $this->api . 'products?consumer_key='.$this->consumer_key.'&consumer_secret='.$this->consumer_secret;
         try {
             $products = Http::withOptions([
@@ -209,7 +210,8 @@ class CampanhaController extends Controller
         return view('portal.doacao/shop',['products' => $products]);
     }
 
-    public function shopdetail($id){
+    public function shopdetail($id)
+    {
         $url = $this->api . 'products/'.$id.'?consumer_key='.$this->consumer_key.'&consumer_secret='.$this->consumer_secret;
         try {
             $product = Http::withOptions([
@@ -222,7 +224,8 @@ class CampanhaController extends Controller
         }
         return view('portal.doacao/shop-detail',['product' => $product]);
     }
-    public function historiasdesucesso(Request $request){
+    public function historiasdesucesso(Request $request)
+    {
 
         $CampanhaService = new CampanhaService();
         $response = $CampanhaService->listCampanha(
@@ -233,52 +236,5 @@ class CampanhaController extends Controller
         );
         return view('portal.blog/historia-de-sucesso',['campanha' => $response['data']]);
     }
-    public function fazerPedido(Request $request){
-
-
-        // Dados do Pedido
-        $order_data = array(
-            'customer_id' => 0, // ID do cliente
-            'payment_method' => 'bacs', // Método de pagamento (neste caso, transferência bancária)
-            'payment_method_title' => 'Transferência Bancária',
-            'set_paid' => false, // Define como pago automaticamente
-            'billing' => array(
-                'first_name' => 'Rosimeuri Borges',
-                'email' => 'nimeuri@hotmail.com',
-                'phone' => '999 123 123'
-            ),
-            'line_items' => array(
-                array(
-                    'product_id' => 15693, // ID do Produto
-                    'quantity' => 2 // Quantidade a comprar
-                ),
-                array(
-                    'product_id' => 15701, // ID do Produto
-                    'quantity' => 1 // Quantidade a comprar
-                )
-            )
-        );
-        try {
-            $response = Http::withOptions([
-                'proxy' => $this->proxy
-            ])->withHeaders([
-                'Authorization' => 'Basic ' . base64_encode($this->consumer_key . ':' . $this->consumer_secret),
-                'Content-Type' => 'application/json'
-            ])->post($this->api . 'orders', $order_data);
-            //])->delete($this->api . 'orders/15739');
-
-            if ($response->successful()) {
-                $order = $response->json();
-                return "Pedido criado com sucesso. ID do Pedido: " . 15697;
-            } else {
-                $statusCode = $response->status();
-                $errorBody = $response->body();
-                return  response()->json("Erro ao criar o pedido. Código de Status: $statusCode. Mensagem: $errorBody");
-            }
-        } catch (\Exception $e) {
-            return "Erro ao criar o pedido: " . $e->getMessage();
-        }
-
-        return "PEDIDO EFECTUADO COM SUCESSO";
-    }
+  
 }
