@@ -104,112 +104,114 @@
                     </div>
                 @endif
 
-                <div class="mt-5">
-                   <h4> FACTURAÇÃO E ENVIO</h4>
-                   <br>
-                </div>
-                <form action="{{ route('checkout.process') }}" method="POST" id="checkoutprocess">
-                    @csrf
-                <div class="row g-4 justify-content-end">
-                    <div class="col-8">
-                       
-                    
-                            <div class="row mb-3">
-                                <div class="col-md-6">
-                                    <label for="first_name" class="form-label">Nome</label>
-                                    <input type="text" class="form-control" id="first_name" name="first_name" value="{{ old('first_name', 'Rosimeuri Borges') }}" required>
-                                    @error('first_name')
-                                        <div class="text-danger">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="last_name" class="form-label">Sobrenome</label>
-                                    <input type="text" class="form-control" id="last_name" name="last_name" value="{{ old('last_name') }}">
-                                    @error('last_name')
-                                        <div class="text-danger">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                            </div>
-                    
-                            <div class="row mb-3">
-                                <div class="col-md-6">
-                                    <label for="company" class="form-label">Empresa</label>
-                                    <input type="text" class="form-control" id="company" name="company" value="{{ old('company') }}">
-                                    @error('company')
-                                        <div class="text-danger">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="address_1" class="form-label">Endereço</label>
-                                    <input type="text" class="form-control" id="address_1" name="address_1" placeholder="Mangueirinhas, R. dos Generais, Luanda" value="{{ old('address_1') }}" required>
-                                    @error('address_1')
-                                        <div class="text-danger">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                            </div>
-                    
-                            <div class="row mb-3">
-                                <div class="col-md-6">
-                                    <label for="city" class="form-label">Cidade</label>
-                                    <input type="text" class="form-control" id="city" name="city" placeholder="Luanda" value="{{ old('city') }}" required>
-                                    @error('city')
-                                        <div class="text-danger">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="country" class="form-label">País</label>
-                                    <input type="text" class="form-control" id="country" name="country" placeholder="Angola" value="{{ old('country') }}" required>
-                                    @error('country')
-                                        <div class="text-danger">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                            </div>
-                    
-                            <div class="row mb-3">
-                                <div class="col-md-6">
-                                    <label for="email" class="form-label">Email</label>
-                                    <input type="email" class="form-control" id="email" name="email" value="{{ old('email', 'nimeuri@hotmail.com') }}" required>
-                                    @error('email')
-                                        <div class="text-danger">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="phone" class="form-label">Telefone</label>
-                                    <input type="text" class="form-control" id="phone" name="phone" value="{{ old('phone', '999 123 123') }}" required>
-                                    @error('phone')
-                                        <div class="text-danger">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                            </div>
-                       
-
+                @if (!empty($cart))
+                    <div class="mt-5">
+                    <h4> FACTURAÇÃO E ENVIO</h4>
+                    <br>
                     </div>
-                    <div class="col-sm-8 col-md-7 col-lg-6 col-xl-4">
-                        <div class="bg-light rounded">
-                            <div class="p-4">
-                                <h1 class="display-6 mb-4">Total <span class="fw-normal">do carrinho</span></h1>
-                                <div class="d-flex justify-content-between mb-4">
-                                    <h5 class="mb-0 me-4">Subtotal:</h5>
-                                    <p class="mb-0" id="subtotal">Kz 0,00</p>
-                                </div>
-                                <div class="d-flex justify-content-between">
-                                    <h5 class="mb-0 me-4">Envio</h5>
-                                    <div class="">
-                                        <p class="mb-0" id="envio">Kz 2.555,52</p>
+                    <form action="{{ route('checkout.process') }}" method="POST" id="checkoutprocess">
+                        @csrf
+                        <div class="row g-4 justify-content-end">
+                            <div class="col-8">
+                            
+                            
+                                    <div class="row mb-3">
+                                        <div class="col-md-6">
+                                            <label for="first_name" class="form-label">Nome</label>
+                                            <input type="text" class="form-control" id="first_name" name="first_name" value="{{ old('first_name', 'Rosimeuri Borges') }}" required>
+                                            @error('first_name')
+                                                <div class="text-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="last_name" class="form-label">Sobrenome</label>
+                                            <input type="text" class="form-control" id="last_name" name="last_name" value="{{ old('last_name') }}">
+                                            @error('last_name')
+                                                <div class="text-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
                                     </div>
+                            
+                                    <div class="row mb-3">
+                                        <div class="col-md-6">
+                                            <label for="company" class="form-label">Empresa</label>
+                                            <input type="text" class="form-control" id="company" name="company" value="{{ old('company') }}">
+                                            @error('company')
+                                                <div class="text-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="address_1" class="form-label">Endereço</label>
+                                            <input type="text" class="form-control" id="address_1" name="address_1" placeholder="Mangueirinhas, R. dos Generais, Luanda" value="{{ old('address_1') }}" required>
+                                            @error('address_1')
+                                                <div class="text-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                            
+                                    <div class="row mb-3">
+                                        <div class="col-md-6">
+                                            <label for="city" class="form-label">Cidade</label>
+                                            <input type="text" class="form-control" id="city" name="city" placeholder="Luanda" value="{{ old('city') }}" required>
+                                            @error('city')
+                                                <div class="text-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="country" class="form-label">País</label>
+                                            <input type="text" class="form-control" id="country" name="country" placeholder="Angola" value="{{ old('country') }}" required>
+                                            @error('country')
+                                                <div class="text-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                            
+                                    <div class="row mb-3">
+                                        <div class="col-md-6">
+                                            <label for="email" class="form-label">Email</label>
+                                            <input type="email" class="form-control" id="email" name="email" value="{{ old('email', 'nimeuri@hotmail.com') }}" required>
+                                            @error('email')
+                                                <div class="text-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="phone" class="form-label">Telefone</label>
+                                            <input type="text" class="form-control" id="phone" name="phone" value="{{ old('phone', '999 123 123') }}" required>
+                                            @error('phone')
+                                                <div class="text-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                            
+
+                            </div>
+                            <div class="col-sm-8 col-md-7 col-lg-6 col-xl-4">
+                                <div class="bg-light rounded">
+                                    <div class="p-4">
+                                        <h1 class="display-6 mb-4">Total <span class="fw-normal">do carrinho</span></h1>
+                                        <div class="d-flex justify-content-between mb-4">
+                                            <h5 class="mb-0 me-4">Subtotal:</h5>
+                                            <p class="mb-0" id="subtotal">Kz 0,00</p>
+                                        </div>
+                                        <div class="d-flex justify-content-between">
+                                            <h5 class="mb-0 me-4">Envio</h5>
+                                            <div class="">
+                                                <p class="mb-0" id="envio">Kz 2.555,52</p>
+                                            </div>
+                                        </div>
+                                        <p class="mb-0 text-end" id="enviar_para"></p>
+                                    </div>
+                                    <div class="py-4 mb-4 border-top border-bottom d-flex justify-content-between">
+                                        <h5 class="mb-0 ps-4 me-4">Total</h5>
+                                        <p class="mb-0 pe-4" id="total">Kz 0,00</p>
+                                    </div>
+                                    <button class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4 ms-4" type="submit" >Finalizar Compra</button>
                                 </div>
-                                <p class="mb-0 text-end" id="enviar_para"></p>
                             </div>
-                            <div class="py-4 mb-4 border-top border-bottom d-flex justify-content-between">
-                                <h5 class="mb-0 ps-4 me-4">Total</h5>
-                                <p class="mb-0 pe-4" id="total">Kz 0,00</p>
-                            </div>
-                            <button class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4 ms-4" type="submit" >Finalizar Compra</button>
+                            
                         </div>
-                    </div>
-                    
-                </div>
-            </form>
+                    </form>
+                @endif
             </div>
         </div>
         <!-- Cart Page End -->
