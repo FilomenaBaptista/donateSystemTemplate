@@ -203,6 +203,7 @@ class CampanhaController extends Controller
                 'proxy' => $this->proxy
             ])->get($url);
             $products =$products->json();
+            session()->forget('error');
         } catch (Exception $e) {
             session()->flash('error', 'Não foi possível conectar ao servidor');
             $products = [];
