@@ -237,5 +237,19 @@ class CampanhaController extends Controller
         );
         return view('portal.blog/historia-de-sucesso',['campanha' => $response['data']]);
     }
+
+    public function efectuarDoacao(Request $request)
+    {
+        $url = 'http://localhost:3333/api/getCard';
+        try {
+            $card = Http::post($url,[]);
+            $card =$card->json();
+        } catch (Exception $e) {
+            session()->flash('error', 'Não foi possível conectar ao servidor');
+            $card = [];
+        }
+        return view('portal.doacao/shop',['products' => $card]);
+    }
+
   
 }

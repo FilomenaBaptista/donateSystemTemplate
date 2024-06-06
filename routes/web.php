@@ -95,6 +95,7 @@ Route::get('/', [Controllers\CampanhaController::class, 'campanhaHome'])->name('
 Route::get('/solicitar-doacao', [Controllers\CampanhaController::class,'create'])->name('campanha.create');
 Route::get('/campanha-editar/{campanha}', [Controllers\CampanhaController::class,'edit'])->name('campanha.edit');
 Route::get('/campanha-destroy/{campanha}', [Controllers\CampanhaController::class,'destroy'])->name('campanha.destroy');
+Route::post('/efectuarDoacao', [Controllers\CampanhaController::class,'efectuarDoacao'])->name('campanha.efectuarDoacao');
 Route::apiResource('comentarios', Controllers\ComentarioController::class);
 Route::any('/campanhas-recentes/{limit}', [Controllers\CampanhaController::class,'campanhasRecentes'])->name('campanha.recente');
 Route::any('/shop', [Controllers\CampanhaController::class,'shop'])->middleware(['auth'])->name('shop');

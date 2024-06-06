@@ -169,7 +169,6 @@
                                                     <div class=" container tab-pane" id="tab-2">
                                                         <div class="row gy-4">
                                                             <div class="col-lg-12">
-                                                                <form action="forms/contact.php" method="post"
                                                                     role="form" class="php-email-form">
                                                                     <div class="post-img-pagamento">
                                                                         <img src="{{ $campanha->imagem }}" alt=""
@@ -177,25 +176,21 @@
                                                                     </div>
                                                                     <h5>Você está apoiando a Campanha:
                                                                         {{ $campanha->titulo }}</h5>
-                                                                    <p>
-                                                                        Sua doação beneficiará:
-                                                                        {{ $campanha->criador->name }}</p>
-                                                                    <div class="col-md-12 input-group mb-3 mt-3 mt-md-0 p-0">
-                                                                        <span class="input-group-text">AKZ</span>
-                                                                        <input type="text" id="qtd_doar" name="qtd_doar"
-                                                                            placeholder="Quantidade a doar"
-                                                                            value="{{ old('qtd_doar') }}"
-                                                                            class="form-control"
-                                                                            aria-label="Amount (to the nearest dollar)">
-                                                                        <span class="input-group-text">.00</span>
-    
-                                                                    </div>
-    
-    
+                                                                    <p> Sua doação beneficiará: {{ $campanha->criador->name }}</p>
+                                                
                                                                     <div class="formas-de-pagamento">
-                                                                        <p> Forma de pagamento</p>
-    
                                                                         <form class="bs-example" action="">
+                                                                            <div class="col-md-12 input-group mb-3 mt-3 mt-md-0 p-0">
+                                                                                <span class="input-group-text">AKZ</span>
+                                                                                <input type="text" id="qtd_doar" name="qtd_doar"
+                                                                                    placeholder="Quantidade a doar"
+                                                                                    value="{{ old('qtd_doar') }}"
+                                                                                    class="form-control"
+                                                                                    aria-label="Amount (to the nearest dollar)">
+                                                                                <span class="input-group-text">.00</span>
+            
+                                                                            </div>
+                                                                            <p> Forma de pagamento</p>
                                                                             <div class="accordion" id="accordionExample">
                                                                                 <div class="accordion-item">
                                                                                     <h2 class="accordion-header"
@@ -209,12 +204,13 @@
                                                                                                 class="form-check-input"
                                                                                                 type="radio"
                                                                                                 name="flexRadioDefault"
-                                                                                                id="flexRadioDefault1">
+                                                                                                id="flexRadioDefault1"
+                                                                                                value="Transferência Bancária">
                                                                                             Transferência Bancária
                                                                                         </button>
                                                                                     </h2>
                                                                                     <div id="collapseOne"
-                                                                                        class="accordion-collapse collapse show"
+                                                                                        class="accordion-collapse collapse"
                                                                                         aria-labelledby="headingOne"
                                                                                         data-bs-parent="#accordionExample">
                                                                                         <div class="accordion-body">
@@ -243,8 +239,9 @@
                                                                                                 class="form-check-input mr-2"
                                                                                                 type="radio"
                                                                                                 name="flexRadioDefault"
-                                                                                                id="flexRadioDefault1">
-                                                                                            Transferência Express
+                                                                                                id="flexRadioDefault2"
+                                                                                                value="Transferência Express">
+                                                                                             Transferência Express
                                                                                         </button>
                                                                                     </h2>
                                                                                     <div id="collapseTwo"
@@ -255,6 +252,45 @@
                                                                                             <strong>Número do
                                                                                                 Benficiario.</strong>922 56 78
                                                                                             98
+    
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="accordion-item">
+                                                                                    <h2 class="accordion-header"
+                                                                                        id="headingTree">
+                                                                                        <button
+                                                                                            class="accordion-button collapsed"
+                                                                                            type="button"
+                                                                                            data-bs-toggle="collapse"
+                                                                                            data-bs-target="#collapseTree"
+                                                                                            aria-expanded="false"
+                                                                                            aria-controls="collapseTree"><input
+                                                                                                class="form-check-input mr-2"
+                                                                                                type="radio"
+                                                                                                name="flexRadioDefault"
+                                                                                                id="flexRadioDefault3"
+                                                                                                value="Cartão">
+                                                                                            Cartão
+                                                                                        </button>
+                                                                                    </h2>
+                                                                                    <div id="collapseTree"
+                                                                                        class="accordion-collapse collapse"
+                                                                                        aria-labelledby="headingTree"
+                                                                                        data-bs-parent="#accordionExample">
+                                                                                        <div class="accordion-body">
+                                                                                            <div class="form-group">
+                                                                                                <label for="card_number">Número do Cartão</label>
+                                                                                                <input type="text" name="card_number" id="card_number" class="form-control" required minlength="16" maxlength="16">
+                                                                                            </div>
+                                                                                            <div class="form-group">
+                                                                                                <label for="card_expiry">Validade (MM/AA)</label>
+                                                                                                <input type="text" name="card_expiry" id="card_expiry" class="form-control" required minlength="5" maxlength="5">
+                                                                                            </div>
+                                                                                            <div class="form-group">
+                                                                                                <label for="cvv">CVV</label>
+                                                                                                <input type="text" name="cvv" id="cvv" class="form-control" required minlength="3" maxlength="4">
+                                                                                            </div>
     
                                                                                         </div>
                                                                                     </div>
@@ -270,7 +306,6 @@
                                                                             data-dismiss="modal">Close</button>
                                                                     </div>
     
-                                                                </form>
                                                             </div>
                                                         </div>
                                                     </div>
