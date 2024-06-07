@@ -3767,7 +3767,7 @@ button.btn-link-comentario {
   line-height: 1;
 }
 
-input#flexRadioDefault1 {
+input#flexRadioDefault1, input#flexRadioDefault2, input#flexRadioDefault3 {
   margin-right: 6px;
   margin-left: -16px;
   margin-top: 10px;

@@ -179,7 +179,8 @@
                                                                     <p> Sua doação beneficiará: {{ $campanha->criador->name }}</p>
                                                 
                                                                     <div class="formas-de-pagamento">
-                                                                        <form class="bs-example" action="">
+                                                                        <form action="{{route('campanha.efectuarDoacao')}}"  method="POST">
+                                                                            @csrf
                                                                             <div class="col-md-12 input-group mb-3 mt-3 mt-md-0 p-0">
                                                                                 <span class="input-group-text">AKZ</span>
                                                                                 <input type="text" id="qtd_doar" name="qtd_doar"
@@ -200,7 +201,8 @@
                                                                                             data-bs-toggle="collapse"
                                                                                             data-bs-target="#collapseOne"
                                                                                             aria-expanded="true"
-                                                                                            aria-controls="collapseOne"><input
+                                                                                            aria-controls="collapseOne"
+                                                                                            onclick="selectRadio('flexRadioDefault1')"><input
                                                                                                 class="form-check-input"
                                                                                                 type="radio"
                                                                                                 name="flexRadioDefault"
@@ -226,22 +228,25 @@
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
+                                                                               
+                                                                               
                                                                                 <div class="accordion-item">
                                                                                     <h2 class="accordion-header"
                                                                                         id="headingTwo">
                                                                                         <button
-                                                                                            class="accordion-button collapsed"
+                                                                                            class="accordion-button ml-2 collapsed"
                                                                                             type="button"
                                                                                             data-bs-toggle="collapse"
                                                                                             data-bs-target="#collapseTwo"
                                                                                             aria-expanded="false"
-                                                                                            aria-controls="collapseTwo"><input
-                                                                                                class="form-check-input mr-2"
+                                                                                            aria-controls="collapseTwo"
+                                                                                            onclick="selectRadio('flexRadioDefault2')"><input
+                                                                                                class="form-check-input"
                                                                                                 type="radio"
                                                                                                 name="flexRadioDefault"
                                                                                                 id="flexRadioDefault2"
                                                                                                 value="Transferência Express">
-                                                                                             Transferência Express
+                                                                                            Transferência Express
                                                                                         </button>
                                                                                     </h2>
                                                                                     <div id="collapseTwo"
@@ -265,7 +270,8 @@
                                                                                             data-bs-toggle="collapse"
                                                                                             data-bs-target="#collapseTree"
                                                                                             aria-expanded="false"
-                                                                                            aria-controls="collapseTree"><input
+                                                                                            aria-controls="collapseTree"
+                                                                                            onclick="selectRadio('flexRadioDefault3')"><input
                                                                                                 class="form-check-input mr-2"
                                                                                                 type="radio"
                                                                                                 name="flexRadioDefault"
@@ -297,14 +303,16 @@
                                                                                 </div>
     
                                                                             </div>
+                                                                            <div class="modal-footer mt-4">
+                                                                                <button type="submit" class="btn btn-primary">Salvar</button>
+                                                                                <button type="button" class="btn btn-secondary"
+                                                                                data-bs-dismiss="modal"
+                                                                                aria-label="Close">Cancelar</button>
+                                                                            </div>
                                                                         </form>
                                                                     </div>
-                                                                    <div class="modal-footer mt-4">
-                                                                        <button type="button" class="btn btn-primary">Save
-                                                                            changes</button>
-                                                                        <button type="button" class="btn btn-secondary"
-                                                                            data-dismiss="modal">Close</button>
-                                                                    </div>
+                                                                   
+                                                                    
     
                                                             </div>
                                                         </div>
@@ -353,6 +361,16 @@
 @section('js')
     <script src="{{ asset('js/util.js') }}"></script>
     <script>
+        function selectRadio(radioId) {
+            document.getElementById(radioId).checked = true;
+        }
+        function updateCardFields() {
+            const cardFields = ['card_number', 'card_expiry', 'cvv'];
+            const isCardSelected = document.getElementById('flexRadioDefault3').checked;
+            cardFields.forEach(field => {
+                document.getElementById(field).required = isCardSelected;
+            });
+        }
         $(document).ready(function() {
             var dados = {
                 route: "{{ route('campanha.show', 0) }}",
@@ -360,6 +378,11 @@
                 excepto_id: "{{ $campanha->id }}"
             };
             campanhaRecentes(dados)
+        // Adicionar eventos change para os rádios
+        document.getElementById('flexRadioDefault1').addEventListener('change', updateCardFields);
+        document.getElementById('flexRadioDefault2').addEventListener('change', updateCardFields);
+        document.getElementById('flexRadioDefault3').addEventListener('change', updateCardFields);
+
         });
     </script>
 @endsection

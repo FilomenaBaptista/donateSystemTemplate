@@ -240,6 +240,8 @@ class CampanhaController extends Controller
 
     public function efectuarDoacao(Request $request)
     {
+
+        return $request->all();
         $url = 'http://localhost:3333/api/getCard';
         try {
             $card = Http::post($url,[]);
