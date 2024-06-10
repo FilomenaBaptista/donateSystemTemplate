@@ -179,7 +179,7 @@
                                                                     <p> Sua doação beneficiará: {{ $campanha->criador->name }}</p>
                                                 
                                                                     <div class="formas-de-pagamento">
-                                                                        <form action="{{route('campanha.efectuarDoacao')}}"  method="POST">
+                                                                        <form action="{{route('campanha.efectuarDoacao')}}"  method="POST" id="payment-form">
                                                                             @csrf
                                                                             <div class="col-md-12 input-group mb-3 mt-3 mt-md-0 p-0">
                                                                                 <span class="input-group-text">AKZ</span>
@@ -287,15 +287,15 @@
                                                                                         <div class="accordion-body">
                                                                                             <div class="form-group">
                                                                                                 <label for="card_number">Número do Cartão</label>
-                                                                                                <input type="text" name="card_number" id="card_number" class="form-control" required minlength="16" maxlength="16">
+                                                                                                <input type="text" name="card_number" id="card_number" class="form-control" minlength="16" maxlength="16">
                                                                                             </div>
                                                                                             <div class="form-group">
                                                                                                 <label for="card_expiry">Validade (MM/AA)</label>
-                                                                                                <input type="text" name="card_expiry" id="card_expiry" class="form-control" required minlength="5" maxlength="5">
+                                                                                                <input type="text" name="card_expiry" id="card_expiry" class="form-control" minlength="5" maxlength="5">
                                                                                             </div>
                                                                                             <div class="form-group">
                                                                                                 <label for="cvv">CVV</label>
-                                                                                                <input type="text" name="cvv" id="cvv" class="form-control" required minlength="3" maxlength="4">
+                                                                                                <input type="text" name="cvv" id="cvv" class="form-control" minlength="3" maxlength="4">
                                                                                             </div>
     
                                                                                         </div>
@@ -363,13 +363,29 @@
     <script>
         function selectRadio(radioId) {
             document.getElementById(radioId).checked = true;
+            updateCardFields();
         }
         function updateCardFields() {
             const cardFields = ['card_number', 'card_expiry', 'cvv'];
             const isCardSelected = document.getElementById('flexRadioDefault3').checked;
             cardFields.forEach(field => {
                 document.getElementById(field).required = isCardSelected;
+                document.getElementById(field).disabled = !isCardSelected;
             });
+        }
+        function validateForm(event) {
+            const paymentMethods = document.getElementsByName('flexRadioDefault');
+            let isMethodSelected = false;
+            paymentMethods.forEach(method => {
+                if (method.checked) {
+                    isMethodSelected = true;
+                }
+            });
+
+            if (!isMethodSelected) {
+                event.preventDefault();
+                alert('Por favor, selecione um método de pagamento.');
+            }
         }
         $(document).ready(function() {
             var dados = {
@@ -378,11 +394,13 @@
                 excepto_id: "{{ $campanha->id }}"
             };
             campanhaRecentes(dados)
-        // Adicionar eventos change para os rádios
-        document.getElementById('flexRadioDefault1').addEventListener('change', updateCardFields);
-        document.getElementById('flexRadioDefault2').addEventListener('change', updateCardFields);
-        document.getElementById('flexRadioDefault3').addEventListener('change', updateCardFields);
+            // Adicionar eventos change para os rádios
+            document.getElementById('flexRadioDefault1').addEventListener('change', updateCardFields);
+            document.getElementById('flexRadioDefault2').addEventListener('change', updateCardFields);
+            document.getElementById('flexRadioDefault3').addEventListener('change', updateCardFields);
+            document.getElementById('payment-form').addEventListener('submit', validateForm);
 
+            updateCardFields();
         });
     </script>
 @endsection
