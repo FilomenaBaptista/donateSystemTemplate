@@ -179,16 +179,18 @@
                                                                     <p> Sua doação beneficiará: {{ $campanha->criador->name }}</p>
                                                 
                                                                     <div class="formas-de-pagamento">
-                                                                        <form action="{{route('campanha.efectuarDoacao')}}"  method="POST" id="payment-form">
+                                                                        <form action="{{route('payment.process')}}"  method="POST" id="payment-form">
                                                                             @csrf
                                                                             <div class="col-md-12 input-group mb-3 mt-3 mt-md-0 p-0">
                                                                                 <span class="input-group-text">AKZ</span>
-                                                                                <input type="text" id="qtd_doar" name="qtd_doar"
+                                                                                <input type="number" id="qtd_doar" name="qtd_doar"
+                                                                                    required
                                                                                     placeholder="Quantidade a doar"
                                                                                     value="{{ old('qtd_doar') }}"
                                                                                     class="form-control"
                                                                                     aria-label="Amount (to the nearest dollar)">
                                                                                 <span class="input-group-text">.00</span>
+                                                                                <input type="hidden" name="campanha_id"  value="{{ $campanha->id }}">
             
                                                                             </div>
                                                                             <p> Forma de pagamento</p>

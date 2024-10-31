@@ -17,8 +17,8 @@ return new class extends Migration
             $table->unsignedBigInteger('campanha_id')->nullable();
             $table->unsignedBigInteger('bem_material_id')->nullable();
             $table->decimal('valor_monetario', 10, 2)->nullable()->default(0);
-            $table->decimal('quantidade_bem', 10, 2)->nullable()->default(0);
-            $table->enum('status',['Confirmada', 'Recebida','Cancelada']);
+            $table->integer('quantidade_bem')->nullable()->default(0);
+            $table->enum('status',['Confirmada', 'Recebida','Cancelada'])->default('Recebida');
             $table->enum('tipo_doacao',['Campanha', 'Bens Materiais']);
             $table->text('descricao')->nullable();
             $table->enum('eliminado',[0, 1])->default(0);

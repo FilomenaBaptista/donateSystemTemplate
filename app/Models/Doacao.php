@@ -68,7 +68,6 @@ class Doacao extends Model
             $Doacao->beneficiario_id = $beneficiarioId;
             $Doacao->quantia = $quantia;
             $Doacao->descricao = $descricao;
-            $Doacao->estado = "Pendente";
             $Doacao->save();
             
             return $Doacao;
