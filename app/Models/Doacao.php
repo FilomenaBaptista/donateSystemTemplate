@@ -11,17 +11,44 @@ use Exception;
 class Doacao extends Model
 {
     use HasFactory;
+    protected $table = 'doacoes';
+    protected $fillable = [
+        'doador_id',
+        'campanha_id',
+        'valor_monetario',
+        'comprovativo_path',
+        'tipo_doacao',
+        'flexRadioDefault'
+    ];
 
     public function listDoacao(
-        int $episodeId = null
+        int $doadorId = null,
+        int $campanhaId = null,
+        int $eliminado = null,
+        string $status = null
     ) {
          try {
-            return Doacao::join('users AS u', 'u.user_id', '=', 'doacao.beneficiario_id')
-            ->orderBy('Doacao_id', 'DESC')
-            ->get([
-                'doacao.*', 
-                'u.name AS user_name',
-            ]);
+         
+            $query =  Doacao::from('doacoes as d')
+            ->orderBy('d.id', 'DESC');
+          
+            if ($doadorId !== null) {
+                $query->where('d.doador_id', '=', $doadorId);
+            }
+            if ($campanhaId !== null) {
+                $query->where('d.campanha_id', '=', $campanhaId);
+            }
+            if (!is_null($eliminado)) {
+                $query->where('d.eliminado', '=', $eliminado);
+            }else{
+                $query->where('d.eliminado', '=', '0');
+            }
+           
+            if (!empty($estado)) {
+                $query->where('d.status', $estado);
+            }
+
+            return $query->paginate(10)->withQueryString();
         } catch (QueryException $e) {
             throw new Exception($e->getCode());
         }
@@ -58,20 +85,25 @@ class Doacao extends Model
      */
     public function createDoacao(
         int $doadorId,
-        int $beneficiarioId,
-        string $quantia = null,
+        int $campanhaId,
+        float $valorMonetario,
+        string $comprovativoPath = null,
+        string $flexRadioDefault = null,
         string $descricao = null
     ) {
         try {
             $Doacao = new Doacao();
             $Doacao->doador_id = $doadorId;
-            $Doacao->beneficiario_id = $beneficiarioId;
-            $Doacao->quantia = $quantia;
+            $Doacao->campanha_id = $campanhaId;
+            $Doacao->valor_monetario = $valorMonetario;
+            $Doacao->comprovativo_path = $comprovativoPath;
+            $Doacao->flexRadioDefault = $flexRadioDefault;
             $Doacao->descricao = $descricao;
+            $Doacao->tipo_doacao = 'Campanha';
             $Doacao->save();
-            
             return $Doacao;
-        } catch (QueryException $e) {
+        } catch (Exception $e) {
+          
             throw new Exception($e->getCode());
         }
     }
@@ -90,7 +122,7 @@ class Doacao extends Model
         try {
             $Doacao = Doacao::find($DoacaoId);
             $Doacao->update([
-                'estado' => $estado,
+                'status' => $estado,
             ]);
 
             return $Doacao;

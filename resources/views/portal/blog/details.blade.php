@@ -33,6 +33,15 @@
                     </button>
                 </div>
             @endif
+            @if (session()->has('error'))
+                <div id="flash_error" class="alert alert-danger alert-dismissible" role="alert" aria-live="assertive"
+                    aria-atomic="true">
+                    <strong>{{ session()->get('error') }}</strong>
+                    <button type="button" class="ml-2 mb-1 close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            @endif
         </section>
 
         <section id="blog" class="blog py-4">
@@ -140,7 +149,7 @@
 
                         <div class="sidebar">
                             <div class="sidebar-item search-form">
-                                <h3 class="sidebar-title">30.000 kz Arrecadados da Meta 345.000kz</h3>
+                                <h3 class="sidebar-title">{{$campanha->doacoes->where('status','Aprovado')->sum('valor_monetario')}} Arrecadados da Meta {{ $campanha->quantia }}</h3>
     
                             </div><!-- End sidebar search formn-->
                             <div class="progress mt-3">
@@ -148,7 +157,7 @@
                                     aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
     
-                            <span class="qtd_doacoes_view">4,5K doações</span>
+                            <span class="qtd_doacoes_view">{{$campanha->doacoes->where('status','Aprovado')->count()}} doações</span>
                             <div class="botao-doar py-3">
                                 <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                     Doar Agora
@@ -179,20 +188,9 @@
                                                                     <p> Sua doação beneficiará: {{ $campanha->criador->name }}</p>
                                                 
                                                                     <div class="formas-de-pagamento">
-                                                                        <form action="{{route('payment.process')}}"  method="POST" id="payment-form">
+                                                                        <form action="{{route('payment.process')}}"  method="POST" id="payment-form"  enctype="multipart/form-data">
                                                                             @csrf
-                                                                            <div class="col-md-12 input-group mb-3 mt-3 mt-md-0 p-0">
-                                                                                <span class="input-group-text">AKZ</span>
-                                                                                <input type="number" id="qtd_doar" name="qtd_doar"
-                                                                                    required
-                                                                                    placeholder="Quantidade a doar"
-                                                                                    value="{{ old('qtd_doar') }}"
-                                                                                    class="form-control"
-                                                                                    aria-label="Amount (to the nearest dollar)">
-                                                                                <span class="input-group-text">.00</span>
-                                                                                <input type="hidden" name="campanha_id"  value="{{ $campanha->id }}">
-            
-                                                                            </div>
+                                                                           
                                                                             <p> Forma de pagamento</p>
                                                                             <div class="accordion" id="accordionExample">
                                                                                 <div class="accordion-item">
@@ -218,15 +216,9 @@
                                                                                         aria-labelledby="headingOne"
                                                                                         data-bs-parent="#accordionExample">
                                                                                         <div class="accordion-body">
-                                                                                            <strong class="mb-2">Nome do
+                                                                                            <strong class="mb-2">Iban do
                                                                                                 Beneficiário.</strong>
-                                                                                            AO06004400006729503010102 .
-                                                                                            <label class="mt-2"
-                                                                                                for="">Anexar
-                                                                                                comprovativo</label>
-                                                                                            <input type="file"
-                                                                                                class="form-control"
-                                                                                                id="customFile" />
+                                                                                            AO06004400006729503010102.
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
@@ -305,6 +297,27 @@
                                                                                 </div>
     
                                                                             </div>
+                                                                            <div class="col-md-12 mb-3 mt-3" id="divcomprovativo">
+                                                                            <label class="mt-2" for="">Anexar comprovativo</label>
+                                                                            <input type="file"
+                                                                                    class="form-control"
+                                                                                    name="comprovativo"
+                                                                                    id="comprovativo" 
+                                                                                    accept="application/pdf"
+                                                                        />
+                                                                    </div>
+                                                                     <div class="col-md-12 input-group mb-3 mt-3 mt-md-0 p-0">
+                                                                                <span class="input-group-text">AKZ</span>
+                                                                                <input type="number" id="qtd_doar" name="qtd_doar"
+                                                                                    required
+                                                                                    placeholder="Quantidade a doar"
+                                                                                    value="{{ old('qtd_doar') }}"
+                                                                                    class="form-control"
+                                                                                    aria-label="Amount (to the nearest dollar)">
+                                                                                <span class="input-group-text">.00</span>
+                                                                                <input type="hidden" name="campanha_id"  value="{{ $campanha->id }}">
+            
+                                                                            </div>
                                                                             <div class="modal-footer mt-4">
                                                                                 <button type="submit" class="btn btn-primary">Salvar</button>
                                                                                 <button type="button" class="btn btn-secondary"
@@ -365,7 +378,15 @@
     <script>
         function selectRadio(radioId) {
             document.getElementById(radioId).checked = true;
-            updateCardFields();
+            if(radioId == "flexRadioDefault1" || radioId == "flexRadioDefault2"){
+                document.getElementById("divcomprovativo").style.display = "block";
+                document.getElementById('comprovativo').required =true;
+            }else{
+                document.getElementById('comprovativo').required =false;
+                document.getElementById("divcomprovativo").style.display = "none";
+                updateCardFields();
+            }
+                
         }
         function updateCardFields() {
             const cardFields = ['card_number', 'card_expiry', 'cvv'];
