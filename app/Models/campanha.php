@@ -15,11 +15,11 @@ class Campanha extends Model
 
     protected $fillable = ['titulo','descricao','categoria_id', 'imagem','quantia', 'estado'];
 
-    public function criador(): BelongsTo
-    {return $this->belongsTo(User::class,'user_id');}
+    public function criador(): BelongsTo {return $this->belongsTo(User::class,'user_id');}
 
-    public function comentarios()
-    {return $this->hasMany(Comentario::class, 'campanha_id');}
+    public function comentarios(){return $this->hasMany(Comentario::class, 'campanha_id');}
+
+    public function doacoes(){return $this->hasMany(Doacao::class, 'campanha_id');}
 
     public function listcampanha(
         int $criadorId = null,
@@ -71,6 +71,7 @@ class Campanha extends Model
             return Campanha::from('campanhas as c')
             ->with('criador')
             ->with('comentarios')
+            ->with('doacoes')
             ->where('c.id', $campanhaId)
             ->first(['c.*']);
         } catch (QueryException $e) {

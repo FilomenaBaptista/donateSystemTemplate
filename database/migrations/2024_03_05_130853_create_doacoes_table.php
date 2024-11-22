@@ -17,9 +17,11 @@ return new class extends Migration
             $table->unsignedBigInteger('campanha_id')->nullable();
             $table->unsignedBigInteger('bem_material_id')->nullable();
             $table->decimal('valor_monetario', 10, 2)->nullable()->default(0);
+            $table->String('comprovativo_path')->nullable();
             $table->integer('quantidade_bem')->nullable()->default(0);
-            $table->enum('status',['Confirmada', 'Recebida','Cancelada'])->default('Recebida');
+            $table->enum('status',['Pendente', 'Aprovado', 'Rejeitado'])->default('Pendente');
             $table->enum('tipo_doacao',['Campanha', 'Bens Materiais']);
+            $table->enum('flexRadioDefault',['Transferência Bancária', 'Transferência Express','Cartão']);
             $table->text('descricao')->nullable();
             $table->enum('eliminado',[0, 1])->default(0);
             $table->timestamps();

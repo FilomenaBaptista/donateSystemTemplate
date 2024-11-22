@@ -59,7 +59,7 @@
 
     @yield('js')
     <script>
-        $('#flash_message').fadeIn(3500, 'swing').delay(500).fadeOut(1000);
+        $('#flash_message').fadeIn(3500, 'swing').delay(1500).fadeOut(1000);
         $('#flash_error').fadeIn(3500, 'swing').delay(3000).fadeOut(1000);
     </script>
 </body>

@@ -3,16 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Models\Campanha;
-use App\Models\User;
 use App\Models\DoacaoFisica;
+use App\Models\User;
 use App\Services\CampanhaService;
 use App\Services\CategoriaService;
+use App\Services\DoacaoService;
 use App\Services\UtilitarioService;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 
 class CampanhaController extends Controller
 {
@@ -23,7 +25,7 @@ class CampanhaController extends Controller
     private $proxy = [
         /* 'http'  => 'http://proxy.jupiter.co.ao:3128',
         'https' => 'http://proxy.jupiter.co.ao:3128', */
-        'no'    => ['localhost', '127.0.0.1'], // Hosts que não devem usar o proxy
+        'no' => ['localhost', '127.0.0.1'], // Hosts que não devem usar o proxy
     ];
     private $api = 'https://fnx.ao/wp-json/wc/v3/';
     private $consumer_key = 'ck_bbcc18e176c8ac191e3b3a17580e3b712104f8a1';
@@ -34,7 +36,7 @@ class CampanhaController extends Controller
         $validator = Validator::make($request->all(), [
             'user_id' => 'int|nullable',
             'eliminado' => 'int|nullable',
-            'estado' => 'string|nullable'
+            'estado' => 'string|nullable',
         ]);
 
         if ($validator->fails()) {
@@ -47,22 +49,21 @@ class CampanhaController extends Controller
             $request->search,
             $request->estado
         );
-        if(!empty($request->search)){
+        if (!empty($request->search)) {
             session()->flash('search', $request->search);
         }
 
         $CategoriaService = new CategoriaService();
         $categorias = $CategoriaService->listCategoria();
 
-        return view('portal.blog.blog',['campanhas' => $response['data'],'categorias' => $categorias['data']]);
+        return view('portal.blog.blog', ['campanhas' => $response['data'], 'categorias' => $categorias['data']]);
     }
-
 
     public function campanhaHome(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'user_id' => 'int|nullable',
-            'eliminado' => 'int|nullable'
+            'eliminado' => 'int|nullable',
         ]);
 
         if ($validator->fails()) {
@@ -75,7 +76,7 @@ class CampanhaController extends Controller
         $doacaoFisica = new DoacaoFisica();
         $doacoes = $doacaoFisica->listDoacaoFisica();
 
-        return view('portal.index',['campanhas' => $response['data'],'doacoes' => $doacoes]);
+        return view('portal.index', ['campanhas' => $response['data'], 'doacoes' => $doacoes]);
     }
 
     /**
@@ -86,8 +87,8 @@ class CampanhaController extends Controller
         $this->authorize('REGISTAR CAMPANHA');
         $CategoriaService = new CategoriaService();
         $response = $CategoriaService->listCategoria();
-        return view('portal.blog.solicitar-doacao' ,
-                    ['categorias' => UtilitarioService::getNameToSelect($response['data'])]);
+        return view('portal.blog.solicitar-doacao',
+            ['categorias' => UtilitarioService::getNameToSelect($response['data'])]);
     }
 
     /**
@@ -118,7 +119,7 @@ class CampanhaController extends Controller
 
         session()->flash('mensagem', 'SUCESSO!!!');
         return redirect()->route('campanha.create');
-       // return response()->json(['data' => $response['data'], 'message' => $response['message'], 'status' => $response['status']]);
+        // return response()->json(['data' => $response['data'], 'message' => $response['message'], 'status' => $response['status']]);
     }
 
     /**
@@ -130,8 +131,8 @@ class CampanhaController extends Controller
         $response = $CampanhaService->getCampanha(
             $campanha->id
         );
-        return view('portal.blog.details',['campanha' => $response['data']]);
-      // return response()->json(['data' => $response['data'], 'message' => $response['message'], 'status' => $response['status']]);
+        return view('portal.blog.details', ['campanha' => $response['data']]);
+        // return response()->json(['data' => $response['data'], 'message' => $response['message'], 'status' => $response['status']]);
     }
 
     /**
@@ -143,8 +144,8 @@ class CampanhaController extends Controller
         $CategoriaService = new CategoriaService();
         $validacao = new FuncoesUteisController();
         $response = $CategoriaService->listCategoria();
-        $categorias= $validacao->getNames($response['data']);
-        return view('portal.blog.solicitar-doacao' , ['campanha' => $campanha,'categorias' => $categorias]);
+        $categorias = $validacao->getNames($response['data']);
+        return view('portal.blog.solicitar-doacao', ['campanha' => $campanha, 'categorias' => $categorias]);
     }
 
     /**
@@ -168,7 +169,7 @@ class CampanhaController extends Controller
             $request->imagem
         );
         session()->flash('mensagem', 'CAMPANHA ALTERADA COM SUCESSO!!!');
-        return redirect()->route('campanha.show',$id);
+        return redirect()->route('campanha.show', $id);
     }
 
     /**
@@ -187,7 +188,7 @@ class CampanhaController extends Controller
     public function campanhasRecentes(
         Request $request,
         int $limit
-    ){
+    ) {
         $CampanhaService = new CampanhaService();
         $response = $CampanhaService->campanhasRecentes(
             $request->limit,
@@ -231,33 +232,33 @@ class CampanhaController extends Controller
 
     public function shop()
     {
-        $url = $this->api . 'products?consumer_key='.$this->consumer_key.'&consumer_secret='.$this->consumer_secret;
+        $url = $this->api . 'products?consumer_key=' . $this->consumer_key . '&consumer_secret=' . $this->consumer_secret;
         try {
             $products = Http::withOptions([
-                'proxy' => $this->proxy
+                'proxy' => $this->proxy,
             ])->get($url);
-            $products =$products->json();
+            $products = $products->json();
             session()->forget('error');
         } catch (Exception $e) {
             session()->flash('error', 'Não foi possível conectar ao servidor');
             $products = [];
         }
-        return view('portal.doacao/shop',['products' => $products]);
+        return view('portal.doacao/shop', ['products' => $products]);
     }
 
     public function shopdetail($id)
     {
-        $url = $this->api . 'products/'.$id.'?consumer_key='.$this->consumer_key.'&consumer_secret='.$this->consumer_secret;
+        $url = $this->api . 'products/' . $id . '?consumer_key=' . $this->consumer_key . '&consumer_secret=' . $this->consumer_secret;
         try {
             $product = Http::withOptions([
-                'proxy' => $this->proxy
+                'proxy' => $this->proxy,
             ])->get($url);
-            $product =$product->json();
+            $product = $product->json();
         } catch (Exception $e) {
             session()->flash('error', 'Não foi possível conectar ao servidor');
             $product = null;
         }
-        return view('portal.doacao/shop-detail',['product' => $product]);
+        return view('portal.doacao/shop-detail', ['product' => $product]);
     }
     public function historiasdesucesso(Request $request)
     {
@@ -269,24 +270,50 @@ class CampanhaController extends Controller
             null,
             $request->estado
         );
-
-        return view('portal.blog/historia-de-sucesso', ['campanhas' => $response['data']]);
+        return view('portal.blog/historia-de-sucesso', ['campanha' => $response['data']]);
     }
 
     public function paymentProcess(Request $request)
     {
+        if ($request->flexRadioDefault != 'Cartão') {
+            // dd(1);
+            $request->validate([
+                'comprovativo' => 'required|mimes:pdf|max:10240', // máximo 10 MB
+            ]);
+            $doacaoservice = new DoacaoService();
+            if ($request->file('comprovativo')->isValid()) {
+                // Salva o arquivo no diretório "pdfs" no sistema de arquivos configurado
+                $file_path = $request->file('comprovativo')->store('comprovativos');
+                $response = $doacaoservice->createDoacao(
+                    Auth::user()->id,
+                    $request->campanha_id,
+                    floatval($request->qtd_doar),
+                    $file_path,
+                    $request->flexRadioDefault
+                );
+                if($response['status'] == 201){
+                    session()->flash('mensagem', 'A sua doação foi submetida para aprovação com sucesso!');
+                }else{
+                    Storage::delete($file_path);
+                    session()->flash('error', 'Não foi possível realizar a doação');
+                }
+                return redirect()->back();
+            }
+            session()->flash('error', 'Falha no upload do PDF.');
+            return redirect()->back();
+        }
+
         $url = 'http://localhost:3333/api/getCard';
         try {
-           // "flexRadioDefault": "Transferência Bancária"
-            $card = Http::post($url,$request->all());
-            $card =$card->json();
-            return  $card;
+            // "flexRadioDefault": "Transferência Bancária"
+            $card = Http::post($url, $request->all());
+            $card = $card->json();
+            return $card;
         } catch (Exception $e) {
             session()->flash('error', 'Não foi possível conectar ao servidor');
             $card = [];
         }
-        return view('portal.doacao/shop',['products' => $card]);
+        return view('portal.doacao/shop', ['products' => $card]);
     }
 
-  
 }

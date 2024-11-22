@@ -21,7 +21,10 @@ class DoacaoService
      * @exception Log error and return array with error code and message
      */
     public function listDoacao(
-        int $episodeId = null
+        int $doadorId = null,
+        int $campanhaId = null,
+        int $eliminado = null,
+        string $status = null
     ) {
         try {
             $doacao = new Doacao();
@@ -63,21 +66,26 @@ class DoacaoService
      */
     public function createDoacao(       
         int $doadorId,
-        int $beneficiarioId,
-        string $quantia = null,
+        int $campanhaId,
+        float $valorMonetario,
+        string $comprovativoPath = null,
+        string $flexRadioDefault = null,
         string $descricao = null
     ) {
         try {
             $Doacao = new Doacao();
             $response = $Doacao->createDoacao(
                 $doadorId,
-                $beneficiarioId,
-                $quantia,
-                $descricao,
+                $campanhaId,
+                $valorMonetario,
+                $comprovativoPath,
+                $flexRadioDefault,
+                $descricao
             );
-            return StatusHelper::response(['data' => $response, 'tag' => 'CREATE.DOAÇÃO', 'status' => 201]);
+           
+            return ['data' => $response, 'tag' => 'CREATE.DOAÇÃO', 'status' => 201];
         } catch (Exception $e) {
-            return StatusHelper::response(['tag' => 'CREATE.DOAÇÃO', 'status' => (int) $e->getMessage(),  'line_trace' => __LINE__,'class_trace' => PathHelper::getClassName($this) ]);
+            return ['tag' => 'CREATE.DOAÇÃO', 'status' => (int) $e->getMessage(),  'line_trace' => __LINE__,'class_trace' => PathHelper::getClassName($this) ];
         }
     }
 
@@ -88,16 +96,14 @@ class DoacaoService
      * @exception Log error and return array with error code and message
      */
     public function updateDoacao(
-        int $DoacaoId,  
-        int $beneficiarioId,
+        int $DoacaoId,
         string $estado
     ) {
         try {
             $Doacao = new Doacao();
             $response = $Doacao->updateDoacao(
                 $DoacaoId,
-                $beneficiarioId,
-                (is_null($estado) ? 'Não Aceite' : $estado)
+                (is_null($estado) ? 'Pendente' : $estado)
             );
             return StatusHelper::response(['data' => $response, 'tag' => 'UPDATE.DOAÇÃO', 'status' => 200]);
         } catch (Exception $e) {

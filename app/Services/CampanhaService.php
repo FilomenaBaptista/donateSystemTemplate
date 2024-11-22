@@ -59,9 +59,9 @@ class CampanhaService
             $response = $campanha->getcampanha(
                 $campanhaId
             );
-            return StatusHelper::response(['data' => $response, 'tag' => 'GET.CAMPANHA', 'status' => 200]);
+            return (['data' => $response, 'tag' => 'GET.CAMPANHA', 'status' => 200]);
         } catch (Exception $e) {
-            return StatusHelper::response(['tag' => 'GET.CAMPANHA', 'status' => (int) $e->getMessage(), 'line_trace' => __LINE__, 'class_trace' => PathHelper::getClassName($this)]);
+            return (['tag' => 'GET.CAMPANHA', 'status' => (int) $e->getMessage(), 'line_trace' => __LINE__, 'class_trace' => PathHelper::getClassName($this)]);
         }
     }
 
