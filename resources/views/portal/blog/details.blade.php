@@ -305,17 +305,18 @@
                                                                                 </div>
     
                                                                             </div>
+                                                                    
                                                                             <div class="modal-footer mt-4">
-                                                                                <button type="submit" class="btn btn-primary">Salvar</button>
-                                                                                <button type="button" class="btn btn-secondary"
-                                                                                data-bs-dismiss="modal"
-                                                                                aria-label="Close">Cancelar</button>
+                                                                                <div class="btn-group btn-group-lg">
+                                                                                    <button type="button" class="btn btn-primary mr-2 ">Salvar</button>
+                                                                                    <button type="button" class="btn btn-danger">Cancelar</button>
+                    
+                                                                                  </div>
+                                                                               
                                                                             </div>
                                                                         </form>
                                                                     </div>
-                                                                   
-                                                                    
-    
+                                                               
                                                             </div>
                                                         </div>
                                                     </div>

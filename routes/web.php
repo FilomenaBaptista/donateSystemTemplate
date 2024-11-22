@@ -86,6 +86,7 @@ Route::get('/doacao-editar/{doacao}', [Controllers\DoacaoFisicaController::class
 Route::get('/doacao-destroy/{doacao}', [Controllers\DoacaoFisicaController::class,'destroy'])->name('doacao.destroy');
 Route::any('/doacoes-recentes/{limit}', [Controllers\DoacaoFisicaController::class,'doacoesRecentes'])->name('doacao.recente');
 Route::get('/doar-create', [Controllers\DoacaoFisicaController::class,'create'])->name('doar.create');
+Route::get('/minhas-doacoes', [Controllers\DoacaoFisicaController::class, 'minhasDoacoes'])->name('doacao.minhasDoacoes');
 
 //Campanha
 
@@ -101,6 +102,7 @@ Route::any('/campanhas-recentes/{limit}', [Controllers\CampanhaController::class
 Route::any('/shop', [Controllers\CampanhaController::class,'shop'])->middleware(['auth'])->name('shop');
 Route::any('/shop-detail/{id}', [Controllers\CampanhaController::class,'shopdetail'])->middleware(['auth'])->name('shopdetail');
 Route::any('/historias-de-sucesso', [Controllers\CampanhaController::class,'historiasdesucesso'])->name('historiasdesucesso');
+Route::get('/minhas-campanhas', [Controllers\CampanhaController::class, 'minhasCampanhas'])->name('campanha.minhasCampanhas');
 
 Route::middleware('auth')->group(function () {
     Route::get('/carrinho', [Controllers\CartController::class, 'index'])->name('cart.index');
@@ -108,3 +110,15 @@ Route::middleware('auth')->group(function () {
     Route::delete('/cart/{id}', [Controllers\CartController::class, 'destroy'])->name('cart.destroy');
     Route::post('/order', [Controllers\CartController::class,'processCheckout'])->name('checkout.process');
 });
+
+
+//VOLUNTARIOS
+Route::get('/listar-voluntarios', [Controllers\VoluntarioController::class, 'index'])->name('listarVoluntarios.index');
+Route::get('/voluntario-editar/{voluntario}', [Controllers\DoacaoFisicaController::class,'edit'])->name('voluntario.edit');
+Route::get('/voluntario-destroy/{voluntario}', [Controllers\DoacaoFisicaController::class,'destroy'])->name('voluntario.destroy');
+
+
+//USERS
+Route::get('/users', [Controllers\UserController::class, 'index'])->name('user.index');
+Route::any('/user-perfil/{id}', [Controllers\UserController::class,'getUserById'])->name('userperfil');
+Route::any('/user', [Controllers\UserController::class,'index'])->name('user');

@@ -195,6 +195,40 @@ class CampanhaController extends Controller
         );
         return response()->json(['data' => $response['data'], 'message' => $response['message'], 'status' => $response['status']]);
     }
+
+    public function minhasCampanhas(Request $request)
+    {
+       
+        $validator = Validator::make($request->all(), []);
+
+        if ($validator->fails()) {
+            return response()->json(['data' => '', 'message' => $validator->errors(), 'status' => 400]);
+        }
+
+        $CampanhaService = new CampanhaService();
+
+        // Obtém as campanhas do usuário autenticado
+        $userId = Auth::id(); 
+        $response = $CampanhaService->listCampanha(
+            $userId,  
+            null,     
+            $request->search, 
+            null      
+        );
+
+        if (!empty($request->search)) {
+            session()->flash('search', $request->search);
+        }
+
+        $CategoriaService = new CategoriaService();
+        $categorias = $CategoriaService->listCategoria();
+
+        return view('portal.blog.minhas-campanhas', [
+            'campanhas' => $response['data'],
+            'categorias' => $categorias['data']
+        ]);
+    }
+
     public function shop()
     {
         $url = $this->api . 'products?consumer_key='.$this->consumer_key.'&consumer_secret='.$this->consumer_secret;
@@ -235,7 +269,8 @@ class CampanhaController extends Controller
             null,
             $request->estado
         );
-        return view('portal.blog/historia-de-sucesso',['campanha' => $response['data']]);
+
+        return view('portal.blog/historia-de-sucesso', ['campanhas' => $response['data']]);
     }
 
     public function paymentProcess(Request $request)

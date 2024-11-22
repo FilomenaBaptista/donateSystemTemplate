@@ -172,4 +172,33 @@ class DoacaoFisicaController extends Controller
         );
         return response()->json(['data' => $response['data'], 'message' => $response['message'], 'status' => $response['status']]);
     }
+
+    
+    public function minhasDoacoes(Request $request)
+    {
+
+        $validator = Validator::make($request->all(), [
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['data' => '', 'message' => $validator->errors(), 'status' => 400]);
+        }
+
+        $doacaoFisicaService = new DoacaoFisicaService();
+
+        $userId = Auth::id(); 
+        // Obtém as doações do usuário logado
+        $response = $doacaoFisicaService->listDoacaoFisica(
+            $userId,  
+            null      
+        );
+
+        $categoriaService = new CategoriaService();
+        $categorias = $categoriaService->listCategoria();
+
+        return view('portal.doacao.doacao', [
+            'doacoesFisicas' => $response['data'],
+            'categorias' => $categorias['data']
+        ]);
+    }
 }

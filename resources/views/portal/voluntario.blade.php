@@ -11,9 +11,8 @@
                 <div class="d-flex justify-content-between align-items-center">
                     <h2>Voluntário</h2>
                     <ol>
-                        <li><a href="home.php">Home</a></li>
-                        <li><a href="index.html">Encontrar Voluntários</a></li>
-                        <li><a href="voluntario">Cadastrar Voluntário</a></li>
+                        <li><a href="{{ url('/') }}">Home</a></li>
+                        <li><a href="listar-voluntarios">Encontrar Voluntários</a></li>
                     </ol>
                 </div>
 

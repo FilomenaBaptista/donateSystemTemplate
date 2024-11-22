@@ -27,19 +27,31 @@ class UserController extends Controller
             return response()->json(['data' => '', 'message' => $validator->errors(), 'status' => 400]);
         }
         $UserService = new UserService();
-        $response = $UserService->index($request->name);
-        return response()->json(['data' => $response['data'], 'message' => $response['message'], 'status' => $response['status']]);
+        $users = $UserService->index($request->name);
+
+        return view('portal.users', ['users' =>  $users]);
     }
 
-    /**
-     * Get
-     *
-     * @param Request $request ([
-     *      user_id (integer|required, user id),
-     * ])
-     * @return JsonResponse Json containing request data, message and status code
-     */
-   public function show(Request $request)
+    public function getUserById(int $userId)
+    {
+        // return 34;
+        // dd(34);
+        try {
+            $user = new User();
+            $userData = $user->getUser($userId);
+
+            if ($userData) {
+                // return response()->json(['user' => $userData], 200);
+
+                return view('portal.user-perfil', ['users' => [$userData]]);
+            } else {
+                return view('portal.user-perfil', ['users' => []]); // Passa um array vazio para a view
+            }
+        } catch (Exception $e) {
+            return response()->json(['error' => 'Erro ao obter os dados do usuário', 'message' => $e->getMessage()], 500);
+        }
+    }
+    public function show(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'user_id' => 'numeric|required'
@@ -58,11 +70,12 @@ class UserController extends Controller
     }
 
 
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
         $validator = Validator::make($request->all(), [
             'name' => 'string|required',
             'password' => 'string|required',
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
         ]);
 
         if ($validator->fails()) {
@@ -90,7 +103,8 @@ class UserController extends Controller
      * ])
      * @return Response Json data.
      */
-    public function delete(Request $request) {
+    public function delete(Request $request)
+    {
         $validator = Validator::make($request->all(), [
             'user_id' => 'numeric|required'
         ]);
@@ -126,8 +140,4 @@ class UserController extends Controller
 
         return response()->json(['data' => $response['data'], 'message' => $response['message'], 'status' => $response['status']]);
     }
-
-
-
-
 }

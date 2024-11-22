@@ -28,18 +28,25 @@ class UserService
               $response = DataTables::of($User->index(
                 $name
             ))->make(true);   
-            return StatusHelper::response(['data' => $response, 'tag' => 'LIST.USER', 'status' => 200]);
+            return User::where('name', 'LIKE', "%{$name}%")->get();
         } catch (Exception $e) {
             return StatusHelper::response(['tag' => 'LIST.USER', 'status' => (int) $e->getMessage(), 'line_trace' => __LINE__, 'class_trace' => PathHelper::getClassName($this)]);
         }
     }
 
-    /**
-     * Get
-     * 
-     * @return array Collection data
-     * @exception Log error and return array with error code and message
-     */
+    public function getUser(
+        int $userId
+    ) {
+        try {
+            $user = new User();
+            $response = $user->getUser(
+                $userId
+            );
+            return StatusHelper::response(['data' => $response, 'tag' => 'GET.USER', 'status' => 200]);
+        } catch (Exception $e) {
+            return StatusHelper::response(['tag' => 'GET.USER', 'status' => (int) $e->getMessage(), 'line_trace' => __LINE__, 'class_trace' => PathHelper::getClassName($this)]);
+        }
+    }
     public function show(
         int $UserId
     ) {

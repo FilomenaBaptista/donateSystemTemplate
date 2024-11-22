@@ -59,12 +59,12 @@
                                     <div class="col-lg-4">
 
                                         <div class="info">
-                                            <h3>Foto principal</h3>
+                                            <h3>Imagem Principal </h3>
 
                                             <div class="col-md-12 form-group mt-3 mt-md-0">
                                                 <div class="col-md-12 form-group mt-3 mt-md-0">
                                                     {{ Form::hidden('imagem', null, ['class' => 'form-control', 'id' => 'imagem', 'readonly' => 'true']) }}
-                                                    {{ Form::label('capa_legenda', 'Adicionar uma foto de capa*', ['class' => 'mb-2']) }}
+                                                    {{ Form::label('capa_legenda', 'Adicionar uma imagem de capa*', ['class' => 'mb-2']) }}
                                                     @error('imagem')
                                                         <div class="alert alert-danger">{{ $message }}</div>
                                                     @enderror

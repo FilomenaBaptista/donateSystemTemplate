@@ -49,29 +49,9 @@
         <!-- Fruits Shop Start-->
         <div class="container-fluid fruite">
             <div class="container py-5">
-                <h1 class="mb-4">Fresh fruits shop</h1>
+                <h1 class="mb-4">Todos os produtos</h1>
                 <div class="row g-4">
                     <div class="col-lg-12">
-                        <div class="row g-4">
-                            <div class="col-xl-3">
-                                <div class="input-group w-100 mx-auto d-flex">
-                                    <input type="search" class="form-control p-3" placeholder="keywords" aria-describedby="search-icon-1">
-                                    <span id="search-icon-1" class="input-group-text p-3"><i class="fa fa-search"></i></span>
-                                </div>
-                            </div>
-                            <div class="col-6"></div>
-                            <div class="col-xl-3">
-                                <div class="bg-light ps-3 py-3 rounded d-flex justify-content-between mb-4">
-                                    <label for="fruits">Default Sorting:</label>
-                                    <select id="fruits" name="fruitlist" class="border-0 form-select-sm bg-light me-3" form="fruitform">
-                                        <option value="volvo">Nothing</option>
-                                        <option value="saab">Popularity</option>
-                                        <option value="opel">Organic</option>
-                                        <option value="audi">Fantastic</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
                         <div class="row g-4">
                             <div class="col-lg-3">
                                 <div class="row g-4">
@@ -79,36 +59,17 @@
                                         <div class="mb-3">
                                             <h4>Categories</h4>
                                             <ul class="list-unstyled fruite-categorie">
+                                                @forelse ($products as $product)
                                                 <li>
                                                     <div class="d-flex justify-content-between fruite-name">
-                                                        <a href="#"><i class="fas fa-apple-alt me-2"></i>Apples</a>
+                                                        <a href="#"><i class="fas fa-apple-alt me-2"></i>{{$product['categories'][0]['name']}}</a>
                                                         <span>(3)</span>
                                                     </div>
                                                 </li>
-                                                <li>
-                                                    <div class="d-flex justify-content-between fruite-name">
-                                                        <a href="#"><i class="fas fa-apple-alt me-2"></i>Oranges</a>
-                                                        <span>(5)</span>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="d-flex justify-content-between fruite-name">
-                                                        <a href="#"><i class="fas fa-apple-alt me-2"></i>Strawbery</a>
-                                                        <span>(2)</span>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="d-flex justify-content-between fruite-name">
-                                                        <a href="#"><i class="fas fa-apple-alt me-2"></i>Banana</a>
-                                                        <span>(8)</span>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="d-flex justify-content-between fruite-name">
-                                                        <a href="#"><i class="fas fa-apple-alt me-2"></i>Pumpkin</a>
-                                                        <span>(5)</span>
-                                                    </div>
-                                                </li>
+                                                @empty
+                                                <h1 style=" margin-top: 300px;text-align: center;color: #0EA2BD;">Nenhuma Produto disponível
+                                                </h1>
+                                                @endforelse
                                             </ul>
                                         </div>
                                     </div>
@@ -120,13 +81,13 @@
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
-                                        <h4 class="mb-3">Featured Produtos</h4>
+                                        <h4 class="mb-3">Produtos em Destaque </h4>
                                         <div class="d-flex align-items-center justify-content-start">
                                             <div class="rounded me-4" style="width: 100px; height: 100px;">
-                                                <img src="img/featur-1.jpg" class="img-fluid rounded" alt="">
+                                                <img src="assets/img/maca.jpg" class="img-fluid rounded" alt="">
                                             </div>
                                             <div>
-                                                <h6 class="mb-2">Banana</h6>
+                                                <h6 class="mb-2">Maçã</h6>
                                                 <div class="d-flex mb-2">
                                                     <i class="fa fa-star text-secondary"></i>
                                                     <i class="fa fa-star text-secondary"></i>
@@ -135,17 +96,17 @@
                                                     <i class="fa fa-star"></i>
                                                 </div>
                                                 <div class="d-flex mb-2">
-                                                    <h5 class="fw-bold me-2">2.99 Kz</h5>
-                                                    <h5 class="text-danger text-decoration-line-through">4.11 Kz</h5>
+                                                    <h5 class="fw-bold me-2">1.500,00 Kz</h5>
+                                                    <h5 class="text-danger text-decoration-line-through">2.000,00 Kz</h5>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="d-flex align-items-center justify-content-start">
                                             <div class="rounded me-4" style="width: 100px; height: 100px;">
-                                                <img src="img/featur-2.jpg" class="img-fluid rounded" alt="">
+                                                <img src="assets/img/laranjas.jpg" class="img-fluid rounded" alt="">
                                             </div>
                                             <div>
-                                                <h6 class="mb-2">Banana</h6>
+                                                <h6 class="mb-2">Laranja</h6>
                                                 <div class="d-flex mb-2">
                                                     <i class="fa fa-star text-secondary"></i>
                                                     <i class="fa fa-star text-secondary"></i>
@@ -154,14 +115,14 @@
                                                     <i class="fa fa-star"></i>
                                                 </div>
                                                 <div class="d-flex mb-2">
-                                                    <h5 class="fw-bold me-2">2.99 Kz</h5>
-                                                    <h5 class="text-danger text-decoration-line-through">4.11 Kz</h5>
+                                                    <h5 class="fw-bold me-2">1.800,00 Kz</h5>
+                                                    <h5 class="text-danger text-decoration-line-through">800,00 Kz</h5>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="d-flex align-items-center justify-content-start">
                                             <div class="rounded me-4" style="width: 100px; height: 100px;">
-                                                <img src="assets/img/roupa-donate.jpg" class="img-fluid rounded" alt="">
+                                                <img src="assets/img/bana.jfif" class="img-fluid rounded" alt="">
                                             </div>
                                             <div>
                                                 <h6 class="mb-2">Banana</h6>
@@ -173,24 +134,16 @@
                                                     <i class="fa fa-star"></i>
                                                 </div>
                                                 <div class="d-flex mb-2">
-                                                    <h5 class="fw-bold me-2">2.99 Kz</h5>
-                                                    <h5 class="text-danger text-decoration-line-through">4.11 Kz</h5>
+                                                    <h5 class="fw-bold me-2">700,00 Kz</h5>
+                                                    <h5 class="text-danger text-decoration-line-through">5,00 Kz</h5>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="d-flex justify-content-center my-4">
-                                            <a href="#" class="btn border px-4 py-3 rounded-pill text-primary w-100">Vew More</a>
+                                            <a href="#" class="btn border px-4 py-3 rounded-pill text-primary w-100">Ver Mais</a>
                                         </div>
                                     </div>
-                                    <div class="col-lg-12">
-                                        <div class="position-relative">
-                                            <img src="img/banner-fruits.jpg" class="img-fluid w-100 rounded" alt="">
-                                            <div class="position-absolute" style="top: 50%; right: 10px; transform: translateY(-50%);">
-                                                <h3 class="text-secondary fw-bold">Fresh <br> Fruits <br> Banner</h3>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                                                  </div>
                             </div>
                             <div class="col-lg-9">
                                 <div class="row g-4 justify-content-center">

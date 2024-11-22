@@ -11,16 +11,16 @@
             <div class="container">
 
                 <div class="d-flex justify-content-between align-items-center">
-                    <h2>Solicitar Doação</h2>
+                    <h2>Campanha</h2>
                     <ol>
                         <li><a href="index.html">Home</a></li>
-                        <li>Solicitar Doação</li>
+                        <li>Campanha</li>
                     </ol>
                 </div>
 
             </div>
         </div><!-- End Breadcrumbs -->
-  <section class="featured-services container">
+        <section class="featured-services container">
             @if (session()->has('mensagem'))
                 <div id="flash_message" class="alert alert-success alert-dismissible" role="alert" aria-live="assertive"
                     aria-atomic="true">
@@ -43,58 +43,58 @@
                             <div class="col-lg-12 order-2 order-lg-1" data-aos="fade-up" data-aos-delay="100">
 
                                 <section id="contact" class="contact">
-                                    <div class="container py-3 mb-4">
+                                    <div class="container mb-4">
 
-                                        <div class="container">
-
-                                            <div class="row gy-5 gx-lg-5">
-                                                <div class="col-lg-4">
-                                                    @if (isset($campanha))
+                                        <div class="row gy-5 gx-lg-5">
+                                            <div class="col-lg-4">
+                                                @if (isset($campanha))
                                                     {{ Form::model($campanha, ['route' => ['campanha.update', $campanha->id], 'class' => 'form', 'method' => 'put']) }}
                                                 @else
                                                     {!! Form::open(['route' => 'campanha.store', 'class' => 'php-email-form', 'files' => 'true']) !!}
                                                 @endif
 
-                                                    <div class="info">
-                                                        <h3>Crie uma Campanha</h3>
-                                                        <p>Para criar uma campanha siga os passos destritos a baixo, as campanhas passam por um processo de aprovação depois de serem submetidas.</p>
-                                                        <div class="col-md-12 form-group mt-3 mt-md-0">
-                                                            {{ Form::label('capa_legenda', 'Adicionar uma foto de capa para sua campanha*', ['class' => 'mb-2']) }}
-                                                            @error('imagem')
-                                                                <div class="alert alert-danger">{{ $message }}</div>
-                                                            @enderror
-                                                            <div class="d-flex justify-content-center mb-4">
-                                                                <img id="selectedAvatar" name="img_video"
-                                                                    src="@if (isset($campanha)) {{ $campanha->imagem }} 
+                                                <div class="info">
+                                                    <h3>Crie uma Campanha</h3>
+                                                    <p>Para criar uma campanha siga os passos destritos a baixo, as
+                                                        campanhas passam por um processo de aprovação depois de serem
+                                                        submetidas.</p>
+                                                    <div class="col-md-12 form-group mt-3 mt-md-0">
+                                                        {{ Form::label('capa_legenda', 'Adicionar uma imagem de capa para sua campanha*', ['class' => 'mb-2']) }}
+                                                        @error('imagem')
+                                                            <div class="alert alert-danger">{{ $message }}</div>
+                                                        @enderror
+                                                        <div class="d-flex justify-content-center mb-4">
+                                                            <img id="selectedAvatar" name="img_video"
+                                                                src="@if (isset($campanha)) {{ $campanha->imagem }} 
                                                                     @else 
                                                                         @if (null !== old('imagem')) 
                                                                             {{ old('imagem') }} 
                                                                         @else 
                                                                             {{ asset('img/placeholder-avatar.jpg') }} @endif 
                                                                 @endif"
-                                                                    class="rounded-circle"
-                                                                    style="width: auto; height: 150px; object-fit: cover;"
-                                                                    alt="example placeholder" />
-                                                            </div>
-                                                            <div class="d-flex justify-content-center">
-                                                                <div class="btn btn-rounded">
-                                                                    {{ Form::label('capa', 'Escolher Imagem', ['class' => 'form-label text-white m-1']) }}
-    
-                                                                    <input type="file" name="capa"
-                                                                        class="form-control d-none" id="capa"
-                                                                        onchange="displaySelectedImage(event, 'selectedAvatar')" />
-                                                                </div>
-                                                            </div>
-    
+                                                                class="rounded-circle"
+                                                                style="width: auto; height: 150px; object-fit: cover;"
+                                                                alt="example placeholder" />
                                                         </div>
-                                                    </div>
+                                                        <div class="d-flex justify-content-center">
+                                                            <div class="btn btn-rounded">
+                                                                {{ Form::label('capa', 'Escolher Imagem', ['class' => 'form-label text-white m-1']) }}
 
+                                                                <input type="file" name="capa"
+                                                                    class="form-control d-none" id="capa"
+                                                                    onchange="displaySelectedImage(event, 'selectedAvatar')" />
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
                                                 </div>
 
-                                                <div class="col-lg-8">
-                                                 
+                                            </div>
 
-                                                   <div class="row">
+                                            <div class="col-lg-8">
+
+
+                                                <div class="row">
                                                     <div class="col">
                                                         {{ Form::hidden('imagem', null, ['class' => 'form-control', 'id' => 'imagem', 'readonly' => 'true']) }}
                                                         {{ Form::label('titulo', 'Título da Campanha', ['class' => 'mb-2']) }}
@@ -118,49 +118,51 @@
                                                             'placeholder' => 'Selecione a Categoria',
                                                         ]) }}
                                                     </div>
-                                                   </div>
+                                                </div>
 
-                                                    <div class="col-md-12 input-group mb-3 mt-3 mt-md-0">
-                                                        {{ Form::label('quantia', 'Valor a arrecadar?', ['class' => 'mb-2 label-money']) }}
-                                                        <span class="input-group-text">AKZ</span>
+                                                <div class="col-md-12 input-group mb-3 mt-3 mt-md-0">
+                                                    {{ Form::label('quantia', 'Valor a arrecadar?', ['class' => 'mb-2 label-money']) }}
+                                                    <div class="col-md-12 input-group mb-3 mt-3 mt-md-0 d-flex"><span
+                                                            class="input-group-text">AKZ</span>
                                                         {{ Form::number('quantia', null, [
                                                             'class' => 'form-control',
                                                             'min' => '0',
                                                             'id' => 'quantia',
-                                                            'placeholder' => '',
+                                                            'placeholder' => '500',
                                                         ]) }}<span
-                                                            class="input-group-text">.00</span>
-                                                    </div>
-                                                  
-                                                    <div class="form-group mt-3">
-                                                        <label for="">Descricação*</label>
-                                                        @error('descricao')
-                                                            <div class="alert alert-danger">{{ $message }}</div>
-                                                        @enderror
-                                                        {{--  @if ($errors->has('descricao'))
+                                                            class="input-group-text">.00</span></div>
+
+                                                </div>
+
+                                                <div class="form-group mt-3">
+                                                    <label for="">Descricação*</label>
+                                                    @error('descricao')
+                                                        <div class="alert alert-danger">{{ $message }}</div>
+                                                    @enderror
+                                                    {{--  @if ($errors->has('descricao'))
                                                         <span class="has-error">
                                                             {{ $errors->first('descricao') }}
                                                         </span>
                                                     @endif --}}
-                                                        <textarea class="form-control" name="descricao" id="descricao" required>
+                                                    <textarea class="form-control" name="descricao" id="descricao" required>
 @if (isset($campanha)) {!! $campanha->descricao !!}
 @else
 {{ old('descricao') }} @endif
 </textarea>
 
-                                                    </div>
+                                                </div>
 
-                                                    <div class="mt-3">
-                                                        {{ Form::button('Publicar campanha', ['type' => 'submit']) }}
-                                                    </div>
+                                                <div class="mt-3">
+                                                    {{ Form::button('Publicar campanha', ['type' => 'submit']) }}
+                                                </div>
 
 
-                                                    {!! Form::close() !!}
-                                                </div><!-- End Contact Form -->
-
-                                            </div>
+                                                {!! Form::close() !!}
+                                            </div><!-- End Contact Form -->
 
                                         </div>
+
+                                    </div>
                                 </section>
                             </div>
 
@@ -168,7 +170,7 @@
                     </div>
 
                 </div>
-            </div><!-- End Breadcrumbs -->
+           <!-- End Breadcrumbs -->
 
             <!-- End Featured Services Section -->
 

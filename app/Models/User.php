@@ -80,7 +80,17 @@ class User extends Authenticatable implements MustVerifyEmail
             throw new Exception($e->getCode());
         }
     }
-
+    public function getUser(
+        int $userId
+    ) {
+        try {
+            return User::select('name', 'telefone', 'email', 'password')
+                ->where('id', $userId)
+                ->first();
+        } catch (Exception $e) {
+            throw new Exception($e->getCode());
+        }
+    }
     public function getSalt(
         string $email
     ) {
