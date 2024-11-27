@@ -18,7 +18,8 @@ class Doacao extends Model
         'valor_monetario',
         'comprovativo_path',
         'tipo_doacao',
-        'flexRadioDefault'
+        'flexRadioDefault',
+        'status'
     ];
 
     public function listDoacao(

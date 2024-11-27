@@ -81,6 +81,7 @@ Route::get('/api-leke', Controllers\ApiController::class);
 //Doacao
 Route::apiResource('doar', Controllers\DoacaoFisicaController::class);
 
+Route::apiResource('campanha-doacao', Controllers\DoacaoController::class);
 Route::apiResource('doacao', Controllers\DoacaoFisicaController::class);
 Route::get('/doacao-editar/{doacao}', [Controllers\DoacaoFisicaController::class,'edit'])->name('doacao.edit');
 Route::get('/doacao-destroy/{doacao}', [Controllers\DoacaoFisicaController::class,'destroy'])->name('doacao.destroy');

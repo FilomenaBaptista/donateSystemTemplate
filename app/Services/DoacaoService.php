@@ -28,9 +28,12 @@ class DoacaoService
     ) {
         try {
             $doacao = new Doacao();
-              $response = DataTables::of($doacao->listDoacao(
-                $episodeId
-            ))->make(true);  
+              $response = $doacao->listDoacao(
+                $doadorId,
+                $campanhaId,
+                $eliminado,
+                $status
+            );  
             
             return StatusHelper::response(['data' => $response, 'tag' => 'LIST.DOAÇÃO', 'status' => 200]);
         } catch (Exception $e) {

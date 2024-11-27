@@ -96,7 +96,73 @@
                                 </div>
                             @endcan
                         </article>
-
+                        @can('edit', $campanha)
+                        <div class="list-doacoes py-5">
+                            <h4 class="text-center">  Doações Pendentes</h4>
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th scope="col">Valor Transferido</th>
+                                    <th scope="col">Metodo de Pagamento</th>
+                                    <th scope="col">Visualizar</th>
+                                    <th scope="col">Acção</th>
+                                </tr>
+                                </thead>
+                                <tbody id="cart-items">
+                                    @foreach ($campanha->doacoes->where('status','Pendente') as $item)
+                                        <tr id="{{$item['product_id']}}" 
+                                            data-valor_monetario="{{$item['valor_monetario']}}"
+                                            data-flexRadioDefault="{{ $item['flexRadioDefault'] }}">
+                                            
+                                            <td>
+                                                <p class="mb-0 mt-4">Kz {{ number_format($item['valor_monetario'], 2, ',', '.') }}</p>
+                                            </td>
+                                            <td>
+                                                <p class="mb-0 mt-4">{{ $item['flexRadioDefault']}}</p>
+                                            </td>
+                                            <td>
+                                                <p class="mb-0 mt-4">
+                                                    <a href="{{ url('storage/' . $item['comprovativo_path']) }}" target="_blank">Comprovativo</a>
+                                                </p>
+                                            </td>
+                                            <td>
+                                                <p class="mb-0 mt-4">
+                                                    <a class="btn-edit bg-danger status-doacao" href="#" data-id="{{$item['id']}}" data-status="Rejeitado" data-bs-toggle="modal" data-bs-target="#confirmationModal">
+                                                        <i class="bi"></i> Rejeitar
+                                                    </a>
+                                                    <a class="btn-edit bg-success status-doacao" href="#" data-id="{{$item['id']}}" data-status="Aprovado" data-bs-toggle="modal" data-bs-target="#confirmationModal">
+                                                        <i class="bi"></i> Aprovar
+                                                    </a>
+                                                </p>
+                                            </td>
+                                        
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                            <div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <h5 class="modal-title" id="confirmationModalLabel">Confirmação</h5>
+                                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                                    </div>
+                                        {{ Form::open(['route' => ['campanha-doacao.update', 0], 'class' => 'form', 'method' => 'put','id'=>'updateForm']) }}
+                                        <input type="hidden" name="status" id="status">
+                                        <div class="modal-body">
+                                            Tem certeza de que deseja realizar esta ação?
+                                        </div>
+                                        <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                        
+                                        <button type="submit" class="btn btn-success" id="confirmButton">Confirmar</button>
+                                        </div>
+                                        {!! Form::close() !!}
+                            </div>
+                                </div>
+                              </div>
+                        </div>
+                        @endcan
                         <div class="comments">
                             <h4 class="comments-count"> {{ $campanha->comentarios->count() }} Comentários</h4>
 
@@ -149,7 +215,11 @@
 
                         <div class="sidebar">
                             <div class="sidebar-item search-form">
-                                <h3 class="sidebar-title">{{$campanha->doacoes->where('status','Aprovado')->sum('valor_monetario')}} Arrecadados da Meta {{ $campanha->quantia }}</h3>
+                                <h3 class="sidebar-title">
+                                    {{ number_format($campanha->doacoes->where('status','Aprovado')->sum('valor_monetario'), 2, ',', '.')}}
+                                     Arrecadados da Meta 
+                                     {{ number_format($campanha->quantia, 2, ',', '.')}}
+                                </h3>
     
                             </div><!-- End sidebar search formn-->
                             <div class="progress mt-3">
@@ -410,6 +480,22 @@
                 alert('Por favor, selecione um método de pagamento.');
             }
         }
+      
+            // Adiciona um evento de clique para cada botão
+            document.querySelectorAll('.status-doacao').forEach(button => {
+                button.addEventListener('click', function () {
+                    // Obtenha o ID do atributo data-id
+                    const id = this.getAttribute('data-id');
+
+                    // Atualize o atributo action do formulário
+                    const form = document.getElementById('updateForm');
+                    document.getElementById('status').value = this.getAttribute('data-status');
+                    const route = `{{ route('campanha-doacao.update', ':id') }}`.replace(':id', id);
+                    form.setAttribute('action', route);
+                });
+            });
+        
+
         $(document).ready(function() {
             var dados = {
                 route: "{{ route('campanha.show', 0) }}",

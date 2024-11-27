@@ -283,7 +283,7 @@ class CampanhaController extends Controller
             $doacaoservice = new DoacaoService();
             if ($request->file('comprovativo')->isValid()) {
                 // Salva o arquivo no diretório "pdfs" no sistema de arquivos configurado
-                $file_path = $request->file('comprovativo')->store('comprovativos');
+                $file_path = $request->file('comprovativo')->store('public/comprovativos');
                 $response = $doacaoservice->createDoacao(
                     Auth::user()->id,
                     $request->campanha_id,
