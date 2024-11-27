@@ -288,7 +288,7 @@ class CampanhaController extends Controller
                     Auth::user()->id,
                     $request->campanha_id,
                     floatval($request->qtd_doar),
-                    $file_path,
+                    str_replace('public/', '', $file_path),
                     $request->flexRadioDefault
                 );
                 if($response['status'] == 201){
